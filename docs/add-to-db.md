@@ -1,0 +1,45 @@
+# UNSORTED SOURCES TO ADD TO DATABASE
+
+---
+
+- `https://www.bladescanada.com/Stedemon-Vouking-Knives/Stedemon-BP02-Linerlock-Folder-Satin-Coyote`
+- `https://www.bladescanada.com/CIVIVI-Mini-Mastodon-Flipper-Folding-Knife-G10-Red-2011B`
+- `https://www.bladescanada.com/Ka-Bar-Knives/Ka-Bar-USSF-Corser-Folding-Knife-AUS-8A-GFN-Blue-5698SF?cPath=569&`
+- `https://www.bladescanada.com/Vosteed-Knives/Vosteed-Psyop-Button-Lock-Flipper-Folding-Knife-Elmax-Satin-Titanium-Grey-Curved-A2204?cPath=569&`
+- `https://www.bladescanada.com/Vosteed-Knives/Vosteed-Morel-Folding-Knife-N690-Aluminum-Black-A1002?cPath=569&`
+- `https://www.bladescanada.com/Vosteed-Knives/Vosteed-Mini-Nightshade-CB-Folding-Knife-14C28N-Stonewash-G10-Black-MNNS26VWGk`
+- `https://www.bladescanada.com/Vosteed-Knives/Vosteed-Mini-Nightshade-Folding-Knife-Blades-Canada-Exclusive-Nitro-V-Black-G10-White-A0209`
+- `https://www.bladescanada.com/Boker-Knives/Boker-Plus-F3.5-Framelock-Folding-Knife-D2-Steel-Micarta-Handle-01BO338?cPath=569&`
+- `https://www.bladescanada.com/CIVIVI-Knives/CIVIVI-Incisor-II-Flipper-Button-Lock-Karambit-Knife-Nitro-V-Black-Aluminum-Black-C16016B-1`
+- `https://www.bladescanada.com/CJRB-Cutlery-Knives/CJRB-Fugly-Flipper-Folding-Knife-AR-RPM9-Sand-Polish-G10-Gray-J1957-GY?cPath=569&`
+- `https://www.bladescanada.com/CRKT-Knives/CRKT-Cottidae-Flipper-Folding-Knife-D2-Steel-Aluminum-Black-CRKT6321?cPath=569&`
+- `https://www.bladescanada.com/Gerber-Gear-Knives/Gerber-Asada-Flipper-Framelock-Knife-Aluminum-Black-G1807?cPath=569&`
+- `https://www.bladescanada.com/Brous-Blades-Knives/Brous-Blades-Silent-Soldier-Flipper-Folding-Knife-D2-Black-Handle-M002?cPath=569&`
+- `https://www.bladescanada.com/Higo-Knives/Higo-Bonsai-Hikari-Compact-Friction-Folding-Knife-Carbon-Fiber-01PE319?cPath=569&`
+- `https://www.bladescanada.com/Begg-Knives/Begg-Knives-Seishin-Bolster-Lock-Folding-Knife-VG10-Satin-G10-Black-BG052?cPath=569&`
+- `https://www.bladescanada.com/Boker-Knives/Boker-Plus-Defender-Flipper-Folding-Knife-D2-G10-Black-01BO763?cPath=569&`
+- `https://www.bladescanada.com/CJRB-Cutlery-Knives/CJRB-Maileah-Folding-Knife-AR-RPM9-Black-G10-Black-J1918LBBK?cPath=569&`
+- `https://www.bladescanada.com/CRKT-Knives/CRKT-Apoc-Flipper-Framelock-Knife-Black-SW-Steel-G10-Desert-Tan-CRKT5380?cPath=569&`
+- `https://www.bladescanada.com/Higo-Knives/Higo-Bonsai-Mokuzai-Compact-Friction-Folding-Knife-Damascus-Blade-01PE320?cPath=569&`
+- `https://www.bladescanada.com/CRKT-Knives/CRKT-Carson-Deadbolt-Flipper-Folding-Knife-1.4116-Tanto-Aluminum-M40-02?cPath=569&`
+- `https://www.bladescanada.com/Spyderco-Knives/Byrd-Meadowlark-Gen-2-Lightweight-Folding-Knife-FRN-Black-by-Spyderco-BY04PBKWC2?cPath=569&`
+- `https://www.bladescanada.com/Spyderco-Knives/Byrd-Cara-Cara-Gen-2-Lightweight-Folding-Knife-FRN-Black-by-Spyderco-BY03PBKWC2?cPath=569&`
+- `https://www.bladescanada.com/Bestech-Knives/Bestech-Texel-Flipper-Folding-Knife-D2-Two-Tone-G10-Jade-BTBG21B-2?cPath=569&`
+- `https://www.bladescanada.com/Spyderco-Knives/Coming-Soon-Spyderco-Shaman-Lightweight-Compression-Lock-Folding-Knife-CTS-BD1N-Stainless-FRN-Black-C229PBBK`
+- `https://www.bladescanada.com/CJRB-Cutlery-Knives/CJRB-Knives-Briar-Flipper-Folding-Knife-D2-Grey-G10-J1902GYF?cPath=569&`
+- `https://www.bladescanada.com/All-Folding-Knives/MaxKnives-SP41-Quattro-Mini-plant-Folding-Knife-440C-Leather-Case?cPath=569&`
+- `https://www.bladescanada.com/Ontario-Knives-OKC/OKC-Shirka-Flipper-Framelock-Knife-AUS-8-Black-Micarta-Titanium-8599GR?cPath=569&`
+- ``
+- ``
+- ``
+- ``
+- ``
+- ``
+- ``
+- ``
+- ``
+- ``
+- ``
+- ``
+
+---

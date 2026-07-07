@@ -1,0 +1,380 @@
+{
+  "database_name": "folding_knife_research_database",
+  "jurisdiction": "Canada",
+  "version": "0.1.3",
+  "definitions": {
+    "approved": "A knife the user currently considers worthy of further research into acquisition. This is not a final purchase decision.",
+    "rejected": "A knife the user considers banned, unworthy, or not worth further research into purchase.",
+    "clean": "A knife that is more than beautiful while utilizing minimal aesthetics.",
+    "fancy": "A unique blade style not often seen, e.g. Spyderco Matriarch 2 Emerson.",
+    "tiered": "An enthusiast knife in the high-tier quality range of, or above, a Chris Reeve."
+  },
+  "id_rule": {
+    "format": "brand-model-key-variant",
+    "style": "lowercase-kebab-case",
+    "example": "spyderco-matriarch-2-emerson-open-c12sbk2w"
+  },
+  "workflow_rules": {
+    "canadian_online_retailer_rule": {
+      "rule": "If a folding knife is listed by a Canadian online retailer, treat it as valid for Canadian acquisition research unless the listing itself clearly identifies a prohibited mechanism.",
+      "status_to_use": "canadian_retailer_verified",
+      "do_not_flag_as_conditional_just_because": [
+        "assisted opening",
+        "manual flipper",
+        "wave opener",
+        "Emerson opener",
+        "axis lock",
+        "crossbar lock",
+        "shark lock",
+        "button lock used only as a lock",
+        "ceramic bearings",
+        "one-hand opening",
+        "thumb stud",
+        "thumb hole",
+        "front flipper"
+      ],
+      "only_reject_or_fail_if_clear_prohibited_mechanism": [
+        "automatic switchblade",
+        "OTF automatic",
+        "gravity knife",
+        "balisong",
+        "butterfly knife",
+        "explicit centrifugal/flick knife",
+        "button/spring/device in handle that automatically opens the blade"
+      ]
+    }
+  },
+  "canada_prohibited_carry_screen": {
+    "prohibited_mechanisms": {
+      "gravity_opening": true,
+      "centrifugal_or_wrist_flick_opening": true,
+      "button_spring_or_handle_device_auto_opening": true,
+      "balisong_or_butterfly": true
+    },
+    "allowed_or_not_automatically_disqualifying": {
+      "assisted_opening_when_sold_by_canadian_retailer": true,
+      "manual_flipper_when_sold_by_canadian_retailer": true,
+      "wave_or_emerson_opener_when_sold_by_canadian_retailer": true,
+      "axis_crossbar_shark_or_similar_locks_when_sold_by_canadian_retailer": true,
+      "button_lock_when_button_is_lock_not_auto_opener": true
+    }
+  },
+  "knives": [
+    {
+      "id": "spyderco-matriarch-2-emerson-open-c12sbk2w",
+      "brand": "Spyderco",
+      "model": "Matriarch 2 Emerson Open Folding Knife C12SBK2W",
+      "user_classification": "approved",
+      "user_tags": ["fancy"],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Emerson pocket opener / wave-style opener",
+        "lock_type": "Back lock",
+        "assist_type": "manual_wave_or_pocket_opening",
+        "blade_length": "3.57 in / 91 mm",
+        "blade_steel": "VG-10",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Spyderco-Knives/Spyderco-Matriarch-2-Emerson-Open-Folding-Knife-C12SBK2W",
+          "listed_price_cad": 189.99,
+          "availability": "available online and in-store",
+          "source_date": "2026-07-06"
+        }
+      ],
+      "notes": "Canadian retailer found. Keep in approved research pool."
+    },
+    {
+      "id": "al-mar-sere-2020-flipper-assisted-amk2214",
+      "brand": "Al Mar",
+      "model": "SERE 2020 Flipper Folding Knife Assisted Opening AMK2214",
+      "user_classification": "approved",
+      "user_tags": ["clean"],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Spring assist flipper",
+        "lock_type": "Liner lock",
+        "assist_type": "assisted",
+        "blade_length": "3.6 in",
+        "blade_steel": "8Cr13MoV",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Al-Mar-Knives/Al-Mar-SERE-2020-Flipper-Folding-Knife-Assisted-Opening-8Cr13MoV-FRN-Tan-AMK2214",
+          "listed_price_cad": 79.99,
+          "availability": "online only",
+          "source_date": "2026-07-06"
+        }
+      ],
+      "notes": "Canadian retailer found. Keep in approved research pool."
+    },
+    {
+      "id": "benchmade-bugout-axis-lock-535sl-13",
+      "brand": "Benchmade",
+      "model": "Bugout Axis Lock Folding Knife 535SL-13",
+      "user_classification": "approved",
+      "user_tags": ["clean"],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Manual thumb stud",
+        "lock_type": "AXIS Lock",
+        "assist_type": "manual",
+        "blade_length": "3.24 in / 8.23 cm",
+        "blade_steel": "CPM-S90V",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Benchmade-Knives/Benchmade-Bugout-Axis-Lock-Folding-Knife-CPM-S90V-Cerakote-Anodized-Aluminum-Crater-Blue-535SL-13",
+          "listed_price_cad": 495.0,
+          "availability": "available online and in-store",
+          "source_date": "2026-07-06"
+        }
+      ],
+      "notes": "Canadian retailer found. Keep in approved research pool."
+    },
+    {
+      "id": "lionsteel-le-one-flipper-framelock-karambit-magnacut-wave",
+      "brand": "LionSteel",
+      "model": "L.E.One Flipper Framelock Karambit MagnaCut Wave Opening LSTLE1ABS",
+      "user_classification": "approved",
+      "user_tags": ["fancy"],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Wave opening / Emerson remote pocket opening; flipper listed in product title",
+        "lock_type": "Frame lock",
+        "assist_type": "manual_wave_or_pocket_opening",
+        "blade_length": "82 mm / 3.23 in",
+        "blade_steel": "CPM MagnaCut",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Lion-Steel-Knives/Lion-Steel-LE1-A-BS-L.E.One-Flipper-Framelock-Karambit-MagnaCut-SW-Wave-Opening",
+          "listed_price_cad": 264.99,
+          "availability": "available; add to cart shown",
+          "source_date": "2026-07-06"
+        }
+      ],
+      "notes": "Canadian retailer found. Keep in approved research pool."
+    },
+    {
+      "id": "kizer-t1-bd",
+      "brand": "Kizer",
+      "model": "T1-BD",
+      "user_classification": "approved",
+      "user_tags": ["tiered"],
+      "research_status": "pending_canadian_retailer_search",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": null,
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [],
+      "source_input": "https://alnk.to/apWQCy9",
+      "notes": "User marked approved/tiered. Needs Canadian retailer search before verification."
+    },
+    {
+      "id": "kizer-drop-bear-zero",
+      "brand": "Kizer",
+      "model": "Drop Bear Zero",
+      "user_classification": "approved",
+      "user_tags": ["clean"],
+      "research_status": "pending_canadian_retailer_search",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": null,
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [],
+      "source_input": "https://kizerknives.com/search?q=drop+bear+zero&sv1=affiliate&sv_campaign_id=1956071&sscid=44281_1780862518_5a053c9fba0429072e71c3be7a0fb0d0&awc=44281_1780862518_5a053c9fba0429072e71c3be7a0fb0d0",
+      "notes": "User marked approved/clean. Needs Canadian retailer search before verification."
+    },
+    {
+      "id": "kunwu-albatross",
+      "brand": "Kunwu",
+      "model": "Albatross",
+      "user_classification": null,
+      "user_tags": [],
+      "research_status": "pending_canadian_retailer_search",
+      "acquisition_status": "pending_research",
+      "source_input": "https://whitemountainknives.com/ssearch/?search_query=KB+albatross",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": null,
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [],
+      "notes": "Needs exact product confirmation and Canadian retailer search."
+    },
+    {
+      "id": "chris-reeve-sebenza",
+      "brand": "Chris Reeve",
+      "model": "Sebenza",
+      "user_classification": null,
+      "user_tags": ["tiered_candidate"],
+      "research_status": "pending_canadian_retailer_search",
+      "acquisition_status": "pending_research",
+      "source_input": "https://www.bladehq.com/cat--Chris-Reeve-Sebenza-31--3840",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": null,
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [],
+      "notes": "Needs exact Sebenza model selection and Canadian retailer confirmation."
+    },
+    {
+      "id": "miguron-karok-white-mgr827wh",
+      "brand": "Miguron",
+      "model": "Karok White / MGR827WH",
+      "user_classification": null,
+      "user_tags": [],
+      "research_status": "pending_canadian_retailer_search",
+      "acquisition_status": "pending_research",
+      "source_input": "https://www.mmiguronknives.com/mgr827wh-p6999394.html",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": null,
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [],
+      "notes": "Needs mechanism extraction and Canadian retailer search."
+    },
+    {
+      "id": "demko-ad20-5-3v-clip-point-textured-titanium",
+      "brand": "Demko",
+      "model": "AD20.5 Shark Lock Folding Knife 3V Clip Point Textured Titanium",
+      "user_classification": null,
+      "user_tags": [],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Manual",
+        "lock_type": "Shark Lock",
+        "assist_type": "manual",
+        "blade_length": "3 in",
+        "blade_steel": "3V",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Demko-Knives/Demko-AD20.5-Folding-Knife-3V-Clip-Point-Textured-Titanium",
+          "listed_price_cad": 569.99,
+          "availability": "online only",
+          "source_date": "2026-07-06"
+        }
+      ],
+      "notes": "Canadian retailer found. Keep in research pool unless user rejects it."
+    },
+    {
+      "id": "cold-steel-american-lawman-s35vn-g10-black-58b",
+      "brand": "Cold Steel",
+      "model": "American Lawman Folding Knife S35VN G10 Black 58B",
+      "user_classification": null,
+      "user_tags": [],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Manual",
+        "lock_type": null,
+        "assist_type": "manual",
+        "blade_length": "3.5 in",
+        "blade_steel": "S35VN",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Cold-Steel-Knives/Cold-Steel-American-Lawman-Folding-Knife-S35VN-G10-Black-58B",
+          "listed_price_cad": 219.99,
+          "availability": "online only",
+          "source_date": "2026-07-06"
+        }
+      ],
+      "notes": "Canadian retailer found. Keep in research pool unless user rejects it."
+    },
+    {
+      "id": "hinderer-xm-24-4-0-1095-skinny-bowie-tri-way-vintage-walnut",
+      "brand": "Hinderer",
+      "model": "XM-24 4.0 1095 Skinny Bowie Tri-Way Vintage Series Smooth Walnut",
+      "user_classification": null,
+      "user_tags": ["tiered_candidate"],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Manual Tri-Way platform",
+        "lock_type": null,
+        "assist_type": "manual",
+        "blade_length": "4.00 in",
+        "blade_steel": "1095",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Hinderer-Knives/Hinderer-XM-24-4.0-1095-Skinny-Bowie-Tri-Way-Vintage-Series-Smooth-Walnut",
+          "listed_price_cad": 1000.99,
+          "availability": "online only",
+          "source_date": "2026-07-06"
+        }
+      ],
+      "notes": "Canadian retailer found. Keep in research pool unless user rejects it."
+    },
+    {
+      "id": "koenig-arius-non-flipper-smooth-titanium-m390",
+      "brand": "Koenig",
+      "model": "Arius Non-Flipper Smooth Titanium M390",
+      "user_classification": null,
+      "user_tags": ["tiered_candidate"],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Non-flipper manual opening",
+        "lock_type": "Frame lock",
+        "assist_type": "manual",
+        "blade_length": "3.50 in",
+        "blade_steel": "M390",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "BladeZilla",
+          "url": "https://bladezilla.ca/products/koenig-knives-arius-non-flipper-smooth-titanium-handle-silver-hardware-burnished-w-polished-flats-m390-blade",
+          "listed_price_cad": 1395.0,
+          "availability": "sold out",
+          "source_date": "2026-07-06"
+        }
+      ],
+      "notes": "Canadian retailer found. Keep in research pool unless user rejects it."
+    }
+  ]
+}
