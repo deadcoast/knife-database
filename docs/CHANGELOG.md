@@ -1,5 +1,23 @@
 # CHANGELOG
 
+## 002 — v0.5.0 (2026-07-18) — checkpoint release
+
+Database:
+
+- Imported all 53 knives from TODO.md into the database, deduplicated, with section provenance in notes.
+- Scraped every retailer product page (Blades Canada, House of Knives) to populate CAD prices, availability, blade steel, lock type, opening method, and blade length. 64/67 knives now priced; the only unpriced records are the three without a Canadian product listing (Kunwu Albatross, Miguron Karok Teal, Kubey Zephyr).
+- Renamed all records to short scannable model names ("Bel Air XL (KE-6110)"); the original verbose retailer listing title is preserved per record in `listing_title`.
+- New tag rule: `affordable` is auto-assigned to any knife priced under $150 CAD and is the only non-user-assigned tag. All other tags (clean, fancy, tiered) remain user-assigned.
+- Resolved all pending records with confirmed retailer links (Kizer T1-BD, Drop Bear Zero, Sebenza 31 Insingo L31-1124); added CRKT Zephyr and Kubey Gurkha; removed Kissing Crane (dead listing); Kubey Zephyr and Miguron Karok Teal kept on US/brand sources pending Canadian availability.
+
+Interactive UI:
+
+- Redraw now clears terminal scrollback — no more stacked stale frames.
+- Page size adapts to terminal height instead of a fixed 8 rows.
+- Replaced the boxed banner/summary/filter panels with a compact 2-line header.
+- Table rows are always one line per knife (ellipsis truncation).
+- Footer documents that typing any text is a live substring search.
+
 ## 001
 
 The Current Repository has built out the supporting CLI, and will continue developing the CLI untill it is in a complete and working state. After the CLI is complete and the development is in a stable state, the front end web stack work will begin.

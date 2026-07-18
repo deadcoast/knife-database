@@ -1,7 +1,7 @@
 {
   "database_name": "folding_knife_research_database",
   "jurisdiction": "Canada",
-  "version": "0.2.0",
+  "version": "0.5.0",
   "definitions": {
     "approved": "A knife the user currently considers worthy of further research into acquisition. This is not a final purchase decision.",
     "rejected": "A knife the user considers banned, unworthy, or not worth further research into purchase.",
@@ -63,7 +63,7 @@
     {
       "id": "spyderco-matriarch-2-emerson-open-c12sbk2w",
       "brand": "Spyderco",
-      "model": "Matriarch 2 Emerson Open Folding Knife C12SBK2W",
+      "model": "Matriarch 2 Emerson Open (C12SBK2W)",
       "user_classification": "approved",
       "user_tags": [
         "fancy"
@@ -82,29 +82,31 @@
         {
           "retailer": "Blades Canada / Warriors and Wonders",
           "url": "https://www.bladescanada.com/Spyderco-Knives/Spyderco-Matriarch-2-Emerson-Open-Folding-Knife-C12SBK2W",
-          "listed_price_cad": 189.99,
-          "availability": "available online and in-store",
-          "source_date": "2026-07-06"
+          "listed_price_cad": 184.99,
+          "availability": "in stock",
+          "source_date": "2026-07-17"
         }
       ],
-      "notes": "Canadian retailer found. Keep in approved research pool."
+      "notes": "Canadian retailer found. Keep in approved research pool.",
+      "listing_title": "Matriarch 2 Emerson Open Folding Knife C12SBK2W"
     },
     {
       "id": "al-mar-sere-2020-flipper-assisted-amk2214",
       "brand": "Al Mar",
-      "model": "SERE 2020 Flipper Folding Knife Assisted Opening AMK2214",
+      "model": "SERE 2020 (AMK2214)",
       "user_classification": "approved",
       "user_tags": [
-        "clean"
+        "clean",
+        "affordable"
       ],
       "research_status": "canadian_retailer_verified",
       "acquisition_status": "approved_for_further_research",
       "mechanism": {
-        "opening_method": "Spring assist flipper",
+        "opening_method": "Spring",
         "lock_type": "Liner lock",
         "assist_type": "assisted",
         "blade_length": "3.6 in",
-        "blade_steel": "8Cr13MoV",
+        "blade_steel": "8Cr13MoV SS (",
         "clear_prohibited_mechanism_found": false
       },
       "canadian_online_retailers": [
@@ -112,16 +114,17 @@
           "retailer": "Blades Canada / Warriors and Wonders",
           "url": "https://www.bladescanada.com/Al-Mar-Knives/Al-Mar-SERE-2020-Flipper-Folding-Knife-Assisted-Opening-8Cr13MoV-FRN-Tan-AMK2214",
           "listed_price_cad": 79.99,
-          "availability": "online only",
-          "source_date": "2026-07-06"
+          "availability": "in stock",
+          "source_date": "2026-07-17"
         }
       ],
-      "notes": "Canadian retailer found. Keep in approved research pool."
+      "notes": "Canadian retailer found. Keep in approved research pool.",
+      "listing_title": "SERE 2020 Flipper Folding Knife Assisted Opening AMK2214"
     },
     {
       "id": "benchmade-bugout-axis-lock-535sl-13",
       "brand": "Benchmade",
-      "model": "Bugout Axis Lock Folding Knife 535SL-13",
+      "model": "Bugout (535SL-13)",
       "user_classification": "approved",
       "user_tags": [
         "clean"
@@ -141,16 +144,17 @@
           "retailer": "Blades Canada / Warriors and Wonders",
           "url": "https://www.bladescanada.com/Benchmade-Knives/Benchmade-Bugout-Axis-Lock-Folding-Knife-CPM-S90V-Cerakote-Anodized-Aluminum-Crater-Blue-535SL-13",
           "listed_price_cad": 495.0,
-          "availability": "available online and in-store",
-          "source_date": "2026-07-06"
+          "availability": "in stock",
+          "source_date": "2026-07-17"
         }
       ],
-      "notes": "Canadian retailer found. Keep in approved research pool."
+      "notes": "Canadian retailer found. Keep in approved research pool.",
+      "listing_title": "Bugout Axis Lock Folding Knife 535SL-13"
     },
     {
       "id": "lionsteel-le-one-flipper-framelock-karambit-magnacut-wave",
       "brand": "LionSteel",
-      "model": "L.E.One Flipper Framelock Karambit MagnaCut Wave Opening LSTLE1ABS",
+      "model": "L.E.One Karambit Wave (LSTLE1ABS)",
       "user_classification": "approved",
       "user_tags": [
         "fancy"
@@ -170,55 +174,75 @@
           "retailer": "Blades Canada / Warriors and Wonders",
           "url": "https://www.bladescanada.com/Lion-Steel-Knives/Lion-Steel-LE1-A-BS-L.E.One-Flipper-Framelock-Karambit-MagnaCut-SW-Wave-Opening",
           "listed_price_cad": 264.99,
-          "availability": "available; add to cart shown",
-          "source_date": "2026-07-06"
+          "availability": "in stock",
+          "source_date": "2026-07-17"
         }
       ],
-      "notes": "Canadian retailer found. Keep in approved research pool."
+      "notes": "Canadian retailer found. Keep in approved research pool.",
+      "listing_title": "L.E.One Flipper Framelock Karambit MagnaCut Wave Opening LSTLE1ABS"
     },
     {
       "id": "kizer-t1-bd",
       "brand": "Kizer",
-      "model": "T1-BD",
+      "model": "T1-BD Button Liner Lock (V3490.2BA1)",
       "user_classification": "approved",
       "user_tags": [
-        "tiered"
+        "tiered",
+        "affordable"
       ],
-      "research_status": "pending_canadian_retailer_search",
-      "acquisition_status": "pending_research",
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
       "mechanism": {
-        "opening_method": null,
-        "lock_type": null,
-        "assist_type": "unknown",
-        "blade_length": null,
-        "blade_steel": null,
-        "clear_prohibited_mechanism_found": null
+        "opening_method": "Thumb Stud",
+        "lock_type": "Button liner lock",
+        "assist_type": "manual",
+        "blade_length": "3.20 / 81.30mm",
+        "blade_steel": "Nitro-V",
+        "clear_prohibited_mechanism_found": false
       },
-      "canadian_online_retailers": [],
-      "source_input": "https://alnk.to/apWQCy9",
-      "notes": "User marked approved/tiered. Needs Canadian retailer search before verification."
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Kizer-Knives/Kizer-T1-BD-Button-Liner-Lock-Folding-Knife-Nitro-V-Satin-Micarta-Olive-Green-V3490.2BA1",
+          "listed_price_cad": 102.99,
+          "availability": "in stock",
+          "source_date": "2026-07-18"
+        }
+      ],
+      "source_input": "https://www.bladescanada.com/Kizer-Knives/Kizer-T1-BD-Button-Liner-Lock-Folding-Knife-Nitro-V-Satin-Micarta-Olive-Green-V3490.2BA1",
+      "notes": "Canadian retailer confirmed by user 2026-07-18. User marked approved/tiered.",
+      "listing_title": "Kizer T1 BD Button Liner Lock Folding Knife, Nitro-V Satin, Micarta Olive Green, V3490.2BA1 [KIV34902BA1] - $102.99CDN"
     },
     {
       "id": "kizer-drop-bear-zero",
       "brand": "Kizer",
-      "model": "Drop Bear Zero",
+      "model": "Drop Bear Zero (3619BDA2)",
       "user_classification": "approved",
       "user_tags": [
         "clean"
       ],
-      "research_status": "pending_canadian_retailer_search",
-      "acquisition_status": "pending_research",
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
       "mechanism": {
-        "opening_method": null,
-        "lock_type": null,
-        "assist_type": "unknown",
-        "blade_length": null,
-        "blade_steel": null,
-        "clear_prohibited_mechanism_found": null
+        "opening_method": "Thumb Stud",
+        "lock_type": "Button lock",
+        "assist_type": "manual",
+        "blade_length": "3.1 /78.8mm",
+        "blade_steel": "Elmax",
+        "clear_prohibited_mechanism_found": false
       },
-      "canadian_online_retailers": [],
-      "source_input": "https://kizerknives.com/search?q=drop+bear+zero&sv1=affiliate&sv_campaign_id=1956071&sscid=44281_1780862518_5a053c9fba0429072e71c3be7a0fb0d0&awc=44281_1780862518_5a053c9fba0429072e71c3be7a0fb0d0",
-      "notes": "User marked approved/clean. Needs Canadian retailer search before verification."
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Kizer-Knives/Kizer-Drop-Bear-Zero-Button-Lock-Folding-Knife-Elmax-Black-Aluminum-Blue-3619BDA2",
+          "listed_price_cad": 205.99,
+          "availability": "in stock",
+          "source_date": "2026-07-18"
+        }
+      ],
+      "source_input": "https://www.bladescanada.com/Kizer-Knives/Kizer-Drop-Bear-Zero-Button-Lock-Folding-Knife-Elmax-Black-Aluminum-Blue-3619BDA2",
+      "notes": "Canadian retailer confirmed by user 2026-07-18. User marked approved/clean.",
+      "listing_title": "Kizer Drop Bear Zero Button Lock Folding Knife, Elmax Black, Aluminum Blue, 3619BDA2 [KI3619BDA2] - $205.99CDN"
     },
     {
       "id": "kunwu-albatross",
@@ -238,54 +262,64 @@
         "clear_prohibited_mechanism_found": null
       },
       "canadian_online_retailers": [],
-      "notes": "Needs exact product confirmation and Canadian retailer search."
+      "notes": "Needs exact product confirmation and Canadian retailer search. User reports sold out at source (2026-07-18)."
     },
     {
-      "id": "chris-reeve-sebenza",
+      "id": "chris-reeve-large-sebenza-31-insingo-bog-oak-l31-1124",
       "brand": "Chris Reeve",
-      "model": "Sebenza",
+      "model": "Large Sebenza 31 Insingo Bog Oak (L31-1124)",
       "user_classification": null,
       "user_tags": [
         "tiered_candidate"
       ],
-      "research_status": "pending_canadian_retailer_search",
-      "acquisition_status": "pending_research",
-      "source_input": "https://www.bladehq.com/cat--Chris-Reeve-Sebenza-31--3840",
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "source_input": "https://www.bladescanada.com/Chris-Reeve-Knives/Chris-Reeve-Large-Sebenza-31-Insingo-Framelock-Folding-Knife-MagnaCut-SW-Titanium-Glass-Blasted-w-Bog-Oak-Inlay-L31-1124",
       "mechanism": {
         "opening_method": null,
-        "lock_type": null,
-        "assist_type": "unknown",
+        "lock_type": "Frame lock",
+        "assist_type": "manual",
         "blade_length": null,
-        "blade_steel": null,
-        "clear_prohibited_mechanism_found": null
+        "blade_steel": "CPM MagnaCut",
+        "clear_prohibited_mechanism_found": false
       },
-      "canadian_online_retailers": [],
-      "notes": "Needs exact Sebenza model selection and Canadian retailer confirmation."
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Chris-Reeve-Knives/Chris-Reeve-Large-Sebenza-31-Insingo-Framelock-Folding-Knife-MagnaCut-SW-Titanium-Glass-Blasted-w-Bog-Oak-Inlay-L31-1124",
+          "listed_price_cad": 1030.99,
+          "availability": "in stock",
+          "source_date": "2026-07-18"
+        }
+      ],
+      "notes": "Exact model confirmed by user 2026-07-18: Large Sebenza 31 Insingo, MagnaCut, Bog Oak inlay.",
+      "listing_title": "Chris Reeve Large Sebenza 31 Insingo Framelock Folding Knife, MagnaCut SW, Titanium Glass Blasted w/Bog Oak Inlay, L31-1124 [CRKL311124] - $1,030.99CDN"
     },
     {
-      "id": "miguron-karok-white-mgr827wh",
+      "id": "miguron-karok-teal-mgr827bu",
       "brand": "Miguron",
-      "model": "Karok White / MGR827WH",
+      "model": "Karok Teal/Blue (MGR827BU)",
       "user_classification": null,
       "user_tags": [],
       "research_status": "pending_canadian_retailer_search",
       "acquisition_status": "pending_research",
-      "source_input": "https://www.mmiguronknives.com/mgr827wh-p6999394.html",
+      "source_input": "https://www.mmiguronknives.com/mgr827bu-p6999396.html",
       "mechanism": {
         "opening_method": null,
         "lock_type": null,
         "assist_type": "unknown",
-        "blade_length": null,
-        "blade_steel": null,
+        "blade_length": "3.4 in",
+        "blade_steel": "D2",
         "clear_prohibited_mechanism_found": null
       },
       "canadian_online_retailers": [],
-      "notes": "Needs mechanism extraction and Canadian retailer search."
+      "notes": "User switched to teal variant 2026-07-18. Brand site lists USD $36.95 (in stock); no Canadian retailer yet — needs Canadian retailer search.",
+      "listing_title": "Karok White / MGR827WH"
     },
     {
       "id": "demko-ad20-5-3v-clip-point-textured-titanium",
       "brand": "Demko",
-      "model": "AD20.5 Shark Lock Folding Knife 3V Clip Point Textured Titanium",
+      "model": "AD20.5 Clip Point Titanium (3V)",
       "user_classification": null,
       "user_tags": [],
       "research_status": "canadian_retailer_verified",
@@ -294,7 +328,7 @@
         "opening_method": "Manual",
         "lock_type": "Shark Lock",
         "assist_type": "manual",
-        "blade_length": "3 in",
+        "blade_length": null,
         "blade_steel": "3V",
         "clear_prohibited_mechanism_found": false
       },
@@ -303,16 +337,17 @@
           "retailer": "Blades Canada / Warriors and Wonders",
           "url": "https://www.bladescanada.com/Demko-Knives/Demko-AD20.5-Folding-Knife-3V-Clip-Point-Textured-Titanium",
           "listed_price_cad": 569.99,
-          "availability": "online only",
-          "source_date": "2026-07-06"
+          "availability": "in stock",
+          "source_date": "2026-07-17"
         }
       ],
-      "notes": "Canadian retailer found. Keep in research pool unless user rejects it."
+      "notes": "Canadian retailer found. Keep in research pool unless user rejects it.",
+      "listing_title": "AD20.5 Shark Lock Folding Knife 3V Clip Point Textured Titanium"
     },
     {
       "id": "cold-steel-american-lawman-s35vn-g10-black-58b",
       "brand": "Cold Steel",
-      "model": "American Lawman Folding Knife S35VN G10 Black 58B",
+      "model": "American Lawman (58B)",
       "user_classification": null,
       "user_tags": [],
       "research_status": "canadian_retailer_verified",
@@ -321,7 +356,7 @@
         "opening_method": "Manual",
         "lock_type": null,
         "assist_type": "manual",
-        "blade_length": "3.5 in",
+        "blade_length": "3 1/2 in",
         "blade_steel": "S35VN",
         "clear_prohibited_mechanism_found": false
       },
@@ -329,17 +364,18 @@
         {
           "retailer": "Blades Canada / Warriors and Wonders",
           "url": "https://www.bladescanada.com/Cold-Steel-Knives/Cold-Steel-American-Lawman-Folding-Knife-S35VN-G10-Black-58B",
-          "listed_price_cad": 219.99,
-          "availability": "online only",
-          "source_date": "2026-07-06"
+          "listed_price_cad": 270.99,
+          "availability": "in stock",
+          "source_date": "2026-07-17"
         }
       ],
-      "notes": "Canadian retailer found. Keep in research pool unless user rejects it."
+      "notes": "Canadian retailer found. Keep in research pool unless user rejects it.",
+      "listing_title": "American Lawman Folding Knife S35VN G10 Black 58B"
     },
     {
       "id": "hinderer-xm-24-4-0-1095-skinny-bowie-tri-way-vintage-walnut",
       "brand": "Hinderer",
-      "model": "XM-24 4.0 1095 Skinny Bowie Tri-Way Vintage Series Smooth Walnut",
+      "model": "XM-24 4.0 Skinny Bowie Vintage Walnut",
       "user_classification": null,
       "user_tags": [
         "tiered_candidate"
@@ -350,7 +386,7 @@
         "opening_method": "Manual Tri-Way platform",
         "lock_type": null,
         "assist_type": "manual",
-        "blade_length": "4.00 in",
+        "blade_length": "4.00in",
         "blade_steel": "1095",
         "clear_prohibited_mechanism_found": false
       },
@@ -358,17 +394,18 @@
         {
           "retailer": "Blades Canada / Warriors and Wonders",
           "url": "https://www.bladescanada.com/Hinderer-Knives/Hinderer-XM-24-4.0-1095-Skinny-Bowie-Tri-Way-Vintage-Series-Smooth-Walnut",
-          "listed_price_cad": 1000.99,
-          "availability": "online only",
-          "source_date": "2026-07-06"
+          "listed_price_cad": 988.99,
+          "availability": "in stock",
+          "source_date": "2026-07-17"
         }
       ],
-      "notes": "Canadian retailer found. Keep in research pool unless user rejects it."
+      "notes": "Canadian retailer found. Keep in research pool unless user rejects it.",
+      "listing_title": "XM-24 4.0 1095 Skinny Bowie Tri-Way Vintage Series Smooth Walnut"
     },
     {
       "id": "koenig-arius-non-flipper-smooth-titanium-m390",
       "brand": "Koenig",
-      "model": "Arius Non-Flipper Smooth Titanium M390",
+      "model": "Arius Non-Flipper (M390)",
       "user_classification": null,
       "user_tags": [
         "tiered_candidate"
@@ -392,7 +429,1626 @@
           "source_date": "2026-07-06"
         }
       ],
-      "notes": "Canadian retailer found. Keep in research pool unless user rejects it."
+      "notes": "Canadian retailer found. Keep in research pool unless user rejects it.",
+      "listing_title": "Arius Non-Flipper Smooth Titanium M390"
+    },
+    {
+      "id": "vosteed-porcupine-14c28n-g10-gray-a2607",
+      "brand": "Vosteed",
+      "model": "Porcupine (A2607)",
+      "user_classification": null,
+      "user_tags": [
+        "affordable"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Thumb Hole",
+        "lock_type": "Top Liner Lock",
+        "assist_type": "manual",
+        "blade_length": "2.99 in / 75.98 mm",
+        "blade_steel": "14C28N",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Vosteed-Knives/Vosteed-Porcupine-Folding-Knife-14C28N-Destroyer-Gray-G10-Gray-A2607",
+          "listed_price_cad": 109.99,
+          "availability": "in stock",
+          "source_date": "2026-07-17"
+        }
+      ],
+      "source_input": "https://www.bladescanada.com/Vosteed-Knives/Vosteed-Porcupine-Folding-Knife-14C28N-Destroyer-Gray-G10-Gray-A2607",
+      "notes": "Imported from TODO.md (main list section). Price and specs captured from retailer listing 2026-07-17. Listed twice in TODO.md main list; deduplicated.",
+      "listing_title": "Porcupine Folding Knife 14C28N Destroyer Gray G10 Gray A2607"
+    },
+    {
+      "id": "fox-blackbird-karambit-n690-fx-591-mbb",
+      "brand": "Fox",
+      "model": "BlackBird Karambit (FX-591 MBB)",
+      "user_classification": null,
+      "user_tags": [],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": "65 mm - 2.56 in",
+        "blade_steel": "N690Co",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/FOX-Knives/Fox-BlackBird-Karambit-Folding-Knife-N690-SW-Micarta-Black-Bastinelli-Design-FX-591-MBB",
+          "listed_price_cad": 249.99,
+          "availability": "in stock",
+          "source_date": "2026-07-17"
+        }
+      ],
+      "source_input": "https://www.bladescanada.com/FOX-Knives/Fox-BlackBird-Karambit-Folding-Knife-N690-SW-Micarta-Black-Bastinelli-Design-FX-591-MBB",
+      "notes": "Imported from TODO.md (main list section). Price and specs captured from retailer listing 2026-07-17.",
+      "listing_title": "BlackBird Karambit Folding Knife N690 SW Micarta Black Bastinelli Design FX-591 MBB"
+    },
+    {
+      "id": "pro-tech-tr-3-integrity-button-lock-magnacut-int1106",
+      "brand": "Pro-Tech",
+      "model": "TR-3 Integrity (INT1106)",
+      "user_classification": null,
+      "user_tags": [],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Thumb",
+        "lock_type": "Button lock",
+        "assist_type": "manual",
+        "blade_length": "3.50 in",
+        "blade_steel": "CPM MagnaCut",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Pro-Tech-Knives/Pro-Tech-TR-3-Integrity-Button-Lock-Folding-Knife-CPM-MagnaCut-Black-Aluminum-Relic-Black-INT1106",
+          "listed_price_cad": 474.99,
+          "availability": "in stock",
+          "source_date": "2026-07-17"
+        }
+      ],
+      "source_input": "https://www.bladescanada.com/Pro-Tech-Knives/Pro-Tech-TR-3-Integrity-Button-Lock-Folding-Knife-CPM-MagnaCut-Black-Aluminum-Relic-Black-INT1106",
+      "notes": "Imported from TODO.md (main list section). Price and specs captured from retailer listing 2026-07-17. Integrity line uses the button as a lock (manual action), not an auto opener — confirm on listing.",
+      "listing_title": "TR-3 Integrity Button Lock Folding Knife CPM MagnaCut Black Aluminum Relic Black INT1106"
+    },
+    {
+      "id": "benchmade-mini-barrage-osborne-s90v-585cu24",
+      "brand": "Benchmade",
+      "model": "Mini Barrage Osborne (585CU24)",
+      "user_classification": null,
+      "user_tags": [],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Assisted thumb stud (AXIS Assist)",
+        "lock_type": "AXIS Lock",
+        "assist_type": "assisted",
+        "blade_length": "2.91 in",
+        "blade_steel": "CPM-S90V",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Benchmade-Special-Editions/Benchmade-Mini-Barrage-Osborne-Folding-Knife-Assisted-Opening-S90V-G10-Green-585CU24",
+          "listed_price_cad": 459.99,
+          "availability": "in stock",
+          "source_date": "2026-07-17"
+        }
+      ],
+      "source_input": "https://www.bladescanada.com/Benchmade-Special-Editions/Benchmade-Mini-Barrage-Osborne-Folding-Knife-Assisted-Opening-S90V-G10-Green-585CU24",
+      "notes": "Imported from TODO.md (main list section). Price and specs captured from retailer listing 2026-07-17. Also listed in TODO.md UNSORTED section; deduplicated.",
+      "listing_title": "Mini Barrage Osborne Folding Knife Assisted Opening S90V G10 Green 585CU24"
+    },
+    {
+      "id": "spyderco-subvert-cpm-20cv-carbon-fiber-239cfp",
+      "brand": "Spyderco",
+      "model": "Subvert Sprint Run (239CFP)",
+      "user_classification": null,
+      "user_tags": [],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": "Compression Lock",
+        "assist_type": "unknown",
+        "blade_length": "4.12 in (105mm)",
+        "blade_steel": "CPM 20CV",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Spyderco-Knives/Spyderco-Subvert-Folding-Knife-CPM-20CV-Carbon-Fiber-Sprint-Run-239CFP",
+          "listed_price_cad": 599.99,
+          "availability": "in stock",
+          "source_date": "2026-07-17"
+        }
+      ],
+      "source_input": "https://www.bladescanada.com/Spyderco-Knives/Spyderco-Subvert-Folding-Knife-CPM-20CV-Carbon-Fiber-Sprint-Run-239CFP",
+      "notes": "Imported from TODO.md (main list section). Price and specs captured from retailer listing 2026-07-17.",
+      "listing_title": "Subvert Folding Knife CPM 20CV Carbon Fiber Sprint Run 239CFP"
+    },
+    {
+      "id": "kershaw-bel-air-duralock-cru-wear-6105mc",
+      "brand": "Kershaw",
+      "model": "Bel Air (6105MC)",
+      "user_classification": null,
+      "user_tags": [],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": "DuraLock (crossbar lock)",
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "CPM Cru-Wear",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Kershaw-Knives/Kershaw-Bel-Air-DuraLock-Folding-Knife-CPM-Cru-Wear-Micarta-Brown-6105MC",
+          "listed_price_cad": 309.99,
+          "availability": "in stock",
+          "source_date": "2026-07-17"
+        }
+      ],
+      "source_input": "https://www.bladescanada.com/Kershaw-Knives/Kershaw-Bel-Air-DuraLock-Folding-Knife-CPM-Cru-Wear-Micarta-Brown-6105MC",
+      "notes": "Imported from TODO.md (main list section). Price and specs captured from retailer listing 2026-07-17.",
+      "listing_title": "Bel Air DuraLock Folding Knife CPM Cru-Wear Micarta Brown 6105MC"
+    },
+    {
+      "id": "kershaw-bel-air-xl-ke-6110",
+      "brand": "Kershaw",
+      "model": "Bel Air XL (KE-6110)",
+      "user_classification": null,
+      "user_tags": [],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": "DuraLock (crossbar lock)",
+        "assist_type": "unknown",
+        "blade_length": "3.4\"",
+        "blade_steel": "CPM MagnaCut",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/bel-air-xl/",
+          "listed_price_cad": 339.99,
+          "availability": "in stock",
+          "source_date": "2026-07-17"
+        }
+      ],
+      "source_input": "https://houseofknives.ca/bel-air-xl/",
+      "notes": "Imported from TODO.md (main list section). Price and specs captured from retailer listing 2026-07-17.",
+      "listing_title": "Bel Air XL Folding Knife KE-6110"
+    },
+    {
+      "id": "civivi-shawka-aluminum-red-black-c22029b-1",
+      "brand": "CIVIVI",
+      "model": "Shawka Red/Black (C22029B-1)",
+      "user_classification": null,
+      "user_tags": [],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "14C28N",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/civivi-shawka-aluminum-red-black-c22029b-1/",
+          "listed_price_cad": 168.99,
+          "availability": "in stock",
+          "source_date": "2026-07-17"
+        }
+      ],
+      "source_input": "https://houseofknives.ca/civivi-shawka-aluminum-red-black-c22029b-1/",
+      "notes": "Imported from TODO.md (main list section). Price and specs captured from retailer listing 2026-07-17.",
+      "listing_title": "Shawka Folding Knife Aluminum Red/Black C22029B-1"
+    },
+    {
+      "id": "crkt-provoke-x-morphing-axe-4141kx",
+      "brand": "CRKT",
+      "model": "Provoke X Morphing Axe (4141KX)",
+      "user_classification": null,
+      "user_tags": [],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Kinematic morphing mechanism",
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "SUJ2",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/crkt-provoke-x-4141kx/",
+          "listed_price_cad": 393.99,
+          "availability": "out of stock",
+          "source_date": "2026-07-17"
+        }
+      ],
+      "source_input": "https://houseofknives.ca/crkt-provoke-x-4141kx/",
+      "notes": "Imported from TODO.md (main list section). Price and specs captured from retailer listing 2026-07-17. Morphing axe (Provoke Kinematic platform), not a folding knife.",
+      "listing_title": "Provoke X Morphing Axe 4141KX"
+    },
+    {
+      "id": "elitedge-flipper-assisted-maiko-artwork-ee10a102mkb",
+      "brand": "ElitEdge",
+      "model": "Assisted Flipper, Maiko Artwork (EE10A102MKB)",
+      "user_classification": null,
+      "user_tags": [
+        "affordable"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Assisted flipper",
+        "lock_type": null,
+        "assist_type": "assisted",
+        "blade_length": null,
+        "blade_steel": "Stainless (black finish)",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/ElitEdge-Knives/ElitEdge-Flipper-Folding-Knife-Assisted-Opening-Stainless-Black-Maiko-Artwork-Handle-EE10A102MKB",
+          "listed_price_cad": 19.99,
+          "availability": "in stock",
+          "source_date": "2026-07-17"
+        }
+      ],
+      "source_input": "https://www.bladescanada.com/ElitEdge-Knives/ElitEdge-Flipper-Folding-Knife-Assisted-Opening-Stainless-Black-Maiko-Artwork-Handle-EE10A102MKB",
+      "notes": "Imported from TODO.md (BUDGET section). Price and specs captured from retailer listing 2026-07-17.",
+      "listing_title": "Flipper Folding Knife Assisted Opening Stainless Black Maiko Artwork Handle EE10A102MKB"
+    },
+    {
+      "id": "sog-kiku-xr-assisted-cts-xhp-12-27-06-57",
+      "brand": "SOG",
+      "model": "Kiku XR (12-27-06-57)",
+      "user_classification": null,
+      "user_tags": [],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "XR Lock, Thumb Hole",
+        "lock_type": "XR Lock",
+        "assist_type": "assisted",
+        "blade_length": "3.03 in",
+        "blade_steel": "CTS XHP",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/SOG-Knives/SOG-Kiku-XR-Flipper-Folding-Knife-Assisted-Opening-CTS-XHP-Black-G10-Gray-SOG-12-27-06-57",
+          "listed_price_cad": 287.99,
+          "availability": "in stock",
+          "source_date": "2026-07-17"
+        }
+      ],
+      "source_input": "https://www.bladescanada.com/SOG-Knives/SOG-Kiku-XR-Flipper-Folding-Knife-Assisted-Opening-CTS-XHP-Black-G10-Gray-SOG-12-27-06-57",
+      "notes": "Imported from TODO.md (BUDGET section). Price and specs captured from retailer listing 2026-07-17.",
+      "listing_title": "Kiku XR Flipper Folding Knife Assisted Opening CTS XHP Black G10 Gray SOG-12-27-06-57"
+    },
+    {
+      "id": "kershaw-shoreline-assisted-ke-1845st",
+      "brand": "Kershaw",
+      "model": "Shoreline (KE-1845ST)",
+      "user_classification": null,
+      "user_tags": [
+        "affordable"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Assisted flipper (SpeedSafe)",
+        "lock_type": "Liner lock",
+        "assist_type": "assisted",
+        "blade_length": null,
+        "blade_steel": null,
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Kershaw-Knives/Kershaw-Shoreline-Flipper-Folding-Knife-Assisted-Opening-Partially-Serrated-Blade-GFN-Black-KE-1845ST",
+          "listed_price_cad": 66.99,
+          "availability": "in stock",
+          "source_date": "2026-07-17"
+        }
+      ],
+      "source_input": "https://www.bladescanada.com/Kershaw-Knives/Kershaw-Shoreline-Flipper-Folding-Knife-Assisted-Opening-Partially-Serrated-Blade-GFN-Black-KE-1845ST",
+      "notes": "Imported from TODO.md (BUDGET section). Price and specs captured from retailer listing 2026-07-17. Partially serrated blade.",
+      "listing_title": "Shoreline Flipper Folding Knife Assisted Opening Partially Serrated Blade GFN Black KE-1845ST"
+    },
+    {
+      "id": "cold-steel-crawford-1-flipper-4116-20mwcb",
+      "brand": "Cold Steel",
+      "model": "Crawford 1 (20MWCB)",
+      "user_classification": null,
+      "user_tags": [
+        "affordable"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Manual flipper",
+        "lock_type": null,
+        "assist_type": "manual",
+        "blade_length": "3-1/2in",
+        "blade_steel": "4116",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Cold-Steel-Knives/Cold-Steel-Crawford-1-Flipper-Folding-Knife-4116-Steel-GRN-Black-20MWCB",
+          "listed_price_cad": 56.99,
+          "availability": "in stock",
+          "source_date": "2026-07-17"
+        }
+      ],
+      "source_input": "https://www.bladescanada.com/Cold-Steel-Knives/Cold-Steel-Crawford-1-Flipper-Folding-Knife-4116-Steel-GRN-Black-20MWCB",
+      "notes": "Imported from TODO.md (BUDGET section). Price and specs captured from retailer listing 2026-07-17.",
+      "listing_title": "Crawford 1 Flipper Folding Knife 4116 Steel GRN Black 20MWCB"
+    },
+    {
+      "id": "kershaw-conduit-assisted-ke-1407st",
+      "brand": "Kershaw",
+      "model": "Conduit (KE-1407ST)",
+      "user_classification": null,
+      "user_tags": [
+        "affordable"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Assisted flipper (SpeedSafe)",
+        "lock_type": "Liner lock",
+        "assist_type": "assisted",
+        "blade_length": null,
+        "blade_steel": "8Cr13MoV",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Kershaw-Knives/Kershaw-Conduit-Flipper-Folding-Knife-Black-Blade-Partially-Serrated-GFN-Black-KE-1407ST",
+          "listed_price_cad": 65.99,
+          "availability": "in stock",
+          "source_date": "2026-07-17"
+        }
+      ],
+      "source_input": "https://www.bladescanada.com/Kershaw-Knives/Kershaw-Conduit-Flipper-Folding-Knife-Black-Blade-Partially-Serrated-GFN-Black-KE-1407ST",
+      "notes": "Imported from TODO.md (BUDGET section). Price and specs captured from retailer listing 2026-07-17. Partially serrated blade.",
+      "listing_title": "Conduit Flipper Folding Knife Assisted Opening Black Blade Partially Serrated GFN Black KE-1407ST"
+    },
+    {
+      "id": "elitedge-flipper-assisted-stainless-gray-10b010gy",
+      "brand": "ElitEdge",
+      "model": "Assisted Flipper, Gray Handle (10B010GY)",
+      "user_classification": null,
+      "user_tags": [
+        "affordable"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Assisted flipper",
+        "lock_type": null,
+        "assist_type": "assisted",
+        "blade_length": null,
+        "blade_steel": "Stainless (satin)",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/ElitEdge-Knives/ElitEdge-Flipper-Folding-Knife-Assisted-Opening-Stainless-Satin-Stainless-Gray-Handle-10B010GY",
+          "listed_price_cad": 26.99,
+          "availability": "in stock",
+          "source_date": "2026-07-17"
+        }
+      ],
+      "source_input": "https://www.bladescanada.com/ElitEdge-Knives/ElitEdge-Flipper-Folding-Knife-Assisted-Opening-Stainless-Satin-Stainless-Gray-Handle-10B010GY",
+      "notes": "Imported from TODO.md (BUDGET section). Price and specs captured from retailer listing 2026-07-17.",
+      "listing_title": "Flipper Folding Knife Assisted Opening Stainless Satin Stainless Gray Handle 10B010GY"
+    },
+    {
+      "id": "elitedge-flipper-assisted-wood-ee10a123wd",
+      "brand": "ElitEdge",
+      "model": "Assisted Flipper, Wood Handle (EE10A123WD)",
+      "user_classification": null,
+      "user_tags": [
+        "affordable"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Assisted flipper",
+        "lock_type": null,
+        "assist_type": "assisted",
+        "blade_length": null,
+        "blade_steel": "Stainless (satin)",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/ElitEdge-Knives/ElitEdge-Flipper-Folding-Knife-Assisted-Opening-Stainless-Satin-Stainless-Wood-Handle-EE10A123WD",
+          "listed_price_cad": 23.99,
+          "availability": "in stock",
+          "source_date": "2026-07-17"
+        }
+      ],
+      "source_input": "https://www.bladescanada.com/ElitEdge-Knives/ElitEdge-Flipper-Folding-Knife-Assisted-Opening-Stainless-Satin-Stainless-Wood-Handle-EE10A123WD",
+      "notes": "Imported from TODO.md (BUDGET section). Price and specs captured from retailer listing 2026-07-17.",
+      "listing_title": "Flipper Folding Knife Assisted Opening Stainless Satin Stainless Wood Handle EE10A123WD"
+    },
+    {
+      "id": "schrade-702-cage-ultra-glide",
+      "brand": "Schrade",
+      "model": "702 Cage Ultra-Glide",
+      "user_classification": null,
+      "user_tags": [
+        "affordable"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": null,
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Schrade-Knives/Schrade-702-Cage-Ultra-Glide-Folding-Knife",
+          "listed_price_cad": 29.99,
+          "availability": "in stock",
+          "source_date": "2026-07-17"
+        }
+      ],
+      "source_input": "https://www.bladescanada.com/Schrade-Knives/Schrade-702-Cage-Ultra-Glide-Folding-Knife",
+      "notes": "Imported from TODO.md (BUDGET section). Price and specs captured from retailer listing 2026-07-17.",
+      "listing_title": "702 Cage Ultra-Glide Folding Knife"
+    },
+    {
+      "id": "elitedge-flipper-assisted-g10-black-ee10a123g10",
+      "brand": "ElitEdge",
+      "model": "Assisted Flipper, G10 Handle (EE10A123G10)",
+      "user_classification": null,
+      "user_tags": [
+        "affordable"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Assisted flipper",
+        "lock_type": null,
+        "assist_type": "assisted",
+        "blade_length": null,
+        "blade_steel": "Stainless (satin)",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/ElitEdge-Knives/ElitEdge-Flipper-Folding-Knife-Assisted-Opening-Stainless-Satin-Stainless-G10-Black-Handle-EE10A123G10",
+          "listed_price_cad": 24.99,
+          "availability": "in stock",
+          "source_date": "2026-07-17"
+        }
+      ],
+      "source_input": "https://www.bladescanada.com/ElitEdge-Knives/ElitEdge-Flipper-Folding-Knife-Assisted-Opening-Stainless-Satin-Stainless-G10-Black-Handle-EE10A123G10",
+      "notes": "Imported from TODO.md (BUDGET section). Price and specs captured from retailer listing 2026-07-17.",
+      "listing_title": "Flipper Folding Knife Assisted Opening Stainless Satin Stainless G10 Black Handle EE10A123G10"
+    },
+    {
+      "id": "elitedge-flipper-assisted-black-wood-ee10a123bw",
+      "brand": "ElitEdge",
+      "model": "Assisted Flipper, Black/Wood (EE10A123BW)",
+      "user_classification": null,
+      "user_tags": [
+        "affordable"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Assisted flipper",
+        "lock_type": null,
+        "assist_type": "assisted",
+        "blade_length": null,
+        "blade_steel": "Stainless (black finish)",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/ElitEdge-Knives/ElitEdge-Flipper-Folding-Knife-Assisted-Opening-Stainless-Black-Stainless-Wood-Handle-EE10A123BW",
+          "listed_price_cad": 23.99,
+          "availability": "in stock",
+          "source_date": "2026-07-17"
+        }
+      ],
+      "source_input": "https://www.bladescanada.com/ElitEdge-Knives/ElitEdge-Flipper-Folding-Knife-Assisted-Opening-Stainless-Black-Stainless-Wood-Handle-EE10A123BW",
+      "notes": "Imported from TODO.md (BUDGET section). Price and specs captured from retailer listing 2026-07-17.",
+      "listing_title": "Flipper Folding Knife Assisted Opening Stainless Black Stainless Wood Handle EE10A123BW"
+    },
+    {
+      "id": "elitedge-stiletto-flipper-assisted-420c-ee10a84bk",
+      "brand": "ElitEdge",
+      "model": "Stiletto Assisted Flipper (EE10A84BK)",
+      "user_classification": null,
+      "user_tags": [
+        "affordable"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Assisted flipper",
+        "lock_type": null,
+        "assist_type": "assisted",
+        "blade_length": null,
+        "blade_steel": "420C",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/ElitEdge-Knives/ElitEdge-Siletto-Flipper-Folding-Knife-Assisted-Opening-420C-Black-Stainless-Black-EE10A84BK",
+          "listed_price_cad": 19.99,
+          "availability": "in stock",
+          "source_date": "2026-07-17"
+        }
+      ],
+      "source_input": "https://www.bladescanada.com/ElitEdge-Knives/ElitEdge-Siletto-Flipper-Folding-Knife-Assisted-Opening-420C-Black-Stainless-Black-EE10A84BK",
+      "notes": "Imported from TODO.md (BUDGET section). Price and specs captured from retailer listing 2026-07-17.",
+      "listing_title": "Siletto Flipper Folding Knife Assisted Opening 420C Black Stainless Black EE10A84BK"
+    },
+    {
+      "id": "outdoor-edge-brutus-flipper-assisted-oebr1c",
+      "brand": "Outdoor Edge",
+      "model": "Brutus (OEBR1C)",
+      "user_classification": null,
+      "user_tags": [
+        "affordable"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Assisted flipper",
+        "lock_type": null,
+        "assist_type": "assisted",
+        "blade_length": null,
+        "blade_steel": null,
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/All-Folding-Knives/Outdoor-Edge-Brutus-Flipper-Folding-Knife-Assisted-Opening-Satin-Blade-GFN-Black-OEBR1C",
+          "listed_price_cad": 39.99,
+          "availability": "in stock",
+          "source_date": "2026-07-17"
+        }
+      ],
+      "source_input": "https://www.bladescanada.com/All-Folding-Knives/Outdoor-Edge-Brutus-Flipper-Folding-Knife-Assisted-Opening-Satin-Blade-GFN-Black-OEBR1C",
+      "notes": "Imported from TODO.md (BUDGET section). Price and specs captured from retailer listing 2026-07-17.",
+      "listing_title": "Brutus Flipper Folding Knife Assisted Opening Satin Blade GFN Black OEBR1C"
+    },
+    {
+      "id": "mtech-flipper-assisted-sw-aluminum-mta2042bk",
+      "brand": "MTech",
+      "model": "Assisted Flipper (MTA2042BK)",
+      "user_classification": null,
+      "user_tags": [
+        "affordable"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Assisted flipper",
+        "lock_type": null,
+        "assist_type": "assisted",
+        "blade_length": null,
+        "blade_steel": "Stainless (black SW)",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/MTech-Knives/MTech-Flipper-Folding-Knife-Assisted-Opening-Stainless-Black-SW-Aluminum-Black-MTA2042BK",
+          "listed_price_cad": 24.99,
+          "availability": "in stock",
+          "source_date": "2026-07-17"
+        }
+      ],
+      "source_input": "https://www.bladescanada.com/MTech-Knives/MTech-Flipper-Folding-Knife-Assisted-Opening-Stainless-Black-SW-Aluminum-Black-MTA2042BK",
+      "notes": "Imported from TODO.md (BUDGET section). Price and specs captured from retailer listing 2026-07-17.",
+      "listing_title": "Flipper Folding Knife Assisted Opening Stainless Black SW Aluminum Black MTA2042BK"
+    },
+    {
+      "id": "mtech-flipper-assisted-aluminum-mta2025bk",
+      "brand": "MTech",
+      "model": "Assisted Flipper (MTA2025BK)",
+      "user_classification": null,
+      "user_tags": [
+        "affordable"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Assisted flipper",
+        "lock_type": null,
+        "assist_type": "assisted",
+        "blade_length": null,
+        "blade_steel": "Stainless (black finish)",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/MTech-Knives/MTech-Flipper-Folding-Knife-Assisted-Opening-Stainless-Black-Aluminum-Black-MTA2025BK",
+          "listed_price_cad": 24.99,
+          "availability": "in stock",
+          "source_date": "2026-07-17"
+        }
+      ],
+      "source_input": "https://www.bladescanada.com/MTech-Knives/MTech-Flipper-Folding-Knife-Assisted-Opening-Stainless-Black-Aluminum-Black-MTA2025BK",
+      "notes": "Imported from TODO.md (BUDGET section). Price and specs captured from retailer listing 2026-07-17.",
+      "listing_title": "Flipper Folding Knife Assisted Opening Stainless Black Aluminum Black MTA2025BK"
+    },
+    {
+      "id": "s-tec-stiletto-flipper-assisted-stt27107bk4",
+      "brand": "S-Tec",
+      "model": "Stiletto Flipper (STT27107BK4)",
+      "user_classification": null,
+      "user_tags": [
+        "affordable"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Assisted flipper",
+        "lock_type": null,
+        "assist_type": "assisted",
+        "blade_length": null,
+        "blade_steel": "Stainless (black finish)",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/S-TEC-Knives/S-Tec-Stiletto-Style-Flipper-Folding-Knife-Assisted-Opening-Stainless-Black-G10-Black-STT27107BK4",
+          "listed_price_cad": 17.99,
+          "availability": "in stock",
+          "source_date": "2026-07-17"
+        }
+      ],
+      "source_input": "https://www.bladescanada.com/S-TEC-Knives/S-Tec-Stiletto-Style-Flipper-Folding-Knife-Assisted-Opening-Stainless-Black-G10-Black-STT27107BK4",
+      "notes": "Imported from TODO.md (BUDGET section). Price and specs captured from retailer listing 2026-07-17.",
+      "listing_title": "Stiletto Style Flipper Folding Knife Assisted Opening Stainless Black G10 Black STT27107BK4"
+    },
+    {
+      "id": "tac-force-flipper-assisted-aluminum-tf2003bk",
+      "brand": "Tac-Force",
+      "model": "Assisted Flipper (TF2003BK)",
+      "user_classification": null,
+      "user_tags": [
+        "affordable"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Assisted flipper",
+        "lock_type": null,
+        "assist_type": "assisted",
+        "blade_length": null,
+        "blade_steel": "Stainless (satin)",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Tac-Force-Knives/Tac-Force-Flipper-Folding-Knife-Assisted-Opening-Stainless-Satin-Aluminum-Black-TF2003BK",
+          "listed_price_cad": 21.99,
+          "availability": "in stock",
+          "source_date": "2026-07-17"
+        }
+      ],
+      "source_input": "https://www.bladescanada.com/Tac-Force-Knives/Tac-Force-Flipper-Folding-Knife-Assisted-Opening-Stainless-Satin-Aluminum-Black-TF2003BK",
+      "notes": "Imported from TODO.md (BUDGET section). Price and specs captured from retailer listing 2026-07-17.",
+      "listing_title": "Flipper Folding Knife Assisted Opening Stainless Satin Aluminum Black TF2003BK"
+    },
+    {
+      "id": "s-tec-karambit-flipper-assisted-stt2734bk",
+      "brand": "S-Tec",
+      "model": "Karambit Flipper (STT2734BK)",
+      "user_classification": null,
+      "user_tags": [
+        "affordable"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Assisted flipper",
+        "lock_type": null,
+        "assist_type": "assisted",
+        "blade_length": null,
+        "blade_steel": "Stainless (satin)",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/S-TEC-Knives/S-Tec-Karambit-Flipper-Folding-Knife-Assisted-Opening-Stainless-Satin-Aluminum-Black-STT2734BK",
+          "listed_price_cad": 22.99,
+          "availability": "in stock",
+          "source_date": "2026-07-17"
+        }
+      ],
+      "source_input": "https://www.bladescanada.com/S-TEC-Knives/S-Tec-Karambit-Flipper-Folding-Knife-Assisted-Opening-Stainless-Satin-Aluminum-Black-STT2734BK",
+      "notes": "Imported from TODO.md (BUDGET section). Price and specs captured from retailer listing 2026-07-17.",
+      "listing_title": "Karambit Flipper Folding Knife Assisted Opening Stainless Satin Aluminum Black STT2734BK"
+    },
+    {
+      "id": "cnm-stripe-flipper-assisted-cn300510bk",
+      "brand": "CNM",
+      "model": "Stripe (CN300510BK)",
+      "user_classification": null,
+      "user_tags": [
+        "affordable"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Assisted flipper",
+        "lock_type": null,
+        "assist_type": "assisted",
+        "blade_length": null,
+        "blade_steel": "Stainless (two-tone)",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/CNM-Knives/CNM-Stripe-Flipper-Folding-Knife-Assisted-Opening-Stainless-Two-Tone-Black-Handle-CN300510BK",
+          "listed_price_cad": 28.99,
+          "availability": "in stock",
+          "source_date": "2026-07-17"
+        }
+      ],
+      "source_input": "https://www.bladescanada.com/CNM-Knives/CNM-Stripe-Flipper-Folding-Knife-Assisted-Opening-Stainless-Two-Tone-Black-Handle-CN300510BK",
+      "notes": "Imported from TODO.md (BUDGET section). Price and specs captured from retailer listing 2026-07-17.",
+      "listing_title": "Stripe Flipper Folding Knife Assisted Opening Stainless Two-Tone Black Handle CN300510BK"
+    },
+    {
+      "id": "tac-force-flipper-assisted-nylon-tf2002bk",
+      "brand": "Tac-Force",
+      "model": "Assisted Flipper, Nylon (TF2002BK)",
+      "user_classification": null,
+      "user_tags": [
+        "affordable"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Assisted flipper",
+        "lock_type": null,
+        "assist_type": "assisted",
+        "blade_length": null,
+        "blade_steel": "Stainless (two-tone)",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Tac-Force-Knives/Tac-Force-Flipper-Folding-Knife-Assisted-Opening-Stainless-Two-Tone-Nylon-Black-TF2002BK",
+          "listed_price_cad": 23.99,
+          "availability": "in stock",
+          "source_date": "2026-07-17"
+        }
+      ],
+      "source_input": "https://www.bladescanada.com/Tac-Force-Knives/Tac-Force-Flipper-Folding-Knife-Assisted-Opening-Stainless-Two-Tone-Nylon-Black-TF2002BK",
+      "notes": "Imported from TODO.md (BUDGET section). Price and specs captured from retailer listing 2026-07-17.",
+      "listing_title": "Flipper Folding Knife Assisted Opening Stainless Two-Tone Nylon Black TF2002BK"
+    },
+    {
+      "id": "krieger-german-stiletto-flipper-assisted-kg221",
+      "brand": "Krieger",
+      "model": "German Stiletto (KG221)",
+      "user_classification": null,
+      "user_tags": [
+        "affordable"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Assisted flipper",
+        "lock_type": null,
+        "assist_type": "assisted",
+        "blade_length": null,
+        "blade_steel": null,
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/UC-BUDK-Group/Krieger-German-Style-Stiletto-Flipper-Folding-Knife-Assisted-Opening-KG221",
+          "listed_price_cad": 36.99,
+          "availability": "in stock",
+          "source_date": "2026-07-17"
+        }
+      ],
+      "source_input": "https://www.bladescanada.com/UC-BUDK-Group/Krieger-German-Style-Stiletto-Flipper-Folding-Knife-Assisted-Opening-KG221",
+      "notes": "Imported from TODO.md (BUDGET section). Price and specs captured from retailer listing 2026-07-17.",
+      "listing_title": "German-Style Stiletto Flipper Folding Knife Assisted Opening KG221"
+    },
+    {
+      "id": "cobratec-stiletto-button-lock-vg10-od-green-cbtstblodbk",
+      "brand": "Cobratec",
+      "model": "Stiletto Button Lock, OD Green (CBTSTBLODBK)",
+      "user_classification": null,
+      "user_tags": [
+        "affordable"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": "Button lock",
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "VG-10",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Cobratec-Knives/Cobratec-Stiletto-Button-Lock-Folding-Knife-VG10-Black-G10-OD-Green-CBTSTBLODBK",
+          "listed_price_cad": 99.99,
+          "availability": "in stock",
+          "source_date": "2026-07-17"
+        }
+      ],
+      "source_input": "https://www.bladescanada.com/Cobratec-Knives/Cobratec-Stiletto-Button-Lock-Folding-Knife-VG10-Black-G10-OD-Green-CBTSTBLODBK",
+      "notes": "Imported from TODO.md (BUDGET section). Price and specs captured from retailer listing 2026-07-17. TODO.md also gives SKU CTSTLG10ODGBLK; listed twice, deduplicated. Confirm the button is a lock only, not an auto opener.",
+      "listing_title": "Stiletto Button Lock Folding Knife VG10 Black G10 OD Green CBTSTBLODBK"
+    },
+    {
+      "id": "cobratec-stiletto-flipper-button-lock-vg10-black-cbtstblbkbk",
+      "brand": "Cobratec",
+      "model": "Stiletto Flipper Button Lock (CBTSTBLBKBK)",
+      "user_classification": null,
+      "user_tags": [
+        "affordable"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Flipper",
+        "lock_type": "Button lock",
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "VG-10",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Cobratec-Knives/Cobratec-Stiletto-Flipper-Button-Lock-Folding-Knife-VG10-Black-G10-Black-CBTSTBLBKBK",
+          "listed_price_cad": 99.99,
+          "availability": "in stock",
+          "source_date": "2026-07-17"
+        }
+      ],
+      "source_input": "https://www.bladescanada.com/Cobratec-Knives/Cobratec-Stiletto-Flipper-Button-Lock-Folding-Knife-VG10-Black-G10-Black-CBTSTBLBKBK",
+      "notes": "Imported from TODO.md (BUDGET section). Price and specs captured from retailer listing 2026-07-17. Confirm the button is a lock only, not an auto opener.",
+      "listing_title": "Stiletto Flipper Button Lock Folding Knife VG10 Black G10 Black CBTSTBLBKBK"
+    },
+    {
+      "id": "uc-rampage-stiletto-flipper-assisted-uc2776",
+      "brand": "United Cutlery",
+      "model": "Rampage Stiletto 6in (UC2776)",
+      "user_classification": null,
+      "user_tags": [
+        "affordable"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Assisted flipper",
+        "lock_type": null,
+        "assist_type": "assisted",
+        "blade_length": "6 in",
+        "blade_steel": null,
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/United-Cutlery-Group/UC-Rampage-Stiletto-Flipper-Folding-Knife-6-Blade-Assisted-Opening-UC2776",
+          "listed_price_cad": 96.99,
+          "availability": "in stock",
+          "source_date": "2026-07-17"
+        }
+      ],
+      "source_input": "https://www.bladescanada.com/United-Cutlery-Group/UC-Rampage-Stiletto-Flipper-Folding-Knife-6-Blade-Assisted-Opening-UC2776",
+      "notes": "Imported from TODO.md (BUDGET section). Price and specs captured from retailer listing 2026-07-17.",
+      "listing_title": "UC Rampage Stiletto Flipper Folding Knife 6in Blade Assisted Opening UC2776"
+    },
+    {
+      "id": "krieger-folding-knife-assisted-kg228",
+      "brand": "Krieger",
+      "model": "Assisted Folder (KG228)",
+      "user_classification": null,
+      "user_tags": [
+        "affordable"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Assisted opening",
+        "lock_type": null,
+        "assist_type": "assisted",
+        "blade_length": null,
+        "blade_steel": null,
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/United-Cutlery-Group/Krieger-Folding-Knife-Assisted-Opening-KG228",
+          "listed_price_cad": 38.99,
+          "availability": "in stock",
+          "source_date": "2026-07-17"
+        }
+      ],
+      "source_input": "https://www.bladescanada.com/United-Cutlery-Group/Krieger-Folding-Knife-Assisted-Opening-KG228",
+      "notes": "Imported from TODO.md (BUDGET section). Price and specs captured from retailer listing 2026-07-17.",
+      "listing_title": "Folding Knife Assisted Opening KG228"
+    },
+    {
+      "id": "black-legion-cyclone-flipper-assisted-set-bv143",
+      "brand": "Black Legion",
+      "model": "Cyclone Set of 2 (BV143)",
+      "user_classification": null,
+      "user_tags": [
+        "affordable"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Assisted flipper",
+        "lock_type": null,
+        "assist_type": "assisted",
+        "blade_length": null,
+        "blade_steel": null,
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/United-Cutlery-Group/Black-Legion-Cyclone-Flipper-Folding-Knives-Assisted-Opening-Set-of-2-BV143",
+          "listed_price_cad": 57.99,
+          "availability": "in stock",
+          "source_date": "2026-07-17"
+        }
+      ],
+      "source_input": "https://www.bladescanada.com/United-Cutlery-Group/Black-Legion-Cyclone-Flipper-Folding-Knives-Assisted-Opening-Set-of-2-BV143",
+      "notes": "Imported from TODO.md (BUDGET section). Price and specs captured from retailer listing 2026-07-17. Sold as a set of two knives.",
+      "listing_title": "Cyclone Flipper Folding Knives Assisted Opening Set of 2 BV143"
+    },
+    {
+      "id": "al-mar-slimline-quicksilver-flipper-framelock-d2-amk4046",
+      "brand": "Al Mar",
+      "model": "Slimline Quicksilver (AMK4046)",
+      "user_classification": null,
+      "user_tags": [],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Flipper (ceramic bearing pivot)",
+        "lock_type": "Frame lock",
+        "assist_type": "manual",
+        "blade_length": "5 in",
+        "blade_steel": "D2 (HRC 58-60)",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Al-Mar-Knives/Al-Mar-Slimline-Quicksilver-Flipper-Framelock-Folder-5-D2-Titatinum-AMK4046",
+          "listed_price_cad": 300.99,
+          "availability": "in stock",
+          "source_date": "2026-07-17"
+        }
+      ],
+      "source_input": "https://www.bladescanada.com/Al-Mar-Knives/Al-Mar-Slimline-Quicksilver-Flipper-Framelock-Folder-5-D2-Titatinum-AMK4046",
+      "notes": "Imported from TODO.md (AFFORDABLE (100-200) section). Price and specs captured from retailer listing 2026-07-17.",
+      "listing_title": "Slimline Quicksilver Flipper Framelock Folder 5in D2 Titanium AMK4046"
+    },
+    {
+      "id": "cold-steel-gunsite-counter-point-aus-10a-10abv3",
+      "brand": "Cold Steel",
+      "model": "Gunsite Counter Point (10ABV3)",
+      "user_classification": null,
+      "user_tags": [
+        "affordable"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": "Tri-Ad Lock",
+        "assist_type": "unknown",
+        "blade_length": "4 in",
+        "blade_steel": "AUS 10A",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Cold-Steel-Knives/Cold-Steel-Gunsite-Counter-Point-Folding-Knife-AUS-10A-Dark-Earth-10ABV3",
+          "listed_price_cad": 127.99,
+          "availability": "in stock",
+          "source_date": "2026-07-17"
+        }
+      ],
+      "source_input": "https://www.bladescanada.com/Cold-Steel-Knives/Cold-Steel-Gunsite-Counter-Point-Folding-Knife-AUS-10A-Dark-Earth-10ABV3",
+      "notes": "Imported from TODO.md (AFFORDABLE (100-200) section). Price and specs captured from retailer listing 2026-07-17.",
+      "listing_title": "Gunsite Counter Point Folding Knife AUS 10A Dark Earth 10ABV3"
+    },
+    {
+      "id": "boker-plus-kyoto-flipper-d2-01bo241",
+      "brand": "Boker Plus",
+      "model": "Kyoto (01BO241)",
+      "user_classification": null,
+      "user_tags": [],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Flipper",
+        "lock_type": null,
+        "assist_type": "manual",
+        "blade_length": "3.46 in",
+        "blade_steel": "D2",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Boker-Knives/Boker-Plus-Kyoto-Flipper-Folding-Knife-D2-G10-Black-01BO241",
+          "listed_price_cad": 157.95,
+          "availability": "in stock",
+          "source_date": "2026-07-17"
+        }
+      ],
+      "source_input": "https://www.bladescanada.com/Boker-Knives/Boker-Plus-Kyoto-Flipper-Folding-Knife-D2-G10-Black-01BO241",
+      "notes": "Imported from TODO.md (AFFORDABLE (100-200) section). Price and specs captured from retailer listing 2026-07-17.",
+      "listing_title": "Kyoto Flipper Folding Knife D2 G10 Black 01BO241"
+    },
+    {
+      "id": "cold-steel-counter-point-xl-aus10a-serrated-10aas",
+      "brand": "Cold Steel",
+      "model": "Counter Point XL Serrated (10AAS)",
+      "user_classification": null,
+      "user_tags": [],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": "Tri-Ad Lock",
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "AUS 10A",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Cold-Steel-Knives/Cold-Steel-Counter-Point-XL-Folding-Knife-AUS10A-Serrated-6-Griv-Ex-Black-10AAS",
+          "listed_price_cad": 179.99,
+          "availability": "in stock",
+          "source_date": "2026-07-17"
+        }
+      ],
+      "source_input": "https://www.bladescanada.com/Cold-Steel-Knives/Cold-Steel-Counter-Point-XL-Folding-Knife-AUS10A-Serrated-6-Griv-Ex-Black-10AAS",
+      "notes": "Imported from TODO.md (AFFORDABLE (100-200) section). Price and specs captured from retailer listing 2026-07-17. Serrated blade.",
+      "listing_title": "Counter Point XL Folding Knife AUS10A Serrated 6in Griv-Ex Black 10AAS"
+    },
+    {
+      "id": "cold-steel-ti-lite-s35vn-aluminum-26b4",
+      "brand": "Cold Steel",
+      "model": "Ti-Lite S35VN (26B4)",
+      "user_classification": null,
+      "user_tags": [],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": "4 in",
+        "blade_steel": "CPM S35VN",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Cold-Steel-Knives/Cold-Steel-Ti-Lite-Folding-Knife-CPM-S35VN-Aluminum-26B4",
+          "listed_price_cad": 247.99,
+          "availability": "in stock",
+          "source_date": "2026-07-17"
+        }
+      ],
+      "source_input": "https://www.bladescanada.com/Cold-Steel-Knives/Cold-Steel-Ti-Lite-Folding-Knife-CPM-S35VN-Aluminum-26B4",
+      "notes": "Imported from TODO.md (AFFORDABLE (100-200) section). Price and specs captured from retailer listing 2026-07-17.",
+      "listing_title": "Ti-Lite Folding Knife CPM S35VN Aluminum CS-26B4"
+    },
+    {
+      "id": "bear-ops-stiletto-linerlock-s30v-carbon-fiber-bcmc300cfs",
+      "brand": "Bear Ops",
+      "model": "Stiletto Linerlock (MC-300-CF-S)",
+      "user_classification": null,
+      "user_tags": [],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": "Liner lock",
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "CPM S30V",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Bear-Son-Knives/Bear-Son-Stiletto-Linerlock-S30V-Carbon-Fiber-BCMC300CFS",
+          "listed_price_cad": 198.99,
+          "availability": "in stock",
+          "source_date": "2026-07-17"
+        }
+      ],
+      "source_input": "https://www.bladescanada.com/Bear-Son-Knives/Bear-Son-Stiletto-Linerlock-S30V-Carbon-Fiber-BCMC300CFS",
+      "notes": "Imported from TODO.md (AFFORDABLE (100-200) section). Price and specs captured from retailer listing 2026-07-17. Bear & Son / Bear Ops line.",
+      "listing_title": "Stiletto Linerlock MC-300-CF-S S30V Carbon Fiber BCMC300CFS"
+    },
+    {
+      "id": "kershaw-random-leek-assisted-14c28n-1660r",
+      "brand": "Kershaw",
+      "model": "Random Leek (1660R)",
+      "user_classification": null,
+      "user_tags": [
+        "affordable"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Assisted SpeedSafe",
+        "lock_type": "Frame lock",
+        "assist_type": "assisted",
+        "blade_length": null,
+        "blade_steel": "14C28N Sandvik",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Kershaw-Knives/Kershaw-Random-Leek-Flipper-Folding-Knife-Assisted-Opening-14C28N-Sandvik-Stainless-Handle-K1660R",
+          "listed_price_cad": 145.99,
+          "availability": "in stock",
+          "source_date": "2026-07-17"
+        }
+      ],
+      "source_input": "https://www.bladescanada.com/Kershaw-Knives/Kershaw-Random-Leek-Flipper-Folding-Knife-Assisted-Opening-14C28N-Sandvik-Stainless-Handle-K1660R",
+      "notes": "Imported from TODO.md (AFFORDABLE (100-200) section). Price and specs captured from retailer listing 2026-07-17.",
+      "listing_title": "Random Leek Flipper Folding Knife Assisted Opening 14C28N Sandvik Stainless Handle 1660R"
+    },
+    {
+      "id": "fox-italy-pacifico-flipper-magnacut-fx-atc-og02-mcf",
+      "brand": "Fox",
+      "model": "Pacifico (FX-ATC-OG02 MCF)",
+      "user_classification": null,
+      "user_tags": [],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Flipper",
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": "95 mm - 3.74 in",
+        "blade_steel": "CPM MagnaCut",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/FOX-Knives/Fox-Italy-Pacifico-Flipper-Folding-Knife-Magnacut-Carbon-Fibre-Dark-Matter-FX-ATC-OG02-MCF",
+          "listed_price_cad": 489.99,
+          "availability": "in stock",
+          "source_date": "2026-07-17"
+        }
+      ],
+      "source_input": "https://www.bladescanada.com/FOX-Knives/Fox-Italy-Pacifico-Flipper-Folding-Knife-Magnacut-Carbon-Fibre-Dark-Matter-FX-ATC-OG02-MCF",
+      "notes": "Imported from TODO.md (UNSORTED section). Price and specs captured from retailer listing 2026-07-17.",
+      "listing_title": "Italy Pacifico Flipper Folding Knife MagnaCut Carbon Fibre Dark Matter FX-ATC-OG02 MCF"
+    },
+    {
+      "id": "crkt-m16-flipper-assisted-d2-m16-04db",
+      "brand": "CRKT",
+      "model": "M16 (M16-04DB)",
+      "user_classification": null,
+      "user_tags": [],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Assisted flipper",
+        "lock_type": null,
+        "assist_type": "assisted",
+        "blade_length": null,
+        "blade_steel": "D2",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/CRKT-Knives/CRKT-M16-Flipper-Folding-Knife-Assisted-Opening-D2-Aluminum-CRKTM16-04DB",
+          "listed_price_cad": 254.99,
+          "availability": "in stock",
+          "source_date": "2026-07-17"
+        }
+      ],
+      "source_input": "https://www.bladescanada.com/CRKT-Knives/CRKT-M16-Flipper-Folding-Knife-Assisted-Opening-D2-Aluminum-CRKTM16-04DB",
+      "notes": "Imported from TODO.md (UNSORTED section). Price and specs captured from retailer listing 2026-07-17.",
+      "listing_title": "M16 Flipper Folding Knife Assisted Opening D2 Aluminum M16-04DB"
+    },
+    {
+      "id": "kershaw-link-assisted-aluminum-od-k1776olsw",
+      "brand": "Kershaw",
+      "model": "Link OD (1776OLSW)",
+      "user_classification": null,
+      "user_tags": [],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Assisted flipper (SpeedSafe)",
+        "lock_type": null,
+        "assist_type": "assisted",
+        "blade_length": null,
+        "blade_steel": null,
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Kershaw-Knives/Kershaw-Link-Flipper-Folding-Knife-Assisted-Opening-CPM-20CV-Aluminum-OD-K1776OLSW",
+          "listed_price_cad": 244.99,
+          "availability": "in stock",
+          "source_date": "2026-07-17"
+        }
+      ],
+      "source_input": "https://www.bladescanada.com/Kershaw-Knives/Kershaw-Link-Flipper-Folding-Knife-Assisted-Opening-CPM-20CV-Aluminum-OD-K1776OLSW",
+      "notes": "Imported from TODO.md (UNSORTED section). Price and specs captured from retailer listing 2026-07-17. Steel conflict: TODO.md says MagnaCut SW but the listing URL says CPM 20CV — verify on the listing.",
+      "listing_title": "Link Flipper Folding Knife Assisted Opening Aluminum OD 1776OLSW"
+    },
+    {
+      "id": "zero-tolerance-0770cf-assisted-s35vn-carbon-fiber",
+      "brand": "Zero Tolerance",
+      "model": "0770CF",
+      "user_classification": null,
+      "user_tags": [],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Assisted flipper",
+        "lock_type": null,
+        "assist_type": "assisted",
+        "blade_length": "3.25 in. (8.3 cm)",
+        "blade_steel": "CPM S35VN",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Zero-Tolerance-Knives/Zero-Tolerance-0770CF-Flipper-Folding-Knife-Assisted-Opening-S35VN-Carbon-Fiber",
+          "listed_price_cad": 367.99,
+          "availability": "in stock",
+          "source_date": "2026-07-17"
+        }
+      ],
+      "source_input": "https://www.bladescanada.com/Zero-Tolerance-Knives/Zero-Tolerance-0770CF-Flipper-Folding-Knife-Assisted-Opening-S35VN-Carbon-Fiber",
+      "notes": "Imported from TODO.md (UNSORTED section). Price and specs captured from retailer listing 2026-07-17.",
+      "listing_title": "0770CF Flipper Folding Knife Assisted Opening S35VN Carbon Fiber ZT0770CF"
+    },
+    {
+      "id": "sencut-excalis-flipper-g10-white-s23068-2",
+      "brand": "SENCUT",
+      "model": "Excalis White (S23068-2)",
+      "user_classification": null,
+      "user_tags": [
+        "affordable"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Flipper",
+        "lock_type": "Liner lock",
+        "assist_type": "unknown",
+        "blade_length": "2.97 in / 75.5mm",
+        "blade_steel": "9Cr18MoV",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/SENCUT-Knives/SENCUT-Excalis-Flipper-Folding-knife-Satin-Blade-G10-White-S23068-2",
+          "listed_price_cad": 59.99,
+          "availability": "in stock",
+          "source_date": "2026-07-17"
+        }
+      ],
+      "source_input": "https://www.bladescanada.com/SENCUT-Knives/SENCUT-Excalis-Flipper-Folding-knife-Satin-Blade-G10-White-S23068-2",
+      "notes": "Imported from TODO.md (UNSORTED section). Price and specs captured from retailer listing 2026-07-17.",
+      "listing_title": "Excalis Flipper Folding Knife Satin Blade G10 White S23068-2"
+    },
+    {
+      "id": "kubey-zephyr-integral-titanium-m390-kb470a",
+      "brand": "Kubey",
+      "model": "Zephyr Integral (KB470A)",
+      "user_classification": null,
+      "user_tags": [],
+      "research_status": "pending_canadian_retailer_search",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": "4.65 in",
+        "blade_steel": "M390",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [],
+      "source_input": "https://kbknives.com/products/kb-zephyr-integral-tactical-folding-knife-grey-titanium-handle-4-65-silver-beadblast-m390-kb470a",
+      "notes": "Imported from TODO.md (UNSORTED section). Brand site (US) lists USD $388.00, out of stock. User decision 2026-07-18: keep US source — not sold in Canada yet.",
+      "listing_title": "Zephyr Integral Tactical Folding Knife Grey Titanium Handle 4.65in Silver Beadblast M390 KB470A"
+    },
+    {
+      "id": "chaves-redencion-street-229-elmax-g10-black-14492",
+      "brand": "Chaves",
+      "model": "Redencion Street 229 (14492)",
+      "user_classification": null,
+      "user_tags": [],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": "Frame lock",
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "Elmax",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Chaves-Knives/Chaves-Redencion-229-Folding-Knife-Elmax-SW-Satin-Drop-Point-G10-Black-14492",
+          "listed_price_cad": 299.99,
+          "availability": "in stock",
+          "source_date": "2026-07-17"
+        }
+      ],
+      "source_input": "https://www.bladescanada.com/Chaves-Knives/Chaves-Redencion-229-Folding-Knife-Elmax-SW-Satin-Drop-Point-G10-Black-14492",
+      "notes": "Imported from TODO.md (UNSORTED section). Price and specs captured from retailer listing 2026-07-17.",
+      "listing_title": "Redencion Street / 229 Folding Knife Elmax SW/Satin Drop Point G10 Black 14492"
+    },
+    {
+      "id": "chaves-ntak-elmax-micarta-black-chav14328",
+      "brand": "Chaves",
+      "model": "NTAK (CHAV14328)",
+      "user_classification": null,
+      "user_tags": [],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": "Frame lock",
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "Elmax",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Chaves-Knives/Chaves-NTAK-Folding-Knife-Elmax-Drop-Point-Satin-SW-Micarta-Black-CHAV14328",
+          "listed_price_cad": 319.99,
+          "availability": "in stock",
+          "source_date": "2026-07-17"
+        }
+      ],
+      "source_input": "https://www.bladescanada.com/Chaves-Knives/Chaves-NTAK-Folding-Knife-Elmax-Drop-Point-Satin-SW-Micarta-Black-CHAV14328",
+      "notes": "Imported from TODO.md (UNSORTED section). Price and specs captured from retailer listing 2026-07-17.",
+      "listing_title": "NTAK Folding Knife Elmax Drop Point Satin/SW Micarta Black CHAV14328"
+    },
+    {
+      "id": "chris-reeve-large-sebenza-31-tanto-magnacut-bog-oak-l31-1130",
+      "brand": "Chris Reeve",
+      "model": "Large Sebenza 31 Tanto Bog Oak (L31-1130)",
+      "user_classification": null,
+      "user_tags": [],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": "Frame lock",
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "CPM MagnaCut",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Chris-Reeve-Knives/Chris-Reeve-Large-Sebenza-31-Tanto-Framelock-Folding-Knife-MagnaCut-SW-Titanium-Glass-Blasted-w-Bog-Oak-Inlay-L31-1130",
+          "listed_price_cad": 1030.99,
+          "availability": "in stock",
+          "source_date": "2026-07-17"
+        }
+      ],
+      "source_input": "https://www.bladescanada.com/Chris-Reeve-Knives/Chris-Reeve-Large-Sebenza-31-Tanto-Framelock-Folding-Knife-MagnaCut-SW-Titanium-Glass-Blasted-w-Bog-Oak-Inlay-L31-1130",
+      "notes": "Imported from TODO.md (UNSORTED section). Price and specs captured from retailer listing 2026-07-17.",
+      "listing_title": "Large Sebenza 31 Tanto Framelock Folding Knife MagnaCut SW Titanium Glass Blasted w/Bog Oak Inlay L31-1130"
+    },
+    {
+      "id": "spyderco-manix-2-xl-cru-wear-micarta-brown-c95mpcw2",
+      "brand": "Spyderco",
+      "model": "Manix 2 XL (C95MPCW2)",
+      "user_classification": null,
+      "user_tags": [],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": "Ball Bearing Lock",
+        "assist_type": "unknown",
+        "blade_length": "3.85 in (98mm)",
+        "blade_steel": "CPM Cru-Wear",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Spyderco-Knives/Coming-Soon-Spyderco-Manix-2-XL-Folding-Knife-CPM-Cru-Wear-Micarta-Brown-C95MPCW2",
+          "listed_price_cad": 324.99,
+          "availability": "in stock",
+          "source_date": "2026-07-17"
+        }
+      ],
+      "source_input": "https://www.bladescanada.com/Spyderco-Knives/Coming-Soon-Spyderco-Manix-2-XL-Folding-Knife-CPM-Cru-Wear-Micarta-Brown-C95MPCW2",
+      "notes": "Imported from TODO.md (UNSORTED section). Price and specs captured from retailer listing 2026-07-17. Listing marked Coming Soon at import time.",
+      "listing_title": "Manix 2 XL Folding Knife CPM Cru-Wear Micarta Brown C95MPCW2"
+    },
+    {
+      "id": "we-knife-ryson-framelock-m390-titanium-gray-we24086-2",
+      "brand": "We Knife",
+      "model": "Ryson (WE24086-2)",
+      "user_classification": null,
+      "user_tags": [],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": "Frame lock",
+        "assist_type": "unknown",
+        "blade_length": "3.33 in / 84.5mm",
+        "blade_steel": "Bohler M390",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/WE-Knife-Co.-Knives/We-Knife-Ryson-Framelock-Folding-Knife-M390-Satin-Titanium-Gray-WE24086-2",
+          "listed_price_cad": 354.99,
+          "availability": "in stock",
+          "source_date": "2026-07-17"
+        }
+      ],
+      "source_input": "https://www.bladescanada.com/WE-Knife-Co.-Knives/We-Knife-Ryson-Framelock-Folding-Knife-M390-Satin-Titanium-Gray-WE24086-2",
+      "notes": "Imported from TODO.md (UNSORTED section). Price and specs captured from retailer listing 2026-07-17.",
+      "listing_title": "Ryson Framelock Folding Knife M390 Satin Titanium Gray WE24086-2"
+    },
+    {
+      "id": "crkt-zephyr-d2-g10-black-3840",
+      "brand": "CRKT",
+      "model": "Zephyr (3840)",
+      "user_classification": null,
+      "user_tags": [
+        "affordable"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Flipper",
+        "lock_type": null,
+        "assist_type": "manual",
+        "blade_length": "3.22",
+        "blade_steel": "D2",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/CRKT-Knives/CRKT-Zephyr-Flipper-Folding-Knife-D2-Satin-G10-Black-3840",
+          "listed_price_cad": 109.99,
+          "availability": "in stock",
+          "source_date": "2026-07-18"
+        }
+      ],
+      "source_input": "https://www.bladescanada.com/CRKT-Knives/CRKT-Zephyr-Flipper-Folding-Knife-D2-Satin-G10-Black-3840",
+      "notes": "Added by user 2026-07-18.",
+      "listing_title": "CRKT Zephyr Flipper Folding Knife, D2 Satin, G10 Black, 3840 [CRKT3840] - $109.99CDN"
+    },
+    {
+      "id": "kubey-gurkha-14c28n-g10-black-ku397a",
+      "brand": "Kubey",
+      "model": "Gurkha EDC (KU397A)",
+      "user_classification": null,
+      "user_tags": [
+        "affordable"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "manual",
+        "blade_length": null,
+        "blade_steel": "14C28N",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Kubey-Knives/Kubey-Gurkha-EDC-Folding-Knife-14C28N-Beadblast-G10-Black-KU397A",
+          "listed_price_cad": 89.99,
+          "availability": "in stock",
+          "source_date": "2026-07-18"
+        }
+      ],
+      "source_input": "https://www.bladescanada.com/Kubey-Knives/Kubey-Gurkha-EDC-Folding-Knife-14C28N-Beadblast-G10-Black-KU397A",
+      "notes": "Added by user 2026-07-18.",
+      "listing_title": "Kubey Gurkha EDC Folding Knife, 14C28N Steel, G10 Black, KU397A [KuKU397A] - $89.99CDN"
     }
   ]
 }

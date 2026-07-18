@@ -100,7 +100,7 @@ def summary_cards(db: dict[str, Any], knives: list[KnifeView]) -> Panel:
     version = escape(str(db.get("version") or "unknown"))
     return Panel(table, title=f"{db_name} · v{version}", border_style="green", box=box.ROUNDED)
 
-def filter_bar(filters: dict[str, Any], result_count: int, total_count: int) -> Panel:
+def _active_filters(filters: dict[str, Any]) -> str:
     parts: list[str] = []
     for key, value in filters.items():
         if value is None or value == "" or value == [] or value == {}:
@@ -108,7 +108,33 @@ def filter_bar(filters: dict[str, Any], result_count: int, total_count: int) -> 
         if isinstance(value, list):
             value = ", ".join(str(v) for v in value)
         parts.append(f"[bold]{escape(str(key))}[/]=[cyan]{escape(str(value))}[/]")
-    active = "  ".join(parts) if parts else "[dim]No active filters[/]"
+    return "  ".join(parts) if parts else "[dim]no filters[/]"
+
+
+def interactive_header(db: dict[str, Any], knives: list[KnifeView], filters: dict[str, Any], result_count: int) -> str:
+    approved = sum(1 for k in knives if k.classification == "approved")
+    rejected = sum(1 for k in knives if k.classification == "rejected")
+    unclassified = sum(1 for k in knives if k.classification == "unclassified")
+    canadian = sum(1 for k in knives if k.has_canadian_retailer)
+    prices = [k.price for k in knives if k.price is not None]
+    avg = sum(prices) / len(prices) if prices else None
+    sep = " [dim]·[/] "
+    stats = sep.join(
+        [
+            f"[bold white]KNIVVES[/] [dim]v{escape(str(db.get('version') or '?'))}[/]",
+            f"{len(knives)} knives",
+            f"[green]{approved} approved[/]",
+            f"[red]{rejected} rejected[/]",
+            f"[yellow]{unclassified} open[/]",
+            f"[magenta]{canadian} CA retail[/]",
+            f"[blue]avg {_money(avg)}[/]",
+        ]
+    )
+    return f"{stats}\n[dim]{result_count}/{len(knives)} shown[/]  {_active_filters(filters)}"
+
+
+def filter_bar(filters: dict[str, Any], result_count: int, total_count: int) -> Panel:
+    active = _active_filters(filters)
     return Panel(f"{active}  [dim]· {result_count}/{total_count} shown[/]", title="Active View", border_style="blue", box=box.ROUNDED)
 
 
@@ -141,7 +167,7 @@ def knives_table(
             table.add_row(str(idx), escape(knife.id), badge(knife.classification), knife.price_label, "[green]✓[/]" if knife.retailer_count else "[dim]—[/]")
         return table
 
-    table.add_column("Knife", style="bold white", ratio=7, overflow="fold")
+    table.add_column("Knife", style="bold white", ratio=7, no_wrap=True, overflow="ellipsis")
     table.add_column("Class", justify="center", width=12, no_wrap=True)
     table.add_column("Tags", width=14, no_wrap=True, overflow="ellipsis")
     if not narrow:

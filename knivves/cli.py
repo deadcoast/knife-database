@@ -25,6 +25,7 @@ from .render import (
     detail_panel,
     filter_bar,
     help_panel,
+    interactive_header,
     knives_table,
     raw_json_panel,
     stats_tables,
@@ -784,7 +785,6 @@ def open_first_url(knife: KnifeView) -> None:
 def interactive() -> None:
     db = load_database()
     page = 0
-    page_size = 8
     state: dict[str, Any] = {
         "query": None,
         "classification": None,
@@ -804,6 +804,8 @@ def interactive() -> None:
     reverse = False
 
     while True:
+        # Header (2) + table frame (4) + footer/prompt (4) leave the rest for rows.
+        page_size = max(8, console.size.height - 10)
         all_knives = knife_views(db)
         filtered_all = sort_knives(filter_knives(all_knives, **state), current_sort, reverse=reverse)
         total_pages = max(1, (len(filtered_all) + page_size - 1) // page_size)
@@ -812,12 +814,12 @@ def interactive() -> None:
         page_items = filtered_all[start : start + page_size]
 
         console.clear()
-        console.print(title())
-        console.print(summary_cards(db, all_knives))
-        console.print(filter_bar({**state, "sort": current_sort, "reverse": reverse}, len(filtered_all), len(all_knives)))
+        # Also wipe scrollback so stale frames don't pile up above the live one.
+        print("\x1b[3J", end="", flush=True)
+        console.print(interactive_header(db, all_knives, {**state, "sort": current_sort, "reverse": reverse}, len(filtered_all)))
         console.print(knives_table(page_items, start_index=start, compact=False))
-        console.print(f"[dim]Page {page + 1}/{total_pages} · showing rows {start + 1}-{min(start + len(page_items), len(filtered_all))} of {len(filtered_all)}[/]")
-        console.print("[bold cyan]Commands[/] number · s search · f filters · sort · n/p page · o open · stats · clear · reload · path · ? help · q quit")
+        console.print(f"[dim]Page {page + 1}/{total_pages} · rows {start + 1}-{min(start + len(page_items), len(filtered_all))} of {len(filtered_all)}[/]")
+        console.print("[bold cyan]Commands[/] type text → search · row number → detail · n/p page · s search · f filters · sort · o open · stats · clear · reload · path · ? help · q quit")
         choice = Prompt.ask("knivves", default="?").strip()
         choice_l = choice.lower()
 
