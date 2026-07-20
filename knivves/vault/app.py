@@ -56,6 +56,16 @@ class KnivvesVault(App):
         self.knives = knife_views(self.db)
         return KnifeView(record)
 
+    def classify(self, knife_id: str, classification: str | None) -> KnifeView | None:
+        """The decision: approve, reject, or clear. Writes the database."""
+        for record in self.db.get("knives", []):
+            if isinstance(record, dict) and record.get("id") == knife_id:
+                record["user_classification"] = classification
+                save_database(self.db, self.db_path)
+                self.knives = knife_views(self.db)
+                return KnifeView(record)
+        return None
+
     def get_system_commands(self, screen: Screen) -> Iterable[SystemCommand]:
         """The building's rooms and operations, reachable from the palette."""
         yield from super().get_system_commands(screen)

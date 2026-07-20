@@ -59,6 +59,9 @@ class RackScreen(TipsMixin, Screen):
         ("slash", "focus_search", "Search"),
         ("escape", "close_plate", "Close plate"),
         ("b", "send_bench", "Send to bench"),
+        ("a", "classify('approved')", "Approve"),
+        ("x", "classify('rejected')", "Reject"),
+        Binding("u", "classify('clear')", "Unreview", show=False),
         Binding("t", "expand_tip", "tip detail", show=False),
     ]
 
@@ -72,6 +75,7 @@ class RackScreen(TipsMixin, Screen):
         "rack-table": Tip(
             "click a header to sort · again reverses",
             "enter or click a row — its plate\ntravels in\n\nb — send the row to the bench\n\n"
+            "a approve · x reject · u clear —\nthe decision writes the database\nand the row recolors live\n\n"
             "the active sort reads on the\nmasthead beside the room name",
         ),
         "rack-plate": Tip(
@@ -186,12 +190,42 @@ class RackScreen(TipsMixin, Screen):
         knife = next((k for k in self.knives if k.id == event.row_key.value), None)
         if knife is None:
             return
+        self._plate_knife_id = knife.id
         plate = self.query_one(Plate)
         plate.set_knife(knife)
         if not plate.has_class("open"):
             plate.add_class("open")
             plate.styles.offset = (PLATE_HIDDEN_X, 0)
         laws.travel(plate, 0, 0, duration=0.35)
+
+    def _judgment_target(self) -> str | None:
+        """The open plate's knife if one is open, else the highlighted row."""
+        plate = self.query_one(Plate)
+        if plate.has_class("open") and getattr(self, "_plate_knife_id", None):
+            return self._plate_knife_id
+        table = self.query_one(DataTable)
+        if not table.row_count:
+            return None
+        return table.coordinate_to_cell_key(Coordinate(table.cursor_row, 0)).row_key.value
+
+    def action_classify(self, classification: str) -> None:
+        target = self._judgment_target()
+        if target is None:
+            return
+        verdict = None if classification == "clear" else classification
+        view = self.vault.classify(target, verdict)
+        if view is None:
+            return
+        table = self.query_one(DataTable)
+        cursor = table.cursor_row
+        self._fill(self._visible())
+        self._apply_sort()
+        if table.row_count:
+            table.move_cursor(row=min(cursor, table.row_count - 1))
+        plate = self.query_one(Plate)
+        if plate.has_class("open") and getattr(self, "_plate_knife_id", None) == view.id:
+            plate.set_knife(view)
+        self.query_one(Masthead).update_stats(self.knives)
 
     def action_focus_search(self) -> None:
         self.query_one("#rack-search", Input).focus()

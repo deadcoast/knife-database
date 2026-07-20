@@ -207,6 +207,33 @@ async def test_shell() -> None:
         await pilot.pause()
         assert len(app.screen.slots) == 0
 
+        # ---- classification: the vault judges, the database records ----
+        await pilot.press("1")
+        await pilot.pause()
+        await pilot.click(DataTable, offset=(4, 1))  # open first row's plate
+        await pilot.pause()
+        judged_id = app.screen._plate_knife_id
+        prior = next(k.classification for k in app.knives if k.id == judged_id)
+        await pilot.press("a")
+        await pilot.pause()
+        on_disk = json.loads(tmp_db.read_text(encoding="utf-8"))
+        rec = next(k for k in on_disk["knives"] if k["id"] == judged_id)
+        assert rec["user_classification"] == "approved", rec["user_classification"]
+        await pilot.press("x")
+        await pilot.pause()
+        on_disk = json.loads(tmp_db.read_text(encoding="utf-8"))
+        rec = next(k for k in on_disk["knives"] if k["id"] == judged_id)
+        assert rec["user_classification"] == "rejected"
+        await pilot.press("u")
+        await pilot.pause()
+        on_disk = json.loads(tmp_db.read_text(encoding="utf-8"))
+        rec = next(k for k in on_disk["knives"] if k["id"] == judged_id)
+        assert rec["user_classification"] is None
+        # restore the record's original state for later assertions
+        app.classify(judged_id, prior if prior != "unclassified" else None)
+        await pilot.press("escape")
+        await pilot.pause()
+
         # ---- live intake (stubbed fetcher, real filing) ----
         real_fetch = scrape_mod.fetch_listing
         try:
