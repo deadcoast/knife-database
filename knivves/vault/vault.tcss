@@ -1,0 +1,108 @@
+/* KNIVVES VAULT — screen-level styles.
+   Widget identities (Plate, Masthead) live in their own DEFAULT_CSS;
+   this file lays out the rooms. Palette values mirror laws.py — the
+   single source of truth for color decisions. */
+
+Screen {
+    background: #14171a;
+    color: #c2cdd6;
+}
+
+Footer {
+    background: #1d2126;
+    color: #6b7680;
+}
+
+/* ------------------------------------------------------------- the rack */
+
+#rack-search {
+    dock: top;
+    height: 3;
+    background: #14171a;
+    border: tall #31363c;
+    color: #c2cdd6;
+    padding: 0 1;
+}
+
+#rack-search:focus {
+    border: tall #d7a455;
+}
+
+#rack-plate {
+    dock: right;
+    height: 100%;
+    display: none;
+}
+
+#rack-plate.open {
+    display: block;
+}
+
+#rack-table {
+    background: #14171a;
+    color: #c2cdd6;
+    scrollbar-color: #31363c;
+    scrollbar-background: #14171a;
+    &:focus {
+        background-tint: #14171a 0%;
+    }
+    & > .datatable--header {
+        background: #1d2126;
+        color: #8b96a0;
+        text-style: bold;
+    }
+    & > .datatable--header-hover {
+        background: #262b31;
+        color: #d7a455;
+    }
+    & > .datatable--odd-row {
+        background: #171a1e;
+    }
+    & > .datatable--even-row {
+        background: #14171a;
+    }
+    & > .datatable--cursor {
+        background: #2a3038;
+        color: #dde6ee;
+    }
+    & > .datatable--hover {
+        background: #1d2126;
+    }
+}
+
+/* -------------------------------------------------------- the forge line */
+
+ForgeScreen {
+    layers: base plate;
+}
+
+#forge-line {
+    layer: base;
+    height: 1fr;
+    padding: 1 2;
+}
+
+#forge-plate {
+    layer: plate;
+    offset: 4 26;
+}
+
+.station {
+    width: 1fr;
+    height: 100%;
+    margin: 0 1;
+    border: round #31363c;
+    padding: 1 2;
+}
+
+.station-name {
+    color: #8b96a0;
+    text-style: bold;
+    border-bottom: solid #31363c;
+    padding-bottom: 1;
+}
+
+.station-body {
+    margin-top: 1;
+    color: #8b96a0;
+}

@@ -343,6 +343,14 @@ def search(
 
 
 @app.command()
+def vault() -> None:
+    """Launch KNIVVES VAULT, the visual application (Textual)."""
+    from .vault.app import KnivvesVault
+
+    KnivvesVault().run()
+
+
+@app.command()
 def dashboard() -> None:
     """Show a polished database overview without entering interactive mode."""
     db = load_database()

@@ -1,0 +1,57 @@
+/* forge-line — production line layout */
+
+Screen {
+    background: #14171a;
+    color: #c2cdd6;
+    layers: base plate;
+}
+
+#line {
+    layer: base;
+    height: 1fr;
+    padding: 1 2;
+}
+
+.station {
+    width: 1fr;
+    height: 100%;
+    margin: 0 1;
+    border: round #31363c;
+    padding: 1 2;
+}
+
+.station-name {
+    color: #8b96a0;
+    text-style: bold;
+    border-bottom: solid #31363c;
+    padding-bottom: 1;
+}
+
+.station-body {
+    margin-top: 1;
+    color: #8b96a0;
+}
+
+#plate {
+    layer: plate;
+    width: 46;
+    height: 12;
+    offset: 4 26;
+    background: #1d2126;
+    border: heavy #525a62;
+    padding: 1 2;
+}
+
+#plate-title {
+    text-style: bold;
+    border-bottom: solid #31363c;
+}
+
+#plate-body {
+    margin-top: 1;
+}
+
+Footer {
+    background: #1d2126;
+    color: #6b7680;
+}

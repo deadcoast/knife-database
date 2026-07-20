@@ -1,0 +1,105 @@
+/* app-slice-2 — machined dark theme */
+
+Screen {
+    background: #14171a;
+    color: #c2cdd6;
+}
+
+#masthead {
+    dock: top;
+    height: 3;
+    background: #1d2126;
+    border-bottom: heavy #31363c;
+    padding: 0 2;
+    layout: horizontal;
+}
+
+#brand {
+    width: auto;
+    content-align: left middle;
+    text-style: bold;
+    color: #dde6ee;
+}
+
+#stats {
+    width: 1fr;
+    content-align: right middle;
+    color: #6b7680;
+}
+
+#search {
+    dock: top;
+    height: 3;
+    background: #14171a;
+    border: tall #31363c;
+    color: #c2cdd6;
+    padding: 0 1;
+}
+
+#search:focus {
+    border: tall #d7a455;
+}
+
+DataTable {
+    background: #14171a;
+    color: #c2cdd6;
+    scrollbar-color: #31363c;
+    scrollbar-background: #14171a;
+    &:focus {
+        background-tint: #14171a 0%;
+    }
+    & > .datatable--header {
+        background: #1d2126;
+        color: #8b96a0;
+        text-style: bold;
+    }
+    & > .datatable--header-hover {
+        background: #262b31;
+        color: #d7a455;
+    }
+    & > .datatable--odd-row {
+        background: #171a1e;
+    }
+    & > .datatable--even-row {
+        background: #14171a;
+    }
+    & > .datatable--cursor {
+        background: #2a3038;
+        color: #dde6ee;
+    }
+    & > .datatable--hover {
+        background: #1d2126;
+    }
+}
+
+#record {
+    dock: right;
+    width: 44;
+    background: #1d2126;
+    border-left: heavy #31363c;
+    padding: 1 2;
+    display: none;
+}
+
+#record.open {
+    display: block;
+}
+
+#record-title {
+    color: #dde6ee;
+    text-style: bold;
+}
+
+#record-id {
+    color: #5c6670;
+}
+
+#record-body {
+    margin-top: 1;
+    color: #8b96a0;
+}
+
+Footer {
+    background: #1d2126;
+    color: #6b7680;
+}

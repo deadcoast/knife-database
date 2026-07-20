@@ -1,0 +1,113 @@
+"""The Plate — the record as a physical object.
+
+One widget class, every room. The plate stamped on the Forge Line is the
+same object that docks beside the Rack and sits on the Bench: object
+permanence is structural, not a styling convention. A room never draws its
+own record view; it mounts a Plate.
+
+Two modes:
+- ``set_knife(view)``   — show a complete record at once (Rack, Bench).
+- ``begin(title)`` then ``stamp(label, value)`` — assemble a record field
+  by field, the freshest stamp marked in accent (Forge Line).
+"""
+from __future__ import annotations
+
+from rich.text import Text
+from textual.app import ComposeResult
+from textual.containers import Vertical
+from textual.widgets import Static
+
+from ..models import KnifeView
+from . import laws
+
+
+class Plate(Vertical):
+    DEFAULT_CSS = f"""
+    Plate {{
+        width: 46;
+        height: auto;
+        max-height: 100%;
+        background: {laws.SURFACE};
+        border: heavy {laws.EDGE_BRIGHT};
+        padding: 1 2;
+    }}
+    Plate > .plate--title {{
+        text-style: bold;
+        color: {laws.STEEL_BRIGHT};
+        border-bottom: solid {laws.EDGE};
+    }}
+    Plate > .plate--id {{
+        color: {laws.STEEL_DIM};
+    }}
+    Plate > .plate--body {{
+        margin-top: 1;
+    }}
+    """
+
+    def __init__(self, **kwargs) -> None:
+        super().__init__(**kwargs)
+        self._stamped: list[tuple[str, str, str]] = []
+
+    def compose(self) -> ComposeResult:
+        yield Static("", classes="plate--title")
+        yield Static("", classes="plate--id")
+        yield Static("", classes="plate--body")
+
+    # ------------------------------------------------------------- full mode
+
+    def set_knife(self, knife: KnifeView) -> None:
+        """Show a complete record; border takes the classification color."""
+        self._stamped = []
+        cls = knife.classification
+        self.styles.border = ("heavy", laws.CLASS_COLORS.get(cls, laws.EDGE_BRIGHT))
+        self._title(knife.display_name, knife.id)
+        body = Text()
+        rows: list[tuple[str, str, str]] = [
+            ("class", cls, laws.CLASS_COLORS.get(cls, laws.STEEL_MID)),
+            ("steel", knife.blade_steel, laws.STEEL_BRIGHT),
+            ("lock", knife.lock_type, laws.STEEL_BRIGHT),
+            ("open", knife.opening_method, laws.STEEL_BRIGHT),
+            ("length", knife.blade_length, laws.STEEL_BRIGHT),
+            ("price", knife.price_label, laws.ACCENT),
+        ]
+        best = knife.best_retailer
+        if best:
+            rows.append(("source", str(best.get("retailer") or "—"), laws.STEEL_BRIGHT))
+            rows.append(("stock", str(best.get("availability") or "—"), laws.STEEL_BRIGHT))
+        if knife.tags:
+            rows.append(("tags", ", ".join(knife.tags), laws.STEEL_MID))
+        for label, value, style in rows:
+            body.append_text(laws.field(label, value, style))
+            body.append("\n")
+        if knife.notes:
+            body.append("\n")
+            body.append(knife.notes, style=laws.STEEL_DIM)
+        self._body(body)
+
+    # ------------------------------------------------------ incremental mode
+
+    def begin(self, title: str, subtitle: str = "") -> None:
+        """Blank plate on the line, awaiting stamps."""
+        self._stamped = []
+        self.styles.border = ("heavy", laws.EDGE_BRIGHT)
+        self._title(title, subtitle)
+        self._body(Text())
+
+    def stamp(self, label: str, value: str) -> None:
+        """Stamp one field; the freshest stamp reads in accent."""
+        self._stamped.append((label, value, laws.STEEL_BRIGHT))
+        body = Text()
+        for i, (lab, val, style) in enumerate(self._stamped):
+            fresh = i == len(self._stamped) - 1
+            body.append_text(laws.field(lab, val, laws.ACCENT if fresh else style))
+            body.append("\n")
+        self._body(body)
+
+    # ------------------------------------------------------------- internals
+
+    def _title(self, title: str, subtitle: str) -> None:
+        self.query_one(".plate--title", Static).update(title)
+        self.query_one(".plate--id", Static).update(subtitle)
+
+    def _body(self, body: Text) -> None:
+        self.query_one(".plate--body", Static).update(body)
