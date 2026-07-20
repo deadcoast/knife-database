@@ -15,6 +15,7 @@ sys.path.insert(0, str(REPO))
 from textual.widgets import DataTable, Input, Static  # noqa: E402
 
 from knivves.vault.app import KnivvesVault  # noqa: E402
+from knivves.vault.bench import BenchScreen  # noqa: E402
 from knivves.vault.plate import Plate  # noqa: E402
 from knivves.vault.rack import RackScreen  # noqa: E402
 from knivves.vault.forge import ForgeScreen  # noqa: E402
@@ -76,7 +77,34 @@ async def test_shell() -> None:
         await pilot.pause()
         assert isinstance(app.screen, RackScreen)
 
-        print(f"PASS: shell boots · rack {n} rows · sort+reverse · search · plate travel · forge transit · room switching")
+        # send-to-bench: `b` carries the highlighted knife's plate to the bench
+        await pilot.press("b")
+        await pilot.pause()
+        assert isinstance(app.screen, BenchScreen), f"screen: {app.screen}"
+        assert len(app.screen.slots) == 1, f"slots: {len(app.screen.slots)}"
+        first_id = app.screen.slots[0].id
+
+        # second knife -> calipers read deltas; duplicate is refused
+        await pilot.press("1")
+        await pilot.pause()
+        await pilot.press("down", "down", "b")
+        await pilot.pause()
+        assert len(app.screen.slots) == 2, f"slots: {len(app.screen.slots)}"
+        assert app.screen.slots[0].id == first_id
+        calipers = str(app.screen.query_one("#calipers-read", Static).render())
+        assert "Δ" in calipers or "incomparable" in calipers, f"calipers: {calipers[:80]}"
+        await pilot.press("1")
+        await pilot.pause()
+        await pilot.press("b")  # same highlighted row as slot 2 -> dedupe
+        await pilot.pause()
+        assert len(app.screen.slots) == 2, "duplicate was not refused"
+
+        # escape clears the bench
+        await pilot.press("escape")
+        await pilot.pause()
+        assert len(app.screen.slots) == 0
+
+        print(f"PASS: shell boots · rack {n} rows · sort+reverse · search · plate travel · forge transit · rooms · bench send/dedupe/calipers/clear")
 
 
 if __name__ == "__main__":

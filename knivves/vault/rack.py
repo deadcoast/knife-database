@@ -7,12 +7,18 @@ the record arrives as an object, per the motion law.
 """
 from __future__ import annotations
 
+from typing import TYPE_CHECKING, cast
+
 from rich.text import Text
 from textual.app import ComposeResult
+from textual.coordinate import Coordinate
 from textual.screen import Screen
 from textual.widgets import DataTable, Footer, Input
 
 from ..models import KnifeView
+
+if TYPE_CHECKING:
+    from .app import KnivvesVault
 from . import laws
 from .masthead import Masthead
 from .plate import Plate
@@ -45,7 +51,10 @@ def cell_sort_key(column: str):
 
 
 class RackScreen(Screen):
-    BINDINGS = [("escape", "close_plate", "Close plate")]
+    BINDINGS = [
+        ("escape", "close_plate", "Close plate"),
+        ("b", "send_bench", "Send to bench"),
+    ]
 
     def __init__(self, **kwargs) -> None:
         super().__init__(**kwargs)
@@ -53,8 +62,12 @@ class RackScreen(Screen):
         self.sort_reverse = False
 
     @property
+    def vault(self) -> "KnivvesVault":
+        return cast("KnivvesVault", self.app)
+
+    @property
     def knives(self) -> list[KnifeView]:
-        return self.app.knives
+        return self.vault.knives
 
     def compose(self) -> ComposeResult:
         yield Masthead("THE RACK")
@@ -133,6 +146,18 @@ class RackScreen(Screen):
             plate.add_class("open")
             plate.styles.offset = (PLATE_HIDDEN_X, 0)
         laws.travel(plate, 0, 0, duration=0.35)
+
+    def action_send_bench(self) -> None:
+        """Send the highlighted knife's plate to the bench and follow it."""
+        table = self.query_one(DataTable)
+        if not table.row_count:
+            return
+        row_key = table.coordinate_to_cell_key(
+            Coordinate(table.cursor_row, 0)
+        ).row_key
+        knife = next((k for k in self.knives if k.id == row_key.value), None)
+        if knife:
+            self.vault.send_to_bench(knife)
 
     def action_close_plate(self) -> None:
         plate = self.query_one(Plate)

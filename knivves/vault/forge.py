@@ -12,6 +12,7 @@ proven scraper into the same transit — the room's next fitting.
 from __future__ import annotations
 
 import asyncio
+from typing import TYPE_CHECKING, cast
 
 from rich.text import Text
 from textual.app import ComposeResult
@@ -20,6 +21,9 @@ from textual.screen import Screen
 from textual.widgets import Footer, Static
 
 from . import laws
+
+if TYPE_CHECKING:
+    from .app import KnivvesVault
 from .masthead import Masthead
 from .plate import Plate
 
@@ -44,8 +48,12 @@ class ForgeScreen(Screen):
         yield Plate(id="forge-plate")
         yield Footer()
 
+    @property
+    def vault(self) -> "KnivvesVault":
+        return cast("KnivvesVault", self.app)
+
     def on_mount(self) -> None:
-        self.query_one(Masthead).update_stats(self.app.knives)
+        self.query_one(Masthead).update_stats(self.vault.knives)
         self.run_worker(self.transit(), exclusive=True)
 
     def action_replay(self) -> None:
@@ -54,11 +62,11 @@ class ForgeScreen(Screen):
     # ------------------------------------------------------------- transit
 
     def _sample(self):
-        knives = self.app.knives
+        knives = self.vault.knives
         return next((k for k in knives if k.price and k.blade_steel != "Unknown"), knives[0])
 
     def _rules(self) -> list[str]:
-        rule = self.app.db.get("workflow_rules", {}).get("canadian_online_retailer_rule", {})
+        rule = self.vault.db.get("workflow_rules", {}).get("canadian_online_retailer_rule", {})
         return list(rule.get("only_reject_or_fail_if_clear_prohibited_mechanism", []))
 
     async def transit(self) -> None:

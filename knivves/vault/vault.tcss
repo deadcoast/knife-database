@@ -70,6 +70,27 @@ Footer {
     }
 }
 
+/* ------------------------------------------------------------ the bench */
+
+#bench {
+    height: 1fr;
+    padding: 1 2;
+    align: center middle;
+}
+
+.bench-plate {
+    margin: 0 1;
+}
+
+#calipers {
+    width: 34;
+    height: auto;
+    min-height: 16;
+    margin: 0 1;
+    border: round #31363c;
+    padding: 1 2;
+}
+
 /* -------------------------------------------------------- the forge line */
 
 ForgeScreen {
