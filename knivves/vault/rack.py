@@ -11,6 +11,8 @@ from typing import TYPE_CHECKING, cast
 
 from rich.text import Text
 from textual.app import ComposeResult
+from textual.binding import Binding
+from textual.containers import Horizontal
 from textual.coordinate import Coordinate
 from textual.events import ScreenResume
 from textual.screen import Screen
@@ -23,14 +25,15 @@ if TYPE_CHECKING:
 from . import laws
 from .masthead import Masthead
 from .plate import Plate
+from .tips import ROOM_KEY, Tip, TipCapsule, TipRail, TipsMixin
 
 COLUMNS = [
     ("brand", "Brand", 16),
     ("model", "Model", 36),
     ("classification", "Class", 14),
-    ("steel", "Steel", 16),
+    ("steel", "Steel", 18),
     ("price", "CAD", 12),
-    ("tags", "Tags", 16),
+    ("tags", "Tags", 20),
 ]
 
 ARROW_UP = " ▲"
@@ -51,12 +54,32 @@ def cell_sort_key(column: str):
     return key
 
 
-class RackScreen(Screen):
+class RackScreen(TipsMixin, Screen):
     BINDINGS = [
         ("slash", "focus_search", "Search"),
         ("escape", "close_plate", "Close plate"),
         ("b", "send_bench", "Send to bench"),
+        Binding("t", "expand_tip", "tip detail", show=False),
     ]
+
+    TIPS = {
+        ROOM_KEY: Tip("the rack — browse, sort, send"),
+        "rack-search": Tip(
+            "live filter across every field",
+            "matches brand, model, steel, lock,\ntags, notes, retailer — anything\nthe record knows\n\n"
+            "try: magnacut · assisted · affordable\n\n/ focuses the search\nesc clears it",
+        ),
+        "rack-table": Tip(
+            "click a header to sort · again reverses",
+            "enter or click a row — its plate\ntravels in\n\nb — send the row to the bench\n\n"
+            "the active sort reads on the\nmasthead beside the room name",
+        ),
+        "rack-plate": Tip(
+            "the record plate — class colors its edge",
+            "approved green · rejected red ·\nunreviewed steel\n\n"
+            "this same plate is stamped on the\nforge line and sits on the bench —\none object, every room",
+        ),
+    }
 
     def __init__(self, **kwargs) -> None:
         super().__init__(**kwargs)
@@ -75,11 +98,14 @@ class RackScreen(Screen):
         yield Masthead("THE RACK")
         yield Input(placeholder="/ searches the vault — brand, steel, lock, tag …", id="rack-search")
         yield Plate(id="rack-plate")
-        yield DataTable(id="rack-table")
-        yield Static(
-            "no blades match your search\n\nesc clears the filter",
-            id="rack-empty",
-        )
+        with Horizontal(id="rack-body"):
+            yield DataTable(id="rack-table")
+            yield Static(
+                "no blades match your search\n\nesc clears the filter",
+                id="rack-empty",
+            )
+            yield TipRail()
+        yield TipCapsule()
         yield Footer()
 
     def on_mount(self) -> None:
@@ -91,6 +117,7 @@ class RackScreen(Screen):
             table.add_column(label + "  ", key=key, width=width)
         self._fill(self.knives)
         table.focus()
+        self.show_room_tip()
 
     def on_screen_resume(self, event: ScreenResume) -> None:
         """Coming back to the rack: reflect anything filed while away."""
@@ -106,6 +133,7 @@ class RackScreen(Screen):
         search = self.query_one("#rack-search", Input)
         search.border_subtitle = f"{len(knives)} / {len(self.knives)}"
         self.query_one("#rack-empty", Static).display = not knives
+        table.display = bool(knives)
         for k in knives:
             cls = k.classification
             table.add_row(
@@ -181,6 +209,8 @@ class RackScreen(Screen):
             self.vault.send_to_bench(knife)
 
     def action_close_plate(self) -> None:
+        if self.dismiss_capsule():
+            return
         plate = self.query_one(Plate)
         if plate.has_class("open"):
             laws.travel(plate, PLATE_HIDDEN_X, 0, duration=0.35)

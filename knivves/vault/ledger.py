@@ -15,6 +15,7 @@ from typing import TYPE_CHECKING, cast
 
 from rich.text import Text
 from textual.app import ComposeResult
+from textual.binding import Binding
 from textual.containers import Horizontal, Vertical
 from textual.events import ScreenResume
 from textual.screen import Screen
@@ -25,6 +26,7 @@ from ..models import KnifeView, knife_views
 from ..store import save_database
 from . import laws
 from .masthead import Masthead
+from .tips import ROOM_KEY, Tip, TipCapsule, TipRail, TipsMixin
 
 if TYPE_CHECKING:
     from .app import KnivvesVault
@@ -33,11 +35,30 @@ BAR_WIDTH = 22
 SUPPORTED = ("bladescanada.com", "houseofknives.ca")
 
 
-class LedgerScreen(Screen):
+class LedgerScreen(TipsMixin, Screen):
     BINDINGS = [
         ("s", "survey", "Survey the market"),
         ("escape", "cancel_survey", "Cancel survey"),
+        Binding("t", "expand_tip", "tip detail", show=False),
     ]
+
+    TIPS = {
+        ROOM_KEY: Tip("the ledger — the vault's money"),
+        "ledger-valuation": Tip(
+            "the collection's financial shape",
+            "value sums each knife's best price ·\nthe histogram is the price\ndistribution across the vault",
+        ),
+        "ledger-line": Tip(
+            "the $150 affordable rule, visualized",
+            "affordable is the only auto tag —\nassigned when a knife's best price\nsits under $150\n\n"
+            "▾ under the line · ▴ within reach\n\nsurveys re-tag line-crossers\nautomatically",
+        ),
+        "ledger-movers": Tip(
+            "s surveys every live listing",
+            "each survey appends to every\nrecord's price history ·\nmovers sort by magnitude\n\n"
+            "▼ drop (good for buyers) · ▲ rise\n\nesc cancels — observations made\nbefore the cancel are kept",
+        ),
+    }
 
     SURVEY_DELAY = 0.25  # politeness between fetches; tests set 0
 
@@ -57,6 +78,8 @@ class LedgerScreen(Screen):
             with Vertical(classes="station", id="ledger-movers"):
                 yield Static("MARKET SURVEY", classes="station-name")
                 yield Static("", id="movers-read", classes="station-body")
+            yield TipRail()
+        yield TipCapsule()
         yield Footer()
 
     @property
@@ -65,6 +88,7 @@ class LedgerScreen(Screen):
 
     def on_screen_resume(self, event: ScreenResume) -> None:
         self.query_one(Masthead).update_stats(self.vault.knives)
+        self.show_room_tip()
         self._read_valuation()
         self._read_line()
         if not self._surveying:
@@ -128,6 +152,8 @@ class LedgerScreen(Screen):
             self.run_worker(self.survey(), exclusive=True)
 
     def action_cancel_survey(self) -> None:
+        if self.dismiss_capsule():
+            return
         if self._surveying:
             self.workers.cancel_all()
 

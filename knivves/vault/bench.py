@@ -15,6 +15,7 @@ from typing import TYPE_CHECKING, cast
 
 from rich.text import Text
 from textual.app import ComposeResult
+from textual.binding import Binding
 from textual.containers import Horizontal, Vertical
 from textual.events import ScreenResume
 from textual.screen import Screen
@@ -27,6 +28,7 @@ if TYPE_CHECKING:
 from . import laws
 from .masthead import Masthead
 from .plate import Plate
+from .tips import ROOM_KEY, Tip, TipCapsule, TipRail, TipsMixin
 
 IN_TO_MM = 25.4
 
@@ -45,8 +47,22 @@ def blade_mm(knife: KnifeView) -> float | None:
     return None
 
 
-class BenchScreen(Screen):
-    BINDINGS = [("escape", "clear_bench", "Clear bench")]
+class BenchScreen(TipsMixin, Screen):
+    BINDINGS = [
+        ("escape", "clear_bench", "Clear bench"),
+        Binding("t", "expand_tip", "tip detail", show=False),
+    ]
+
+    TIPS = {
+        ROOM_KEY: Tip("the bench — two blades, measured"),
+        "calipers": Tip(
+            "the calipers read the deltas",
+            "◀ ▶ point at the cheaper blade\nΔ price · Δ length in mm\n= match · ≠ differ\n\n"
+            "'incomparable' means the database\nis missing that measurement —\nhonest gaps, never guesses",
+        ),
+        "bench-left": Tip("sent from the rack with b"),
+        "bench-right": Tip("a third arrival replaces the older plate"),
+    }
 
     def __init__(self, **kwargs) -> None:
         super().__init__(**kwargs)
@@ -60,6 +76,8 @@ class BenchScreen(Screen):
                 yield Static("CALIPERS", classes="station-name")
                 yield Static("", id="calipers-read", classes="station-body")
             yield Plate(id="bench-right", classes="bench-plate")
+            yield TipRail()
+        yield TipCapsule()
         yield Footer()
 
     @property
@@ -68,6 +86,7 @@ class BenchScreen(Screen):
 
     def on_screen_resume(self, event: ScreenResume) -> None:
         self.query_one(Masthead).update_stats(self.vault.knives)
+        self.show_room_tip()
         self._drain_queue()
         self._refit()
 
@@ -84,6 +103,8 @@ class BenchScreen(Screen):
             self.slots.append(knife)
 
     def action_clear_bench(self) -> None:
+        if self.dismiss_capsule():
+            return
         self.slots = []
         self._refit()
 

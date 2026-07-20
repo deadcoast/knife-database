@@ -8,6 +8,10 @@ Screen {
     color: #c2cdd6;
 }
 
+RackScreen, BenchScreen, LedgerScreen {
+    layers: base capsule;
+}
+
 Footer {
     background: #1d2126;
     color: #6b7680;
@@ -32,8 +36,20 @@ Footer {
     border-subtitle-color: #5c6670;
 }
 
-#rack-empty {
+#rack-body {
     height: 1fr;
+}
+
+/* The table hugs its columns so the tip rail sits directly beside the
+   data's last column — never pinned to the viewport edge. */
+#rack-table {
+    width: auto;
+    max-width: 1fr;
+}
+
+#rack-empty {
+    width: 1fr;
+    height: 100%;
     content-align: center middle;
     text-align: center;
     color: #5c6670;
@@ -125,7 +141,7 @@ Footer {
 /* -------------------------------------------------------- the forge line */
 
 ForgeScreen {
-    layers: base plate;
+    layers: base plate capsule;
 }
 
 #forge-intake {

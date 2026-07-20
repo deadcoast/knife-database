@@ -18,5 +18,8 @@ dependencies = [
 [project.scripts]
 knivves = "knivves.cli:app"
 
+[tool.setuptools.packages.find]
+include = ["knivves*"]
+
 [tool.setuptools.package-data]
-knivves = ["data/*.json"]
+knivves = ["data/*.json", "vault/*.tcss"]

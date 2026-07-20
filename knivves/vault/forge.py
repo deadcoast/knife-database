@@ -19,6 +19,7 @@ from typing import TYPE_CHECKING, cast
 
 from rich.text import Text
 from textual.app import ComposeResult
+from textual.binding import Binding
 from textual.containers import Horizontal, Vertical
 from textual.screen import Screen
 from textual.widgets import Footer, Input, Static
@@ -28,11 +29,10 @@ from ..store import make_knife_id
 from . import laws
 from .masthead import Masthead
 from .plate import Plate
+from .tips import ROOM_KEY, Tip, TipCapsule, TipRail, TipsMixin
 
 if TYPE_CHECKING:
     from .app import KnivvesVault
-
-PLATE_HEIGHT = 12  # cells reserved beneath the stations for the traveling plate
 
 # Keywords that make a rulebook line trip on a listing title. Deliberately
 # precise: "assisted opening" is legal and must never trip a gate.
@@ -49,9 +49,34 @@ RULE_KEYWORDS: dict[str, tuple[str, ...]] = {
 }
 
 
-class ForgeScreen(Screen):
+class ForgeScreen(TipsMixin, Screen):
     AUTO_FOCUS = ""  # the intake slot is entered by click, not by default
-    BINDINGS = [("r", "replay", "Replay demo transit")]
+    BINDINGS = [
+        ("r", "replay", "Replay demo transit"),
+        ("escape", "dismiss_tip", "", ),
+        Binding("t", "expand_tip", "tip detail", show=False),
+    ]
+
+    TIPS = {
+        ROOM_KEY: Tip("the forge line — records are made here"),
+        "forge-intake": Tip(
+            "paste a listing url · enter runs the line",
+            "supported retailers:\n  bladescanada.com\n  houseofknives.ca\n\n"
+            "fields stamp as they parse · the\nlegal gates read the database's own\nrulebook · "
+            "a cleared record files\ninto the vault for real\n\nduplicates are refused by id",
+        ),
+        "st-extract": Tip("the listing is read and stamped here"),
+        "st-legal": Tip(
+            "gates execute the db's rulebook",
+            "prohibited mechanisms:\n  switchblade / automatic · OTF ·\n  gravity · balisong · butterfly ·\n"
+            "  centrifugal · auto-button\n\n'assisted opening' is legal and\nnever trips a gate\n\n"
+            "a hit slams the gate, stamps the\nplate REJECTED — nothing is written",
+        ),
+        "st-vault": Tip("cleared records file here — for real"),
+    }
+
+    def action_dismiss_tip(self) -> None:
+        self.dismiss_capsule()
 
     def compose(self) -> ComposeResult:
         yield Masthead("THE FORGE LINE")
@@ -69,7 +94,9 @@ class ForgeScreen(Screen):
             with Vertical(classes="station", id="st-vault"):
                 yield Static("VAULT", classes="station-name")
                 yield Static("", id="filed", classes="station-body")
+            yield TipRail()
         yield Plate(id="forge-plate")
+        yield TipCapsule()
         yield Footer()
 
     @property
@@ -78,6 +105,7 @@ class ForgeScreen(Screen):
 
     def on_mount(self) -> None:
         self.query_one(Masthead).update_stats(self.vault.knives)
+        self.show_room_tip()
         self.run_worker(self.demo_transit(), exclusive=True)
 
     def action_replay(self) -> None:
@@ -101,13 +129,21 @@ class ForgeScreen(Screen):
         )
 
     def _plate_y(self) -> int:
-        """Keep the traveling plate above the footer at any terminal height."""
-        return max(8, self.size.height - PLATE_HEIGHT - 5)
+        """Rest the plate against the bottom edge, whatever its grown height."""
+        plate = self.query_one(Plate)
+        height = plate.outer_size.height or 10
+        return max(6, self.size.height - height - 2)
+
+    def _settle(self) -> None:
+        """Re-seat the plate after content growth so it never clips."""
+        plate = self.query_one(Plate)
+        plate.styles.offset = (self._plate_x, self._plate_y())
 
     def _reset_line(self, plate: Plate) -> None:
         for selector in ("#extract-log", "#gates", "#filed"):
             self.query_one(selector, Static).update("")
-        plate.styles.offset = (4, self._plate_y())
+        self._plate_x = 4
+        self.call_after_refresh(self._settle)
 
     def _rules(self) -> list[str]:
         rule = self.vault.db.get("workflow_rules", {}).get("canadian_online_retailer_rule", {})
@@ -135,6 +171,7 @@ class ForgeScreen(Screen):
 
     async def _travel_to(self, station_id: str, plate: Plate) -> None:
         x = self.query_one(f"#{station_id}").region.x + 2
+        self._plate_x = x
         laws.travel(plate, x, self._plate_y())
         await asyncio.sleep(laws.TRAVEL_DURATION + 0.15)
 
@@ -209,6 +246,7 @@ class ForgeScreen(Screen):
         stamps = listing.stamped_fields()
         for label, value in stamps:
             plate.stamp(label, value)
+            self.call_after_refresh(self._settle)
             await asyncio.sleep(0.35)
         extract_log.update(Text(f"{len(stamps)} fields parsed", style=laws.PASS))
 
@@ -224,6 +262,7 @@ class ForgeScreen(Screen):
                 gates.update(self._render_gates(passed, failed=(rule, hits)))
                 plate.styles.border = ("heavy", laws.FAIL)
                 plate.stamp("verdict", f"REJECTED — {rule}")
+                self.call_after_refresh(self._settle)
                 filed.update(Text("not filed — prohibited mechanism identified", style=laws.FAIL))
                 return
             passed.append(rule)
@@ -266,6 +305,7 @@ class ForgeScreen(Screen):
         ]
         for label, value in stamps:
             plate.stamp(label, value)
+            self.call_after_refresh(self._settle)
             await asyncio.sleep(0.45)
         extract_log.update(Text(f"{len(stamps)} fields parsed", style=laws.PASS))
 

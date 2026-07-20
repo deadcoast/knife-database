@@ -122,6 +122,43 @@ async def test_shell() -> None:
         for expected in ("The Rack", "The Forge Line", "The Bench", "The Ledger", "Survey the market"):
             assert expected in commands, f"palette missing: {expected}"
 
+        # ---- tip system: rail on hover, capsule on demand ----
+        from knivves.vault.tips import TipCapsule, TipRail
+
+        rail = app.screen.query_one(TipRail)
+        # the rail sits directly beside the data's last column, never at the
+        # viewport edge across a dead gap
+        table_widget = app.screen.query_one(DataTable)
+        table_right = table_widget.region.x + table_widget.region.width
+        gap = rail.region.x - table_right
+        assert 0 <= gap <= 3, f"rail is {gap} cells from the data edge"
+        assert rail.region.x + rail.region.width < app.size.width - 10, (
+            "rail is pinned to the viewport edge"
+        )
+        await pilot.hover("#rack-search")
+        await pilot.pause()
+        assert rail.current and "live filter" in rail.current.short, f"rail: {rail.current}"
+        assert rail.has_class("expandable"), "❯ mark missing on expandable tip"
+        await pilot.press("t")
+        await pilot.pause()
+        capsule = app.screen.query_one(TipCapsule)
+        assert capsule.has_class("open"), "capsule did not open"
+        capsule_body = str(capsule.query_one(".capsule--body", Static).render())
+        assert "magnacut" in capsule_body, f"capsule body: {capsule_body[:60]}"
+        await pilot.press("escape")
+        await pilot.pause()
+        assert not capsule.has_class("open"), "escape did not close capsule"
+        # a tip with no extended content shows no ❯ mark
+        await pilot.press("2")
+        await pilot.pause()
+        forge_rail = app.screen.query_one(TipRail)
+        await pilot.hover("#st-extract", offset=(4, 2))
+        await pilot.pause()
+        assert forge_rail.current and "stamped here" in forge_rail.current.short
+        assert not forge_rail.has_class("expandable"), "❯ shown without extended content"
+        await pilot.press("1")
+        await pilot.pause()
+
         # room switch: 2 -> forge line, transit completes on real rules
         await pilot.press("2")
         await pilot.pause()
@@ -132,6 +169,11 @@ async def test_shell() -> None:
         filed_text = str(app.screen.query_one("#filed", Static).render())
         assert "CLEAR TO PROCEED" in gates_text, f"gates: {gates_text[:80]}"
         assert "demo transit" in filed_text, f"filed: {filed_text[:80]}"
+        # the traveling plate never clips off screen, whatever its height
+        from knivves.vault.plate import Plate as PlateWidget
+        forge_plate = app.screen.query_one(PlateWidget)
+        plate_bottom = forge_plate.region.y + forge_plate.region.height
+        assert plate_bottom <= app.size.height, f"plate clips: bottom {plate_bottom} vs screen {app.size.height}"
 
         # room switch back: 1 -> the rack, state intact
         await pilot.press("1")
