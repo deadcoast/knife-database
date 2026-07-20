@@ -14,7 +14,7 @@ from textual.app import ComposeResult
 from textual.coordinate import Coordinate
 from textual.events import ScreenResume
 from textual.screen import Screen
-from textual.widgets import DataTable, Footer, Input
+from textual.widgets import DataTable, Footer, Input, Static
 
 from ..models import KnifeView
 
@@ -53,6 +53,7 @@ def cell_sort_key(column: str):
 
 class RackScreen(Screen):
     BINDINGS = [
+        ("slash", "focus_search", "Search"),
         ("escape", "close_plate", "Close plate"),
         ("b", "send_bench", "Send to bench"),
     ]
@@ -72,9 +73,13 @@ class RackScreen(Screen):
 
     def compose(self) -> ComposeResult:
         yield Masthead("THE RACK")
-        yield Input(placeholder="search the vault — brand, steel, lock, tag …", id="rack-search")
+        yield Input(placeholder="/ searches the vault — brand, steel, lock, tag …", id="rack-search")
         yield Plate(id="rack-plate")
         yield DataTable(id="rack-table")
+        yield Static(
+            "no blades match your search\n\nesc clears the filter",
+            id="rack-empty",
+        )
         yield Footer()
 
     def on_mount(self) -> None:
@@ -98,6 +103,9 @@ class RackScreen(Screen):
     def _fill(self, knives: list[KnifeView]) -> None:
         table = self.query_one(DataTable)
         table.clear()
+        search = self.query_one("#rack-search", Input)
+        search.border_subtitle = f"{len(knives)} / {len(self.knives)}"
+        self.query_one("#rack-empty", Static).display = not knives
         for k in knives:
             cls = k.classification
             table.add_row(
@@ -136,6 +144,9 @@ class RackScreen(Screen):
                 col.label = Text(base + "  ")
         self._apply_sort()
         table.refresh()
+        base = next(label for key, label, _ in COLUMNS if key == column)
+        arrow = "▼" if self.sort_reverse else "▲"
+        self.query_one(Masthead).set_context(f"sorted by {base.lower()} {arrow}")
 
     def _apply_sort(self) -> None:
         if self.sort_column:
@@ -153,6 +164,9 @@ class RackScreen(Screen):
             plate.add_class("open")
             plate.styles.offset = (PLATE_HIDDEN_X, 0)
         laws.travel(plate, 0, 0, duration=0.35)
+
+    def action_focus_search(self) -> None:
+        self.query_one("#rack-search", Input).focus()
 
     def action_send_bench(self) -> None:
         """Send the highlighted knife's plate to the bench and follow it."""
@@ -174,3 +188,4 @@ class RackScreen(Screen):
         search = self.query_one("#rack-search", Input)
         if search.value:
             search.value = ""
+        self.query_one(DataTable).focus()

@@ -95,6 +95,33 @@ async def test_shell() -> None:
         assert not plate.has_class("open")
         assert app.screen.query_one("#rack-search", Input).value == ""
 
+        # ---- pass A polish: feedback, reach, zero-state ----
+        search = app.screen.query_one("#rack-search", Input)
+        assert str(search.border_subtitle).endswith(f"/ {n}"), f"subtitle: {search.border_subtitle}"
+        # sort readout on the masthead
+        from knivves.vault.masthead import Masthead
+        context = str(app.screen.query_one(Masthead).query_one(".masthead--context", Static).render())
+        assert "sorted by brand" in context, f"context: {context}"
+        # slash reaches the search from the table
+        app.screen.query_one(DataTable).focus()
+        await pilot.press("slash")
+        await pilot.pause()
+        assert app.focused is search, f"focused: {app.focused}"
+        # zero-state is designed, not blank
+        await pilot.press(*"zzqqxx")
+        await pilot.pause()
+        assert table.row_count == 0
+        assert app.screen.query_one("#rack-empty", Static).display is True
+        assert str(search.border_subtitle).startswith("0 /")
+        await pilot.press("escape")
+        await pilot.pause()
+        assert table.row_count == n
+        assert app.screen.query_one("#rack-empty", Static).display is False
+        # palette exposes the building's rooms and operations
+        commands = {c.title for c in app.get_system_commands(app.screen)}
+        for expected in ("The Rack", "The Forge Line", "The Bench", "The Ledger", "Survey the market"):
+            assert expected in commands, f"palette missing: {expected}"
+
         # room switch: 2 -> forge line, transit completes on real rules
         await pilot.press("2")
         await pilot.pause()

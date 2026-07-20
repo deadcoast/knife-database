@@ -32,7 +32,7 @@ from .plate import Plate
 if TYPE_CHECKING:
     from .app import KnivvesVault
 
-PLATE_Y = 26
+PLATE_HEIGHT = 12  # cells reserved beneath the stations for the traveling plate
 
 # Keywords that make a rulebook line trip on a listing title. Deliberately
 # precise: "assisted opening" is legal and must never trip a gate.
@@ -100,10 +100,14 @@ class ForgeScreen(Screen):
             self.query_one("#filed", Static),
         )
 
+    def _plate_y(self) -> int:
+        """Keep the traveling plate above the footer at any terminal height."""
+        return max(8, self.size.height - PLATE_HEIGHT - 5)
+
     def _reset_line(self, plate: Plate) -> None:
         for selector in ("#extract-log", "#gates", "#filed"):
             self.query_one(selector, Static).update("")
-        plate.styles.offset = (4, PLATE_Y)
+        plate.styles.offset = (4, self._plate_y())
 
     def _rules(self) -> list[str]:
         rule = self.vault.db.get("workflow_rules", {}).get("canadian_online_retailer_rule", {})
@@ -131,7 +135,7 @@ class ForgeScreen(Screen):
 
     async def _travel_to(self, station_id: str, plate: Plate) -> None:
         x = self.query_one(f"#{station_id}").region.x + 2
-        laws.travel(plate, x, PLATE_Y)
+        laws.travel(plate, x, self._plate_y())
         await asyncio.sleep(laws.TRAVEL_DURATION + 0.15)
 
     # ---------------------------------------------------------- live intake

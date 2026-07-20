@@ -28,6 +28,18 @@ Footer {
     border: tall #d7a455;
 }
 
+#rack-search {
+    border-subtitle-color: #5c6670;
+}
+
+#rack-empty {
+    height: 1fr;
+    content-align: center middle;
+    text-align: center;
+    color: #5c6670;
+    display: none;
+}
+
 #rack-plate {
     dock: right;
     height: 100%;

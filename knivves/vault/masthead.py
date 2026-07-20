@@ -35,6 +35,12 @@ class Masthead(Horizontal):
         margin-left: 2;
         color: {laws.ACCENT};
     }}
+    Masthead > .masthead--context {{
+        width: auto;
+        content-align: left middle;
+        margin-left: 2;
+        color: {laws.STEEL_DIM};
+    }}
     Masthead > .masthead--stats {{
         width: 1fr;
         content-align: right middle;
@@ -49,7 +55,12 @@ class Masthead(Horizontal):
     def compose(self) -> ComposeResult:
         yield Static("KNIVVES ╱╱ VAULT", classes="masthead--brand")
         yield Static(f"· {self._room}", classes="masthead--room")
+        yield Static("", classes="masthead--context")
         yield Static("", classes="masthead--stats")
+
+    def set_context(self, text: str) -> None:
+        """Room-state readout beside the room name (e.g. active sort)."""
+        self.query_one(".masthead--context", Static).update(text)
 
     def update_stats(self, knives: list[KnifeView]) -> None:
         prices = [k.price for k in knives if k.price is not None]

@@ -7,8 +7,10 @@ layer is the untouched knivves backend (store + models).
 from __future__ import annotations
 
 from pathlib import Path
+from typing import Iterable
 
-from textual.app import App
+from textual.app import App, SystemCommand
+from textual.screen import Screen
 
 from ..models import KnifeView, knife_views
 from ..store import add_knife, load_database, save_database
@@ -53,6 +55,29 @@ class KnivvesVault(App):
         save_database(self.db, self.db_path)
         self.knives = knife_views(self.db)
         return KnifeView(record)
+
+    def get_system_commands(self, screen: Screen) -> Iterable[SystemCommand]:
+        """The building's rooms and operations, reachable from the palette."""
+        yield from super().get_system_commands(screen)
+        yield SystemCommand("The Rack", "Browse the collection", lambda: self.action_room("rack"))
+        yield SystemCommand("The Forge Line", "Intake a retailer listing", lambda: self.action_room("forge"))
+        yield SystemCommand("The Bench", "Compare two blades", lambda: self.action_room("bench"))
+        yield SystemCommand("The Ledger", "Price intelligence", lambda: self.action_room("ledger"))
+        yield SystemCommand(
+            "Survey the market",
+            "Re-read every live listing and record what moved",
+            self._palette_survey,
+        )
+
+    def _palette_survey(self) -> None:
+        self.action_room("ledger")
+        self.call_after_refresh(self._start_survey)
+
+    def _start_survey(self) -> None:
+        screen = self.screen
+        action = getattr(screen, "action_survey", None)
+        if callable(action):
+            action()
 
     def on_mount(self) -> None:
         self.push_screen("rack")
