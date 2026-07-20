@@ -1,13 +1,21 @@
 {
   "database_name": "folding_knife_research_database",
   "jurisdiction": "Canada",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "definitions": {
     "approved": "A knife the user currently considers worthy of further research into acquisition. This is not a final purchase decision.",
     "rejected": "A knife the user considers banned, unworthy, or not worth further research into purchase.",
     "clean": "A knife that is more than beautiful while utilizing minimal aesthetics.",
     "fancy": "A unique blade style not often seen, e.g. Spyderco Matriarch 2 Emerson.",
-    "tiered": "An enthusiast knife in the high-tier quality range of, or above, a Chris Reeve."
+    "tiered": "An enthusiast knife in the high-tier quality range of, or above, a Chris Reeve.",
+    "buy_these": "Immediate-purchase shortlist: best-value knives the user intends to buy.",
+    "worth_the_price": "Premium knives judged worth their high asking price.",
+    "top_picks": "Curated top picks across all price ranges.",
+    "huge_sales": "Shortlisted knives found at a major discount.",
+    "new_pricy_picks": "Newly added premium candidates; price not yet recorded.",
+    "under_100": "Budget picks under $100 CAD.",
+    "out_of_stock": "Shortlisted but currently out of stock at the source retailer.",
+    "stiletto": "Stiletto-style folding knives."
   },
   "id_rule": {
     "format": "brand-model-key-variant",
@@ -1319,7 +1327,8 @@
       "model": "Stiletto Button Lock, OD Green (CBTSTBLODBK)",
       "user_classification": null,
       "user_tags": [
-        "affordable"
+        "affordable",
+        "stiletto"
       ],
       "research_status": "canadian_retailer_verified",
       "acquisition_status": "approved_for_further_research",
@@ -1341,7 +1350,7 @@
         }
       ],
       "source_input": "https://www.bladescanada.com/Cobratec-Knives/Cobratec-Stiletto-Button-Lock-Folding-Knife-VG10-Black-G10-OD-Green-CBTSTBLODBK",
-      "notes": "Imported from TODO.md (BUDGET section). Price and specs captured from retailer listing 2026-07-17. TODO.md also gives SKU CTSTLG10ODGBLK; listed twice, deduplicated. Confirm the button is a lock only, not an auto opener.",
+      "notes": "Imported from TODO.md (BUDGET section). Price and specs captured from retailer listing 2026-07-17. TODO.md also gives SKU CTSTLG10ODGBLK; listed twice, deduplicated. Confirm the button is a lock only, not an auto opener. Re-confirmed on curated shortlist 2026-07-20 (section: STILETTO).",
       "listing_title": "Stiletto Button Lock Folding Knife VG10 Black G10 OD Green CBTSTBLODBK"
     },
     {
@@ -1591,7 +1600,9 @@
       "brand": "Cold Steel",
       "model": "Ti-Lite S35VN (26B4)",
       "user_classification": null,
-      "user_tags": [],
+      "user_tags": [
+        "stiletto"
+      ],
       "research_status": "canadian_retailer_verified",
       "acquisition_status": "approved_for_further_research",
       "mechanism": {
@@ -1612,7 +1623,7 @@
         }
       ],
       "source_input": "https://www.bladescanada.com/Cold-Steel-Knives/Cold-Steel-Ti-Lite-Folding-Knife-CPM-S35VN-Aluminum-26B4",
-      "notes": "Imported from TODO.md (AFFORDABLE (100-200) section). Price and specs captured from retailer listing 2026-07-17.",
+      "notes": "Imported from TODO.md (AFFORDABLE (100-200) section). Price and specs captured from retailer listing 2026-07-17. Re-confirmed on curated shortlist 2026-07-20 (section: STILETTO).",
       "listing_title": "Ti-Lite Folding Knife CPM S35VN Aluminum CS-26B4"
     },
     {
@@ -2049,6 +2060,2991 @@
       "source_input": "https://www.bladescanada.com/Kubey-Knives/Kubey-Gurkha-EDC-Folding-Knife-14C28N-Beadblast-G10-Black-KU397A",
       "notes": "Added by user 2026-07-18.",
       "listing_title": "Kubey Gurkha EDC Folding Knife, 14C28N Steel, G10 Black, KU397A [KuKU397A] - $89.99CDN"
+    },
+    {
+      "id": "kunwu-padre-framelock-black-titanium-diamond-textured-706t4",
+      "brand": "Kunwu",
+      "model": "Padre Framelock Black Titanium Diamond Textured (706T4)",
+      "user_classification": "approved",
+      "user_tags": [
+        "buy_these"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "Frame lock",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "Vanax",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Kunwu-Knives/Kunwu-Padre-Framelock-Folding-Knife-Vanax-Black-Titanium-Diamond-Textured-706T4",
+          "listed_price_cad": 489.0,
+          "availability": "in stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: BUY THESE).",
+      "listing_title": "Kunwu Padre Framelock Black Titanium Diamond Textured 706T4"
+    },
+    {
+      "id": "cold-steel-ad-10-g10-black-28dd",
+      "brand": "Cold Steel",
+      "model": "AD-10 G10 Black (28DD)",
+      "user_classification": "approved",
+      "user_tags": [
+        "buy_these"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "Tri-Ad lock",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "S35VN",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Cold-Steel-Knives/Cold-Steel-AD-10-Folding-Knife-S35VN-G10-Black-28DD",
+          "listed_price_cad": 254.0,
+          "availability": "in stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: BUY THESE).",
+      "listing_title": "Cold Steel AD-10 G10 Black 28DD"
+    },
+    {
+      "id": "kizer-harpoon-fold-titanium-grey-ki4784a1",
+      "brand": "Kizer",
+      "model": "Harpoon Fold Titanium Grey (KI4784A1)",
+      "user_classification": "approved",
+      "user_tags": [
+        "buy_these",
+        "titanium"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "Unknown",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "Unknown",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/kizer-harpoon-fold-titanium-grey-ki4784a1/",
+          "listed_price_cad": 247.0,
+          "availability": "in stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: BUY THESE). Variant note: Titanium Grey.",
+      "listing_title": "Kizer Harpoon Fold Titanium Grey KI4784A1"
+    },
+    {
+      "id": "kizer-militaw-3-15-kwikswap-aluminum-shipwreck-camocarbon-ki3634-31cda2",
+      "brand": "Kizer",
+      "model": "Militaw 3.15 KwikSwap Aluminum Shipwreck CamoCarbon (KI3634-31CDA2)",
+      "user_classification": "approved",
+      "user_tags": [
+        "buy_these",
+        "top_picks"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "Unknown",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "Unknown",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/kizer-militaw-315-kwikswap-aluminum-shipwreck-camocarbon-ki3634-31cda2/",
+          "listed_price_cad": 246.0,
+          "availability": "in stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: BUY THESE, TOP PICKS).",
+      "listing_title": "Kizer Militaw 3.15 KwikSwap Aluminum Shipwreck CamoCarbon KI3634-31CDA2"
+    },
+    {
+      "id": "kizer-harpoon-fold-titanium-grey-matte-dlc-ki4784a3",
+      "brand": "Kizer",
+      "model": "Harpoon Fold Titanium Grey Matte DLC (KI4784A3)",
+      "user_classification": "approved",
+      "user_tags": [
+        "buy_these",
+        "titanium"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "Unknown",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "Unknown",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/kizer-harpoon-fold-titanium-grey-matte-dlc-ki4784a3/",
+          "listed_price_cad": 186.0,
+          "availability": "in stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: BUY THESE). Variant note: Titanium Grey.",
+      "listing_title": "Kizer Harpoon Fold Titanium Grey Matte DLC KI4784A3"
+    },
+    {
+      "id": "kizer-harpoon-fold-titanium-norplex-ultrex-micarta-brown-ki4784a4",
+      "brand": "Kizer",
+      "model": "Harpoon Fold Titanium Norplex Ultrex Micarta Brown (KI4784A4)",
+      "user_classification": "approved",
+      "user_tags": [
+        "buy_these",
+        "titanium"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "Unknown",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "Unknown",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/kizer-harpoon-fold-titanium-norplex-ultrex-micarta-brown-ki4784a4/",
+          "listed_price_cad": 170.0,
+          "availability": "in stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: BUY THESE). Variant note: Titanium Norplex.",
+      "listing_title": "Kizer Harpoon Fold Titanium Norplex Ultrex Micarta Brown KI4784A4"
+    },
+    {
+      "id": "bestechman-sprite-titanium-bronze-bmk21b",
+      "brand": "BestechMan",
+      "model": "Sprite Titanium Bronze (BMK21B)",
+      "user_classification": "approved",
+      "user_tags": [
+        "buy_these"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "Unknown",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "Unknown",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/bestechman-sprite-titanium-bronze-bmk21b/",
+          "listed_price_cad": 148.0,
+          "availability": "in stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: BUY THESE).",
+      "listing_title": "BestechMan Sprite Titanium Bronze BMK21B"
+    },
+    {
+      "id": "bestechman-sprite-titanium-dark-bead-blast-stonewash-bmk21d",
+      "brand": "BestechMan",
+      "model": "Sprite Titanium Dark Bead Blast Stonewash (BMK21D)",
+      "user_classification": "approved",
+      "user_tags": [
+        "buy_these"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "Unknown",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "Unknown",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/bestechman-sprite-titanium-dark-bead-blast-stonewash-bmk21d/",
+          "listed_price_cad": 148.0,
+          "availability": "in stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: BUY THESE).",
+      "listing_title": "BestechMan Sprite Titanium Dark Bead Blast Stonewash BMK21D"
+    },
+    {
+      "id": "bestechman-sprite-titanium-bmk21a",
+      "brand": "BestechMan",
+      "model": "Sprite Titanium (BMK21A)",
+      "user_classification": "approved",
+      "user_tags": [
+        "buy_these"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "Unknown",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "Unknown",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/bestechman-sprite-titanium-bmk21a/",
+          "listed_price_cad": 148.0,
+          "availability": "in stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: BUY THESE).",
+      "listing_title": "BestechMan Sprite Titanium BMK21A"
+    },
+    {
+      "id": "kizer-khamsin-aluminum-silver-v3791a3",
+      "brand": "Kizer",
+      "model": "Khamsin Aluminum Silver (V3791A3)",
+      "user_classification": "approved",
+      "user_tags": [
+        "buy_these",
+        "aluminum"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "Unknown",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "Unknown",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/kizer-khamsin-aluminum-silver-v3791a3/",
+          "listed_price_cad": 123.0,
+          "availability": "in stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: BUY THESE). Variant note: Aluminum.",
+      "listing_title": "Kizer Khamsin Aluminum Silver V3791A3"
+    },
+    {
+      "id": "kizer-roach-xl-micarta-black-v4477bda2",
+      "brand": "Kizer",
+      "model": "Roach XL Micarta Black (V4477BDA2)",
+      "user_classification": "approved",
+      "user_tags": [
+        "buy_these",
+        "top_picks"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "Unknown",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "Unknown",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/kizer-roach-xl-micarta-black-v4477bda2/",
+          "listed_price_cad": 123.0,
+          "availability": "in stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: BUY THESE, TOP PICKS). Listed at both $123 and $108 in source shortlist.",
+      "listing_title": "Kizer Roach XL Micarta Black V4477BDA2"
+    },
+    {
+      "id": "kizer-trestle-d-aluminum-leopardwood-v3760a3",
+      "brand": "Kizer",
+      "model": "Trestle D Aluminum Leopardwood (V3760A3)",
+      "user_classification": "approved",
+      "user_tags": [
+        "buy_these"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "Unknown",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "Unknown",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/kizer-trestle-d-aluminum-leopardwood-v3760a3/",
+          "listed_price_cad": 123.0,
+          "availability": "in stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: BUY THESE).",
+      "listing_title": "Kizer Trestle D Aluminum Leopardwood V3760A3"
+    },
+    {
+      "id": "kansept-accipiter-black-aluminum-fish-scale-t1007f6",
+      "brand": "Kansept",
+      "model": "Accipiter Black Aluminum Fish Scale (T1007F6)",
+      "user_classification": "approved",
+      "user_tags": [
+        "buy_these"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "Unknown",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "Unknown",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/kansept-accipiter-black-aluminum-fish-scale-t1007f6/",
+          "listed_price_cad": 104.0,
+          "availability": "in stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: BUY THESE).",
+      "listing_title": "Kansept Accipiter Black Aluminum Fish Scale T1007F6"
+    },
+    {
+      "id": "vosteed-raccoon-tll-bowie-micarta-black-a2926",
+      "brand": "Vosteed",
+      "model": "Raccoon TLL Bowie Micarta Black (A2926)",
+      "user_classification": "approved",
+      "user_tags": [
+        "buy_these"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "Unknown",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "Unknown",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/vosteed-raccoon-tll-bowie-micarta-black-a2926/",
+          "listed_price_cad": 103.0,
+          "availability": "in stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: BUY THESE).",
+      "listing_title": "Vosteed Raccoon TLL Bowie Micarta Black A2926"
+    },
+    {
+      "id": "vosteed-raccoon-tll-bowie-g10-white-a2925",
+      "brand": "Vosteed",
+      "model": "Raccoon TLL Bowie G10 White (A2925)",
+      "user_classification": "approved",
+      "user_tags": [
+        "buy_these"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "Unknown",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "Unknown",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/voteed-raccoon-tll-bowie-g10-white-a2925/",
+          "listed_price_cad": 103.0,
+          "availability": "in stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: BUY THESE).",
+      "listing_title": "Vosteed Raccoon TLL Bowie G10 White A2925"
+    },
+    {
+      "id": "kizer-c01c-2-9-cd-richlite-brown-v3488-29cda2",
+      "brand": "Kizer",
+      "model": "C01C 2.9 CD Richlite Brown (V3488-29CDA2)",
+      "user_classification": "approved",
+      "user_tags": [
+        "buy_these"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "Unknown",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "Unknown",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/kizer-c01c-2-9-cd-richlite-brown-v3488-29cda2/",
+          "listed_price_cad": 76.0,
+          "availability": "in stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: BUY THESE).",
+      "listing_title": "Kizer C01C 2.9 CD Richlite Brown V3488-29CDA2"
+    },
+    {
+      "id": "cold-steel-extra-large-espada-g10-black-62ma",
+      "brand": "Cold Steel",
+      "model": "Extra Large Espada G10 Black (62MA)",
+      "user_classification": "approved",
+      "user_tags": [
+        "worth_the_price"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "Tri-Ad lock",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "S35VN",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Cold-Steel-Knives/Cold-Steel-Extra-Large-Espada-Folding-Knife-S35VN-G10-Black-62MA",
+          "listed_price_cad": 649.0,
+          "availability": "in stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: WORTH THE PRICE).",
+      "listing_title": "Cold Steel Extra Large Espada G10 Black 62MA"
+    },
+    {
+      "id": "benchmade-bugout-m390-aluminum-535bk-4",
+      "brand": "Benchmade",
+      "model": "Bugout M390 Aluminum (535BK-4)",
+      "user_classification": "approved",
+      "user_tags": [
+        "worth_the_price"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "AXIS lock",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "M390",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Benchmade-Knives/Benchmade-Bugout-Folding-Knife-M390-Steel-Aluminum-Handle-535BK-4",
+          "listed_price_cad": 495.0,
+          "availability": "in stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: WORTH THE PRICE).",
+      "listing_title": "Benchmade Bugout M390 Aluminum 535BK-4"
+    },
+    {
+      "id": "we-knife-co-limited-edition-bogey-titanium-grey-we23088-2",
+      "brand": "WE Knife Co.",
+      "model": "Limited Edition Bogey Titanium Grey (WE23088-2)",
+      "user_classification": "approved",
+      "user_tags": [
+        "worth_the_price",
+        "titanium"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "Unknown",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "Unknown",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/we-knife-co-limited-edition-bogey-titanium-grey-we23088-2/",
+          "listed_price_cad": 438.0,
+          "availability": "in stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: WORTH THE PRICE). Variant note: Titanium.",
+      "listing_title": "WE Knife Co. Limited Edition Bogey Titanium Grey WE23088-2"
+    },
+    {
+      "id": "benchmade-bailout-tanto-grey-partially-serrated-537sgy-03",
+      "brand": "Benchmade",
+      "model": "Bailout Tanto Grey Partially Serrated (537SGY-03)",
+      "user_classification": "approved",
+      "user_tags": [
+        "worth_the_price"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "AXIS lock",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "Unknown",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/benchmade-bailout-tanto-grey-partially-serrated-537sgy-03/",
+          "listed_price_cad": 495.0,
+          "availability": "in stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: WORTH THE PRICE).",
+      "listing_title": "Benchmade Bailout Tanto Grey Partially Serrated 537SGY-03"
+    },
+    {
+      "id": "vosteed-zander-aluminum-olive-green-copper-dune-blade-a4604",
+      "brand": "Vosteed",
+      "model": "Zander Aluminum Olive Green Copper Dune Blade (A4604)",
+      "user_classification": "approved",
+      "user_tags": [
+        "top_picks"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "Unknown",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "Unknown",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/vosteed-zander-aluminum-olive-green-copper-dune-blade-a4604/",
+          "listed_price_cad": 257.0,
+          "availability": "in stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: TOP PICKS).",
+      "listing_title": "Vosteed Zander Aluminum Olive Green Copper Dune Blade A4604"
+    },
+    {
+      "id": "kansept-strip-micarta-brown-titanium-stonewash-k1113a3",
+      "brand": "Kansept",
+      "model": "Strip Micarta Brown Titanium Stonewash (K1113A3)",
+      "user_classification": "approved",
+      "user_tags": [
+        "top_picks"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "Unknown",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "Unknown",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/kansept-strip-micarta-brown-titanium-stonewash-k1113a3/",
+          "listed_price_cad": 254.0,
+          "availability": "in stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: TOP PICKS).",
+      "listing_title": "Kansept Strip Micarta Brown Titanium Stonewash K1113A3"
+    },
+    {
+      "id": "vosteed-parallel-titanium-acid-wash-black-a3522",
+      "brand": "Vosteed",
+      "model": "Parallel Titanium Acid Wash Black (A3522)",
+      "user_classification": "approved",
+      "user_tags": [
+        "top_picks"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "Unknown",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "S35VN",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/vosteed-parallel-titanium-acid-wash-black-s35vn-a3522/",
+          "listed_price_cad": 253.0,
+          "availability": "in stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: TOP PICKS).",
+      "listing_title": "Vosteed Parallel Titanium Acid Wash Black A3522"
+    },
+    {
+      "id": "kansept-falk-carbon-fiber-80s-camo-k1142a2",
+      "brand": "Kansept",
+      "model": "Falk Carbon Fiber 80s Camo (K1142A2)",
+      "user_classification": "approved",
+      "user_tags": [
+        "top_picks"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "Unknown",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "Unknown",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/kansept-falk-carbon-fiber-80s-camo-k1142a2/",
+          "listed_price_cad": 233.0,
+          "availability": "in stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: TOP PICKS).",
+      "listing_title": "Kansept Falk Carbon Fiber 80s Camo K1142A2"
+    },
+    {
+      "id": "finch-knife-co-snub-nose-midnight-honey-carbon-fiber-sn180",
+      "brand": "Finch Knife Co.",
+      "model": "Snub Nose Midnight Honey Carbon Fiber (SN180)",
+      "user_classification": "approved",
+      "user_tags": [
+        "top_picks"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "Unknown",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "Unknown",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/finch-knife-co-snub-nose-midnight-honey-carbon-fiber-sn180/",
+          "listed_price_cad": 224.0,
+          "availability": "in stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: TOP PICKS).",
+      "listing_title": "Finch Knife Co. Snub Nose Midnight Honey Carbon Fiber SN180"
+    },
+    {
+      "id": "crkt-limited-run-squid-ii-olive-wood-2496w",
+      "brand": "CRKT",
+      "model": "Limited Run Squid II Olive Wood (2496W)",
+      "user_classification": "approved",
+      "user_tags": [
+        "top_picks"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "Unknown",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "Unknown",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/crkt-limited-run-squid-ii-olive-wood-2496w/",
+          "listed_price_cad": 219.0,
+          "availability": "in stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: TOP PICKS).",
+      "listing_title": "CRKT Limited Run Squid II Olive Wood 2496W"
+    },
+    {
+      "id": "cjrb-sasaya-titanium-grey-j1959g-gy",
+      "brand": "CJRB",
+      "model": "Sasaya Titanium Grey (J1959G-GY)",
+      "user_classification": "approved",
+      "user_tags": [
+        "top_picks"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "Button lock",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "S35VN",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/sasaya-ti-gry-ac25041/",
+          "listed_price_cad": 216.0,
+          "availability": "in stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: TOP PICKS). House of Knives internal SKU AC25041. On sale from $360.",
+      "listing_title": "CJRB Sasaya Titanium Grey J1959G-GY"
+    },
+    {
+      "id": "kizer-draca-aluminum-carbon-fiber-black-green-ki4751a1",
+      "brand": "Kizer",
+      "model": "Draca Aluminum Carbon Fiber Black Green (KI4751A1)",
+      "user_classification": "approved",
+      "user_tags": [
+        "top_picks"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "Unknown",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "Unknown",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/kizer-draca-aluminum-carbon-fiber-black-green-ki4751a1/",
+          "listed_price_cad": 208.0,
+          "availability": "in stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: TOP PICKS).",
+      "listing_title": "Kizer Draca Aluminum Carbon Fiber Black Green KI4751A1"
+    },
+    {
+      "id": "kizer-serpentine-titanium-micarta-ki3759fda2",
+      "brand": "Kizer",
+      "model": "Serpentine Titanium Micarta (KI3759FDA2)",
+      "user_classification": "approved",
+      "user_tags": [
+        "top_picks"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "Unknown",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "Unknown",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/kizer-serpentine-titanium-micarta-ki3759fda2/",
+          "listed_price_cad": 196.0,
+          "availability": "in stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: TOP PICKS).",
+      "listing_title": "Kizer Serpentine Titanium Micarta KI3759FDA2"
+    },
+    {
+      "id": "vosteed-parallel-titanium-purple-a3521",
+      "brand": "Vosteed",
+      "model": "Parallel Titanium Purple (A3521)",
+      "user_classification": "approved",
+      "user_tags": [
+        "top_picks"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "Unknown",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "Unknown",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/vosteed-parallel-titanium-purple-a3521/",
+          "listed_price_cad": 193.0,
+          "availability": "in stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: TOP PICKS).",
+      "listing_title": "Vosteed Parallel Titanium Purple A3521"
+    },
+    {
+      "id": "kizer-melody-aluminum-panama-rosewood-ki3732a2",
+      "brand": "Kizer",
+      "model": "Melody Aluminum Panama Rosewood (KI3732A2)",
+      "user_classification": "approved",
+      "user_tags": [
+        "top_picks",
+        "aluminum"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "Unknown",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "Unknown",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/kizer-melody-aluminum-panama-rosewood-ki3732a2/",
+          "listed_price_cad": 193.0,
+          "availability": "in stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: TOP PICKS). Variant note: Aluminum.",
+      "listing_title": "Kizer Melody Aluminum Panama Rosewood KI3732A2"
+    },
+    {
+      "id": "kizer-takahe-titanium-grey-ki3701a1",
+      "brand": "Kizer",
+      "model": "Takahe Titanium Grey (KI3701A1)",
+      "user_classification": "approved",
+      "user_tags": [
+        "top_picks",
+        "titanium"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "Unknown",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "Unknown",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/kizer-takahe-titanium-grey-ki3701a1/",
+          "listed_price_cad": 181.0,
+          "availability": "in stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: TOP PICKS). Variant note: Titanium.",
+      "listing_title": "Kizer Takahe Titanium Grey KI3701A1"
+    },
+    {
+      "id": "civivi-brova-aluminum-forest-green-ce25093-3",
+      "brand": "CIVIVI",
+      "model": "Brova Aluminum Forest Green (CE25093-3)",
+      "user_classification": "approved",
+      "user_tags": [
+        "top_picks"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "Unknown",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "Unknown",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/civivi-brova-aluminum-forest-green-ce25093-3/",
+          "listed_price_cad": 181.0,
+          "availability": "in stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: TOP PICKS).",
+      "listing_title": "CIVIVI Brova Aluminum Forest Green CE25093-3"
+    },
+    {
+      "id": "kizer-tycho-titanium-mkuruti-wood-ki4761a1",
+      "brand": "Kizer",
+      "model": "Tycho Titanium Mkuruti Wood (KI4761A1)",
+      "user_classification": "approved",
+      "user_tags": [
+        "top_picks",
+        "titanium"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "Unknown",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "Unknown",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/kizer-tycho-titanium-mkuruti-wood-ki4761a1/",
+          "listed_price_cad": 175.0,
+          "availability": "in stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: TOP PICKS). Variant note: Titanium.",
+      "listing_title": "Kizer Tycho Titanium Mkuruti Wood KI4761A1"
+    },
+    {
+      "id": "crkt-q-compact-sand-7075s",
+      "brand": "CRKT",
+      "model": "Q Compact Sand (7075S)",
+      "user_classification": "approved",
+      "user_tags": [
+        "top_picks"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "Unknown",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "Unknown",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/crkt-q-compact-sand-7075s/",
+          "listed_price_cad": 150.0,
+          "availability": "in stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: TOP PICKS).",
+      "listing_title": "CRKT Q Compact Sand 7075S"
+    },
+    {
+      "id": "crkt-q-compact-aqua-7075b",
+      "brand": "CRKT",
+      "model": "Q Compact Aqua (7075B)",
+      "user_classification": "approved",
+      "user_tags": [
+        "top_picks"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "Unknown",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "Unknown",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/crkt-q-compact-aqua-7075b/",
+          "listed_price_cad": 150.0,
+          "availability": "in stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: TOP PICKS).",
+      "listing_title": "CRKT Q Compact Aqua 7075B"
+    },
+    {
+      "id": "kershaw-celestion-duralock-d2-stonewash-g10-black-2057",
+      "brand": "Kershaw",
+      "model": "Celestion DuraLock D2 Stonewash G10 Black (2057)",
+      "user_classification": "approved",
+      "user_tags": [
+        "top_picks"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "DuraLock",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "D2",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Kershaw-Knives/Kershaw-Celestion-Duralock-Folding-Knife-D2-Stonewash-G10-Black-2057",
+          "listed_price_cad": 149.0,
+          "availability": "in stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: TOP PICKS).",
+      "listing_title": "Kershaw Celestion DuraLock D2 Stonewash G10 Black 2057"
+    },
+    {
+      "id": "finch-knife-co-road-runner-honey-ridge-rr320",
+      "brand": "Finch Knife Co.",
+      "model": "Road Runner Honey Ridge (RR320)",
+      "user_classification": "approved",
+      "user_tags": [
+        "top_picks"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "Unknown",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "Unknown",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/finch-road-runner-honey-ridge-rr320/",
+          "listed_price_cad": 134.0,
+          "availability": "in stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: TOP PICKS).",
+      "listing_title": "Finch Knife Co. Road Runner Honey Ridge RR320"
+    },
+    {
+      "id": "civivi-gordo-guibourtia-wood-damascus-clad-c22018c-ds1",
+      "brand": "CIVIVI",
+      "model": "Gordo Guibourtia Wood Damascus Clad (C22018C-DS1)",
+      "user_classification": "approved",
+      "user_tags": [
+        "top_picks",
+        "damascus"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "Unknown",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "Unknown",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/civivi-gordo-guibourtia-wood-damascus-clad-c22018c-ds1/",
+          "listed_price_cad": 134.0,
+          "availability": "in stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: TOP PICKS). Variant note: Damascus.",
+      "listing_title": "CIVIVI Gordo Guibourtia Wood Damascus Clad C22018C-DS1"
+    },
+    {
+      "id": "kizer-masu-vortex-micarta-black-grey-v3697a2",
+      "brand": "Kizer",
+      "model": "Masu Vortex Micarta Black Grey (V3697A2)",
+      "user_classification": "approved",
+      "user_tags": [
+        "top_picks"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "Unknown",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "Unknown",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/kizer-masu-vortex-micarta-black-grey-v3697a2/",
+          "listed_price_cad": 123.0,
+          "availability": "in stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: TOP PICKS).",
+      "listing_title": "Kizer Masu Vortex Micarta Black Grey V3697A2"
+    },
+    {
+      "id": "kizer-khamsin-aluminum-sandstorm-v3791a1",
+      "brand": "Kizer",
+      "model": "Khamsin Aluminum Sandstorm (V3791A1)",
+      "user_classification": "approved",
+      "user_tags": [
+        "top_picks"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "Unknown",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "Unknown",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/kizer-khamsin-aluminum-sandstorm-v3791a1/",
+          "listed_price_cad": 123.0,
+          "availability": "in stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: TOP PICKS).",
+      "listing_title": "Kizer Khamsin Aluminum Sandstorm V3791A1"
+    },
+    {
+      "id": "kizer-little-ringbo-aluminum-grey-v3708a1",
+      "brand": "Kizer",
+      "model": "Little Ringbo Aluminum Grey (V3708A1)",
+      "user_classification": "approved",
+      "user_tags": [
+        "top_picks"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "Unknown",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "Unknown",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/kizer-little-ringbo-aluminum-grey-v3708a1/",
+          "listed_price_cad": 123.0,
+          "availability": "in stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: TOP PICKS).",
+      "listing_title": "Kizer Little Ringbo Aluminum Grey V3708A1"
+    },
+    {
+      "id": "tenable-fenrir-anodized-aluminum-dark-blue-fishscale-texture-b1034h9",
+      "brand": "Tenable",
+      "model": "Fenrir Anodized Aluminum Dark Blue Fishscale Texture (B1034H9)",
+      "user_classification": "approved",
+      "user_tags": [
+        "top_picks",
+        "anodized"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "Unknown",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "Unknown",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/tenable-fenrir-anodized-aluminum-dark-blue-with-fishscale-texture-b1034h9/",
+          "listed_price_cad": 115.0,
+          "availability": "in stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: TOP PICKS). Variant note: Anodized.",
+      "listing_title": "Tenable Fenrir Anodized Aluminum Dark Blue Fishscale Texture B1034H9"
+    },
+    {
+      "id": "tenable-tarkin-aluminum-grey-faceted-wave-texture-b1078a1",
+      "brand": "Tenable",
+      "model": "Tarkin Aluminum Grey Faceted Wave Texture (B1078A1)",
+      "user_classification": "approved",
+      "user_tags": [
+        "top_picks"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "Unknown",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "Unknown",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/tenable-tarkin-alum-grey-faceted-wave-texture-b1078a1/",
+          "listed_price_cad": 115.0,
+          "availability": "in stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: TOP PICKS).",
+      "listing_title": "Tenable Tarkin Aluminum Grey Faceted Wave Texture B1078A1"
+    },
+    {
+      "id": "kizer-outposter-ultrex-micarta-black-v3802cda1",
+      "brand": "Kizer",
+      "model": "Outposter Ultrex Micarta Black (V3802CDA1)",
+      "user_classification": "approved",
+      "user_tags": [
+        "top_picks"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "Unknown",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "Unknown",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/kizer-outposter-ultrex-micarta-black-v3802cda1/",
+          "listed_price_cad": 108.0,
+          "availability": "in stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: TOP PICKS).",
+      "listing_title": "Kizer Outposter Ultrex Micarta Black V3802CDA1"
+    },
+    {
+      "id": "vosteed-porcupine-ivory-drift-bamboo-micarta-a2626",
+      "brand": "Vosteed",
+      "model": "Porcupine Ivory Drift Bamboo Micarta (A2626)",
+      "user_classification": "approved",
+      "user_tags": [
+        "top_picks"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "Unknown",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "Unknown",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/vosteed-porcupine-ivory-drift-bamboo-micarta-a2626/",
+          "listed_price_cad": 107.0,
+          "availability": "in stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: TOP PICKS).",
+      "listing_title": "Vosteed Porcupine Ivory Drift Bamboo Micarta A2626"
+    },
+    {
+      "id": "crkt-m16-02ss-tanto-m16-02ss",
+      "brand": "CRKT",
+      "model": "M16-02SS Tanto (M16-02SS)",
+      "user_classification": "approved",
+      "user_tags": [
+        "top_picks"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "Unknown",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "Unknown",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/crkt-m16-02ss-tanto-m16-02ss/",
+          "listed_price_cad": 106.0,
+          "availability": "in stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: TOP PICKS).",
+      "listing_title": "CRKT M16-02SS Tanto M16-02SS"
+    },
+    {
+      "id": "flytanium-beef-stonewash-stealth-grey-fly-1386gss",
+      "brand": "Flytanium",
+      "model": "Beef Stonewash Stealth Grey (FLY-1386GSS)",
+      "user_classification": "approved",
+      "user_tags": [
+        "top_picks"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "Unknown",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "Unknown",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/flytanium-beef-stonewash-stealth-grey-fly-1386gss/",
+          "listed_price_cad": 90.0,
+          "availability": "in stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: TOP PICKS).",
+      "listing_title": "Flytanium Beef Stonewash Stealth Grey FLY-1386GSS"
+    },
+    {
+      "id": "sencut-stria-g10-milled-ivory-s25112-1",
+      "brand": "Sencut",
+      "model": "Stria G10 Milled Ivory (S25112-1)",
+      "user_classification": "approved",
+      "user_tags": [
+        "top_picks"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "Unknown",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "Unknown",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/sencut-stria-g10-milled-ivory-s25112-1/",
+          "listed_price_cad": 53.0,
+          "availability": "in stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: TOP PICKS).",
+      "listing_title": "Sencut Stria G10 Milled Ivory S25112-1"
+    },
+    {
+      "id": "kizer-aegis-damascus-g10-black-v3774a2",
+      "brand": "Kizer",
+      "model": "Aegis Damascus G10 Black (V3774A2)",
+      "user_classification": "approved",
+      "user_tags": [
+        "top_picks",
+        "damascus"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "Unknown",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "Unknown",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/kizer-aegis-damascus-g10-black-v3774a2/",
+          "listed_price_cad": 88.0,
+          "availability": "in stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: TOP PICKS). Variant note: Damascus.",
+      "listing_title": "Kizer Aegis Damascus G10 Black V3774A2"
+    },
+    {
+      "id": "sencut-selkyris-aluminum-grey-s25068-2",
+      "brand": "Sencut",
+      "model": "Selkyris Aluminum Grey (S25068-2)",
+      "user_classification": "approved",
+      "user_tags": [
+        "top_picks",
+        "under_100",
+        "aluminum"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "Unknown",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "Unknown",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/sencut-selkyris-aluminum-grey-s25068-2/",
+          "listed_price_cad": 49.0,
+          "availability": "in stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: TOP PICKS, UNDER 100$). Variant note: Aluminum.",
+      "listing_title": "Sencut Selkyris Aluminum Grey S25068-2"
+    },
+    {
+      "id": "cjrb-kain-g10-black-j1956-bbk",
+      "brand": "CJRB",
+      "model": "Kain G10 Black (J1956-BBK)",
+      "user_classification": "approved",
+      "user_tags": [
+        "top_picks"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "Liner lock",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "AR-RPM9",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/kain-g10-blk-ac25024/",
+          "listed_price_cad": 48.0,
+          "availability": "in stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: TOP PICKS). House of Knives internal SKU AC25024.",
+      "listing_title": "CJRB Kain G10 Black J1956-BBK"
+    },
+    {
+      "id": "kizer-mithril-titanium-carbon-fiber-black-zx-fk08a1",
+      "brand": "Kizer",
+      "model": "Mithril Titanium Carbon Fiber Black ZX (FK08A1)",
+      "user_classification": "approved",
+      "user_tags": [
+        "huge_sales"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "Unknown",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "Unknown",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/kizer-mithril-titanium-carbon-fiber-black-zx-fk08a1/",
+          "listed_price_cad": 380.0,
+          "availability": "in stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: HUGE SALES).",
+      "listing_title": "Kizer Mithril Titanium Carbon Fiber Black ZX FK08A1"
+    },
+    {
+      "id": "kunwu-compadre-diamond-titanium-beadblast-k706c-t2",
+      "brand": "Kunwu",
+      "model": "Compadre Diamond Titanium Beadblast (K706C-T2)",
+      "user_classification": "approved",
+      "user_tags": [
+        "huge_sales"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "Frame lock",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "Vanax",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/compadre-diamond-ti-beadbast-kw25047/",
+          "listed_price_cad": 303.0,
+          "availability": "in stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: HUGE SALES). House of Knives internal SKU KW25047. On sale from $433.",
+      "listing_title": "Kunwu Compadre Diamond Titanium Beadblast K706C-T2"
+    },
+    {
+      "id": "kansept-orion-bronze-anodized-machined-satin-titanium-k1089b3",
+      "brand": "Kansept",
+      "model": "Orion Bronze Anodized Machined Satin Titanium (K1089B3)",
+      "user_classification": "approved",
+      "user_tags": [
+        "huge_sales"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "Unknown",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "Unknown",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/kansept-orion-bronze-anodized-machined-satin-titanium-k1089b3/",
+          "listed_price_cad": 284.0,
+          "availability": "in stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: HUGE SALES).",
+      "listing_title": "Kansept Orion Bronze Anodized Machined Satin Titanium K1089B3"
+    },
+    {
+      "id": "kizer-militaw-s45vn-titanium-fat-carbon-ki3634a3",
+      "brand": "Kizer",
+      "model": "Militaw S45VN Titanium Fat Carbon (KI3634A3)",
+      "user_classification": "approved",
+      "user_tags": [
+        "huge_sales"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "Unknown",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "S45VN",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/kizer-militaw-s45vn-ti-fat-carbon-ki3634a3/",
+          "listed_price_cad": 278.0,
+          "availability": "in stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: HUGE SALES).",
+      "listing_title": "Kizer Militaw S45VN Titanium Fat Carbon KI3634A3"
+    },
+    {
+      "id": "spyderco-reveal-16-native-5-micarta-brown-c41mpcw5",
+      "brand": "Spyderco",
+      "model": "Reveal 16 Native 5 Micarta Brown (C41MPCW5)",
+      "user_classification": "approved",
+      "user_tags": [
+        "huge_sales"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "Unknown",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "CPM Cru-Wear",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/spyderco-reveal-16-native-5-micarta-brown-c41mpcw5/",
+          "listed_price_cad": 274.0,
+          "availability": "in stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: HUGE SALES).",
+      "listing_title": "Spyderco Reveal 16 Native 5 Micarta Brown C41MPCW5"
+    },
+    {
+      "id": "finch-knife-co-cherry-bomb-snakewood-cb202",
+      "brand": "Finch Knife Co.",
+      "model": "Cherry Bomb Snakewood (CB202)",
+      "user_classification": "approved",
+      "user_tags": [
+        "huge_sales"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "Unknown",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "154CM",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/cherry-bomb-snakewood/",
+          "listed_price_cad": 240.0,
+          "availability": "in stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: HUGE SALES).",
+      "listing_title": "Finch Knife Co. Cherry Bomb Snakewood CB202"
+    },
+    {
+      "id": "kunwu-verta-excalibur-carbon-fiber-red-black-b709-cf1",
+      "brand": "Kunwu",
+      "model": "Verta Excalibur Carbon Fiber Red Black (B709-CF1)",
+      "user_classification": "approved",
+      "user_tags": [
+        "new_pricy_picks"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "Unknown",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "Unknown",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/kunwu-verta-excalibur-carbon-fiber-red-black-b709-cf1/",
+          "listed_price_cad": null,
+          "availability": "in stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: NEW PRICY PICKS).",
+      "listing_title": "Kunwu Verta Excalibur Carbon Fiber Red Black B709-CF1"
+    },
+    {
+      "id": "we-knife-co-limited-edition-capstan-titanium-grey-we24047-2",
+      "brand": "WE Knife Co.",
+      "model": "Limited Edition Capstan Titanium Grey (WE24047-2)",
+      "user_classification": "approved",
+      "user_tags": [
+        "new_pricy_picks"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "Unknown",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "Unknown",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/we-knife-co-limited-edition-capstan-titanium-grey-we24047-2/",
+          "listed_price_cad": null,
+          "availability": "in stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: NEW PRICY PICKS).",
+      "listing_title": "WE Knife Co. Limited Edition Capstan Titanium Grey WE24047-2"
+    },
+    {
+      "id": "we-knife-co-limited-edition-muster-titanium-olive-grey-we23058-2",
+      "brand": "WE Knife Co.",
+      "model": "Limited Edition Muster Titanium Olive Grey (WE23058-2)",
+      "user_classification": "approved",
+      "user_tags": [
+        "new_pricy_picks"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "Unknown",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "Unknown",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/we-knife-co-limited-edition-muster-titanium-olive-grey-we23058-2/",
+          "listed_price_cad": null,
+          "availability": "in stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: NEW PRICY PICKS).",
+      "listing_title": "WE Knife Co. Limited Edition Muster Titanium Olive Grey WE23058-2"
+    },
+    {
+      "id": "we-knife-co-limited-edition-muster-titanium-desert-terrain-we23058-3",
+      "brand": "WE Knife Co.",
+      "model": "Limited Edition Muster Titanium Desert Terrain (WE23058-3)",
+      "user_classification": "approved",
+      "user_tags": [
+        "new_pricy_picks"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "Unknown",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "Unknown",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/we-knife-co-limited-edition-muster-titanium-desert-terrain-we23058-3/",
+          "listed_price_cad": null,
+          "availability": "in stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: NEW PRICY PICKS).",
+      "listing_title": "WE Knife Co. Limited Edition Muster Titanium Desert Terrain WE23058-3"
+    },
+    {
+      "id": "reate-vk-frok-titanium-dark-frosted-vk-frok-2",
+      "brand": "Reate",
+      "model": "VK Frok Titanium Dark Frosted (VK-FROK-2)",
+      "user_classification": "approved",
+      "user_tags": [
+        "new_pricy_picks"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "Unknown",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "Unknown",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/reate-vk-frok-titanium-dark-frosted-vk-frok-2/",
+          "listed_price_cad": null,
+          "availability": "in stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: NEW PRICY PICKS).",
+      "listing_title": "Reate VK Frok Titanium Dark Frosted VK-FROK-2"
+    },
+    {
+      "id": "remette-rt-orca-titanium-luminous-carbon-fiber-orcals",
+      "brand": "Remette",
+      "model": "RT Orca Titanium Luminous Carbon Fiber (ORCALS)",
+      "user_classification": "approved",
+      "user_tags": [
+        "new_pricy_picks"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "Unknown",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "Unknown",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/remette-rt-orca-titanium-luminous-carbon-fiber-orcals/",
+          "listed_price_cad": null,
+          "availability": "in stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: NEW PRICY PICKS).",
+      "listing_title": "Remette RT Orca Titanium Luminous Carbon Fiber ORCALS"
+    },
+    {
+      "id": "remette-rt-orca-titanium-copper-foil-carbon-fiber-orcatb",
+      "brand": "Remette",
+      "model": "RT Orca Titanium Copper Foil Carbon Fiber (ORCATB)",
+      "user_classification": "approved",
+      "user_tags": [
+        "new_pricy_picks"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "Unknown",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "Unknown",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/remette-rt-orca-titanium-copper-foil-carbon-fiber-orcatb/",
+          "listed_price_cad": null,
+          "availability": "in stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: NEW PRICY PICKS).",
+      "listing_title": "Remette RT Orca Titanium Copper Foil Carbon Fiber ORCATB"
+    },
+    {
+      "id": "giantmouse-ace-zoobie-titanium",
+      "brand": "GiantMouse",
+      "model": "ACE Zoobie Titanium",
+      "user_classification": "approved",
+      "user_tags": [
+        "new_pricy_picks"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "Unknown",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "Unknown",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/giantmouse-ace-zoobie-titanium-zoobie-titanium/",
+          "listed_price_cad": null,
+          "availability": "in stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: NEW PRICY PICKS).",
+      "listing_title": "GiantMouse ACE Zoobie Titanium"
+    },
+    {
+      "id": "remette-rt-cool-leopard-titanium-rtks-t",
+      "brand": "Remette",
+      "model": "RT Cool Leopard Titanium (RTKS-T)",
+      "user_classification": "approved",
+      "user_tags": [
+        "new_pricy_picks"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "Unknown",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "Unknown",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/remette-rt-cool-leopard-titanium-rtks-t/",
+          "listed_price_cad": null,
+          "availability": "in stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: NEW PRICY PICKS).",
+      "listing_title": "Remette RT Cool Leopard Titanium RTKS-T"
+    },
+    {
+      "id": "remette-rt-steed-black-titanium-carbon-fiber-purple-rtws-by",
+      "brand": "Remette",
+      "model": "RT Steed Black Titanium Carbon Fiber Purple (RTWS-BY)",
+      "user_classification": "approved",
+      "user_tags": [
+        "new_pricy_picks"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "Unknown",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "Unknown",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/remette-rt-steed-black-titanium-carbon-fiber-purple-rtws-by/",
+          "listed_price_cad": null,
+          "availability": "in stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: NEW PRICY PICKS).",
+      "listing_title": "Remette RT Steed Black Titanium Carbon Fiber Purple RTWS-BY"
+    },
+    {
+      "id": "remette-rt-steed-titanium-carbon-fiber-purple-rtws-tp",
+      "brand": "Remette",
+      "model": "RT Steed Titanium Carbon Fiber Purple (RTWS-TP)",
+      "user_classification": "approved",
+      "user_tags": [
+        "new_pricy_picks"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "Unknown",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "Unknown",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/remete-rt-steed-titanium-carbon-fiber-purple-rtws-tp/",
+          "listed_price_cad": null,
+          "availability": "in stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: NEW PRICY PICKS).",
+      "listing_title": "Remette RT Steed Titanium Carbon Fiber Purple RTWS-TP"
+    },
+    {
+      "id": "kizer-t1-cd-titanium-silver-ki3490-2cda1",
+      "brand": "Kizer",
+      "model": "T1 CD Titanium Silver (KI3490-2CDA1)",
+      "user_classification": "approved",
+      "user_tags": [
+        "new_pricy_picks"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "Unknown",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "Unknown",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/kizer-t1-cd-titanium-silver-ki3490-2cda1/",
+          "listed_price_cad": null,
+          "availability": "in stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: NEW PRICY PICKS).",
+      "listing_title": "Kizer T1 CD Titanium Silver KI3490-2CDA1"
+    },
+    {
+      "id": "we-knife-co-inceptus-titanium-dark-grey-black-white-g10-we25017-1",
+      "brand": "WE Knife Co.",
+      "model": "Inceptus Titanium Dark Grey Black White G10 (WE25017-1)",
+      "user_classification": "approved",
+      "user_tags": [
+        "new_pricy_picks"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "Unknown",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "Unknown",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/we-inceptus-titanium-dark-grey-black-white-g10-we25017-1/",
+          "listed_price_cad": null,
+          "availability": "in stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: NEW PRICY PICKS).",
+      "listing_title": "WE Knife Co. Inceptus Titanium Dark Grey Black White G10 WE25017-1"
+    },
+    {
+      "id": "we-knife-co-inceptus-titanium-champagne-aluminum-foil-carbon-foil-inlay-we25017-4",
+      "brand": "WE Knife Co.",
+      "model": "Inceptus Titanium Champagne Aluminum Foil Carbon Foil Inlay (WE25017-4)",
+      "user_classification": "approved",
+      "user_tags": [
+        "new_pricy_picks"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "Unknown",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "Unknown",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/we-inceptus-titanium-champagne-aluminum-foil-carbon-foil-inlay-we25017-4/",
+          "listed_price_cad": null,
+          "availability": "in stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: NEW PRICY PICKS).",
+      "listing_title": "WE Knife Co. Inceptus Titanium Champagne Aluminum Foil Carbon Foil Inlay WE25017-4"
+    },
+    {
+      "id": "remette-wild-species-titanium-tiger-pattern-wd108-n4",
+      "brand": "Remette",
+      "model": "Wild Species Titanium Tiger Pattern (WD108-N4)",
+      "user_classification": "approved",
+      "user_tags": [
+        "new_pricy_picks"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "Unknown",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "Unknown",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/remette-wild-species-titanium-tiger-pattern-wd108-n4/",
+          "listed_price_cad": null,
+          "availability": "in stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: NEW PRICY PICKS).",
+      "listing_title": "Remette Wild Species Titanium Tiger Pattern WD108-N4"
+    },
+    {
+      "id": "we-knife-co-limited-edition-capstan-titanium-terrain-blue-we24047-3",
+      "brand": "WE Knife Co.",
+      "model": "Limited Edition Capstan Titanium Terrain Blue (WE24047-3)",
+      "user_classification": "approved",
+      "user_tags": [
+        "new_pricy_picks"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "Unknown",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "Unknown",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/we-knife-co-limited-edition-capstan-titanium-terrain-blue-we24047-3/",
+          "listed_price_cad": null,
+          "availability": "in stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: NEW PRICY PICKS).",
+      "listing_title": "WE Knife Co. Limited Edition Capstan Titanium Terrain Blue WE24047-3"
+    },
+    {
+      "id": "cjrb-maximal-g10-blue-j1954-gyf",
+      "brand": "CJRB",
+      "model": "Maximal G10 Blue (J1954-GYF)",
+      "user_classification": "approved",
+      "user_tags": [
+        "under_100"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "Unknown",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "Unknown",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/cjrb-maximal-g10-blue-j1954-gyf/",
+          "listed_price_cad": null,
+          "availability": "in stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: UNDER 100$).",
+      "listing_title": "CJRB Maximal G10 Blue J1954-GYF"
+    },
+    {
+      "id": "qsp-emu-stonewash-14c28n-g10-black-qs164-c1",
+      "brand": "QSP",
+      "model": "Emu Stonewash 14C28N G10 Black (QS164-C1)",
+      "user_classification": "approved",
+      "user_tags": [
+        "under_100"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "Glyde lock",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "14C28N",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/emu-stonewash-14c28n-g10-blk-qs25005/",
+          "listed_price_cad": 72.0,
+          "availability": "in stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: UNDER 100$). House of Knives internal SKU QS25005. On sale from $120.",
+      "listing_title": "QSP Emu Stonewash 14C28N G10 Black QS164-C1"
+    },
+    {
+      "id": "kizer-phoca-bd-norplex-ultrex-micarta-brown-v3781bda1",
+      "brand": "Kizer",
+      "model": "Phoca BD Norplex Ultrex Micarta Brown (V3781BDA1)",
+      "user_classification": "approved",
+      "user_tags": [
+        "under_100"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "Unknown",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "Unknown",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/kizer-phoca-bd-norplex-ultrex-micarta-brown-v3781bda1/",
+          "listed_price_cad": null,
+          "availability": "in stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: UNDER 100$).",
+      "listing_title": "Kizer Phoca BD Norplex Ultrex Micarta Brown V3781BDA1"
+    },
+    {
+      "id": "qsp-ferret-g10-aluminum-foil-black-blade-qs170-d2",
+      "brand": "QSP",
+      "model": "Ferret G10 Aluminum Foil Black Blade (QS170-D2)",
+      "user_classification": "approved",
+      "user_tags": [
+        "under_100"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "Unknown",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "D2",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/qsp-ferret-g10-aluminum-foil-black-blade-qs170-d2/",
+          "listed_price_cad": null,
+          "availability": "in stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: UNDER 100$).",
+      "listing_title": "QSP Ferret G10 Aluminum Foil Black Blade QS170-D2"
+    },
+    {
+      "id": "kershaw-sequence-ke-1426",
+      "brand": "Kershaw",
+      "model": "Sequence (KE-1426)",
+      "user_classification": "approved",
+      "user_tags": [
+        "under_100"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "DuraLock",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "8Cr13MoV",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/sequence-ks25016/",
+          "listed_price_cad": 67.2,
+          "availability": "in stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: UNDER 100$). House of Knives internal SKU KS25016.",
+      "listing_title": "Kershaw Sequence KE-1426"
+    },
+    {
+      "id": "cjrb-large-pyrite-light-g10-desert-j1945l-bde",
+      "brand": "CJRB",
+      "model": "Large Pyrite Light G10 Desert (J1945L-BDE)",
+      "user_classification": "approved",
+      "user_tags": [
+        "under_100"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "Unknown",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "Unknown",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/cjrb-large-pyrite-light-g10-desert-j1945l-bde/",
+          "listed_price_cad": null,
+          "availability": "in stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: UNDER 100$).",
+      "listing_title": "CJRB Large Pyrite Light G10 Desert J1945L-BDE"
+    },
+    {
+      "id": "cjrb-fugly-g10-green-j1957-bgn",
+      "brand": "CJRB",
+      "model": "Fugly G10 Green (J1957-BGN)",
+      "user_classification": "approved",
+      "user_tags": [
+        "under_100"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "Liner lock",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "AR-RPM9",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/fugly-g10-green-ac25027/",
+          "listed_price_cad": 60.0,
+          "availability": "in stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: UNDER 100$). House of Knives internal SKU AC25027. On sale from $100.",
+      "listing_title": "CJRB Fugly G10 Green J1957-BGN"
+    },
+    {
+      "id": "bestechman-cicada-s-wing-stainless-steel-frag-pattern-bmk06-s-5",
+      "brand": "BestechMan",
+      "model": "Cicada-S Wing Stainless Steel Frag Pattern (BMK06-S-5)",
+      "user_classification": "approved",
+      "user_tags": [
+        "under_100"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "Unknown",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "Unknown",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/bestechman-cicada-s-wing-stainless-steel-frag-pattern-bmk06-s-5/",
+          "listed_price_cad": null,
+          "availability": "in stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: UNDER 100$).",
+      "listing_title": "BestechMan Cicada-S Wing Stainless Steel Frag Pattern BMK06-S-5"
+    },
+    {
+      "id": "sencut-tauron-g10-burgundy-s25060-2",
+      "brand": "Sencut",
+      "model": "Tauron G10 Burgundy (S25060-2)",
+      "user_classification": "approved",
+      "user_tags": [
+        "under_100"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "Unknown",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "Unknown",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/sencut-tauron-g10-burgundy-s25060-2/",
+          "listed_price_cad": null,
+          "availability": "in stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: UNDER 100$).",
+      "listing_title": "Sencut Tauron G10 Burgundy S25060-2"
+    },
+    {
+      "id": "civivi-kukei-g10-pink-c25036-1",
+      "brand": "CIVIVI",
+      "model": "Kukei G10 Pink (C25036-1)",
+      "user_classification": "approved",
+      "user_tags": [
+        "under_100"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "Unknown",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "Unknown",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/civivi-kukei-g10-pink-c25036-1/",
+          "listed_price_cad": null,
+          "availability": "in stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: UNDER 100$).",
+      "listing_title": "CIVIVI Kukei G10 Pink C25036-1"
+    },
+    {
+      "id": "zero-tolerance-factory-special-series-0203cf-duralock-carbon-fiber-black-zt-0203cf",
+      "brand": "Zero Tolerance",
+      "model": "Factory Special Series 0203CF DuraLock Carbon Fiber Black (ZT-0203CF)",
+      "user_classification": "approved",
+      "user_tags": [
+        "under_100"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "DuraLock",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "Unknown",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/zero-tolerance-factory-special-series-0203cf-duralock-carbon-fiber-black-zt-0203cf/",
+          "listed_price_cad": null,
+          "availability": "in stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: UNDER 100$).",
+      "listing_title": "Zero Tolerance Factory Special Series 0203CF DuraLock Carbon Fiber Black ZT-0203CF"
+    },
+    {
+      "id": "flytanium-beef-stonewash-pitch-black-fly-1386pbs",
+      "brand": "Flytanium",
+      "model": "Beef Stonewash Pitch Black (FLY-1386PBS)",
+      "user_classification": "approved",
+      "user_tags": [
+        "under_100"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "Unknown",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "Unknown",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/flytanium-beef-stonewash-pitch-black-fly-1386pbs/",
+          "listed_price_cad": null,
+          "availability": "in stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: UNDER 100$).",
+      "listing_title": "Flytanium Beef Stonewash Pitch Black FLY-1386PBS"
+    },
+    {
+      "id": "flytanium-beef-pvd-pitch-black-fly-1386pbb",
+      "brand": "Flytanium",
+      "model": "Beef PVD Pitch Black (FLY-1386PBB)",
+      "user_classification": "approved",
+      "user_tags": [
+        "under_100"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "Unknown",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "Unknown",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/flytanium-beef-pvd-pitch-black-fly-1386pbb/",
+          "listed_price_cad": null,
+          "availability": "in stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: UNDER 100$).",
+      "listing_title": "Flytanium Beef PVD Pitch Black FLY-1386PBB"
+    },
+    {
+      "id": "bestechman-cicada-s-wing-stainless-steel-bmk06-s-7",
+      "brand": "BestechMan",
+      "model": "Cicada-S Wing Stainless Steel (BMK06-S-7)",
+      "user_classification": "approved",
+      "user_tags": [
+        "under_100"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "Unknown",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "Unknown",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/bestechman-cicada-s-wing-stainless-steel-bmk06-s-7/",
+          "listed_price_cad": null,
+          "availability": "in stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: UNDER 100$).",
+      "listing_title": "BestechMan Cicada-S Wing Stainless Steel BMK06-S-7"
+    },
+    {
+      "id": "sencut-sylor-g10-ivory-s25056-2",
+      "brand": "Sencut",
+      "model": "Sylor G10 Ivory (S25056-2)",
+      "user_classification": "approved",
+      "user_tags": [
+        "under_100"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "Unknown",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "Unknown",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/sencut-sylor-g10-ivory-s25056-2/",
+          "listed_price_cad": null,
+          "availability": "in stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: UNDER 100$).",
+      "listing_title": "Sencut Sylor G10 Ivory S25056-2"
+    },
+    {
+      "id": "crkt-slag-grey-7600",
+      "brand": "CRKT",
+      "model": "Slag Grey (7600)",
+      "user_classification": "approved",
+      "user_tags": [
+        "under_100"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "Unknown",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "Unknown",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/crkt-slag-grey-7600/",
+          "listed_price_cad": null,
+          "availability": "in stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: UNDER 100$).",
+      "listing_title": "CRKT Slag Grey 7600"
+    },
+    {
+      "id": "kershaw-inception-2031",
+      "brand": "Kershaw",
+      "model": "Inception (2031)",
+      "user_classification": "approved",
+      "user_tags": [
+        "under_100"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "Unknown",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "Unknown",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/kershaw-inception-2031/",
+          "listed_price_cad": null,
+          "availability": "in stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: UNDER 100$).",
+      "listing_title": "Kershaw Inception 2031"
+    },
+    {
+      "id": "qsp-reptile-black-stonewash-aluminum-od-green-qs165-b2",
+      "brand": "QSP",
+      "model": "Reptile Black Stonewash Aluminum OD Green (QS165-B2)",
+      "user_classification": "approved",
+      "user_tags": [
+        "under_100"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "Glyde lock",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "14C28N",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/reptile-blk-stonewash-alum-od-grn-qs25036/",
+          "listed_price_cad": 84.0,
+          "availability": "in stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: UNDER 100$). House of Knives internal SKU QS25036. On sale from $140.",
+      "listing_title": "QSP Reptile Black Stonewash Aluminum OD Green QS165-B2"
+    },
+    {
+      "id": "vosteed-psyop-2-99-micarta-red-titanium-bolster-a2217",
+      "brand": "Vosteed",
+      "model": "Psyop 2.99 Micarta Red Titanium Bolster (A2217)",
+      "user_classification": "approved",
+      "user_tags": [
+        "out_of_stock"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "Unknown",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "Unknown",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/vosteed-psyop-299-micarta-red-titanium-bolster-a2217/",
+          "listed_price_cad": null,
+          "availability": "out of stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: OUT OF STOCK).",
+      "listing_title": "Vosteed Psyop 2.99 Micarta Red Titanium Bolster A2217"
+    },
+    {
+      "id": "kizer-nice-guy-micarta-brown-madder-v3011bca1",
+      "brand": "Kizer",
+      "model": "Nice Guy Micarta Brown Madder (V3011BCA1)",
+      "user_classification": "approved",
+      "user_tags": [
+        "out_of_stock"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "Unknown",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "Unknown",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/kizer-nice-guy-micarta-brown-madder-v3011bca1/",
+          "listed_price_cad": null,
+          "availability": "out of stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: OUT OF STOCK).",
+      "listing_title": "Kizer Nice Guy Micarta Brown Madder V3011BCA1"
+    },
+    {
+      "id": "vosteed-raccoon-tll-bowie-g10-sand-a2927",
+      "brand": "Vosteed",
+      "model": "Raccoon TLL Bowie G10 Sand (A2927)",
+      "user_classification": "approved",
+      "user_tags": [
+        "out_of_stock"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "Unknown",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "Unknown",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/vosteed-raccoon-tll-bowie-g10-sand-a2927/",
+          "listed_price_cad": null,
+          "availability": "out of stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: OUT OF STOCK).",
+      "listing_title": "Vosteed Raccoon TLL Bowie G10 Sand A2927"
+    },
+    {
+      "id": "kizer-glaux-aluminum-ink-blue-v3801a3",
+      "brand": "Kizer",
+      "model": "Glaux Aluminum Ink Blue (V3801A3)",
+      "user_classification": "approved",
+      "user_tags": [
+        "out_of_stock"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "Unknown",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "Unknown",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/kizer-glaux-aluminum-ink-blue-v3801a3/",
+          "listed_price_cad": null,
+          "availability": "out of stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: OUT OF STOCK).",
+      "listing_title": "Kizer Glaux Aluminum Ink Blue V3801A3"
+    },
+    {
+      "id": "vosteed-shilin-cutter-carbon-fiber-black-a2810",
+      "brand": "Vosteed",
+      "model": "Shilin Cutter Carbon Fiber Black (A2810)",
+      "user_classification": "approved",
+      "user_tags": [
+        "out_of_stock"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "Vanchor lock",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "Elmax",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/shilin-cutter-cf-blk-vo25024/",
+          "listed_price_cad": 168.6,
+          "availability": "out of stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: OUT OF STOCK). House of Knives internal SKU VO25024. On sale from $281.",
+      "listing_title": "Vosteed Shilin Cutter Carbon Fiber Black A2810"
+    },
+    {
+      "id": "civivi-pragma-prime-aluminum-champagne-c24067-3",
+      "brand": "CIVIVI",
+      "model": "Pragma Prime Aluminum Champagne (C24067-3)",
+      "user_classification": "approved",
+      "user_tags": [
+        "out_of_stock"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "Button lock",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "14C28N",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/pragma-prime-alum-champagne/",
+          "listed_price_cad": 139.0,
+          "availability": "out of stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: OUT OF STOCK).",
+      "listing_title": "CIVIVI Pragma Prime Aluminum Champagne C24067-3"
+    },
+    {
+      "id": "cobratec-stiletto-button-lock-vg10-satin-g10-black-cbtstblbk",
+      "brand": "Cobratec",
+      "model": "Stiletto Button Lock VG10 Satin G10 Black (CBTSTBLBK)",
+      "user_classification": "approved",
+      "user_tags": [
+        "stiletto"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "approved_for_further_research",
+      "mechanism": {
+        "opening_method": "Unknown",
+        "lock_type": "Button lock",
+        "assist_type": "Unknown",
+        "blade_length": "Unknown",
+        "blade_steel": "VG-10",
+        "clear_prohibited_mechanism_found": false
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Cobratec-Knives/Cobratec-Stiletto-Button-Lock-Folding-Knife-VG10-Satin-G10-Black-CBTSTBLBK",
+          "listed_price_cad": null,
+          "availability": "in stock",
+          "source_date": "2026-07-20"
+        }
+      ],
+      "notes": "Imported 2026-07-20 from curated shortlist (section: STILETTO).",
+      "listing_title": "Cobratec Stiletto Button Lock VG10 Satin G10 Black CBTSTBLBK"
     }
   ]
 }
