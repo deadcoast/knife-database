@@ -91,10 +91,42 @@ Footer {
     padding: 1 2;
 }
 
+/* ------------------------------------------------------------ the ledger */
+
+#ledger {
+    height: 1fr;
+    padding: 1 2;
+}
+
+#ledger-valuation {
+    width: 5fr;
+}
+
+#ledger-line {
+    width: 5fr;
+}
+
+#ledger-movers {
+    width: 6fr;
+}
+
 /* -------------------------------------------------------- the forge line */
 
 ForgeScreen {
     layers: base plate;
+}
+
+#forge-intake {
+    dock: top;
+    height: 3;
+    background: #14171a;
+    border: tall #31363c;
+    color: #c2cdd6;
+    padding: 0 1;
+}
+
+#forge-intake:focus {
+    border: tall #d7a455;
 }
 
 #forge-line {

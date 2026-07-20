@@ -12,6 +12,7 @@ from typing import TYPE_CHECKING, cast
 from rich.text import Text
 from textual.app import ComposeResult
 from textual.coordinate import Coordinate
+from textual.events import ScreenResume
 from textual.screen import Screen
 from textual.widgets import DataTable, Footer, Input
 
@@ -85,6 +86,12 @@ class RackScreen(Screen):
             table.add_column(label + "  ", key=key, width=width)
         self._fill(self.knives)
         table.focus()
+
+    def on_screen_resume(self, event: ScreenResume) -> None:
+        """Coming back to the rack: reflect anything filed while away."""
+        self.query_one(Masthead).update_stats(self.knives)
+        self._fill(self._visible())
+        self._apply_sort()
 
     # ------------------------------------------------------------- data
 
