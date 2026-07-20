@@ -1,0 +1,145 @@
+########################################################
+definitions
+
+########################################################
+
+false "A knife BANNED or UNWORTHY for further RESEARCH into purchase"
+true = "A knife LEGAL and APPROVED for further RESEARCH into aquisition"
+clean = "A knife that is more than beautiful utilizing minimal aesthetics"
+fancy = "A unique blade style not often seen (ie spyderco Matriarch 2 emerson)"
+tiered = "An enthusiast knife in the high tier quality of or above a Christopher Reeves"
+
+---
+
+########################################################
+unknown
+
+########################################################
+
+## [KIZER](https://kizerknives.com/)
+
+### [Kizer-T1-BD](https://alnk.to/apWQCy9)
+
+### [Kizer-Drop-Bear-Zero](https://kizerknives.com/search?q=drop+bear+zero&sv1=affiliate&sv_campaign_id=1956071&sscid=44281_1780862518_5a053c9fba0429072e71c3be7a0fb0d0&awc=44281_1780862518_5a053c9fba0429072e71c3be7a0fb0d0)
+
+## [KN-ALBATROSS](https://whitemountainknives.com/ssearch/?search_query=KB+albatross)
+
+
+## [CHRIS-REEVE](https://chrisreeve.com/?srsltid=AfmBOopkHWeQ1ltOz3IUB-cvNcedm6vMyN1UTi1UVR-FBVj2eSnAe0m8)
+
+### [Sebenza](https://www.bladehq.com/cat--Chris-Reeve-Sebenza-31--3840?avad=380149_f4ce94771&utm_source=youtube.com%2F%40metal_complex%3Fsi%3D-yjDLfWBc8HQR_UH&utm_medium=affiliate&utm_campaign=Custom+Link&utm_content=cl)
+
+## [KAROK-WHITE](https://www.mmiguronknives.com/mgr827wh-p6999394.html)
+
+## [DEMCO-AD-20](https://www.bladescanada.com/Demko-Knives/Demko-AD20.5-Folding-Knife-3V-Clip-Point-Textured-Titanium)
+
+## [COLD-STEEL-AMERICAN-LAWMAN](https://www.bladescanada.com/Cold-Steel-Knives/Cold-Steel-American-Lawman-Folding-Knife-S35VN-G10-Black-58B)
+
+## [HINDERER-XM-18](https://www.bladescanada.com/Hinderer-Knives/Hinderer-XM-24-4.0-1095-Skinny-Bowie-Tri-Way-Vintage-Series-Smooth-Walnut)
+
+## [KOENIG-ARIUS](https://bladezilla.ca/products/koenig-knives-arius-non-flipper-smooth-titanium-handle-silver-hardware-burnished-w-polished-flats-m390-blade)
+
+
+########################################################
+true
+
+########################################################
+
+- [a]:(true, fancy) Spyderco Matriarch 2 Emerson Open Folding Knife `https://www.bladescanada.com/Spyderco-Knives/Spyderco-Matriarch-2-Emerson-Open-Folding-Knife-C12SBK2W`
+
+- [b]:(true, clean) `https://www.bladescanada.com/Al-Mar-Knives/Al-Mar-SERE-2020-Flipper-Folding-Knife-Assisted-Opening-8Cr13MoV-FRN-Tan-AMK2214`
+- [c]:(true, clean) Benchmade Bugout Axis Lock Folding Knife, CPM S90V `https://www.bladescanada.com/Benchmade-Knives/Benchmade-Bugout-Axis-Lock-Folding-Knife-CPM-S90V-Cerakote-Anodized-Aluminum-Crater-Blue-535SL-13`
+- [e]:(true, fancy) `https://www.bladescanada.com/Lion-Steel-Knives/Lion-Steel-LE1-A-BS-L.E.One-Flipper-Framelock-Karambit-MagnaCut-SW-Wave-Opening`
+- [f]:(true, tiered) `Kizer-T1-BD`
+- [g]:(true, clean) `Kizer-Drop-Bear-Zero`
+- [h]:() ``
+- [i]:() ``
+- [j]:() ``
+- [k]:() ``
+- [l]:() ``
+- [m]:() ``
+- [n]:() ``
+- [o]:() ``
+- [p]:() ``
+
+---
+
+########################################################
+false
+
+########################################################
+
+---
+
+
+---
+
+## UNSORTED
+
+The MC/Kunwu Excalibur - https://www.kunwucrew.com/
+
+DLT Trading New Arrivals - https://www.dlttrading.com/newest-arr...  
+
+Blade HQ New Arrivals - Use code METALCOMPLEX for 10% OFF your first order! - https://alnk.to/3Ja2j7D
+
+Knifecenter New Arrivals - https://alnk.to/eZJDQlq
+
+Knifejoy - https://www.knifejoy.com/collections/...
+
+EKnives New Arrivals - https://eknives.com/new/?aff=2
+
+Polish Custom Knives New Arrivals! - https://www.awin1.com/cread.php?awinm...
+
+Remette Knives - https://www.awin1.com/cread.php?awinm...
+
+Poikilo Knives - https://poikiloblade.com/?sca_ref=100...
+
+Vero Knives - https://veroengineering.com/?ref=Meta...
+
+Tuyaknives (Use code "METALCOMPLEX") -  https://tuyaknifeus.com
+
+Maxace ( Use code Metal24ma11 to save $15 ) - https://maxaceknife.com/
+
+Knives Ship Free - https://www.awin1.com/cread.php?awinm...
+
+Rike Knives - https://czzn.cc/gjivxKnXw8FLo2L0wEwldA
+
+EMP EDC - https://www.awin1.com/cread.php?awinm...
+
+CRKT Knives - https://www.avantlink.com/click.php?t...
+
+Check out the BladeBinge shop! - https://www.awin1.com/cread.php?awinm...
+
+CHECK OUT BLADEBINGE HERE - https://bladebinge.com/?referrer=META...
+
+Demko Knives - https://demkoknives.com/metalcomplex
+
+Exclusive Folders - https://exclusivefolders.com?sca_ref=...
+
+Original GOAT - Use code "METALCOMPLEX" for 15% OFF! - https://originalgoat.com/?ref=METALCO...
+
+SMKW New Arrivals! - https://www.pntrs.com/t/8-12270-30383...
+
+Kunwu Knives - https://kunwuknives.com/?aff=2
+
+Kunwu Crew - https://www.kunwucrew.com/?aff=2
+
+Urban EDC Supply New Arrivals - https://bit.ly/3iyxhST
+
+Tactile Knife Co. - https://tactileknife-co.myshopify.com...
+
+Check out Tools For Gents! - https://toolsforgents.com/?tfg=6336
+
+GP Knives New Arrivals - https://www.awin1.com/cread.php?awinm...
+
+River's Edge Cutlery New Arrivals - https://riversedgecutlery.com/shop-al...
+
+Miguron knives - https://www.mmiguronknives.com/?aff=3011
+
+Hog House knives - https://hoghouseknives.com/METALCOMPLEX
+
+Flytanium products - https://www.flytanium.com/METALCOMPLEX
+
+--------‐----------------------------------------------------------
+
+MOST RECOMMENDED KNIVES all in one place! - https://beacons.ai/metalcomplex
