@@ -48,6 +48,18 @@ RULE_KEYWORDS: dict[str, tuple[str, ...]] = {
     ),
 }
 
+# Gate labels: the rulebook's legal prose, machined down to stamps.
+# Full wording remains in the database and the legal-screen tip capsule.
+RULE_DISPLAY: dict[str, str] = {
+    "automatic switchblade": "AUTOMATIC / SWITCHBLADE",
+    "OTF automatic": "OTF AUTOMATIC",
+    "gravity knife": "GRAVITY",
+    "balisong": "BALISONG",
+    "butterfly knife": "BUTTERFLY",
+    "explicit centrifugal/flick knife": "CENTRIFUGAL / FLICK",
+    "button/spring/device in handle that automatically opens the blade": "AUTO-OPENING DEVICE",
+}
+
 
 class ForgeScreen(TipsMixin, Screen):
     AUTO_FOCUS = ""  # the intake slot is entered by click, not by default
@@ -68,8 +80,9 @@ class ForgeScreen(TipsMixin, Screen):
         "st-extract": Tip("the listing is read and stamped here"),
         "st-legal": Tip(
             "gates execute the db's rulebook",
-            "prohibited mechanisms:\n  switchblade / automatic · OTF ·\n  gravity · balisong · butterfly ·\n"
-            "  centrifugal · auto-button\n\n'assisted opening' is legal and\nnever trips a gate\n\n"
+            "the seven gates:\n  AUTOMATIC / SWITCHBLADE\n  OTF AUTOMATIC\n  GRAVITY\n  BALISONG\n"
+            "  BUTTERFLY\n  CENTRIFUGAL / FLICK\n  AUTO-OPENING DEVICE\n\n"
+            "'assisted opening' is legal and\nnever trips a gate\n\n"
             "a hit slams the gate, stamps the\nplate REJECTED — nothing is written",
         ),
         "st-vault": Tip("cleared records file here — for real"),
@@ -149,23 +162,34 @@ class ForgeScreen(TipsMixin, Screen):
         rule = self.vault.db.get("workflow_rules", {}).get("canadian_online_retailer_rule", {})
         return list(rule.get("only_reject_or_fail_if_clear_prohibited_mechanism", []))
 
+    def _line_state(self, text: str) -> None:
+        self.query_one(Masthead).set_context(text)
+
     def _render_gates(
         self,
         passed: list[str],
         checking: str | None = None,
         failed: tuple[str, list[str]] | None = None,
+        total: int = 0,
     ) -> Text:
         text = Text()
+        if total:
+            if failed:
+                text.append(f"GATE {len(passed) + 1}/{total} — HALT\n\n", style=laws.FAIL)
+            elif checking:
+                text.append(f"GATE {len(passed) + 1}/{total}\n\n", style=laws.STEEL_DIM)
+            else:
+                text.append(f"GATES {len(passed)}/{total}\n\n", style=laws.PASS)
         for rule in passed:
             text.append("  ✓  ", style=laws.PASS)
-            text.append(f"{rule}\n", style=laws.STEEL_DIM)
+            text.append(f"{RULE_DISPLAY.get(rule, rule)}\n", style=laws.STEEL_DIM)
         if checking:
             text.append("  ── ", style=laws.ACCENT)
-            text.append(f"{checking}\n", style=laws.STEEL_MID)
+            text.append(f"{RULE_DISPLAY.get(checking, checking)}\n", style=laws.STEEL_MID)
         if failed:
             rule, hits = failed
             text.append("  ✗  ", style=laws.FAIL)
-            text.append(f"{rule}\n", style=laws.FAIL)
+            text.append(f"{RULE_DISPLAY.get(rule, rule)}\n", style=laws.FAIL)
             text.append(f"     listing matched: {', '.join(hits)}\n", style=laws.STEEL_DIM)
         return text
 
@@ -226,12 +250,14 @@ class ForgeScreen(TipsMixin, Screen):
     async def live_transit(self, url: str) -> None:
         plate, extract_log, gates, filed = self._stations()
         self._reset_line(plate)
+        self._line_state("line: extract ▸")
         plate.begin("INCOMING", url.split("//")[-1][:42])
 
         duplicate = self._already_filed(url)
         if duplicate:
             extract_log.update(Text(f"already in the vault: {duplicate}", style=laws.ACCENT))
             plate.begin("DUPLICATE", duplicate)
+            self._line_state("line: duplicate — nothing to do")
             return
 
         extract_log.update(Text("fetching listing…", style=laws.STEEL_DIM))
@@ -240,6 +266,7 @@ class ForgeScreen(TipsMixin, Screen):
         except scrape.ScrapeError as exc:
             extract_log.update(Text(str(exc), style=laws.FAIL))
             plate.styles.border = ("heavy", laws.FAIL)
+            self._line_state("line: fault ✗")
             return
 
         plate.begin(listing.listing_title[:42] or "UNTITLED LISTING", listing.url.split("//")[-1][:42])
@@ -250,27 +277,31 @@ class ForgeScreen(TipsMixin, Screen):
             await asyncio.sleep(0.35)
         extract_log.update(Text(f"{len(stamps)} fields parsed", style=laws.PASS))
 
+        self._line_state("line: legal screen ▸")
         await self._travel_to("st-legal", plate)
 
         title_lower = listing.listing_title.lower()
+        rules = self._rules()
         passed: list[str] = []
-        for rule in self._rules():
-            gates.update(self._render_gates(passed, checking=rule))
+        for rule in rules:
+            gates.update(self._render_gates(passed, checking=rule, total=len(rules)))
             await asyncio.sleep(0.3)
             hits = [kw for kw in RULE_KEYWORDS.get(rule, (rule.lower(),)) if kw in title_lower]
             if hits:
-                gates.update(self._render_gates(passed, failed=(rule, hits)))
+                gates.update(self._render_gates(passed, failed=(rule, hits), total=len(rules)))
                 plate.styles.border = ("heavy", laws.FAIL)
-                plate.stamp("verdict", f"REJECTED — {rule}")
+                plate.stamp("verdict", f"REJECTED — {RULE_DISPLAY.get(rule, rule)}")
                 self.call_after_refresh(self._settle)
                 filed.update(Text("not filed — prohibited mechanism identified", style=laws.FAIL))
+                self._line_state("line: rejected ✗")
                 return
             passed.append(rule)
-        done = self._render_gates(passed)
+        done = self._render_gates(passed, total=len(rules))
         done.append("\n  CLEAR TO PROCEED", style=laws.PASS)
         gates.update(done)
         await asyncio.sleep(0.5)
 
+        self._line_state("line: vault ▸")
         await self._travel_to("st-vault", plate)
         view = self.vault.file_record(self._record_from(listing))
         landed = Text()
@@ -278,6 +309,7 @@ class ForgeScreen(TipsMixin, Screen):
         landed.append(f"filed · {view.id}\n", style=laws.STEEL_DIM)
         landed.append("now in the rack · awaiting review", style=laws.STEEL_DIM)
         filed.update(landed)
+        self._line_state("line: filed ✓")
         self.query_one(Masthead).update_stats(self.vault.knives)
 
     # ---------------------------------------------------------- demo transit
@@ -290,6 +322,7 @@ class ForgeScreen(TipsMixin, Screen):
         knife = self._sample()
         plate, extract_log, gates, filed = self._stations()
         self._reset_line(plate)
+        self._line_state("line: demo ▸")
         plate.begin("INCOMING", "")
         extract_log.update(Text("reading listing…", style=laws.STEEL_DIM))
         await asyncio.sleep(0.6)
@@ -310,12 +343,13 @@ class ForgeScreen(TipsMixin, Screen):
         extract_log.update(Text(f"{len(stamps)} fields parsed", style=laws.PASS))
 
         await self._travel_to("st-legal", plate)
+        rules = self._rules()
         passed: list[str] = []
-        for rule in self._rules():
-            gates.update(self._render_gates(passed, checking=rule))
+        for rule in rules:
+            gates.update(self._render_gates(passed, checking=rule, total=len(rules)))
             await asyncio.sleep(0.35)
             passed.append(rule)
-        done = self._render_gates(passed)
+        done = self._render_gates(passed, total=len(rules))
         done.append("\n  CLEAR TO PROCEED", style=laws.PASS)
         gates.update(done)
         await asyncio.sleep(0.6)
@@ -325,3 +359,8 @@ class ForgeScreen(TipsMixin, Screen):
         landed.append(f"{knife.display_name}\n", style=laws.STEEL_BRIGHT)
         landed.append("demo transit · nothing was written", style=laws.STEEL_DIM)
         filed.update(landed)
+        invite = Text()
+        invite.append(f"{len(stamps)} fields parsed\n", style=laws.PASS)
+        invite.append("paste a url above for a real intake", style=laws.STEEL_DIM)
+        extract_log.update(invite)
+        self._line_state("line idle · url or r")

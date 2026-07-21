@@ -169,6 +169,14 @@ async def test_shell() -> None:
         filed_text = str(app.screen.query_one("#filed", Static).render())
         assert "CLEAR TO PROCEED" in gates_text, f"gates: {gates_text[:80]}"
         assert "demo transit" in filed_text, f"filed: {filed_text[:80]}"
+        # pass B: gates read as stamped labels with a counter; line state on masthead
+        assert "AUTOMATIC / SWITCHBLADE" in gates_text, f"gates: {gates_text[:120]}"
+        assert "GATES 7/7" in gates_text, f"gate counter missing: {gates_text[:60]}"
+        from knivves.vault.masthead import Masthead as MastheadWidget
+        forge_context = str(
+            app.screen.query_one(MastheadWidget).query_one(".masthead--context", Static).render()
+        )
+        assert "line idle" in forge_context, f"context: {forge_context}"
         # the traveling plate never clips off screen, whatever its height
         from knivves.vault.plate import Plate as PlateWidget
         forge_plate = app.screen.query_one(PlateWidget)
@@ -187,15 +195,21 @@ async def test_shell() -> None:
         assert len(app.screen.slots) == 1, f"slots: {len(app.screen.slots)}"
         first_id = app.screen.slots[0].id
 
-        # second knife -> calipers read deltas; duplicate is refused
+        # second knife -> choreographed arrival, then the calipers measure
         await pilot.press("1")
         await pilot.pause()
         await pilot.press("down", "down", "b")
         await pilot.pause()
         assert len(app.screen.slots) == 2, f"slots: {len(app.screen.slots)}"
         assert app.screen.slots[0].id == first_id
+        await asyncio.sleep(2.4)  # arrival travel + staged caliper readings
+        await pilot.pause()
         calipers = str(app.screen.query_one("#calipers-read", Static).render())
         assert "Δ" in calipers or "incomparable" in calipers, f"calipers: {calipers[:80]}"
+        assert app.screen._seated == [k.id for k in app.screen.slots], "seating not tracked"
+        from knivves.vault.masthead import Masthead as MH
+        bench_ctx = str(app.screen.query_one(MH).query_one(".masthead--context", Static).render())
+        assert " vs " in bench_ctx, f"bench state: {bench_ctx}"
         await pilot.press("1")
         await pilot.pause()
         await pilot.press("b")  # same highlighted row as slot 2 -> dedupe
@@ -316,6 +330,11 @@ async def test_shell() -> None:
             movers_text = str(app.screen.query_one("#movers-read", Static).render())
             assert "survey complete" in movers_text, f"movers: {movers_text[:100]}"
             assert "▼" in movers_text, "no downward movers shown"
+            # pass D: survey lifecycle reads on the masthead; line panel shows distance
+            ledger_ctx = str(app.screen.query_one(MH).query_one(".masthead--context", Static).render())
+            assert "survey complete" in ledger_ctx, f"ledger context: {ledger_ctx}"
+            line_text = str(app.screen.query_one("#line-read", Static).render())
+            assert "to line" in line_text or "nothing near the line" in line_text, f"line: {line_text[:80]}"
             on_disk = json.loads(tmp_db.read_text(encoding="utf-8"))
             surveyed = [k for k in on_disk["knives"] if len(k.get("price_history") or []) >= 2]
             assert len(surveyed) > 50, f"history recorded on only {len(surveyed)}"

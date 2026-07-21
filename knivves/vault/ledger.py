@@ -93,6 +93,18 @@ class LedgerScreen(TipsMixin, Screen):
         self._read_line()
         if not self._surveying:
             self._idle_movers()
+            self.query_one(Masthead).set_context(self._survey_status())
+
+    def _survey_status(self) -> str:
+        """Idle readout: when the market was last read, if ever."""
+        dates = [
+            str(r.get("source_date"))
+            for k in self.vault.knives
+            if len(k.raw.get("price_history") or []) > 1
+            for r in k.retailers
+            if r.get("source_date")
+        ]
+        return f"last survey {max(dates)}" if dates else "no survey on record"
 
     # ------------------------------------------------------------- panels
 
@@ -114,7 +126,7 @@ class LedgerScreen(TipsMixin, Screen):
         for label, count in buckets:
             text.append(f"{label:<10}", style=laws.STEEL_DIM)
             text.append("█" * max(1 if count else 0, round(count / top * BAR_WIDTH)), style=laws.STEEL_MID)
-            text.append(f" {count}\n", style=laws.STEEL_DIM)
+            text.append(f" {count:>3}\n", style=laws.STEEL_DIM)
         self.query_one("#valuation-read", Static).update(text)
 
     def _read_line(self) -> None:
@@ -128,11 +140,13 @@ class LedgerScreen(TipsMixin, Screen):
         if not near:
             text.append("nothing near the line", style=laws.STEEL_DIM)
         for knife in near[:10]:
-            below = (knife.price or 0) < ledger.AFFORDABLE_THRESHOLD_CAD
+            price = knife.price or 0
+            below = price < ledger.AFFORDABLE_THRESHOLD_CAD
+            distance = abs(price - ledger.AFFORDABLE_THRESHOLD_CAD)
             text.append("▾ " if below else "▴ ", style=laws.PASS if below else laws.STEEL_MID)
-            name = knife.display_name
-            text.append(f"{name[:26]:<27}", style=laws.STEEL_BRIGHT)
-            text.append(f"{knife.price_label}\n", style=laws.ACCENT)
+            text.append(f"{knife.display_name[:22]:<23}", style=laws.STEEL_BRIGHT)
+            text.append(f"{knife.price_label:>9}", style=laws.ACCENT)
+            text.append(f"  ${distance:,.0f} to line\n", style=laws.STEEL_DIM)
         self.query_one("#line-read", Static).update(text)
 
     def _idle_movers(self) -> None:
@@ -174,9 +188,11 @@ class LedgerScreen(TipsMixin, Screen):
         movers: list[tuple[KnifeView, float]] = []
         unchanged = unreachable = 0
         raw_by_id = {k.get("id"): k for k in self.vault.db.get("knives", []) if isinstance(k, dict)}
+        cancelled = False
         try:
             for i, knife in enumerate(targets, start=1):
                 movers_read.update(self._survey_frame(i, len(targets), knife, movers, unchanged, unreachable))
+                self.query_one(Masthead).set_context(f"surveying {i}/{len(targets)}")
                 record = raw_by_id.get(knife.id)
                 if record is None:
                     continue
@@ -194,6 +210,9 @@ class LedgerScreen(TipsMixin, Screen):
                     unchanged += 1
                 if self.SURVEY_DELAY:
                     await asyncio.sleep(self.SURVEY_DELAY)
+        except asyncio.CancelledError:
+            cancelled = True
+            raise
         finally:
             # keep whatever was observed, even on cancel
             save_database(self.vault.db, self.vault.db_path)
@@ -203,6 +222,11 @@ class LedgerScreen(TipsMixin, Screen):
             self._read_valuation()
             self._read_line()
             movers_read.update(self._survey_result(len(targets), movers, unchanged, unreachable))
+            self.query_one(Masthead).set_context(
+                "survey stopped — observations kept"
+                if cancelled
+                else f"survey complete · {len(movers)} moved"
+            )
 
     def _survey_frame(
         self, i: int, total: int, knife: KnifeView,
