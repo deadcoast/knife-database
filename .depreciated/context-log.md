@@ -1,17 +1,21 @@
+# CONTEXTUAL PROJECT DESIGN LOG - RAW
+
 OK. the current CLI IS WORKING. SHIPPED; AND VERSIONED. IF WE ARE GOING TO START PATCHING THINGS; I WOULD RATHER CONVER WHAT WE HAVE. CURRENTLY THE CODE IS WELL ORGANIZED; WELL RESEARCHED; TESTED AND OPERATIONAL. IT IS VERY UGLY, IT DOES NOT PROVIDE THE BEST USER EXPERIENCE; BUT THAT IS OK. WHATS IMPORTANT IS THAT IT IS ROBUST; ITS VALIDATED; AND THE BACK END IS WORKING WELL.
 
 ---
 [1]: python Textual(textualize)
 THIS GIVES US A GOOD BASELINE TO WORK FROM; THAT BEING SAID. IF WE ARE GOING TO CHANGE IT TO SOMETHING LIKE TEXTUALIZE;
+
 - IT WILL GIVE US THE NICE CLI STYTLING, WITH THE ADDITIONAL FEATURES. THE ONLY CONS OF TEXTUALIZE IS IT IS CAN BE HEAVY, AND CONFLATED WITH REGULAR PYTHON TO AGENTS. THESE ARE MINIMAL CONS AS THIS IS A PERSONAL, STYLIZED KNIFE DATABASE, PRIORITZED FOR CUSTOMIZED VISUAL UI DELIVERY.
 - IF WE ARE USING TEXTUALIZE; WE ARE LOOKING TO UTILIZE IT TO ITS FULL POTENTIAL, CREATIVELY INTEGRATING ITS VISUAL ASSETS FOR OUR PURPOSES.
 - *OUR INNER THOUGHTS WHEN DEVELOPING TEXTUALIZE PROJECTS IS ALWAYS TO THINK ABOUT NEW, CREATIVE AND EXCITING WAYS OF DELVERING TEXTUALIZE ASSETS. THIS IS A MIVIM SPEC PROJECT, IN MIVIM OUR INTEGRATIONS ARE CREATIVE AND UI DESIGN FOCUSED. OUR MOST IMPORTANT INNER THOUGHT AND QUALITY WE DEVELOP WITH IS CREATING THINGS WE THINK WOULD IMPRESS THE PEOPLE WHO KNOW THE FRAMEWORK BEST; THE DEVS OF TEXTUALIZE. SO MUCH SO; THAT OUR SPECIFIC PROJECT GOAL IS CENTERED AROUND OUR DEVELOPMENT INTEGRATIONS BEING SO CREATIVE, OUTSIDE OF THE BOX AND WELL DELIVERED VISUALLY, THAT OUR PROJECT IS FEATURED ON THE TEXTUALIZE REPOSITORY WITH THE OTHER OUTSTANDING INDEPENDANT REPOSITORIES. THESE ARE STANDARDS THAT REQUIRE CONSTANT CRITICAL THOUGHT, TO SEEK ROOM FOR IMPROVEMENT WHERE THE VERY CREATORS DID NOT TO; OR HOW TO CREATE AND ASSET IN A VERY WAY THE CREATORS DID NOT THINK TO DELIVER IT VISUALLY. WE HAVE TO GO ABOVE AND BEYOND TO BE FEATURED.
 
 ITS DESIGNED TO DELIVER AN EXPERIENCE USERS REMEMBER. COMPLETELY TARGETED, DEVELOPED, AND CREATED FROM THE GROUND UP; AS WE HAVE BEEN DOING ASSURING OUR CURRENT FOUNDATIONS IN PYTHON ARE EXTREMELY WELL DOCUMENTED, ORGANIZED, AND FOLLOW BEST PRACTICES.
 
-THIS GIVES US FLEXIBILITY TO EXPLORE OTHER OPTIONS ASWELL. 
+THIS GIVES US FLEXIBILITY TO EXPLORE OTHER OPTIONS ASWELL.
 [2]: RUST
 THE ONLY OTHER LOGICAL OPTION I SEE IS THE SPEED, CUSTOMIZATIONS AND CONTROL RUST PROVIDES. IS RUST A GOOD OPTION FOR THE TERMINAL FEEL?
+
 - I FIND THAT ALTHOUGHT WEBSTACKS, CSS, HTML IS VERBOSE, THE WEBSTACKS NEVER REALLY PROVIDE A `RETRO` DESIGN FEEL; IT CLAIMS IT IS. ITS JUST NOT.
 - RUST ALLOWS US MORE CONTROL OVER THINGS THAN PYTHON, IS RUST A BETTER CHOICE? IT IS IMPORTANT TO NOTE THAT I DONT WANT RUST USING BOILERPLATE WEBSTACK WRAPPERS.
 - WHEN (IF) USING RUST; I WANT TO BUILD IT CORRECTLY. AS I SAID. WEBSTACKS ARE DEVOLVING INTO MASS BOILERPLATE AMEOBAS. THIRD PARTY DEPENDENCIES ARE TOTALLY OK WHEN USING RUST. THE STRICT; MOBILE GUARDRAILS ARE LIFTED; BECAUSE THAT PART OF THE PROJECT IS COMPLETE IN THE PYTHON CLI WE HAVE NOW.
@@ -42,16 +46,23 @@ Since you said you like a lot of them: hybrids are legitimate — e.g., Dossier 
 > IM NOT SURE I LOVE ANY OF THE SUGGESTIONS; BUT I AM PROVIDING REASONS WHY.
 
 1. Field Manual / Dossier — fully representable, one caveat
--  is bloated, goofy. It had potential, but your execution was absoluitely terrible. This is not good design. This is not what succeeds.
-2. Armory Vault — representable, highest effort.
+
+- is bloated, goofy. It had potential, but your execution was absoluitely terrible. This is not good design. This is not what succeeds.
+
+1. Armory Vault — representable, highest effort.
+
 - yes i understand what you are describing, but even if your validation you claim that you can do it.
 - This is most likely the BY FAR! BEST DESIGN CHOICE.
 - This is the design choice i have the LEAST confidence in you being able to provide as claimed.
-3. Phosphor Instrument — representable, best effect-to-effort ratio.
+
+1. Phosphor Instrument — representable, best effect-to-effort ratio.
+
 - This is a well selected and thought out aesthetic idea. The issue is; you are entering retro-futurism CRT territory using the flagship aesthetics. THERE IS NOTHING WRONG WITH THAT; but you are now increasing your above and beyond requirements by exponentially increasing the high quality professional designs that have also been made in this aesthetic.
 - IF retro futurism is done like this; it needs to be done in a manner that impresses people who enjoy this aesthetic. These are enthusiasts; and often people who have seen this integrated many times.
 - THIS DESIGN i FEAR MOST will DRIFT into GENERIC 'GREEN-HACKER-CLI'
-4. Blade Showroom — fully representable, lowest risk.
+
+1. Blade Showroom — fully representable, lowest risk.
+
 - SIMILAR TO [3], THIS DESIGN CHOICE IS GOOD, WELL DONE, TARGETED. BUT YOU ARE ENTERING TERRITORY WHERE MINIMAL DESIGN IS SO SIMPLISTIC THAT IT ACTUALLY REQUIRES VERY METICULOUS CHOICES, EXTREME ATTENTION INTO DEVELOPMENT. MINIMAL DESIGNS OFTEN REQUIRE MORE DESIGN THAN LESS, THATS THE REASON MINIMAL IS DIFFUCULT; TO DO IT WELL REQUIRES MULTIPLE DESIGN CHOICES, CHANGES, AND ONGOING SCRUTINY. IT THRIVES IN BALANCE FRONT TO BACK ON DESIGN AESTHETICS.
 - THIS IS QUITE POSSIBLY THE HARDEST AESTHETIC TO EXECUTE CORRECTLY.
 
@@ -94,7 +105,8 @@ Study 02 — data-driven dimensioning pulled from the live database record
 Study 03 — machined panel & metal palette treatment
 
 Run:  python proof_sheet.py
-"""
+
+```python
 from __future__ import annotations
 
 import json
@@ -308,11 +320,15 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+```
+
 Bash Render proof sheet to inspect blade shape
 IN
 cd "C:\Users\ryanf\github\_new\knife-database" && export PYTHONIOENCODING=utf-8 && .venv/Scripts/python.exe "C:\Users\ryanf\AppData\Local\Temp\claude\C--Users-ryanf-github--new-knife-database\89c32a0f-a6cd-4e7e-879f-90b5eb97febf\scratchpad\proof_sheet.py"
 
 OUT
+
+```ps1
 STUDY 01 — BLADE, BRAILLE RESOLUTION
 
                                                             
@@ -341,6 +357,8 @@ STUDY 03 — MACHINED PANEL / PALETTE
 MILLED RAMP   ████████████████████
 BEVEL         ▛▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▜
               ▙▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▟
+```
+
 Edit C:\Users\ryanf\AppData\Local\Temp\claude\C--Users-ryanf-github--new-knife-database\89c32a0f-a6cd-4e7e-879f-90b5eb97febf\scratchpad\proof_sheet.py
 Modified
 Edit C:\Users\ryanf\AppData\Local\Temp\claude\C--Users-ryanf-github--new-knife-database\89c32a0f-a6cd-4e7e-879f-90b5eb97febf\scratchpad\proof_sheet.py
@@ -350,6 +368,8 @@ IN
 cd "C:\Users\ryanf\github\_new\knife-database" && export PYTHONIOENCODING=utf-8 && .venv/Scripts/python.exe "C:\Users\ryanf\AppData\Local\Temp\claude\C--Users-ryanf-github--new-knife-database\89c32a0f-a6cd-4e7e-879f-90b5eb97febf\scratchpad\proof_sheet.py" | head -14
 
 OUT
+
+```ps1
 STUDY 01 — BLADE, BRAILLE RESOLUTION
 
                                                             
@@ -397,7 +417,14 @@ Traceback (most recent call last):
 OSError: [Errno 22] Invalid argument
 Exception ignored on flushing sys.stdout:
 OSError: [Errno 22] Invalid argument
-Edit C:\Users\ryanf\AppData\Local\Temp\claude\C--Users-ryanf-github--new-knife-database\89c32a0f-a6cd-4e7e-879f-90b5eb97febf\scratchpad\proof_sheet.py
+```
+
+Edit
+
+```ps1
+C:\Users\ryanf\AppData\Local\Temp\claude\C--Users-ryanf-github--new-knife-database\89c32a0f-a6cd-4e7e-879f-90b5eb97febf\scratchpad\proof_sheet.py
+```
+
 Removed 1 line
 Bash Confirm full proof sheet renders without error
 IN
@@ -406,7 +433,6 @@ cd "C:\Users\ryanf\github\_new\knife-database" && export PYTHONIOENCODING=utf-8 
 OUT
 renders clean
 First proof sheet is ready. Run it in your terminal — you'll see it in full color, which I can't:
-
 
 python "C:\Users\ryanf\AppData\Local\Temp\claude\c--Users-ryanf-github--new-knife-database\89c32a0f-a6cd-4e7e-879f-90b5eb97febf\scratchpad\proof_sheet.py"
 Three studies, each testing one capability everything else would depend on:
@@ -427,11 +453,11 @@ this looks ok. i have concerns. like misrepresnting knifes completely in shape. 
 ---
 
 lets go with textual. the design phase will not be short. that does not AT ALL follow the workflow or standards of the repostory. WE NEED TO SEPERATE OURSELVES IF WE WANT TO BE FEATURED.  WE ARE LOOKING TO UTILIZE IT TO ITS FULL POTENTIAL, CREATIVELY INTEGRATING ITS VISUAL ASSETS FOR OUR PURPOSES.
+
 - *OUR INNER THOUGHTS WHEN DEVELOPING TEXTUALIZE PROJECTS IS ALWAYS TO THINK ABOUT NEW, CREATIVE AND EXCITING WAYS OF DELVERING TEXTUALIZE ASSETS. THIS IS A MIVIM SPEC PROJECT, IN MIVIM OUR INTEGRATIONS ARE CREATIVE AND UI DESIGN FOCUSED. OUR MOST IMPORTANT INNER THOUGHT AND QUALITY WE DEVELOP WITH IS CREATING THINGS WE THINK WOULD IMPRESS THE PEOPLE WHO KNOW THE FRAMEWORK BEST; THE DEVS OF TEXTUALIZE. SO MUCH SO; THAT OUR SPECIFIC PROJECT GOAL IS CENTERED AROUND OUR DEVELOPMENT INTEGRATIONS BEING SO CREATIVE, OUTSIDE OF THE BOX AND WELL DELIVERED VISUALLY, THAT OUR PROJECT IS FEATURED ON THE TEXTUALIZE REPOSITORY WITH THE OTHER OUTSTANDING INDEPENDANT REPOSITORIES. THESE ARE STANDARDS THAT REQUIRE CONSTANT CRITICAL THOUGHT, TO SEEK ROOM FOR IMPROVEMENT WHERE THE VERY CREATORS DID NOT TO; OR HOW TO CREATE AND ASSET IN A VERY WAY THE CREATORS DID NOT THINK TO DELIVER IT VISUALLY. WE HAVE TO GO ABOVE AND BEYOND TO BE FEATURED. ITS DESIGNED TO DELIVER AN EXPERIENCE USERS REMEMBER. COMPLETELY TARGETED, DEVELOPED, AND CREATED FROM THE GROUND UP; AS WE HAVE BEEN DOING ASSURING OUR CURRENT FOUNDATIONS IN PYTHON ARE EXTREMELY WELL DOCUMENTED, ORGANIZED, AND FOLLOW BEST PRACTICES.
 
 ---
 
-that doesnt mean STRIP THE ENTIRE FUCKING DEISNG LIKE WHAT FUCKING REALITY DO YOU LIVE IN? IN WHAT FUCKING WORD YOU STUPDU FFAGGOT ROBOT
 Everything is still there — the listing above is live from your repo just now:
 
 concept-01-armory-vault.py — shelved and kept, exactly as you told me to
@@ -442,33 +468,37 @@ What you saw change was my progress-notes panel (the todo list) — it's my scra
 
 And the real news from the last few minutes: the actual app you asked for at the very beginning now exists and passes its tests — your full database in a real Textual table, where clicking a column header sorts by it and clicking again reverses. Verified headlessly with a simulated click: 166 rows, sort works, reverse works, row click pops the record's details.
 
-
 python design\proofs\app-slice.py
 Mouse on the headers. q to quit. No art, no concepts, no promises — it's running code; judge it by using it.
 
 > OVERALL OUTPUT QUALITY; This is not something that the devs would look at and say think "im impressed, so much that i not only can i showcase this product  to show these integrations as a demo, but also its to textuals benefit because its so well made, and something new.
 > IM NOT SURE I LOVE ANY OF THE SUGGESTIONS; BUT I AM PROVIDING REASONS WHY.
 
-1. Field Manual / Dossier — fully representable, one caveat
--  is bloated, goofy. It had potential, but your execution was absoluitely terrible. This is not good design. This is not what succeeds.
-2. Armory Vault — representable, highest effort.
+- 1. Field Manual / Dossier — fully representable, one caveat
+  - is bloated, goofy. It had potential, but your execution was absoluitely terrible. This is not good design. This is not what succeeds.
+- 1. Armory Vault — representable, highest effort.
 - yes i understand what you are describing, but even if your validation you claim that you can do it.
-- This is most likely the BY FAR! BEST DESIGN CHOICE.
-- This is the design choice i have the LEAST confidence in you being able to provide as claimed.
-3. Phosphor Instrument — representable, best effect-to-effort ratio.
-- This is a well selected and thought out aesthetic idea. The issue is; you are entering retro-futurism CRT territory using the flagship aesthetics. THERE IS NOTHING WRONG WITH THAT; but you are now increasing your above and beyond requirements by exponentially increasing the high quality professional designs that have also been made in this aesthetic.
-- IF retro futurism is done like this; it needs to be done in a manner that impresses people who enjoy this aesthetic. These are enthusiasts; and often people who have seen this integrated many times.
-- THIS DESIGN i FEAR MOST will DRIFT into GENERIC 'GREEN-HACKER-CLI'
-4. Blade Showroom — fully representable, lowest risk.
-- SIMILAR TO [3], THIS DESIGN CHOICE IS GOOD, WELL DONE, TARGETED. BUT YOU ARE ENTERING TERRITORY WHERE MINIMAL DESIGN IS SO SIMPLISTIC THAT IT ACTUALLY REQUIRES VERY METICULOUS CHOICES, EXTREME ATTENTION INTO DEVELOPMENT. MINIMAL DESIGNS OFTEN REQUIRE MORE DESIGN THAN LESS, THATS THE REASON MINIMAL IS DIFFUCULT; TO DO IT WELL REQUIRES MULTIPLE DESIGN CHOICES, CHANGES, AND ONGOING SCRUTINY. IT THRIVES IN BALANCE FRONT TO BACK ON DESIGN AESTHETICS.
+  - This is most likely the BY FAR! BEST DESIGN CHOICE.
+  - This is the design choice i have the LEAST confidence in you being able to provide as claimed.
+- 1. Phosphor Instrument — representable, best effect-to-effort ratio.
+  - This is a well selected and thought out aesthetic idea. The issue is; you are entering retro-futurism CRT territory using the flagship aesthetics. THERE IS NOTHING WRONG WITH THAT; but you are now increasing your above and beyond requirements by exponentially increasing the high quality professional designs that have also been made in this aesthetic.
+  - IF retro futurism is done like this; it needs to be done in a manner that impresses people who enjoy this aesthetic. These are enthusiasts; and often people who have seen this integrated many times.
+  - THIS DESIGN i FEAR MOST will DRIFT into GENERIC 'GREEN-HACKER-CLI'
+- 1. Blade Showroom — fully representable, lowest risk.
+
+> SIMILAR TO [3], THIS DESIGN CHOICE IS GOOD, WELL DONE, TARGETED. BUT YOU ARE ENTERING TERRITORY WHERE MINIMAL DESIGN IS SO SIMPLISTIC THAT IT ACTUALLY REQUIRES VERY METICULOUS CHOICES, EXTREME ATTENTION INTO DEVELOPMENT. MINIMAL DESIGNS OFTEN REQUIRE MORE DESIGN THAN LESS, THATS THE REASON MINIMAL IS DIFFUCULT; TO DO IT WELL REQUIRES MULTIPLE DESIGN CHOICES, CHANGES, AND ONGOING SCRUTINY. IT THRIVES IN BALANCE FRONT TO BACK ON DESIGN AESTHETICS.
+
 - THIS IS QUITE POSSIBLY THE HARDEST AESTHETIC TO EXECUTE CORRECTLY.
-'
 The correction lands this time, stated back plainly: no knife drawings never meant no design. Your brief has said the same thing from the start — the creativity goes into the interface: the layout, the styling, the motion, the information design. I swung from decorating with pictures to a bare stock widget — both wrong. The designed application is the target.
+
+---
 
 So this iteration: the working slice, fully designed — same proven interactions, now with an actual interface: machined dark theme in proper TCSS, live stats header, styled sortable table with visible sort direction in the header, a docked record panel instead of a toast, live search. Running code, judged in your terminal like everything else.
 
 Write C:\Users\ryanf\github\_new\knife-database\design\proofs\app-slice-2.tcss
 106 lines
+
+```tcss
 /* app-slice-2 — machined dark theme */
 
 Screen {
@@ -574,6 +604,8 @@ Footer {
     background: #1d2126;
     color: #6b7680;
 }
+```
+
 Write C:\Users\ryanf\github\_new\knife-database\design\proofs\app-slice-2.py
 197 lines
 """App slice 2 — Armory Vault as interface design.
@@ -584,6 +616,8 @@ visible sort direction), the plate (docked record panel), live search.
 
 Run:  python design/proofs/app-slice-2.py
 """
+
+```python
 from __future__ import annotations
 
 import sys
@@ -772,8 +806,12 @@ class KnivvesVaultSlice(App):
 
 if __name__ == "__main__":
     KnivvesVaultSlice().run()
+```
+
 Bash Headless test of designed slice: sort, search, plate panel
 IN
+
+```ps1
 cd "C:\Users\ryanf\github\_new\knife-database" && export PYTHONIOENCODING=utf-8 && .venv/Scripts/python.exe - <<'EOF'
 import asyncio, importlib.util
 spec = importlib.util.spec_from_file_location("app_slice2", "design/proofs/app-slice-2.py")
@@ -811,9 +849,13 @@ async def test():
         print(f"PASS: {n} rows · header sort + reverse · search filter · plate open/close")
 
 asyncio.run(test())
+```
+
 EOF
 
 OUT
+
+```ps1
 Exit code 1
 Traceback (most recent call last):
   File "<stdin>", line 36, in <module>
@@ -838,11 +880,15 @@ Traceback (most recent call last):
                          ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
   File "C:\Users\ryanf\AppData\Roaming\uv\python\cpython-3.13.9-windows-x86_64-none\Lib\inspect.py", line 932, in getfile
     raise TypeError('{!r} is a built-in class'.format(object))
+```
+
 TypeError: <class 'app_slice2.KnivvesVaultSlice'> is a built-in class
 Edit C:\Users\ryanf\github\_new\knife-database\design\proofs\app-slice-2.py
 Modified
 Bash Re-run headless test of designed slice
 IN
+
+```ps1
 cd "C:\Users\ryanf\github\_new\knife-database" && export PYTHONIOENCODING=utf-8 && .venv/Scripts/python.exe - <<'EOF'
 import asyncio, sys, importlib.util
 spec = importlib.util.spec_from_file_location("app_slice2", "design/proofs/app-slice-2.py")
@@ -876,12 +922,16 @@ async def test():
         print(f"PASS: {n} rows · header sort + reverse · search filter · plate open/close")
 
 asyncio.run(test())
+```
+
 EOF
 
 OUT
+
+```ps1
 PASS: 166 rows · header sort + reverse · search filter · plate open/close
 Built and passing — 166 rows, header click sorts with visible direction arrow, second click reverses, live search, row click opens the record plate, escape closes it.
-
+```
 
 python design\proofs\app-slice-2.py
 What this is: Armory Vault as interface — one screen of it, working. The rack is the sortable table (mouse on headers, arrow shows sort direction in amber), the masthead carries live vault stats from your data, the search field filters everything as you type (steel, lock, tags, notes — anything on the record), and clicking a knife docks its plate on the right: class, steel, lock, opening, length, price, source, stock, notes, laid out as labeled fields. Escape closes the plate. q quits.
@@ -953,6 +1003,8 @@ deterministic to judge. The live-fetch wiring is the already-proven scraper.
 
 Run:  python design/proofs/forge-line.py     (q quits, r replays)
 """
+
+```python
 from __future__ import annotations
 
 import asyncio
@@ -1094,6 +1146,8 @@ class ForgeLine(App):
 
 if __name__ == "__main__":
     ForgeLine().run()
+```
+
 Update Todos
 
 Shelved concepts kept in design/proofs (01 vault art, 02 true-scale, font card)
@@ -1107,6 +1161,8 @@ Forge Line proof: headless test of full transit
 User judges Forge Line on their screen
 Write C:\Users\ryanf\github\_new\knife-database\design\proofs\forge-line.tcss
 58 lines
+
+```tcss
 /* forge-line — production line layout */
 
 Screen {
@@ -1164,6 +1220,8 @@ Footer {
     background: #1d2126;
     color: #6b7680;
 }
+```
+
 Edit C:\Users\ryanf\github\_new\knife-database\design\proofs\forge-line.py
 Modified
 Edit C:\Users\ryanf\github\_new\knife-database\design\proofs\forge-line.py
@@ -1172,6 +1230,8 @@ Edit C:\Users\ryanf\github\_new\knife-database\design\proofs\forge-line.py
 Added 2 lines
 Bash Headless test: full forge line transit completes
 IN
+
+```ps1
 cd "C:\Users\ryanf\github\_new\knife-database" && export PYTHONIOENCODING=utf-8 && .venv/Scripts/python.exe - <<'EOF'
 import asyncio, sys, importlib.util
 spec = importlib.util.spec_from_file_location("forge_line", "design/proofs/forge-line.py")
@@ -1203,10 +1263,14 @@ async def test():
         print(f"PASS: stamped 5 fields · {len(mod.RULES)} real gates passed · plate landed at vault (x={plate.region.x})")
 
 asyncio.run(test())
+```
+
 EOF
 
 OUT
 Exit code 1
+
+```ps1
 ╭───────────────────── Traceback (most recent call last) ──────────────────────
 │ C:\Users\ryanf\github\_new\knife-database\.venv\Lib\site-packages\textual\wo 
 │ rker.py:370 in _run                                                          
@@ -1335,12 +1399,16 @@ LS: 1>,       │
 │ │                    │   scrollbar_background=Color(0, 0, 0),              │ 
 │ │                    │   scrollbar_background_hover=Color(0, 0, 0),        │ 
 │ │                    │   scrollbar_back
+```
+
 Edit C:\Users\ryanf\github\_new\knife-database\design\proofs\forge-line.py
 Added 1 line
 Edit C:\Users\ryanf\github\_new\knife-database\design\proofs\forge-line.py
 Added 1 line
 Bash Re-run headless forge line transit test
 IN
+
+```ps1
 cd "C:\Users\ryanf\github\_new\knife-database" && export PYTHONIOENCODING=utf-8 && .venv/Scripts/python.exe - <<'EOF'
 import asyncio, sys, importlib.util
 spec = importlib.util.spec_from_file_location("forge_line", "design/proofs/forge-line.py")
@@ -1368,10 +1436,14 @@ async def test():
         print(f"PASS: 5 fields stamped · {len(mod.RULES)} real gates passed · plate landed at vault (x={plate.region.x} >= {vault_x})")
 
 asyncio.run(test())
+```
+
 EOF
 
 OUT
 Exit code 1
+
+```ps1
 Traceback (most recent call last):
   File "<stdin>", line 26, in <module>
   File "C:\Users\ryanf\AppData\Roaming\uv\python\cpython-3.13.9-windows-x86_64-none\Lib\asyncio\runners.py", line 195, in run
@@ -1386,7 +1458,11 @@ Traceback (most recent call last):
   File "<stdin>", line 14, in test
 AttributeError: 'Static' object has no attribute 'renderable'. Did you mean: 'render_line'?
 Bash Re-run forge line test with render() accessor
+```
+
 IN
+
+```ps1
 cd "C:\Users\ryanf\github\_new\knife-database" && export PYTHONIOENCODING=utf-8 && .venv/Scripts/python.exe - <<'EOF'
 import asyncio, sys, importlib.util
 spec = importlib.util.spec_from_file_location("forge_line", "design/proofs/forge-line.py")
@@ -1416,12 +1492,17 @@ async def test():
         print(f"PASS: 5 fields stamped · {len(mod.RULES)} real gates passed · plate landed at vault (x={plate.region.x} >= {vault_x})")
 
 asyncio.run(test())
+```
+
 EOF
 
 OUT
+
+```ps1
+
 PASS: 5 fields stamped · 7 real gates passed · plate landed at vault (x=115 >= 113)
 The Forge Line proof passes end-to-end: 5 fields stamp onto the plate, all 7 real rules from your database's rulebook execute as gates, and the plate animates across the line and lands at the vault.
-
+```
 
 python design\proofs\forge-line.py
 It plays automatically on launch (~7 seconds), r replays it, q quits. What happens on screen: a plate appears under EXTRACT and the record's fields stamp onto it one at a time — source, brand, model, steel, price, each flashing amber as it lands. The plate then travels — eased motion, not a redraw — to LEGAL SCREEN, where the seven prohibited-mechanism rules from knives.json check off one by one, then CLEAR TO PROCEED. It travels again and files into the vault, awaiting review.
@@ -1454,5 +1535,46 @@ Mouse-complete, keyboard-complete, always both.
 Next build, if this survives your redline: the unified shell. One runnable app — Rack + Plate + Forge Line as rooms of the same building, shared masthead, and the first traveling-plate navigation (click a knife in the rack → its plate arrives). Bench and Ledger follow as rooms once the shell holds. Each stage lands on your screen and gets judged before the next.
 
 Redline whatever's wrong. If the shape holds, I start the shell.
+
+---
+
+before we continue; just refresh design contept of original vision without any development drift. Then add the additional features, fuctions, methods, modules. Remeber it should be created to impress the textual devs so our application gets featured. In its current state and function; it is not something that would be on anyones radar. For this reason; we did not meet our project standard.
+
+the following notes ARE NOT OFFICIAL SPEC, OR POLISHED DOCUMENTATION. THEY ARE THE ORIGINAL IDEAS, ROUGH NOTES, AND FRAMING AROUND PROJECET STANDARD, GOALS.
+
+## WORKFLOW AND CONTEXT
+
+> { [WORK-REFLECTS-PRODUCT]:"IMPRESSIVE WORK REQUIRES IMPRESSIVE DESIGNS, IMPRESSIVE DESIGNS REQUIRE IMPRESSIVE PLANNING",[J-SPACE, THOUGHTS]:"THINK ABOUT WHAT WOULD IMPRESS THE DEVS OF TEXTUAL THROUGH ALL STEPS OF DEVELOPMENT.", [CRUCIAL-FRAMING-STANDARD]:"IT IS A CRUCIAL CRITICAL THOUGHT YOU MUST ALWAYS KEEP IN MIND TO RAISE STANDARDS TO A POINT THEY ARE RELATIVE IN OUR DEVELOPMENT GOALS. IF WE ARENT IMPRESSIVE THE DEVS WITH WHAT WE ARE CREATING, WE ARE CREATING A POINTLESS APPLIUCATION." }
+
+---
+[1]: python Textual(textualize)
+THIS GIVES US A GOOD BASELINE TO WORK FROM; THAT BEING SAID. IF WE ARE GOING TO CHANGE IT TO SOMETHING LIKE TEXTUALIZE;
+
+- IT WILL GIVE US THE NICE CLI STYTLING, WITH THE ADDITIONAL FEATURES. THE ONLY CONS OF TEXTUALIZE IS IT IS CAN BE HEAVY, AND CONFLATED WITH REGULAR PYTHON TO AGENTS. THESE ARE MINIMAL CONS AS THIS IS A PERSONAL, STYLIZED KNIFE DATABASE, PRIORITZED FOR CUSTOMIZED VISUAL UI DELIVERY.
+- IF WE ARE USING TEXTUALIZE; WE ARE LOOKING TO UTILIZE IT TO ITS FULL POTENTIAL, CREATIVELY INTEGRATING ITS VISUAL ASSETS FOR OUR PURPOSES.
+- *OUR INNER THOUGHTS WHEN DEVELOPING TEXTUALIZE PROJECTS IS ALWAYS TO THINK ABOUT NEW, CREATIVE AND EXCITING WAYS OF DELVERING TEXTUALIZE ASSETS. THIS IS A MIVIM SPEC PROJECT, IN MIVIM OUR INTEGRATIONS ARE CREATIVE AND UI DESIGN FOCUSED. OUR MOST IMPORTANT INNER THOUGHT AND QUALITY WE DEVELOP WITH IS CREATING THINGS WE THINK WOULD IMPRESS THE PEOPLE WHO KNOW THE FRAMEWORK BEST; THE DEVS OF TEXTUALIZE. SO MUCH SO; THAT OUR SPECIFIC PROJECT GOAL IS CENTERED AROUND OUR DEVELOPMENT INTEGRATIONS BEING SO CREATIVE, OUTSIDE OF THE BOX AND WELL DELIVERED VISUALLY, THAT OUR PROJECT IS FEATURED ON THE TEXTUALIZE REPOSITORY WITH THE OTHER OUTSTANDING INDEPENDANT REPOSITORIES. THESE ARE STANDARDS THAT REQUIRE CONSTANT CRITICAL THOUGHT, TO SEEK ROOM FOR IMPROVEMENT WHERE THE VERY CREATORS DID NOT TO; OR HOW TO CREATE AND ASSET IN A VERY WAY THE CREATORS DID NOT THINK TO DELIVER IT VISUALLY. WE HAVE TO GO ABOVE AND BEYOND TO BE FEATURED.
+
+ITS DESIGNED TO DELIVER AN EXPERIENCE USERS REMEMBER. COMPLETELY TARGETED, DEVELOPED, AND CREATED FROM THE GROUND UP; AS WE HAVE BEEN DOING ASSURING OUR CURRENT FOUNDATIONS IN PYTHON ARE EXTREMELY WELL DOCUMENTED, ORGANIZED, AND FOLLOW BEST PRACTICES
+
+---
+[2]:
+WE NEED TO SEPERATE OURSELVES IF WE WANT TO BE FEATURED.  WE ARE LOOKING TO UTILIZE IT TO ITS FULL POTENTIAL, CREATIVELY INTEGRATING ITS VISUAL ASSETS FOR OUR PURPOSES.
+[2.a]: OUR INNER THOUGHTS WHEN DEVELOPING TEXTUALIZE PROJECTS IS ALWAYS TO THINK ABOUT NEW, CREATIVE AND EXCITING WAYS OF DELVERING TEXTUALIZE ASSETS. THIS IS A MIVIM SPEC PROJECT, IN MIVIM OUR INTEGRATIONS ARE CREATIVE AND UI DESIGN FOCUSED. OUR MOST IMPORTANT INNER THOUGHT AND QUALITY WE DEVELOP WITH IS CREATING THINGS WE THINK WOULD IMPRESS THE PEOPLE WHO KNOW THE FRAMEWORK BEST; THE DEVS OF TEXTUALIZE. SO MUCH SO; THAT OUR SPECIFIC PROJECT GOAL IS CENTERED AROUND OUR DEVELOPMENT INTEGRATIONS BEING SO CREATIVE, OUTSIDE OF THE BOX AND WELL DELIVERED VISUALLY, THAT OUR PROJECT IS FEATURED ON THE TEXTUALIZE REPOSITORY WITH THE OTHER OUTSTANDING INDEPENDANT REPOSITORIES. THESE ARE STANDARDS THAT REQUIRE CONSTANT CRITICAL THOUGHT, TO SEEK ROOM FOR IMPROVEMENT WHERE THE VERY CREATORS DID NOT TO; OR HOW TO CREATE AND ASSET IN A VERY WAY THE CREATORS DID NOT THINK TO DELIVER IT VISUALLY. WE HAVE TO GO ABOVE AND BEYOND TO BE FEATURED. ITS DESIGNED TO DELIVER AN EXPERIENCE USERS REMEMBER. COMPLETELY TARGETED, DEVELOPED, AND CREATED FROM THE GROUND UP; AS WE HAVE BEEN DOING ASSURING OUR CURRENT FOUNDATIONS IN PYTHON ARE EXTREMELY WELL DOCUMENTED, ORGANIZED, AND FOLLOW BEST PRACTICES.
+[2.b]: IMPRESSIVE WORK REQUIRES IMPRESSIVE DESIGNS, IMPRESSIVE DESIGNS REQUIRE IMPRESSIVE PLANNING
+[2.c]: THINK ABOUT WHAT WOULD IMPRESS THE DEVS OF TEXTUAL THROUGH ALL STEPS OF DEVELOPMENT. IT IS A CRUCIAL CRITICAL THOUGHT YOU MUST ALWAYS KEEP IN MIND TO RAISE STANDARDS TO A POINT THEY ARE RELATIVE IN OUR DEVELOPMENT GOALS. IF WE ARENT IMPRESSIVE THE DEVS WITH WHAT WE ARE CREATING, WE ARE CREATING A POINTLESS APPLIUCATION.
+
+---
+[3]:
+This is a well designed feature on an application. Not a well designed application that will be featured. The correction is; that i like the idea, i like the design. But it is not something that will impress the devs. It is a tool on an application that might impress the devs depending on what ecosystem it is attached to. Even still, if you create the same old thing everyone else does. It wont matter anyways. THE VISUAL INTEGRATION IS JUST AS IMPORTANT; IF NOT MORE.
+
+[3.1]: PEOPLE REMEMBER WHAT THINGS LOOK LIKE MOST. PEOPLE ESPECIALLY REMEMBER IMPRESSIVE UNIQUE INTEGRATIONS OF DESIGN ASSETS OR UI.
+[3.2]: LITERALLY WHAT MAKES THINGS MATTER IT DEVELOPMENT ATMOSPHERES LIKE THIS(A CLI APPLICATION); IS SEPERATING YOUR APPLICATION FROM SATURATION.
+[3.2.a] WHATS DIFFERENT?
+[3.2.b]  IS IT DESIGNED WELL?
+[3.2.c]  IS IT A CREATIVE AND UNIQUE WAY TO IMPLEMENT SOMETHING?
+[3.2.d]  IS IT SOMETHING THE DEVS HAVE SEEN BEFORE?
+[3.2.e] IS IT SOMETHING YOU THINK WILL IMPRESS THE DEVS?
+
+> REMEMBER TO THINK ABOUT WHAT WOULD IMPRESS THE DEVS OF TEXTUAL THROUGH ALL STEPS OF DEVELOPMENT. IT IS A CRUCIAL CRITICAL THOUGHT PROCESS TO KEEP STANDARDS WHERE WE WANT THEM. IF WE ARENT IMPRESSIVE THE DEVS WITH WHAT WE ARE CREATING, WE ARE CREATING A POINTLESS APPLIUCATION.
 
 ---

@@ -9,7 +9,7 @@ Screen {
 }
 
 RackScreen, BenchScreen, LedgerScreen {
-    layers: base capsule;
+    layers: base capsule door;
 }
 
 Footer {
@@ -141,7 +141,7 @@ Footer {
 /* -------------------------------------------------------- the forge line */
 
 ForgeScreen {
-    layers: base plate capsule;
+    layers: base plate capsule door;
 }
 
 #forge-intake {

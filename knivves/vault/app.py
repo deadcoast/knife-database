@@ -15,6 +15,7 @@ from textual.screen import Screen
 from ..models import KnifeView, knife_views
 from ..store import add_knife, load_database, save_database
 from .bench import BenchScreen
+from .door import BOOT_HOLD, open_door
 from .forge import ForgeScreen
 from .ledger import LedgerScreen
 from .rack import RackScreen
@@ -91,7 +92,12 @@ class KnivvesVault(App):
 
     def on_mount(self) -> None:
         self.push_screen("rack")
+        open_door(self.get_screen("rack"), brand="KNIVVES  ╱╱  VAULT", hold=BOOT_HOLD)
 
     def action_room(self, name: str) -> None:
-        if self.screen != self.SCREENS.get(name):
-            self.switch_screen(name)
+        screen_type = self.SCREENS.get(name)
+        if screen_type is None or isinstance(self.screen, screen_type):
+            return
+        incoming = self.get_screen(name)
+        self.switch_screen(name)
+        open_door(incoming)

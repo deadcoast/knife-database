@@ -158,6 +158,11 @@ class ForgeScreen(TipsMixin, Screen):
         self._plate_x = 4
         self.call_after_refresh(self._settle)
 
+    def on_resize(self, event) -> None:
+        """A resized terminal re-seats the plate — it must never clip."""
+        if getattr(self, "_plate_x", None) is not None:
+            self.call_after_refresh(self._settle)
+
     def _rules(self) -> list[str]:
         rule = self.vault.db.get("workflow_rules", {}).get("canadian_online_retailer_rule", {})
         return list(rule.get("only_reject_or_fail_if_clear_prohibited_mechanism", []))

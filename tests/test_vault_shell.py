@@ -60,6 +60,14 @@ async def test_shell() -> None:
     async with app.run_test(size=(170, 45)) as pilot:
         await pilot.pause()
 
+        # cold boot: the vault door holds the brand, then opens into the rack
+        from knivves.vault.door import VaultDoor
+
+        assert app.screen.query(VaultDoor), "boot door missing"
+        await asyncio.sleep(1.7)
+        await pilot.pause()
+        assert not app.screen.query(VaultDoor), "boot door failed to open"
+
         # boots into the rack with the full collection
         assert isinstance(app.screen, RackScreen), f"boot screen: {app.screen}"
         table = app.screen.query_one(DataTable)
@@ -151,6 +159,9 @@ async def test_shell() -> None:
         # a tip with no extended content shows no ❯ mark
         await pilot.press("2")
         await pilot.pause()
+        assert app.screen.query(VaultDoor), "room door missing on arrival"
+        await asyncio.sleep(0.8)
+        await pilot.pause()
         forge_rail = app.screen.query_one(TipRail)
         await pilot.hover("#st-extract", offset=(4, 2))
         await pilot.pause()
@@ -223,6 +234,7 @@ async def test_shell() -> None:
 
         # ---- classification: the vault judges, the database records ----
         await pilot.press("1")
+        await asyncio.sleep(0.8)
         await pilot.pause()
         await pilot.click(DataTable, offset=(4, 1))  # open first row's plate
         await pilot.pause()
@@ -253,6 +265,7 @@ async def test_shell() -> None:
         try:
             scrape_mod.fetch_listing = _clean_listing
             await pilot.press("2")
+            await asyncio.sleep(0.8)
             await pilot.pause()
             intake = app.screen.query_one("#forge-intake", Input)
             intake.focus()
