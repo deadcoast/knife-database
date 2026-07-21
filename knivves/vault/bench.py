@@ -31,6 +31,7 @@ if TYPE_CHECKING:
     from .app import KnivvesVault
 from . import laws
 from .masthead import Masthead
+from .surfaces import Engraving
 from .plate import Plate
 from .tips import ROOM_KEY, Tip, TipCapsule, TipRail, TipsMixin
 
@@ -79,7 +80,7 @@ class BenchScreen(TipsMixin, Screen):
         with Horizontal(id="bench"):
             yield Plate(id="bench-left", classes="bench-plate")
             with Vertical(id="calipers"):
-                yield Static("CALIPERS", classes="station-name")
+                yield Engraving("calipers")
                 yield Static("", id="calipers-read", classes="station-body")
             yield Plate(id="bench-right", classes="bench-plate")
             yield TipRail()

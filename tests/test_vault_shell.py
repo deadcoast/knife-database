@@ -90,25 +90,30 @@ async def test_shell() -> None:
         await pilot.pause()
         assert 0 < table.row_count < n, f"filtered {table.row_count}"
 
-        # row click: the plate travels in, carrying the record
+        # row click: the plate travels in, carrying the record; the rack recedes
         await pilot.click(DataTable, offset=(4, 1))
+        await asyncio.sleep(0.5)
         await pilot.pause()
         plate = app.screen.query_one(Plate)
         assert plate.has_class("open"), "plate did not open"
+        body_offset = app.screen.query_one("#rack-body").styles.offset
+        assert int(body_offset.x.value) == -2, f"depth nudge missing: {body_offset}"
 
-        # escape sends the plate away and clears search
+        # escape sends the plate away and clears search; the rack steps forward
         await pilot.press("escape")
         await asyncio.sleep(0.6)
         await pilot.pause()
         assert not plate.has_class("open")
         assert app.screen.query_one("#rack-search", Input).value == ""
+        body_offset = app.screen.query_one("#rack-body").styles.offset
+        assert int(body_offset.x.value) == 0, f"depth did not return: {body_offset}"
 
         # ---- pass A polish: feedback, reach, zero-state ----
         search = app.screen.query_one("#rack-search", Input)
         assert str(search.border_subtitle).endswith(f"/ {n}"), f"subtitle: {search.border_subtitle}"
         # sort readout on the masthead
         from knivves.vault.masthead import Masthead
-        context = str(app.screen.query_one(Masthead).query_one(".masthead--context", Static).render())
+        context = app.screen.query_one(Masthead).context
         assert "sorted by brand" in context, f"context: {context}"
         # slash reaches the search from the table
         app.screen.query_one(DataTable).focus()
@@ -184,9 +189,7 @@ async def test_shell() -> None:
         assert "AUTOMATIC / SWITCHBLADE" in gates_text, f"gates: {gates_text[:120]}"
         assert "GATES 7/7" in gates_text, f"gate counter missing: {gates_text[:60]}"
         from knivves.vault.masthead import Masthead as MastheadWidget
-        forge_context = str(
-            app.screen.query_one(MastheadWidget).query_one(".masthead--context", Static).render()
-        )
+        forge_context = app.screen.query_one(MastheadWidget).context
         assert "line idle" in forge_context, f"context: {forge_context}"
         # the traveling plate never clips off screen, whatever its height
         from knivves.vault.plate import Plate as PlateWidget
@@ -219,7 +222,7 @@ async def test_shell() -> None:
         assert "Δ" in calipers or "incomparable" in calipers, f"calipers: {calipers[:80]}"
         assert app.screen._seated == [k.id for k in app.screen.slots], "seating not tracked"
         from knivves.vault.masthead import Masthead as MH
-        bench_ctx = str(app.screen.query_one(MH).query_one(".masthead--context", Static).render())
+        bench_ctx = app.screen.query_one(MH).context
         assert " vs " in bench_ctx, f"bench state: {bench_ctx}"
         await pilot.press("1")
         await pilot.pause()
@@ -347,7 +350,7 @@ async def test_shell() -> None:
             assert "survey complete" in movers_text, f"movers: {movers_text[:100]}"
             assert "▼" in movers_text, "no downward movers shown"
             # pass D: survey lifecycle reads on the masthead; line panel shows distance
-            ledger_ctx = str(app.screen.query_one(MH).query_one(".masthead--context", Static).render())
+            ledger_ctx = app.screen.query_one(MH).context
             assert "survey complete" in ledger_ctx, f"ledger context: {ledger_ctx}"
             line_text = str(app.screen.query_one("#line-read", Static).render())
             assert "Δ$" in line_text or "nothing near the line" in line_text, f"line: {line_text[:80]}"

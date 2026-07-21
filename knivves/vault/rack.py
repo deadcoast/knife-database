@@ -197,6 +197,8 @@ class RackScreen(TipsMixin, Screen):
             plate.add_class("open")
             plate.styles.offset = (PLATE_HIDDEN_X, 0)
         laws.travel(plate, 0, 0, duration=0.35)
+        # depth: the rack recedes as the plate arrives
+        laws.travel(self.query_one("#rack-body"), -2, 0, duration=0.35)
 
     def _judgment_target(self) -> str | None:
         """The open plate's knife if one is open, else the highlighted row."""
@@ -249,6 +251,8 @@ class RackScreen(TipsMixin, Screen):
         if plate.has_class("open"):
             laws.travel(plate, PLATE_HIDDEN_X, 0, duration=0.35)
             self.set_timer(0.4, lambda: plate.remove_class("open"))
+            # the rack steps forward again as the plate departs
+            laws.travel(self.query_one("#rack-body"), 0, 0, duration=0.35)
         search = self.query_one("#rack-search", Input)
         if search.value:
             search.value = ""

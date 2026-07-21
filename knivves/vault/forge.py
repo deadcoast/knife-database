@@ -28,6 +28,7 @@ from .. import scrape
 from ..store import make_knife_id
 from . import laws
 from .masthead import Masthead
+from .surfaces import Engraving
 from .plate import Plate
 from .tips import ROOM_KEY, Tip, TipCapsule, TipRail, TipsMixin
 
@@ -99,13 +100,13 @@ class ForgeScreen(TipsMixin, Screen):
         )
         with Horizontal(id="forge-line"):
             with Vertical(classes="station", id="st-extract"):
-                yield Static("EXTRACT", classes="station-name")
+                yield Engraving("extract")
                 yield Static("", id="extract-log", classes="station-body")
             with Vertical(classes="station", id="st-legal"):
-                yield Static("LEGAL SCREEN", classes="station-name")
+                yield Engraving("legal screen")
                 yield Static("", id="gates", classes="station-body")
             with Vertical(classes="station", id="st-vault"):
-                yield Static("VAULT", classes="station-name")
+                yield Engraving("vault")
                 yield Static("", id="filed", classes="station-body")
             yield TipRail()
         yield Plate(id="forge-plate")

@@ -27,6 +27,7 @@ from ..store import save_database
 from . import laws
 from .gauges import GradientBars, PriceScale
 from .masthead import Masthead
+from .surfaces import Engraving
 from .tips import ROOM_KEY, Tip, TipCapsule, TipRail, TipsMixin
 
 if TYPE_CHECKING:
@@ -71,15 +72,15 @@ class LedgerScreen(TipsMixin, Screen):
         yield Masthead("THE LEDGER")
         with Horizontal(id="ledger"):
             with Vertical(classes="station", id="ledger-valuation"):
-                yield Static("VALUATION", classes="station-name")
+                yield Engraving("valuation")
                 yield Static("", id="valuation-read", classes="station-body")
                 yield PriceScale(id="price-scale")
                 yield GradientBars(id="price-bars")
             with Vertical(classes="station", id="ledger-line"):
-                yield Static("THE $150 LINE", classes="station-name")
+                yield Engraving("the $150 line")
                 yield Static("", id="line-read", classes="station-body")
             with Vertical(classes="station", id="ledger-movers"):
-                yield Static("MARKET SURVEY", classes="station-name")
+                yield Engraving("market survey")
                 yield Static("", id="movers-read", classes="station-body")
             yield TipRail()
         yield TipCapsule()

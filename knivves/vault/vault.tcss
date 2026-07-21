@@ -21,7 +21,6 @@ Footer {
 /* ------------------------------------------------------------- the rack */
 
 #rack-search {
-    dock: top;
     height: 3;
     background: #14171a;
     border: tall #31363c;
@@ -39,6 +38,8 @@ Footer {
 
 #rack-body {
     height: 1fr;
+    /* reserve the nudge's travel room so the depth cue never clips data */
+    padding-left: 2;
 }
 
 /* The table hugs its columns so the tip rail sits directly beside the
@@ -146,7 +147,6 @@ ForgeScreen {
 }
 
 #forge-intake {
-    dock: top;
     height: 3;
     background: #14171a;
     border: tall #31363c;
