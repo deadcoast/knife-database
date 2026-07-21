@@ -336,7 +336,10 @@ async def test_shell() -> None:
             await pilot.pause()
             assert isinstance(app.screen, LedgerScreen), f"screen: {app.screen}"
             valuation = str(app.screen.query_one("#valuation-read", Static).render())
-            assert "value" in valuation.lower() and "█" in valuation, f"valuation: {valuation[:80]}"
+            assert "value" in valuation.lower(), f"valuation: {valuation[:80]}"
+            from knivves.vault.gauges import GradientBars, PriceScale
+            assert app.screen.query_one(PriceScale)._prices, "price scale empty"
+            assert sum(c for _, c in app.screen.query_one(GradientBars)._buckets) > 0, "bars empty"
             await pilot.press("s")
             await asyncio.sleep(6.0)
             await pilot.pause()
@@ -347,7 +350,7 @@ async def test_shell() -> None:
             ledger_ctx = str(app.screen.query_one(MH).query_one(".masthead--context", Static).render())
             assert "survey complete" in ledger_ctx, f"ledger context: {ledger_ctx}"
             line_text = str(app.screen.query_one("#line-read", Static).render())
-            assert "to line" in line_text or "nothing near the line" in line_text, f"line: {line_text[:80]}"
+            assert "Δ$" in line_text or "nothing near the line" in line_text, f"line: {line_text[:80]}"
             on_disk = json.loads(tmp_db.read_text(encoding="utf-8"))
             surveyed = [k for k in on_disk["knives"] if len(k.get("price_history") or []) >= 2]
             assert len(surveyed) > 50, f"history recorded on only {len(surveyed)}"

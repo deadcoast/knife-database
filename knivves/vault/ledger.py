@@ -25,6 +25,7 @@ from .. import ledger, scrape
 from ..models import KnifeView, knife_views
 from ..store import save_database
 from . import laws
+from .gauges import GradientBars, PriceScale
 from .masthead import Masthead
 from .tips import ROOM_KEY, Tip, TipCapsule, TipRail, TipsMixin
 
@@ -72,6 +73,8 @@ class LedgerScreen(TipsMixin, Screen):
             with Vertical(classes="station", id="ledger-valuation"):
                 yield Static("VALUATION", classes="station-name")
                 yield Static("", id="valuation-read", classes="station-body")
+                yield PriceScale(id="price-scale")
+                yield GradientBars(id="price-bars")
             with Vertical(classes="station", id="ledger-line"):
                 yield Static("THE $150 LINE", classes="station-name")
                 yield Static("", id="line-read", classes="station-body")
@@ -120,33 +123,31 @@ class LedgerScreen(TipsMixin, Screen):
         ):
             text.append_text(laws.field(label, value, style))
             text.append("\n")
-        text.append("\n")
-        buckets = ledger.price_buckets(knives)
-        top = max((count for _, count in buckets), default=1) or 1
-        for label, count in buckets:
-            text.append(f"{label:<10}", style=laws.STEEL_DIM)
-            text.append("█" * max(1 if count else 0, round(count / top * BAR_WIDTH)), style=laws.STEEL_MID)
-            text.append(f" {count:>3}\n", style=laws.STEEL_DIM)
         self.query_one("#valuation-read", Static).update(text)
+        prices = [k.price for k in knives if k.price is not None]
+        self.query_one(PriceScale).update_scale(prices, ledger.AFFORDABLE_THRESHOLD_CAD)
+        self.query_one(GradientBars).update_bars(ledger.price_buckets(knives))
 
     def _read_line(self) -> None:
         near = ledger.near_the_line(self.vault.knives)
         text = Text()
         text.append(
-            f"the affordable rule re-tags at ${ledger.AFFORDABLE_THRESHOLD_CAD:,.0f} —\n"
-            f"these sit within ${ledger.NEAR_LINE_BAND_CAD:,.0f} of it:\n\n",
+            f"the rule re-tags at ${ledger.AFFORDABLE_THRESHOLD_CAD:,.0f} —\n"
+            f"within ${ledger.NEAR_LINE_BAND_CAD:,.0f} of the line:\n\n",
             style=laws.STEEL_DIM,
         )
         if not near:
             text.append("nothing near the line", style=laws.STEEL_DIM)
-        for knife in near[:10]:
+        for knife in near[:8]:
             price = knife.price or 0
             below = price < ledger.AFFORDABLE_THRESHOLD_CAD
             distance = abs(price - ledger.AFFORDABLE_THRESHOLD_CAD)
+            name = knife.display_name
+            name = name[:13] + "…" if len(name) > 14 else name
             text.append("▾ " if below else "▴ ", style=laws.PASS if below else laws.STEEL_MID)
-            text.append(f"{knife.display_name[:22]:<23}", style=laws.STEEL_BRIGHT)
-            text.append(f"{knife.price_label:>9}", style=laws.ACCENT)
-            text.append(f"  ${distance:,.0f} to line\n", style=laws.STEEL_DIM)
+            text.append(f"{name:<15}", style=laws.STEEL_BRIGHT)
+            text.append(f"{price:>7,.0f}", style=laws.ACCENT)
+            text.append(f" Δ${distance:,.0f}\n", style=laws.STEEL_DIM)
         self.query_one("#line-read", Static).update(text)
 
     def _idle_movers(self) -> None:
@@ -156,7 +157,10 @@ class LedgerScreen(TipsMixin, Screen):
             text.append("survey on record — press s to run a fresh one\n", style=laws.STEEL_DIM)
         else:
             text.append("no survey on record\n\n", style=laws.STEEL_DIM)
-            text.append("press s — the vault re-reads every live\nlisting and records what moved", style=laws.STEEL_DIM)
+            text.append(
+                "press s — the vault re-reads\nevery live listing and\nrecords what moved",
+                style=laws.STEEL_DIM,
+            )
         self.query_one("#movers-read", Static).update(text)
 
     # ------------------------------------------------------------- survey
@@ -234,7 +238,7 @@ class LedgerScreen(TipsMixin, Screen):
     ) -> Text:
         text = Text()
         text.append(f"surveying {i}/{total}\n", style=laws.ACCENT)
-        text.append(f"{knife.display_name[:34]}\n\n", style=laws.STEEL_MID)
+        text.append(f"{knife.display_name[:28]}\n\n", style=laws.STEEL_MID)
         text.append_text(self._movers_lines(movers, limit=8))
         text.append(f"\n{unchanged} unchanged · {unreachable} unreachable", style=laws.STEEL_DIM)
         return text
@@ -255,7 +259,9 @@ class LedgerScreen(TipsMixin, Screen):
         text = Text()
         for knife, delta in sorted(movers, key=lambda m: -abs(m[1]))[:limit]:
             down = delta < 0
+            name = knife.display_name
+            name = name[:17] + "…" if len(name) > 18 else name
             text.append("▼ " if down else "▲ ", style=laws.PASS if down else laws.FAIL)
-            text.append(f"{knife.display_name[:24]:<25}", style=laws.STEEL_BRIGHT)
+            text.append(f"{name:<19}", style=laws.STEEL_BRIGHT)
             text.append(f"{'-' if down else '+'}${abs(delta):,.2f}\n", style=laws.ACCENT)
         return text

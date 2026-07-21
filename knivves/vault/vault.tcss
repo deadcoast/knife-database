@@ -175,6 +175,7 @@ ForgeScreen {
     margin: 0 1;
     border: round #31363c;
     padding: 1 2;
+    overflow: hidden hidden;
 }
 
 .station-name {
