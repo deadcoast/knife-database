@@ -6,6 +6,7 @@
 Screen {
     background: #14171a;
     color: #c2cdd6;
+    overflow: hidden hidden;
 }
 
 RackScreen, BenchScreen, LedgerScreen {

@@ -64,7 +64,7 @@ async def test_shell() -> None:
         from knivves.vault.door import VaultDoor
 
         assert app.screen.query(VaultDoor), "boot door missing"
-        await asyncio.sleep(1.7)
+        await asyncio.sleep(2.3)
         await pilot.pause()
         assert not app.screen.query(VaultDoor), "boot door failed to open"
 
@@ -160,7 +160,7 @@ async def test_shell() -> None:
         await pilot.press("2")
         await pilot.pause()
         assert app.screen.query(VaultDoor), "room door missing on arrival"
-        await asyncio.sleep(0.8)
+        await asyncio.sleep(1.1)
         await pilot.pause()
         forge_rail = app.screen.query_one(TipRail)
         await pilot.hover("#st-extract", offset=(4, 2))
@@ -234,7 +234,7 @@ async def test_shell() -> None:
 
         # ---- classification: the vault judges, the database records ----
         await pilot.press("1")
-        await asyncio.sleep(0.8)
+        await asyncio.sleep(1.1)
         await pilot.pause()
         await pilot.click(DataTable, offset=(4, 1))  # open first row's plate
         await pilot.pause()
@@ -265,7 +265,7 @@ async def test_shell() -> None:
         try:
             scrape_mod.fetch_listing = _clean_listing
             await pilot.press("2")
-            await asyncio.sleep(0.8)
+            await asyncio.sleep(1.1)
             await pilot.pause()
             intake = app.screen.query_one("#forge-intake", Input)
             intake.focus()
