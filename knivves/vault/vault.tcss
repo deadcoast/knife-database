@@ -159,7 +159,6 @@ ForgeScreen {
 }
 
 #forge-line {
-    layer: base;
     height: 1fr;
     padding: 1 2;
 }

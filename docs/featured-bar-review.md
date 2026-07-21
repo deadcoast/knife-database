@@ -1,115 +1,87 @@
-# KNIVVES VAULT — Featured-Bar Review
+# KNIVVES VAULT — Featured-Bar Review (v2)
 
-Date: 2026-07-20 · Scope: the complete application, judged as one piece
-against the five questions of the MIVIM standard. Conducted as a critical
-walkthrough; defects found during the review were fixed in the same pass
-and are listed. Taste decisions are surfaced, not decided.
+Date: 2026-07-21 · Scope: the complete application after the escalation
+slate (Vault Door, Instrument Cluster, Machined Surfaces, Rack Depth).
+The v1 review is void — it graded a version the owner correctly ruled
+off-radar. Every claim below is evidence-based: this review was conducted
+by capturing the running app and examining the rendered frames
+(docs/media/room-*.svg are the review's own exhibits).
 
 ---
 
 ## Q1 — What's different?
 
-**Object permanence.** The Plate is one widget class with one visual
-identity across every room: stamped into existence on the Forge Line,
-docked in the Rack, seated on the Bench. No TUI in the Textual gallery
-treats records as persistent physical objects that travel between screens.
-This is enforced structurally (one class, `plate.py`), not by styling
-convention.
+Unchanged from v1 and still the spine: object permanence (one Plate class
+traveling every room), the self-researching database (live intake through
+executing legal gates), rules as living interface, the self-surveying
+market. What the escalations added is that these are now *delivered
+visually*, not just architecturally:
 
-**The database does its own research, visibly.** Paste a URL, watch the
-record get made: fields stamp as parsed, the legal gates execute the
-database's own rulebook against the listing text, a cleared record files
-into the real database. Ingestion rendered as a spatial production line
-with a moving record-object — not status text, not a spinner.
-
-**Rules as living interface.** The prohibited-mechanism rulebook and the
-$150 affordable rule are not settings — they are places in the app. Gates
-pass and slam; the $150 line shows every knife's exact distance to it;
-surveys re-tag line-crossers automatically. The user watches their own
-rules operate.
-
-**The vault surveys its own market.** One keypress re-reads every live
-listing, appends price history to every record, surfaces movers by
-magnitude, and reports its lifecycle on the masthead — cancellable, with
-partial observations honestly kept.
+- Rooms are **entered, not switched**: a machined vault door — drawn
+  steel leaves, bolt cascade, staged parting — plays on boot (with the
+  engraved brand) and on every arrival.
+- The Ledger reads on **drawn instruments**: the average price rides a
+  machined scale with the $150 rule cut into it in accent; the price
+  distribution is gradient-lit bars with sub-cell tips.
+- The chrome is **material**: the masthead is a single custom-rendered
+  surface (deterministic brushed grain with the chrome stamped in);
+  station headers are engravings — letterspaced caps over a bright rule.
+- The rack has **depth**: the collection recedes when a plate arrives.
 
 ## Q2 — Is it designed well?
 
-The house laws are code, not convention (`laws.py`): one palette, one
-field grammar, one motion law. Verified behaviors:
-
-- All four rooms carry the identical chrome: masthead with brand, room
-  name, live stats, and a room-state readout (sort · line state · bench
-  pairing · survey lifecycle).
-- Motion only ever means something moved: plates travel, replacements
-  visibly depart before successors arrive, seated objects never
-  re-animate, nothing fades or teleports.
-- Feedback for every action: live result counts, sort direction on the
-  chrome, gate counters, verdict recoloring on classification.
-- Honest states everywhere: designed zero-state in the Rack, fault/
-  duplicate/rejected line states in the Forge, "incomparable — missing
-  measurement" on the Bench, "survey stopped — observations kept" in the
-  Ledger. The app never pretends to know what the database doesn't.
-- Guidance that never chases the mouse: the tip rail sits beside the
-  data's last column (position asserted in tests), expandable tips earn
-  their ❯ mark, the capsule holds the depth.
+The house laws held through every escalation because they are code
+(`laws.py`): one palette, one field grammar, one motion law. Verified in
+the current captures: consistent chrome in all four rooms with live
+state readouts; motion only where meaning is; honest states everywhere;
+guidance in a reserved rail that never chases the mouse.
 
 ## Q3 — Creative and unique implementation?
 
-- The Forge Line's transit (the record as a traveling object through
-  executing legal gates) — the application's signature.
-- The calipers *take the measurement*: readings appear line by line when
-  a new pair forms, instantly when re-visiting a measured pair.
-- The tip rail/capsule system: a designed answer to tooltips that
-  respects the mouse and the layout.
-- The affordable rule as geography (the $150 line with distances).
+The custom-render inventory now includes: SteelLeaf (door), PriceScale,
+GradientBars, BrushedSteel/Engraving, plus the Plate/transit/calipers
+choreography. All draw their own cells; none are styled stock widgets.
 
 ## Q4 — Has it been seen before?
 
-The honest inventory: a themed DataTable with search is table stakes and
-claims nothing. Workers and streaming updates exist in dolphie and
-posting. What has no precedent in the gallery: the traveling record-
-object, the visible rulebook execution, and a personal database that
-re-surveys its own market with recorded history. The application's case
-rests on those three, and they are real.
+The honest inventory stands: themed tables and workers exist everywhere.
+No gallery project has: a record-object with cross-screen permanence, a
+compliance rulebook that executes visibly, a personal database that
+re-surveys its own market with recorded history — now wrapped in an
+identity (machined vault) rendered rather than described.
 
 ## Q5 — Would it impress the devs?
 
-The framework usage is the kind Textualize showcases: workers with
-cancellation and honest partial results, screen choreography through the
-animation system, custom widgets with co-located CSS, command palette
-integration, a Pilot test suite that drives real clicks/keys/hovers
-end-to-end against a throwaway database — including simulated-input
-assertions for layout laws (the plate can never clip; the rail must sit
-beside the data).
-
-**The gap this review names plainly:** the first five seconds land on the
-Rack — the most conventional room. The signature (the Forge) is one
-keypress away. Options, in order of restraint: lead the README with the
-Forge GIF so the first impression happens before install; or add a brief
-one-time boot reveal (the brand plate traveling into the masthead, ~1s,
-skippable). The second is a taste decision and is left to the owner.
-
----
+The framework depth is the kind Textualize showcases: six custom
+`render_line` widgets, staged worker choreography with honest
+cancellation, screen transitions built from primitives the framework
+doesn't ship, command palette integration, and a Pilot suite that
+asserts layout *laws* (the plate can never clip; the tip rail must sit
+beside the data; the depth nudge must return). The verification loop —
+headless frame capture examined before every judgment — is itself a
+development practice worth writing up in the README.
 
 ## Defects found and fixed during this review
 
-1. Forge plate position went stale on terminal resize while idle — now
-   re-seats on every resize (`on_resize` → settle).
+1. **Forge eclipse**: `#forge-line` carried an explicit `layer: base`
+   while the masthead and intake slot did not — the stations painted
+   over both. The line is now un-layered; verified restored in
+   room-forge.svg.
 
-## Known limits, documented honestly
+## Known gaps, honestly stated
 
-- Single-user, single-instance: two processes writing the database race;
-  last write wins (atomic file replace, no corruption).
-- Live intake supports two retailers (bladescanada.com, houseofknives.ca);
-  unsupported URLs fault cleanly at EXTRACT.
-- Price sparklines deliberately deferred until records carry ≥3
-  observations — two points is a line, not a trend.
-- With a plate open in the Rack, the tip rail is covered by the plate
-  (the record takes priority); tips return when the plate is dismissed.
+- The vault door was ruled "good enough to move on, revisit later" —
+  its mechanical fidelity has one more pass in it (seam detail, cadence).
+- With a plate open in the Rack, the CAD column's right edge sits under
+  the plate (standard drawer overlap; the plate border separates it).
+  An option exists to shed covered columns instead.
+- Long plate field values (SOURCE) wrap to a second line mid-grammar.
+- Sparklines remain deferred until records hold ≥3 observations.
+- Single-instance writes; two supported retailers; both documented.
 
 ## Verdict
 
-The application passes its own bar on capability and coherence. The
-remaining distance to "featured" is presentation: the repo page must
-carry the motion (GIF/SVGs), because the argument *is* the motion.
+The application now argues its own case on screen. The remaining
+distance to "featured" is entirely release engineering: the repo page
+must carry the motion — a transit GIF, the room exhibits, and a README
+written as the pitch. That is the next and final phase before submission.
