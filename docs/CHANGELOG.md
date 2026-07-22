@@ -1,5 +1,49 @@
 # CHANGELOG
 
+## 003 — v0.7.0 (2026-07-21) — KNIVVES VAULT
+
+The visual application. Built with Textual as one coherent machine —
+rooms behind a vault door, records as traveling objects, the database's
+own rules executing on screen.
+
+The building:
+
+- **The Rack** — sortable/searchable collection; plate slides in on
+  selection while the rack recedes (depth); `a`/`x`/`u` classification
+  writes the database live.
+- **The Forge Line** — live retailer intake: paste a URL, parsed fields
+  stamp the plate, the prohibited-mechanism rulebook executes as gates
+  (a hit rejects; nothing is written), cleared records file for real.
+  `r` replays a no-network demo transit.
+- **The Bench** — send knives from the rack with `b`; choreographed
+  arrivals (seated plates never re-animate; replacements depart first);
+  the calipers take the measurement line by line.
+- **The Ledger** — drawn instruments (price scale with the $150 rule cut
+  in accent; gradient histogram); `s` surveys every live listing,
+  appends price history, surfaces movers, re-tags line-crossers.
+
+The material:
+
+- Machined vault door on boot and every room switch (drawn steel leaves,
+  bolt cascade, staged parting; brand engraved on boot).
+- Single-widget brushed-steel masthead with stamped chrome and per-room
+  state readouts (sort · line state · bench pairing · survey lifecycle).
+- Engraved station headers; tip rail beside the data with ❯ expansion
+  capsules; command palette commands for rooms and the survey.
+- House laws as code (`laws.py`): one palette, one field grammar, one
+  motion law.
+
+Engineering:
+
+- Six custom `render_line` widgets; headless Pilot suite driving every
+  capability against a throwaway database, including layout-law
+  assertions; eyes-on frame-capture verification pipeline (the
+  `docs/media/` exhibits are its output).
+- Backend additions: `scrape.py` (listing parser), `ledger.py` (price
+  history, movers, the affordable-threshold rule), `price_history` on
+  records, `file_record`/`classify` operations.
+- Build fix: explicit setuptools package discovery; textual pinned.
+
 ## 002 — v0.5.0 (2026-07-18) — checkpoint release
 
 Database:
