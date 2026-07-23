@@ -214,6 +214,144 @@ def test_buylist_command_shows_cumulative() -> None:
     invoke("list")  # buylist window on the list page must not crash
 
 
+# ------------------------- the Research Desk (case 2026-07-23-research-desk)
+
+RESEARCHABLE_URL = "https://www.bladescanada.com/Kubey-Knives/Kubey-Vagabond-KU2101"
+
+
+def seed_gapped_record(rid: str = "kubey-vagabond") -> None:
+    """A record with open gaps and a supported listing URL to fill them from."""
+    db = load()
+    db["knives"].append({
+        "id": rid,
+        "brand": "Kubey",
+        "model": "Vagabond (KU2101)",
+        "user_classification": None,
+        "user_tags": [],
+        "mechanism": {
+            "opening_method": None, "lock_type": None, "assist_type": "unknown",
+            "blade_length": None, "blade_steel": None,
+            "clear_prohibited_mechanism_found": False,
+        },
+        "canadian_online_retailers": [{
+            "retailer": "Blades Canada / Warriors and Wonders",
+            "url": RESEARCHABLE_URL,
+            "listed_price_cad": None, "availability": "unknown",
+            "source_date": "2026-07-01",
+        }],
+        "listing_title": "", "notes": "", "source_input": "",
+    })
+    store.USER_DB.write_text(json.dumps(db), encoding="utf-8")
+
+
+def seed_complete_record(rid: str = "complete-knife") -> None:
+    db = load()
+    db["knives"].append({
+        "id": rid,
+        "brand": "Spyderco",
+        "model": "Manix 2 (C101)",
+        "user_classification": None,
+        "user_tags": [],
+        "mechanism": {
+            "opening_method": "Thumb Hole", "lock_type": "Ball Bearing Lock",
+            "assist_type": "manual", "blade_length": "3.37 in",
+            "blade_steel": "S30V", "clear_prohibited_mechanism_found": False,
+        },
+        "canadian_online_retailers": [{
+            "retailer": "Blades Canada / Warriors and Wonders",
+            "url": RESEARCHABLE_URL.replace("Vagabond-KU2101", "Manix"),
+            "listed_price_cad": 219.99, "availability": "in stock",
+            "source_date": "2026-07-01",
+        }],
+        "listing_title": "Spyderco Manix 2 Folding Knife, S30V", "notes": "",
+        "source_input": "",
+    })
+    store.USER_DB.write_text(json.dumps(db), encoding="utf-8")
+
+
+def test_research_dry_run_no_network() -> None:
+    # the dry run previews the docket and the unreachable shelf without a
+    # single fetch or write — the database stays byte-identical
+    use_tmp()
+    seed_gapped_record()
+    before = store.USER_DB.read_bytes()
+
+    import knivves.scrape as scrape_mod
+
+    def explode(url: str, timeout: float = 30.0):
+        raise AssertionError(f"network touched during dry run: {url}")
+
+    real_fetch = scrape_mod.fetch_listing
+    scrape_mod.fetch_listing = explode
+    try:
+        result = invoke("research", "--dry-run")
+    finally:
+        scrape_mod.fetch_listing = real_fetch
+
+    assert store.USER_DB.read_bytes() == before
+    assert "docket" in result.output.lower()
+    assert "kubey-vagabond" in result.output
+    # legacy-knife has gaps but no listing url — shelved, and said why
+    assert "legacy-knife" in result.output
+    assert "no listing url" in result.output
+
+
+def test_research_live_pass_fills_and_reports() -> None:
+    use_tmp()
+    seed_gapped_record()
+
+    import knivves.scrape as scrape_mod
+
+    def stub_listing(url: str, timeout: float = 30.0) -> scrape_mod.Listing:
+        return scrape_mod.Listing(
+            url=url, retailer="Blades Canada / Warriors and Wonders",
+            listing_title="Kubey Vagabond Folding Knife, 14C28N Satin, KU2101",
+            brand="Kubey", model="Vagabond (KU2101)",
+            price_cad=89.99, availability="in stock",
+            blade_steel="14C28N", lock_type="Liner Lock",
+            opening_method="Thumb Stud, Flipper", blade_length="3.1 in (79mm)",
+        )
+
+    real_fetch = scrape_mod.fetch_listing
+    scrape_mod.fetch_listing = stub_listing
+    try:
+        result = invoke("research")
+    finally:
+        scrape_mod.fetch_listing = real_fetch
+
+    assert "researching the unknowns" in result.output
+    assert "filled" in result.output.lower()
+    db = load()
+    record = next(k for k in db["knives"] if k["id"] == "kubey-vagabond")
+    assert record["mechanism"]["blade_steel"] == "14C28N"
+    assert record["canadian_online_retailers"][0]["listed_price_cad"] == 89.99
+    assert record["price_history"], "first price must seed history"
+    assert "affordable" in record["user_tags"]
+    assert record["research"]["filled"]["steel"] == "bladescanada.com"
+    # the unreachable record was not touched
+    legacy = next(k for k in db["knives"] if k["id"] == "legacy-knife")
+    assert "research" not in legacy
+
+
+def test_list_gaps_filter() -> None:
+    use_tmp()
+    seed_gapped_record()
+    seed_complete_record()
+    result = invoke("list", "--gaps", "-o", "ids")
+    ids = [line.strip() for line in result.output.splitlines() if line.strip()]
+    assert "kubey-vagabond" in ids
+    assert "legacy-knife" in ids
+    assert "complete-knife" not in ids
+
+
+def test_home_completeness_line() -> None:
+    use_tmp()
+    seed_gapped_record()
+    result = invoke()
+    assert "unresearched" in result.output
+    assert "knivves research" in result.output
+
+
 def main() -> None:
     failures = 0
     for name, fn in sorted(globals().items()):

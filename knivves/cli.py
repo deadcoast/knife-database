@@ -19,6 +19,7 @@ from rich.table import Table
 
 from . import buylist as buylist_mod
 from . import generations, ingest
+from . import research as research_mod
 from .models import KnifeView, new_brands
 from .render import (
     aggregate_table,
@@ -36,6 +37,8 @@ from .render import (
     knives_table,
     new_status_panel,
     raw_json_panel,
+    research_plan_panel,
+    research_summary_panel,
     stats_tables,
     summary_cards,
     survey_summary_panel,
@@ -125,10 +128,13 @@ def filter_knives(
     min_price: float | None = None,
     max_price: float | None = None,
     new: bool | None = None,
+    gaps: bool | None = None,
 ) -> list[KnifeView]:
     result = knives
     if new is not None:
         result = [k for k in result if k.is_new == new]
+    if gaps is not None:
+        result = [k for k in result if bool(research_mod.audit_record(k.raw)) == gaps]
     if query:
         q = query.lower().strip()
         result = [k for k in result if q in k.haystack()]
@@ -253,6 +259,7 @@ def run_list(
     min_price: float | None = None,
     max_price: float | None = None,
     new: bool | None = None,
+    gaps: bool | None = None,
     sort_by: str = "brand",
     reverse: bool = False,
     limit: int | None = None,
@@ -279,6 +286,7 @@ def run_list(
         min_price=min_price,
         max_price=max_price,
         new=new,
+        gaps=gaps,
     )
     filtered = sort_knives(filtered, sort_by, reverse=reverse)
     if limit is not None:
@@ -286,7 +294,7 @@ def run_list(
     if output in {"table", "compact"}:
         console.print(title())
         if summary:
-            console.print(filter_bar(current_filter_dict(query=query, classification=classification, tags=tags, status=status, canadian=canadian, brand=brand, steel=steel, lock=lock, assist=assist, retailer=retailer, flag=flag, min_price=min_price, max_price=max_price, new=new, sort=sort_by, reverse=reverse), len(filtered), len(all_knives)))
+            console.print(filter_bar(current_filter_dict(query=query, classification=classification, tags=tags, status=status, canadian=canadian, brand=brand, steel=steel, lock=lock, assist=assist, retailer=retailer, flag=flag, min_price=min_price, max_price=max_price, new=new, gaps=gaps, sort=sort_by, reverse=reverse), len(filtered), len(all_knives)))
         if summary:
             reserve = buylist_mod.buylist_views(db)
             if reserve:
@@ -324,6 +332,7 @@ def list_command(
     section: Annotated[Optional[list[str]], typer.Option("--section", "-section", help="Filter by SectionID. Repeat or comma-separate.")] = None,
     tag: Annotated[Optional[list[str]], typer.Option("--tag", "-t", help="Alias for --section.")] = None,
     new: Annotated[bool, typer.Option("--new", "-new", help="Only knives currently tagged NEW.")] = False,
+    gaps: Annotated[Optional[bool], typer.Option("--gaps/--no-gaps", help="Only records with unresearched gaps (or only complete ones).")] = None,
     status: Annotated[Optional[str], typer.Option("--status", "-s", help="Filter by research/acquisition status text.")] = None,
     canadian: Annotated[Optional[bool], typer.Option("--canadian/--not-canadian", help="Filter by saved Canadian retailer presence.")] = None,
     brand: Annotated[Optional[str], typer.Option("--brand", "-b", help="Filter by brand text.")] = None,
@@ -350,6 +359,7 @@ def list_command(
         classification=c,
         tags=parse_multi(section) + parse_multi(tag),
         new=True if new else None,
+        gaps=gaps,
         status=status,
         canadian=canadian,
         brand=brand,
@@ -841,6 +851,64 @@ def update(
         console.print(update_hold_panel(meta, generations.new_views_count(db)))
     else:
         console.print(update_report_panel(entry, meta["keep_generations"], generations.new_views_count(db)))
+    console.print(f"[dim]Backup: {backup}[/]")
+
+
+@app.command()
+def research(
+    dry_run: Annotated[bool, typer.Option("--dry-run", help="Preview the docket — fetch nothing, write nothing.")] = False,
+    only: Annotated[Optional[str], typer.Option("--id", help="Research a single record by knife ID.")] = None,
+    workers: Annotated[int, typer.Option("--workers", help="Concurrent listing reads.")] = SURVEY_WORKERS,
+) -> None:
+    """Work the research docket: fill each record's [bold #d7a455]empty[/] fields from its own listing. User data is never overwritten."""
+    from rich.progress import (
+        BarColumn,
+        MofNCompleteColumn,
+        Progress,
+        SpinnerColumn,
+        TextColumn,
+        TimeElapsedColumn,
+        TimeRemainingColumn,
+    )
+
+    from . import scrape
+
+    db = load_database()
+    plan = research_mod.run_research(db, dry_run=True, only_id=only)
+    if dry_run or not plan.planned:
+        console.print(research_plan_panel(plan))
+        return
+
+    progress = Progress(
+        SpinnerColumn(style="#d7a455"),
+        TextColumn("[bold]researching the unknowns[/]"),
+        BarColumn(bar_width=26, complete_style="#d7a455", finished_style="#d7a455"),
+        MofNCompleteColumn(),
+        TimeElapsedColumn(),
+        TimeRemainingColumn(),
+        TextColumn("[dim]{task.fields[status]}[/]"),
+        console=console,
+    )
+    try:
+        with progress:
+            task = progress.add_task("research", total=len(plan.planned), status="pulling the docket …")
+
+            def tick(knife_id: str) -> None:
+                progress.update(task, advance=1, status=knife_id[:38])
+
+            summary = research_mod.run_research(
+                db,
+                fetch=lambda url: scrape.fetch_listing(url, SURVEY_TIMEOUT),
+                only_id=only,
+                workers=workers,
+                progress=tick,
+            )
+    except KeyboardInterrupt:
+        console.print("\n[yellow]Research interrupted — nothing written.[/]")
+        raise typer.Exit(code=130)
+    backup = backup_database("before-research")
+    save_database(db)
+    console.print(research_summary_panel(summary, research_mod.audit_database(db)))
     console.print(f"[dim]Backup: {backup}[/]")
 
 

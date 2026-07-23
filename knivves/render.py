@@ -543,6 +543,59 @@ def survey_summary_panel(summary: dict[str, Any]) -> Panel:
     return Panel("\n".join(lines), title="market prices", border_style="#d7a455", box=box.HEAVY)
 
 
+def research_plan_panel(summary: Any) -> Panel:
+    """The research docket, previewed: what a pass would work, in order,
+    and the unreachable shelf with every reason said."""
+    body: list[Any] = []
+    if summary.planned:
+        table = Table(box=box.SIMPLE_HEAD, expand=True, pad_edge=False)
+        table.add_column("#", style=ACCENT, no_wrap=True, justify="right")
+        table.add_column("knife", style=STEEL_BRIGHT, ratio=3)
+        table.add_column("open gaps", style=STEEL_MID, ratio=3)
+        table.add_column("source", style=STEEL_DIM, ratio=2)
+        for rank, entry in enumerate(summary.planned, start=1):
+            marks = ""
+            if entry.buy_priority:
+                marks += f" [bold magenta]⬖{entry.buy_priority}[/]"
+            if entry.is_new:
+                marks += f" {NEW_CHIP}"
+            gaps = ", ".join(gap.field for gap in entry.gaps)
+            host = (entry.url or "").split("//")[-1].split("/")[0]
+            table.add_row(str(rank), escape(entry.knife_id) + marks, escape(gaps), escape(host))
+        body.append(table)
+    else:
+        body.append(Text("the vault is fully researched — no open gaps with a supported listing", style=PASS))
+    if summary.unreachable:
+        shelf = Text()
+        shelf.append(f"\nunreachable — {len(summary.unreachable)} record(s) kept on the shelf, not skipped silently\n", style=f"bold {STEEL_MID}")
+        for entry in summary.unreachable:
+            shelf.append(f"  {entry.knife_id}", style=STEEL_MID)
+            shelf.append(f"  {len(entry.gaps)} gap(s) — {entry.reason}\n", style=STEEL_DIM)
+        body.append(shelf)
+    return Panel(Group(*body), title=f"[{STEEL_MID}]the research docket[/]", border_style=ACCENT, box=box.HEAVY)
+
+
+def research_summary_panel(summary: Any, audit: Any) -> Panel:
+    """What one research pass actually did — every fill, failure, and
+    rulebook hit named. Honest gaps stay visible."""
+    counts = summary.field_counts
+    filled_total = sum(counts.values())
+    lines = [
+        f"[bold]{len(summary.reports)}[/] records researched · "
+        f"[{ACCENT}]{filled_total} fields filled[/] · "
+        f"{audit.complete}/{audit.records} records now complete",
+    ]
+    if counts:
+        lines.append("  " + " · ".join(f"{field} ×{n}" for field, n in sorted(counts.items(), key=lambda kv: -kv[1])))
+    if summary.unreachable:
+        lines.append(f"[dim]{len(summary.unreachable)} unreachable — no supported listing; still on the docket's shelf[/]")
+    for rid, error in summary.failed:
+        lines.append(f"[{FAIL}]✗ {escape(rid)}[/] [dim]{escape(error)}[/]")
+    for rid, rule in summary.rulebook_hits:
+        lines.append(f"[{FAIL}]⚑ {escape(rid)}[/] rulebook hit: [bold]{escape(rule)}[/] — reported only, the flag stays yours")
+    return Panel("\n".join(lines), title="knivves research", border_style=ACCENT, box=box.HEAVY)
+
+
 def update_hold_panel(meta_block: dict[str, Any], new_total: int) -> Panel:
     lines = [
         "[bold]The generation line holds[/] — nothing filed since the last update.",
@@ -611,6 +664,11 @@ def home_page(db: dict[str, Any], knives: list[KnifeView], buylist: list[tuple[i
     stats.append("   ·   ", style=STEEL_DIM)
     stats.append(f"{approved} approved", style=PASS)
     stats.append("   ·   ", style=STEEL_DIM)
+    from .research import audit_database
+
+    unresearched = audit_database(db).with_gaps
+    stats.append(f"{unresearched} unresearched", style=f"bold {ACCENT}" if unresearched else STEEL_DIM)
+    stats.append("   ·   ", style=STEEL_DIM)
     stats.append(f"avg ${avg:,.0f} CAD", style=ACCENT)
     gen = meta_block.get("generation")
     keep = meta_block.get("keep_generations")
@@ -635,6 +693,7 @@ def home_page(db: dict[str, Any], knives: list[KnifeView], buylist: list[tuple[i
     doors.add_row("knivves vault", f"the visual application — [{ACCENT}]1[/] Library · [{ACCENT}]2[/] Import Knives · [{ACCENT}]3[/] Compare Models · [{ACCENT}]4[/] Market Prices")
     doors.add_row("knivves add <file.md>", "ingest a markdown ledger — new knives file ★new")
     doors.add_row("knivves update", f"seal the fresh batch · [{ACCENT}]--prices[/] re-reads the market")
+    doors.add_row("knivves research", f"fill the vault's unknowns from their own listings · [{ACCENT}]--dry-run[/] previews the docket")
     doors.add_row("knivves new", "list what's fresh · -oneg / -twog / -threeg set the cache")
     doors.add_row("knivves buylist", "the acquisition ladder with running cost")
     doors.add_row("knivves list · search", "filter the collection — -new, -section, --steel, prices …")

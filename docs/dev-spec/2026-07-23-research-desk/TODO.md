@@ -35,7 +35,7 @@ Case: `2026-07-23-research-desk` · Design: [design.md](design.md) · Hub: [requ
 
 ### T2 — the CLI surfaces
 
-- [ ] **T2** Wire the pass into the CLI: the `research` command
+- [x] **T2** Wire the pass into the CLI: the `research` command
   (concurrent docket pass, live "researching the unknowns" progress,
   per-field summary, `--dry-run`, `--id`), `list --gaps`, and the home
   page completeness line with the Research door listed.
@@ -99,6 +99,9 @@ noted here as TODOs the moment they are seen. They never block the
 checkpoint; they are triaged when it fires — promoted to the next case,
 or recorded and closed with this one. -->
 
+- [ ] TA-3 — `list` grew `--gaps/--no-gaps` without the house single-dash
+  alias (`-new`, `-section` have one) · seen while wiring T2 — decide the
+  alias convention for paired bool options.
 - [ ] TA-1 — CHANGELOG entries 001/002 still carry dead sandbox
   download links (`sandbox:/mnt/data/…`) · seen while reviewing the
   living record to open this case — candidates for an annotated tidy,

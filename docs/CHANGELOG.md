@@ -21,6 +21,17 @@ The vault researches its own unknowns. Case:
 - **One rulebook table** — the legal-screen keyword table
   (`RULE_KEYWORDS`) moved to its backend home in `research.py`; the
   Forge Line imports it. Same words, one source of truth.
+- **`knivves research`** — the CLI pass: concurrent docket reads with
+  live "researching the unknowns" progress, then a summary naming every
+  fill by kind, every unreachable record with its reason, every fetch
+  failure, and every rulebook hit (reported only — the flag stays the
+  user's). `--dry-run` prints the docket and the unreachable shelf with
+  zero fetches and zero writes; `--id` narrows the pass to one record.
+  Interrupting writes nothing; a completed pass backs up first.
+- **The unknowns, visible** — the home page counts `N unresearched` in
+  its stats line and lists the `knivves research` door;
+  `knivves list --gaps` filters to records with open gaps
+  (`--no-gaps` inverts to only complete ones).
 
 ## 005 — v0.9.0 (2026-07-23) — PLAIN WORDS ON THE DOORS
 
