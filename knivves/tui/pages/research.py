@@ -21,14 +21,17 @@ replays a deterministic no-network demo; the map never lies during it
 from __future__ import annotations
 
 import asyncio
-from typing import TYPE_CHECKING, cast
+from functools import partial
+from typing import TYPE_CHECKING, Callable, cast
 
 from rich.segment import Segment
 from rich.style import Style
 from rich.text import Text
+from textual import events
 from textual.app import ComposeResult
 from textual.binding import Binding
 from textual.containers import Horizontal, Vertical
+from textual.reactive import reactive
 from textual.screen import Screen
 from textual.strip import Strip
 from textual.widget import Widget
@@ -98,12 +101,17 @@ class UnknownsMap(Widget):
 
     LABEL_W = 7
 
+    scan = reactive(-1.0)  # IDLE shimmer position across the field; -1 = at rest
+
     def __init__(self, **kwargs) -> None:
         super().__init__(**kwargs)
         self._columns: list[tuple[str, set[str]]] = []
         self._index: dict[str, int] = {}
         self._wake: set[tuple[str, int]] = set()
         self._working: str | None = None
+        self._reveal: float | None = None
+        self._spotlight: str | None = None
+        self._idle_timer = None
 
     # ------------------------------------------------------------------ api
 
@@ -133,6 +141,65 @@ class UnknownsMap(Widget):
     def mark_working(self, knife_id: str | None) -> None:
         self._working = knife_id
         self.refresh()
+
+    # ---------------------------------------------------- REVEAL: power-on
+
+    @property
+    def revealing(self) -> bool:
+        return self._reveal is not None
+
+    def begin_reveal(self) -> None:
+        """The instrument powers on: the field starts dark."""
+        self._reveal = 0.0
+        self.refresh()
+
+    def reveal_step(self, fraction: float) -> None:
+        """Columns energize left to right; the gauge sweeps with them.
+        Only truth is dramatized — a column, once lit, shows its real state."""
+        self._reveal = min(fraction, 1.0)
+        self.refresh()
+
+    def end_reveal(self) -> None:
+        self._reveal = None
+        self.refresh()
+
+    # -------------------------------------------------- IDLE: the scan breath
+
+    def start_idle(self) -> None:
+        """Ambient life on the long cadence — felt more than seen. Stands
+        down by itself while the instrument reveals or a pass works."""
+        if self._idle_timer is None:
+            self._idle_timer = self.set_interval(laws.IDLE_CADENCE, self._breathe)
+
+    def _breathe(self) -> None:
+        if self._working is not None or self._reveal is not None or not self._columns:
+            return
+        self.scan = 0.0
+        self.animate("scan", value=1.0, duration=laws.IDLE_STEP, easing=laws.EASING,
+                     on_complete=self._scan_done)
+
+    def _scan_done(self) -> None:
+        self.scan = -1.0
+
+    # ------------------------------------------------- CUE: the spotlight
+
+    def spotlight(self, knife_id: str | None) -> None:
+        """A docket card under the hand lights its column (and back)."""
+        if knife_id != self._spotlight:
+            self._spotlight = knife_id
+            self.refresh()
+
+    def on_mouse_move(self, event: events.MouseMove) -> None:
+        idx = int(event.offset.x) - self.LABEL_W
+        knife_id = self._columns[idx][0] if 0 <= idx < len(self._columns) else None
+        hook = getattr(self.screen, "spotlight", None)
+        if callable(hook):
+            hook(knife_id)
+
+    def on_leave(self, event: events.Leave) -> None:
+        hook = getattr(self.screen, "spotlight", None)
+        if callable(hook):
+            hook(None)
 
     def mark_filled(self, knife_id: str, field_key: str) -> None:
         """A fact landed: the socket lights and joins the amber wake."""
@@ -169,6 +236,8 @@ class UnknownsMap(Widget):
     def _gauge_line(self, width: int) -> Strip:
         total = self.records
         done = self.complete
+        if self._reveal is not None:
+            done = int(done * self._reveal)
         fraction = done / total if total else 0.0
         label = f"COMPLETE {done}/{total} "
         pct = f" {fraction * 100:.0f}%"
@@ -192,34 +261,65 @@ class UnknownsMap(Widget):
     def _field_line(self, width: int, row: int) -> Strip:
         label, keys = FIELD_ROWS[row]
         shown = min(len(self._columns), width - self.LABEL_W)
+        energized = shown if self._reveal is None else int(shown * self._reveal)
+        scan_col = int(shown * self.scan) if 0.0 <= self.scan <= 1.0 else None
         segments = [Segment(f"{label:>6} ", Style(color=laws.STEEL_DIM))]
         for col in range(shown):
             knife_id, missing = self._columns[col]
+            if col >= energized:
+                # not yet energized — the power-on draws the field in
+                segments.append(Segment(" "))
+                continue
+            spotlit = knife_id == self._spotlight
             if (knife_id, row) in self._wake:
                 segments.append(Segment("▪", Style(color=laws.ACCENT, bold=True)))
             elif keys & missing:
-                dark = laws.ACCENT if knife_id == self._working else laws.EDGE_BRIGHT
-                segments.append(Segment("·", Style(color=dark)))
+                if knife_id == self._working:
+                    tone = laws.ACCENT
+                elif spotlit:
+                    tone = laws.STEEL_BRIGHT
+                else:
+                    tone = laws.EDGE_BRIGHT
+                segments.append(Segment("·", Style(color=tone, bold=spotlit)))
             else:
-                tone = laws.ACCENT if knife_id == self._working else _lerp(col / max(shown - 1, 1))
-                segments.append(Segment("▪", Style(color=tone)))
+                if knife_id == self._working:
+                    tone = laws.ACCENT
+                elif spotlit:
+                    tone = laws.STEEL_BRIGHT
+                elif scan_col is not None and abs(col - scan_col) <= 1:
+                    # the shimmer catches only what exists — lit dots gleam
+                    tone = laws.STEEL_BRIGHT
+                else:
+                    tone = _lerp(col / max(shown - 1, 1))
+                segments.append(Segment("▪", Style(color=tone, bold=spotlit)))
         return Strip(segments)
 
     def _rail_line(self, width: int) -> Strip:
         shown = min(len(self._columns), width - self.LABEL_W)
+        energized = shown if self._reveal is None else int(shown * self._reveal)
         cells = [" "] * width
         styles = [Style(color=laws.STEEL_DIM)] * width
         hidden = len(self._columns) - shown
-        note = f"1 column = 1 knife · dark socket = unknown{f' · +{hidden} beyond the edge' if hidden > 0 else ''}"
-        start = max(self.LABEL_W, width - len(note) - 1)
-        for i, ch in enumerate(note):
-            x = start + i
-            if x < width:
-                cells[x] = ch
-        for col in range(0, shown, 25):
+        if self._reveal is None:
+            note = f"1 column = 1 knife · dark socket = unknown{f' · +{hidden} beyond the edge' if hidden > 0 else ''}"
+            start = max(self.LABEL_W, width - len(note) - 1)
+            for i, ch in enumerate(note):
+                x = start + i
+                if x < width:
+                    cells[x] = ch
+        else:
+            start = width
+        # the scale ticks ride the power-on wavefront
+        for col in range(0, energized, 25):
             x = self.LABEL_W + col
             if x < start - 1:
                 cells[x] = "╹"
+        if self._spotlight is not None and self._working is None:
+            col = self._index.get(self._spotlight)
+            if col is not None and col < shown:
+                x = self.LABEL_W + col
+                cells[x] = "▴"
+                styles[x] = Style(color=laws.STEEL_BRIGHT, bold=True)
         if self._working is not None:
             col = self._index.get(self._working)
             if col is not None and col < shown:
@@ -227,6 +327,25 @@ class UnknownsMap(Widget):
                 cells[x] = "▲"
                 styles[x] = Style(color=laws.ACCENT, bold=True)
         return Strip([Segment(ch, style) for ch, style in zip(cells, styles)])
+
+
+class DocketCard(Static):
+    """One tab of the card file. Under the hand it lights its own column
+    on the unknowns map — the desk is one instrument, not two panels."""
+
+    def __init__(self, knife_id: str, **kwargs) -> None:
+        super().__init__(**kwargs)
+        self.knife_id = knife_id
+
+    def on_enter(self, event: events.Enter) -> None:
+        hook = getattr(self.screen, "spotlight", None)
+        if callable(hook):
+            hook(self.knife_id)
+
+    def on_leave(self, event: events.Leave) -> None:
+        hook = getattr(self.screen, "spotlight", None)
+        if callable(hook):
+            hook(None)
 
 
 class ResearchScreen(TipsMixin, Screen):
@@ -269,7 +388,7 @@ class ResearchScreen(TipsMixin, Screen):
         with Horizontal(id="desk-line"):
             with Vertical(classes="station", id="st-docket"):
                 yield Engraving("the card file")
-                yield Static("", id="docket", classes="station-body")
+                yield Vertical(id="docket", classes="station-body")
             with Vertical(classes="station", id="st-read"):
                 yield Engraving("read")
                 yield Static("", id="read-log", classes="station-body")
@@ -286,15 +405,53 @@ class ResearchScreen(TipsMixin, Screen):
         return cast("KnivvesApp", self.app)
 
     def on_mount(self) -> None:
+        self._reveal = laws.Reveal(self)
+        self._pass_active = False
         self.query_one(Masthead).update_stats(self.knivves.knives)
         self.show_room_tip()
+        # the first ScreenResume refreshes the desk and powers the map on
+        self.query_one("#desk-map", UnknownsMap).start_idle()
+        # the demo waits for the instrument to power on
+        self.set_timer(
+            laws.REVEAL_SETTLE + 0.15,
+            lambda: self.run_worker(self.demo_transit(), exclusive=True),
+        )
+
+    def on_screen_resume(self, event) -> None:
+        """Every entrance powers the instrument on — once, then stillness."""
+        if getattr(self, "_pass_active", False):
+            return
         self._refresh_desk()
-        self.run_worker(self.demo_transit(), exclusive=True)
+        self._power_on()
+
+    def on_screen_suspend(self, event) -> None:
+        self._reveal.arm()
+
+    def _power_on(self) -> None:
+        """REVEAL — the map runs its self-test: columns energize left to
+        right (accelerating), the gauge sweeps to its true value, the
+        scale ticks ride the wavefront. Only truth is dramatized."""
+        unknowns = self.query_one("#desk-map", UnknownsMap)
+        steps: list[tuple[float, Callable[[], None]]] = [(0.0, unknowns.begin_reveal)]
+        n = 14
+        span = laws.REVEAL_SETTLE - 0.2
+        for i in range(1, n + 1):
+            steps.append((span * (i / n) ** 0.5, partial(unknowns.reveal_step, i / n)))
+        steps.append((laws.REVEAL_SETTLE, unknowns.end_reveal))
+        self._reveal.play(steps)
+
+    def spotlight(self, knife_id: str | None) -> None:
+        """CUE — card and column agree under the hand, both directions."""
+        self.query_one("#desk-map", UnknownsMap).spotlight(knife_id)
+        for card in self.query(DocketCard):
+            card.set_class(card.knife_id == knife_id, "spotlit")
 
     def action_replay(self) -> None:
+        self._reveal.settle()
         self.run_worker(self.demo_transit(), exclusive=True)
 
     def action_start_pass(self) -> None:
+        self._reveal.settle()
         self.run_worker(self.live_pass(), exclusive=True)
 
     # ------------------------------------------------------------- the desk
@@ -341,44 +498,74 @@ class ResearchScreen(TipsMixin, Screen):
             if knife.id not in seen:
                 columns.append((knife.id, {g.field for g in audit.gaps_by_id.get(knife.id, [])}))
         self.query_one("#desk-map", UnknownsMap).set_state(columns)
-        self.query_one("#docket", Static).update(self._docket_text(plan, active))
+        self._refresh_docket(plan, active)
         self._line_state(f"desk: {len(plan.planned)} on the docket · {audit.complete}/{audit.records} complete")
 
-    def _docket_text(self, plan: research.PassSummary, active: str | None = None) -> Text:
-        # one card per line: rank · id · its punch-row (the map column in
-        # miniature). The card being worked carries the amber edge bar.
-        text = Text()
+    def _refresh_docket(self, plan: research.PassSummary, active: str | None = None) -> None:
+        # the card file rebuilt as hardware: one DocketCard per tab, each
+        # answering the hand (hover lights its map column); the card being
+        # worked carries the amber edge bar.
+        docket = self.query_one("#docket", Vertical)
+        docket.remove_children()
+        widgets: list[Widget] = []
         if plan.planned:
             for rank, entry in enumerate(plan.planned[:10], start=1):
-                missing = {g.field for g in entry.gaps}
                 working = entry.knife_id == active
-                text.append("▌" if working else " ", style=laws.ACCENT)
-                text.append(f"{rank:>2} ", style=laws.ACCENT)
-                if entry.buy_priority:
-                    text.append(f"⬖{entry.buy_priority} ", style="bold magenta")
-                if entry.is_new:
-                    text.append("★ ", style=laws.FRESH)
-                text.append(
-                    f"{entry.knife_id[:20]:<21}",
-                    style=f"bold {laws.STEEL_BRIGHT}" if working else laws.STEEL_BRIGHT,
-                )
-                for punched in _punch_row(missing):
-                    text.append("○" if punched else "●", style=laws.EDGE_BRIGHT if punched else laws.STEEL_DIM)
-                text.append("\n")
+                card = DocketCard(entry.knife_id, id=f"card-{entry.knife_id}", classes="docket-card")
+                card.update(self._card_text(rank, entry, working))
+                card.set_class(working, "working")
+                widgets.append(card)
             if len(plan.planned) > 10:
-                text.append(f"    +{len(plan.planned) - 10} deeper\n", style=laws.STEEL_DIM)
+                widgets.append(Static(
+                    Text(f"    +{len(plan.planned) - 10} deeper", style=laws.STEEL_DIM),
+                    id="docket-overflow",
+                ))
         else:
-            text.append("fully researched — no open gaps\nwith a supported listing\n", style=laws.PASS)
+            widgets.append(Static(
+                Text("fully researched — no open gaps\nwith a supported listing", style=laws.PASS),
+                id="docket-empty",
+            ))
         if plan.unreachable:
-            text.append(f"\nUNREACHABLE  {len(plan.unreachable)}\n", style=f"bold {laws.STEEL_DIM}")
-            for entry in plan.unreachable[:4]:
-                text.append(f" ✗ {entry.knife_id[:24]:<25}", style=laws.STEEL_MID)
-                for punched in _punch_row({g.field for g in entry.gaps}):
-                    text.append("○" if punched else "●", style=laws.EDGE_BRIGHT if punched else laws.STEEL_DIM)
-                text.append("\n")
-                text.append(f"    {entry.reason[:30]}\n", style=laws.STEEL_DIM)
-            if len(plan.unreachable) > 4:
-                text.append(f" +{len(plan.unreachable) - 4} more on the shelf\n", style=laws.STEEL_DIM)
+            widgets.append(Static(self._shelf_text(plan), id="docket-shelf"))
+
+        removal = docket.remove_children()
+
+        async def _rebuild() -> None:
+            # removal must land before the new cards mount — same ids
+            await removal
+            await docket.mount_all(widgets)
+
+        self.run_worker(_rebuild(), group="docket-rebuild", exclusive=True)
+
+    def _card_text(self, rank: int, entry: research.DocketEntry, working: bool) -> Text:
+        # rank · id · its punch-row (the map column in miniature)
+        text = Text()
+        text.append("▌" if working else " ", style=laws.ACCENT)
+        text.append(f"{rank:>2} ", style=laws.ACCENT)
+        if entry.buy_priority:
+            text.append(f"⬖{entry.buy_priority} ", style="bold magenta")
+        if entry.is_new:
+            text.append("★ ", style=laws.FRESH)
+        text.append(
+            f"{entry.knife_id[:20]:<21}",
+            style=f"bold {laws.STEEL_BRIGHT}" if working else laws.STEEL_BRIGHT,
+        )
+        missing = {g.field for g in entry.gaps}
+        for punched in _punch_row(missing):
+            text.append("○" if punched else "●", style=laws.EDGE_BRIGHT if punched else laws.STEEL_DIM)
+        return text
+
+    def _shelf_text(self, plan: research.PassSummary) -> Text:
+        text = Text()
+        text.append(f"\nUNREACHABLE  {len(plan.unreachable)}\n", style=f"bold {laws.STEEL_DIM}")
+        for entry in plan.unreachable[:4]:
+            text.append(f" ✗ {entry.knife_id[:24]:<25}", style=laws.STEEL_MID)
+            for punched in _punch_row({g.field for g in entry.gaps}):
+                text.append("○" if punched else "●", style=laws.EDGE_BRIGHT if punched else laws.STEEL_DIM)
+            text.append("\n")
+            text.append(f"    {entry.reason[:30]}\n", style=laws.STEEL_DIM)
+        if len(plan.unreachable) > 4:
+            text.append(f" +{len(plan.unreachable) - 4} more on the shelf\n", style=laws.STEEL_DIM)
         return text
 
     # ------------------------------------------------------------ live pass
@@ -390,6 +577,7 @@ class ResearchScreen(TipsMixin, Screen):
             self._refresh_desk()
             self._line_state("desk: nothing to research ✓")
             return
+        self._pass_active = True
         rules = research.rulebook(db)
         by_id = {str(r.get("id")): r for r in db.get("knives") or [] if isinstance(r, dict)}
         plate = self.query_one(Plate)
@@ -399,15 +587,18 @@ class ResearchScreen(TipsMixin, Screen):
         filled_total = 0
         worked = 0
         hits: list[tuple[str, str]] = []
-        for entry in plan.planned:
-            unknowns.mark_working(entry.knife_id)
-            self.query_one("#docket", Static).update(self._docket_text(plan, entry.knife_id))
-            report = await self._work_one(entry, by_id[entry.knife_id], rules, plate, unknowns)
-            if report is None:
-                continue
-            worked += 1
-            filled_total += len(report.filled)
-            hits.extend((report.knife_id, rule) for rule, _ in report.rulebook_hits)
+        try:
+            for entry in plan.planned:
+                unknowns.mark_working(entry.knife_id)
+                self._refresh_docket(plan, entry.knife_id)
+                report = await self._work_one(entry, by_id[entry.knife_id], rules, plate, unknowns)
+                if report is None:
+                    continue
+                worked += 1
+                filled_total += len(report.filled)
+                hits.extend((report.knife_id, rule) for rule, _ in report.rulebook_hits)
+        finally:
+            self._pass_active = False
         unknowns.mark_working(None)
         if filled_total:
             backup_database("before-research", self.knivves.db_path)
@@ -440,6 +631,7 @@ class ResearchScreen(TipsMixin, Screen):
         read_log = self.query_one("#read-log", Static)
         stamped = self.query_one("#stamped", Static)
         await self._travel_to("st-docket", plate)
+        plate.add_class("carrying")
         plate.begin(entry.knife_id, f"{len(entry.gaps)} open gap(s)")
         gap_list = ", ".join(g.field for g in entry.gaps)
         plate.stamp("gaps", gap_list if len(gap_list) <= 32 else gap_list[:31] + "…")
@@ -492,11 +684,13 @@ class ResearchScreen(TipsMixin, Screen):
         read_log = self.query_one("#read-log", Static)
         stamped = self.query_one("#stamped", Static)
         unknowns = self.query_one("#desk-map", UnknownsMap)
+        self._pass_active = True
         self._reset_line(plate)
         self._line_state("desk: demo ▸")
         unknowns.mark_working(knife.id)
 
         await asyncio.sleep(0.4)
+        plate.add_class("carrying")
         plate.begin(knife.display_name, "demo — 2 gaps assumed")
         plate.stamp("gaps", "steel, price")
         self.call_after_refresh(self._settle)
@@ -524,4 +718,5 @@ class ResearchScreen(TipsMixin, Screen):
         verdict.append("s researches the docket for real", style=laws.STEEL_DIM)
         stamped.update(verdict)
         unknowns.mark_working(None)
+        self._pass_active = False
         self._refresh_desk()

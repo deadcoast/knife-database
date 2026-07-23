@@ -590,9 +590,11 @@ async def test_desk_demo_transit() -> None:
             await asyncio.sleep(1.0)
             await pilot.pause()
             assert isinstance(app.screen, ResearchScreen), f"screen: {app.screen}"
-            await asyncio.sleep(4.5)
+            await asyncio.sleep(6.0)  # power-on reveal, then the demo transit
             await pilot.pause()
-            docket_text = str(app.screen.query_one("#docket", Static).render())
+            docket_text = " ".join(
+                str(card.render()) for card in app.screen.query(".docket-card")
+            )
             assert "research-target" in docket_text, f"docket: {docket_text[:160]}"
             stamped_text = str(app.screen.query_one("#stamped", Static).render())
             assert "nothing was written" in stamped_text, f"stamped: {stamped_text[:120]}"
@@ -620,9 +622,12 @@ async def test_desk_demo_transit() -> None:
             assert record["canadian_online_retailers"][0]["listed_price_cad"] == 99.99
             assert record["research"]["filled"]["steel"] == "bladescanada.com"
             assert record["price_history"], "first price must seed history"
-            docket_after = str(app.screen.query_one("#docket", Static).render())
+            docket_after = " ".join(
+                str(card.render()) for card in app.screen.query(".docket-card")
+            )
             assert "research-target" not in docket_after, "worked record still on the docket"
-            assert "fully researched" in docket_after, f"docket after: {docket_after[:160]}"
+            empty_state = str(app.screen.query_one("#docket-empty", Static).render())
+            assert "fully researched" in empty_state, f"docket after: {empty_state[:80]}"
             # the live pass leaves its amber wake on the map: the cells it
             # filled burn accent, and the vault reads complete
             assert unknowns.complete == 2, f"map complete after pass: {unknowns.complete}"
@@ -780,6 +785,109 @@ async def test_entry_hall_doors() -> None:
     print("PASS: the vault is a page — boot hall · plaques live · keys out · 0 home")
 
 
+async def test_map_power_on() -> None:
+    """REQ-RES-1: entering research powers the map on — once — and it
+    settles to truth; leaving re-arms the performance."""
+    from knivves.tui.pages.research import ResearchScreen, UnknownsMap
+
+    tmp_db = Path(tempfile.mkdtemp()) / "knives.json"
+    shutil.copyfile(REPO / "knivves" / "data" / "knives.json", tmp_db)
+    app = KnivvesApp(db_path=tmp_db)
+    async with app.run_test(size=(170, 45)) as pilot:
+        await asyncio.sleep(2.3)
+        await pilot.pause()
+        await pilot.press("5")
+        await asyncio.sleep(0.3)  # mid-reveal
+        await pilot.pause()
+        assert isinstance(app.screen, ResearchScreen), f"screen: {app.screen}"
+        unknowns = app.screen.query_one(UnknownsMap)
+        assert unknowns.revealing, "the power-on did not begin"
+        await asyncio.sleep(1.2)
+        await pilot.pause()
+        assert not unknowns.revealing, "the reveal did not settle"
+        truth = unknowns.complete
+        assert truth > 0, "the settled map shows nothing known"
+        await asyncio.sleep(5.0)  # the demo transit finishes; the desk stills
+        await pilot.pause()
+        # leaving re-arms; returning powers on again — and never lies
+        await pilot.press("1")
+        await pilot.pause()
+        await pilot.press("5")
+        await asyncio.sleep(0.3)
+        await pilot.pause()
+        assert unknowns.revealing, "re-entry did not power on again"
+        await asyncio.sleep(1.2)
+        await pilot.pause()
+        assert not unknowns.revealing
+        assert unknowns.complete == truth, "the reveal changed the truth"
+    print("PASS: the map powers on — once per entrance · settles to truth · re-arms")
+
+
+async def test_idle_stands_down() -> None:
+    """REQ-RES-2: the ambient scan breathes only on a still desk — never
+    during the reveal, never while a pass works a record."""
+    from knivves.tui import laws
+    from knivves.tui.pages.research import UnknownsMap
+
+    tmp_db = Path(tempfile.mkdtemp()) / "knives.json"
+    shutil.copyfile(REPO / "knivves" / "data" / "knives.json", tmp_db)
+    app = KnivvesApp(db_path=tmp_db)
+    async with app.run_test(size=(170, 45)) as pilot:
+        await asyncio.sleep(2.3)
+        await pilot.pause()
+        await pilot.press("5")
+        await asyncio.sleep(6.5)  # reveal + demo transit settle
+        await pilot.pause()
+        unknowns = app.screen.query_one(UnknownsMap)
+        assert unknowns.scan == -1.0, "scan moving before its cadence"
+        unknowns.mark_working("some-record")
+        unknowns._breathe()
+        assert unknowns.scan == -1.0, "idle breathed during a pass"
+        unknowns.mark_working(None)
+        unknowns.begin_reveal()
+        unknowns._breathe()
+        assert unknowns.scan == -1.0, "idle breathed during the reveal"
+        unknowns.end_reveal()
+        unknowns._breathe()
+        assert unknowns.scan >= 0.0, "idle did not breathe on a still desk"
+        await asyncio.sleep(laws.IDLE_STEP + 0.4)
+        await pilot.pause()
+        assert unknowns.scan == -1.0, "the breath did not come to rest"
+    print("PASS: idle — breathes on stillness, stands down for reveal and pass")
+
+
+async def test_card_lights_column() -> None:
+    """REQ-RES-3: the desk is one instrument — a card under the hand
+    lights its column on the map, and the map answers with the card."""
+    from knivves.tui.pages.research import DocketCard, UnknownsMap
+
+    tmp_db = Path(tempfile.mkdtemp()) / "knives.json"
+    shutil.copyfile(REPO / "knivves" / "data" / "knives.json", tmp_db)
+    app = KnivvesApp(db_path=tmp_db)
+    async with app.run_test(size=(170, 45)) as pilot:
+        await asyncio.sleep(2.3)
+        await pilot.pause()
+        await pilot.press("5")
+        await asyncio.sleep(6.5)  # reveal + demo transit settle
+        await pilot.pause()
+        cards = list(app.screen.query(DocketCard))
+        assert cards, "no cards in the file"
+        first = cards[0]
+        await pilot.hover(f"#card-{first.knife_id}")
+        await pilot.pause()
+        unknowns = app.screen.query_one(UnknownsMap)
+        assert unknowns._spotlight == first.knife_id, "card hover did not light the column"
+        # the map answers back: hover the column, the card lifts
+        col = unknowns._index[first.knife_id]
+        await pilot.hover(UnknownsMap, offset=(unknowns.LABEL_W + col, 4))
+        await pilot.pause()
+        assert first.has_class("spotlit"), "map hover did not light the card"
+        await pilot.hover("#stamped")  # leave — the spotlight dies
+        await pilot.pause()
+        assert unknowns._spotlight is None, "spotlight survived the hand leaving"
+    print("PASS: one instrument — card lights column · column answers card · dies on leave")
+
+
 if __name__ == "__main__":
     test_pages_map_to_doors()
     test_pages_own_stylesheets()
@@ -787,6 +895,9 @@ if __name__ == "__main__":
     asyncio.run(test_theme_is_the_only_palette())
     asyncio.run(test_reveal_runs_once_per_open())
     asyncio.run(test_entry_hall_doors())
+    asyncio.run(test_map_power_on())
+    asyncio.run(test_idle_stands_down())
+    asyncio.run(test_card_lights_column())
     asyncio.run(test_shell())
     asyncio.run(test_freshness_and_reserve())
     asyncio.run(test_file_import_transit())

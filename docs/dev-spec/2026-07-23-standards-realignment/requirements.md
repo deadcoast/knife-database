@@ -42,9 +42,9 @@ names (`rack.py`, `forge.py`, `bench.py`, `ledger.py`, `desk.py`).
 | REQ-CSS-2 | per-page stylesheets | [§](design.md#req-css-2--per-page-stylesheets) | [T2](TODO.md#t2--one-theme-six-stylesheets) | `pages/<page>.py::CSS_PATH` · `app.tcss` | `test_tui_shell.py::test_pages_own_stylesheets` | shipped |
 | REQ-MOT-1 | three motion tiers in the laws | [§](design.md#req-mot-1--three-tiers-in-the-laws) | [T3](TODO.md#t3--the-motion-tiers) | `laws.py::Reveal` + tier constants | `test_tui_shell.py::test_reveal_runs_once_per_open` | shipped |
 | REQ-MOT-2 | cues live in the stylesheets | [§](design.md#req-mot-2--cues-live-in-the-stylesheets) | [T3](TODO.md#t3--the-motion-tiers) | `pages/*.tcss` transitions | `test_tui_shell.py::test_cues_declared_in_css` + eyes-on | shipped |
-| REQ-RES-1 | the map's power-on reveal | [§](design.md#req-res-1--the-maps-power-on-reveal) | [T4](TODO.md#t4--the-research-showcase) | `pages/research.py::UnknownsMap` | `test_tui_shell.py::test_map_power_on` + eyes-on | open |
-| REQ-RES-2 | idle after settle | [§](design.md#req-res-2--idle-after-settle) | [T4](TODO.md#t4--the-research-showcase) | `pages/research.py::UnknownsMap` | `test_tui_shell.py::test_idle_stands_down` | open |
-| REQ-RES-3 | the desk is one instrument | [§](design.md#req-res-3--the-desk-is-one-instrument) | [T4](TODO.md#t4--the-research-showcase) | `pages/research.py::CardFile`+`UnknownsMap` | `test_tui_shell.py::test_card_lights_column` + eyes-on | open |
+| REQ-RES-1 | the map's power-on reveal | [§](design.md#req-res-1--the-maps-power-on-reveal) | [T4](TODO.md#t4--the-research-showcase) | `pages/research.py::UnknownsMap` | `test_tui_shell.py::test_map_power_on` + eyes-on | shipped |
+| REQ-RES-2 | idle after settle | [§](design.md#req-res-2--idle-after-settle) | [T4](TODO.md#t4--the-research-showcase) | `pages/research.py::UnknownsMap` | `test_tui_shell.py::test_idle_stands_down` | shipped |
+| REQ-RES-3 | the desk is one instrument | [§](design.md#req-res-3--the-desk-is-one-instrument) | [T4](TODO.md#t4--the-research-showcase) | `pages/research.py::CardFile`+`UnknownsMap` | `test_tui_shell.py::test_card_lights_column` + eyes-on | shipped |
 | REQ-TRM-1 | the teletype | [§](design.md#req-trm-1--the-teletype) | [T5](TODO.md#t5--the-teletype) | `surfaces.py::Teletype` | `test_tui_shell.py::test_teletype_paces_and_truncates` | open |
 | REQ-REV-1 | one hero per page | [§](design.md#req-rev-1--one-hero-per-page) | [T6](TODO.md#t6--every-page-opens) | all page modules' reveal hooks | `test_tui_shell.py::test_one_hero_per_page` + eyes-on | open |
 

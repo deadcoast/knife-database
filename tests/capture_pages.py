@@ -122,7 +122,7 @@ async def capture_research() -> None:
         await pilot.press("5")
         await asyncio.sleep(ROOM_DOOR)
         await pilot.pause()
-        await asyncio.sleep(5.0)  # demo transit completes
+        await asyncio.sleep(6.5)  # power-on reveal, then the demo transit
         await pilot.pause()
         _save(app, "research")
 

@@ -47,6 +47,24 @@ steered by `revisions.md`.
   instruments and stay still, per the balance law. Eyes on the hover
   frame caught a two-tone artifact (plaque lifted, its text rows
   didn't) — fixed by lifting the children with the plaque.
+- **The unknowns map powers on** — entering Research runs the
+  instrument's self-test, once per entrance: columns energize left to
+  right on an accelerating cascade, the completeness gauge sweeps to
+  its true value with the count climbing, the scale ticks ride the
+  wavefront, and the rail's legend lands only at settle. Only truth is
+  dramatized — a column, once lit, shows its real state — and the
+  whole performance stands down during a pass. After settle the map
+  breathes: a scan shimmer crosses the field on the long IDLE cadence,
+  catching only lit dots, standing down for reveal and pass alike.
+- **The desk is one instrument** — the card file rebuilt as hardware:
+  each docket tab is a real widget that answers the hand. Hovering a
+  card lights its column on the map (steel-bright, with a ▴ rail
+  marker); hovering a map column lifts its card in return; the
+  spotlight dies when the hand leaves. Card cues live in
+  `research.tcss` through the cue law. Eyes on the mid-reveal frame
+  caught a naked record plate floating over the card file before the
+  demo pulled it — a plate now exists on the desk only while it
+  carries a record.
 - The capture pipeline is `tests/capture_pages.py` (exhibits export as
   `page-<name>.svg`, the hall included); the shell suite is
   `tests/test_tui_shell.py` with the boot-lands-in-the-hall flow and

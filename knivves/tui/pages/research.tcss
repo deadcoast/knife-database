@@ -13,4 +13,30 @@ ResearchScreen {
 #desk-plate {
     layer: plate;
     offset: 4 26;
+    /* an empty plate is not hardware — it appears when it carries a record */
+    display: none;
+}
+
+#desk-plate.carrying {
+    display: block;
+}
+
+/* CUE — the card file answers the hand: a tab under the pointer (or lit
+   from the map) lifts, and its column on the map lights in return */
+
+.docket-card {
+    height: auto;
+    transition: background $cue-duration $cue-easing;
+}
+
+.docket-card:hover {
+    background: $surface-high;
+}
+
+.docket-card.spotlit {
+    background: $surface-high;
+}
+
+.docket-card.working {
+    background: $surface-low;
 }

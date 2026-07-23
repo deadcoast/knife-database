@@ -48,7 +48,7 @@ Case: `2026-07-23-standards-realignment` · Design: [design.md](design.md) · Hu
 
 ### T4 — the research showcase
 
-- [ ] **T4** The unknowns map powers on (gauge sweep + column energize +
+- [x] **T4** The unknowns map powers on (gauge sweep + column energize +
   rail draw, once per open, suppressed during a pass), idles with a
   subliminal scan shimmer after settle, and cross-links with the card
   file — card lights column, column answers card.
