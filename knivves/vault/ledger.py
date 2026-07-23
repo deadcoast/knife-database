@@ -34,7 +34,7 @@ if TYPE_CHECKING:
     from .app import KnivvesVault
 
 BAR_WIDTH = 22
-SUPPORTED = ("bladescanada.com", "houseofknives.ca")
+SUPPORTED = scrape.SUPPORTED_HOSTS
 
 
 class LedgerScreen(TipsMixin, Screen):

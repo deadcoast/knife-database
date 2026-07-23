@@ -2,15 +2,17 @@
 
 A *generation* is the span between two ``knivves update`` runs. Every knife
 added to the database is stamped with the generation that was open when it
-arrived. ``knivves update`` advances the generation line; a knife reads as
-NEW while::
+arrived. ``knivves update`` is the line that decides what reads NEW: it
+seals the open batch, and a knife stays NEW while its batch is the open one
+or one of the last ``keep_generations`` sealed batches::
 
-    generation - added_generation < keep_generations
+    0 <= generation - added_generation <= keep_generations
 
-so with the default ``keep_generations = 1`` a knife is NEW from the moment
-it is filed until the first update after it, and with the maximum of 3 it
-survives three updates. Records that predate this ledger carry no stamp and
-are never NEW — history is not retroactively fresh.
+so a knife is NEW from the moment it is filed, *survives* the update that
+seals it (with the default ``keep_generations = 1`` it dies on the second
+update), and with the maximum of 3 it survives three updates. Records that
+predate this ledger carry no stamp and are never NEW — history is not
+retroactively fresh.
 
 The ``new`` flag is *materialized* onto each record (so the raw JSON, the
 CLI tables, and the Vault all read the same truth) and re-derived by
@@ -40,13 +42,18 @@ def meta(db: dict[str, Any]) -> dict[str, Any]:
 
 
 def is_new(record: dict[str, Any], meta_block: dict[str, Any]) -> bool:
-    """The freshness rule. Unstamped records are never NEW."""
+    """The freshness rule: NEW from filing, through ``keep`` updates.
+
+    A knife's batch survives the update that seals it and stays NEW while
+    it is among the last ``keep_generations`` sealed batches. Unstamped
+    records are never NEW.
+    """
     added = record.get("added_generation")
     if not isinstance(added, int):
         return False
     generation = int(meta_block.get("generation", 1))
     keep = int(meta_block.get("keep_generations", DEFAULT_KEEP))
-    return generation - added < keep
+    return 0 <= generation - added <= keep
 
 
 def stamp_new(db: dict[str, Any], record: dict[str, Any]) -> None:

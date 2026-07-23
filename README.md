@@ -160,12 +160,17 @@ tracking queries, and `TODO:` placeholders are all repaired and reported
 
 Every ingested or added knife is stamped into the open *generation* and
 reads **★NEW** everywhere — tables, the interactive browser, the Rack,
-the masthead. `knivves update` advances the generation line and decides
-what still counts as NEW: with the default `-oneg` cache a knife stays
-NEW until the first update after it arrived; `-twog`/`-threeg` let it
-survive up to three database updates. `knivves new` lists what's fresh;
-`knivves new --status` shows the cache state; `knivves update --survey`
-also re-reads every live listing while it's at it.
+the masthead. `knivves update` is the line that decides what counts as
+NEW: it seals the current batch as the newest NEW generation. A knife
+stays NEW from the moment it's filed, *through* the update that seals
+it — with the default `-oneg` cache it ages out on the second update,
+and `-twog`/`-threeg` stretch survival to two or three updates.
+`knivves new` lists what's fresh; `knivves new --status` shows the cache
+state; `knivves update --survey` also re-reads every supported live
+listing concurrently — a progress bar carries count/elapsed/ETA, movers
+print as they land, every observation is appended to `price_history`,
+and the $150 affordable rule re-tags line-crossers, exactly like the
+Ledger room's survey.
 
 ## Data model
 

@@ -38,25 +38,29 @@ def test_fresh_add_is_new_immediately() -> None:
     assert KnifeView(record).is_new
 
 
-def test_keep_one_ages_out_after_one_update() -> None:
+def test_keep_one_survives_first_update_dies_on_second() -> None:
+    # the update SEALS the batch as the newest NEW generation — it must
+    # not kill the very knives it just tagged
     db = make_db()
     record = {"id": "test-knife"}
     add_knife(db, record)
     entry = gen.advance(db)
     assert entry["generation"] == 2
+    assert record["new"] is True
+    assert "test-knife" not in entry["aged_out"]
+    entry = gen.advance(db)
     assert record["new"] is False
     assert "test-knife" in entry["aged_out"]
 
 
-def test_keep_three_survives_two_updates_dies_on_third() -> None:
+def test_keep_three_survives_three_updates_dies_on_fourth() -> None:
     db = make_db()
     record = {"id": "survivor"}
     add_knife(db, record)
     gen.set_keep(db, 3)
-    gen.advance(db)
-    assert record["new"] is True
-    gen.advance(db)
-    assert record["new"] is True
+    for _ in range(3):
+        gen.advance(db)
+        assert record["new"] is True
     entry = gen.advance(db)
     assert record["new"] is False
     assert "survivor" in entry["aged_out"]
@@ -85,6 +89,7 @@ def test_set_keep_retags_immediately() -> None:
     record = {"id": "aging"}
     add_knife(db, record)
     gen.advance(db)
+    gen.advance(db)
     assert record["new"] is False
     gen.set_keep(db, 3)
     assert record["new"] is True
@@ -103,8 +108,10 @@ def test_history_grows_and_counts_additions() -> None:
 
 def test_is_new_pure_rule() -> None:
     meta = {"generation": 5, "keep_generations": 2}
-    assert gen.is_new({"added_generation": 4}, meta) is True
-    assert gen.is_new({"added_generation": 3}, meta) is False
+    assert gen.is_new({"added_generation": 5}, meta) is True  # open batch
+    assert gen.is_new({"added_generation": 4}, meta) is True  # newest sealed
+    assert gen.is_new({"added_generation": 3}, meta) is True  # second sealed
+    assert gen.is_new({"added_generation": 2}, meta) is False  # aged out
     assert gen.is_new({}, meta) is False
 
 

@@ -34,6 +34,14 @@ _STEEL_OK = re.compile(
 )
 
 
+SUPPORTED_HOSTS = ("bladescanada.com", "houseofknives.ca")
+
+
+def is_supported(url: str) -> bool:
+    """Whether a URL belongs to a retailer this scraper can read."""
+    return any(host in url for host in SUPPORTED_HOSTS)
+
+
 class ScrapeError(RuntimeError):
     """The listing could not be fetched or parsed."""
 

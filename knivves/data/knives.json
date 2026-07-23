@@ -96,7 +96,8 @@
         }
       ],
       "notes": "Canadian retailer found. Keep in approved research pool.",
-      "listing_title": "Matriarch 2 Emerson Open Folding Knife C12SBK2W"
+      "listing_title": "Matriarch 2 Emerson Open Folding Knife C12SBK2W",
+      "new": false
     },
     {
       "id": "al-mar-sere-2020-flipper-assisted-amk2214",
@@ -127,7 +128,8 @@
         }
       ],
       "notes": "Canadian retailer found. Keep in approved research pool.",
-      "listing_title": "SERE 2020 Flipper Folding Knife Assisted Opening AMK2214"
+      "listing_title": "SERE 2020 Flipper Folding Knife Assisted Opening AMK2214",
+      "new": false
     },
     {
       "id": "benchmade-bugout-axis-lock-535sl-13",
@@ -157,7 +159,8 @@
         }
       ],
       "notes": "Canadian retailer found. Keep in approved research pool.",
-      "listing_title": "Bugout Axis Lock Folding Knife 535SL-13"
+      "listing_title": "Bugout Axis Lock Folding Knife 535SL-13",
+      "new": false
     },
     {
       "id": "lionsteel-le-one-flipper-framelock-karambit-magnacut-wave",
@@ -187,7 +190,8 @@
         }
       ],
       "notes": "Canadian retailer found. Keep in approved research pool.",
-      "listing_title": "L.E.One Flipper Framelock Karambit MagnaCut Wave Opening LSTLE1ABS"
+      "listing_title": "L.E.One Flipper Framelock Karambit MagnaCut Wave Opening LSTLE1ABS",
+      "new": false
     },
     {
       "id": "kizer-t1-bd",
@@ -219,7 +223,8 @@
       ],
       "source_input": "https://www.bladescanada.com/Kizer-Knives/Kizer-T1-BD-Button-Liner-Lock-Folding-Knife-Nitro-V-Satin-Micarta-Olive-Green-V3490.2BA1",
       "notes": "Canadian retailer confirmed by user 2026-07-18. User marked approved/tiered.",
-      "listing_title": "Kizer T1 BD Button Liner Lock Folding Knife, Nitro-V Satin, Micarta Olive Green, V3490.2BA1 [KIV34902BA1] - $102.99CDN"
+      "listing_title": "Kizer T1 BD Button Liner Lock Folding Knife, Nitro-V Satin, Micarta Olive Green, V3490.2BA1 [KIV34902BA1] - $102.99CDN",
+      "new": false
     },
     {
       "id": "kizer-drop-bear-zero",
@@ -250,7 +255,8 @@
       ],
       "source_input": "https://www.bladescanada.com/Kizer-Knives/Kizer-Drop-Bear-Zero-Button-Lock-Folding-Knife-Elmax-Black-Aluminum-Blue-3619BDA2",
       "notes": "Canadian retailer confirmed by user 2026-07-18. User marked approved/clean.",
-      "listing_title": "Kizer Drop Bear Zero Button Lock Folding Knife, Elmax Black, Aluminum Blue, 3619BDA2 [KI3619BDA2] - $205.99CDN"
+      "listing_title": "Kizer Drop Bear Zero Button Lock Folding Knife, Elmax Black, Aluminum Blue, 3619BDA2 [KI3619BDA2] - $205.99CDN",
+      "new": false
     },
     {
       "id": "kunwu-albatross",
@@ -270,7 +276,8 @@
         "clear_prohibited_mechanism_found": null
       },
       "canadian_online_retailers": [],
-      "notes": "Needs exact product confirmation and Canadian retailer search. User reports sold out at source (2026-07-18)."
+      "notes": "Needs exact product confirmation and Canadian retailer search. User reports sold out at source (2026-07-18).",
+      "new": false
     },
     {
       "id": "chris-reeve-large-sebenza-31-insingo-bog-oak-l31-1124",
@@ -301,7 +308,8 @@
         }
       ],
       "notes": "Exact model confirmed by user 2026-07-18: Large Sebenza 31 Insingo, MagnaCut, Bog Oak inlay.",
-      "listing_title": "Chris Reeve Large Sebenza 31 Insingo Framelock Folding Knife, MagnaCut SW, Titanium Glass Blasted w/Bog Oak Inlay, L31-1124 [CRKL311124] - $1,030.99CDN"
+      "listing_title": "Chris Reeve Large Sebenza 31 Insingo Framelock Folding Knife, MagnaCut SW, Titanium Glass Blasted w/Bog Oak Inlay, L31-1124 [CRKL311124] - $1,030.99CDN",
+      "new": false
     },
     {
       "id": "miguron-karok-teal-mgr827bu",
@@ -322,7 +330,8 @@
       },
       "canadian_online_retailers": [],
       "notes": "User switched to teal variant 2026-07-18. Brand site lists USD $36.95 (in stock); no Canadian retailer yet — needs Canadian retailer search.",
-      "listing_title": "Karok White / MGR827WH"
+      "listing_title": "Karok White / MGR827WH",
+      "new": false
     },
     {
       "id": "demko-ad20-5-3v-clip-point-textured-titanium",
@@ -350,7 +359,8 @@
         }
       ],
       "notes": "Canadian retailer found. Keep in research pool unless user rejects it.",
-      "listing_title": "AD20.5 Shark Lock Folding Knife 3V Clip Point Textured Titanium"
+      "listing_title": "AD20.5 Shark Lock Folding Knife 3V Clip Point Textured Titanium",
+      "new": false
     },
     {
       "id": "cold-steel-american-lawman-s35vn-g10-black-58b",
@@ -378,7 +388,8 @@
         }
       ],
       "notes": "Canadian retailer found. Keep in research pool unless user rejects it.",
-      "listing_title": "American Lawman Folding Knife S35VN G10 Black 58B"
+      "listing_title": "American Lawman Folding Knife S35VN G10 Black 58B",
+      "new": false
     },
     {
       "id": "hinderer-xm-24-4-0-1095-skinny-bowie-tri-way-vintage-walnut",
@@ -408,7 +419,8 @@
         }
       ],
       "notes": "Canadian retailer found. Keep in research pool unless user rejects it.",
-      "listing_title": "XM-24 4.0 1095 Skinny Bowie Tri-Way Vintage Series Smooth Walnut"
+      "listing_title": "XM-24 4.0 1095 Skinny Bowie Tri-Way Vintage Series Smooth Walnut",
+      "new": false
     },
     {
       "id": "koenig-arius-non-flipper-smooth-titanium-m390",
@@ -438,7 +450,8 @@
         }
       ],
       "notes": "Canadian retailer found. Keep in research pool unless user rejects it.",
-      "listing_title": "Arius Non-Flipper Smooth Titanium M390"
+      "listing_title": "Arius Non-Flipper Smooth Titanium M390",
+      "new": false
     },
     {
       "id": "vosteed-porcupine-14c28n-g10-gray-a2607",
@@ -469,7 +482,8 @@
       ],
       "source_input": "https://www.bladescanada.com/Vosteed-Knives/Vosteed-Porcupine-Folding-Knife-14C28N-Destroyer-Gray-G10-Gray-A2607",
       "notes": "Imported from TODO.md (main list section). Price and specs captured from retailer listing 2026-07-17. Listed twice in TODO.md main list; deduplicated.",
-      "listing_title": "Porcupine Folding Knife 14C28N Destroyer Gray G10 Gray A2607"
+      "listing_title": "Porcupine Folding Knife 14C28N Destroyer Gray G10 Gray A2607",
+      "new": false
     },
     {
       "id": "fox-blackbird-karambit-n690-fx-591-mbb",
@@ -498,7 +512,8 @@
       ],
       "source_input": "https://www.bladescanada.com/FOX-Knives/Fox-BlackBird-Karambit-Folding-Knife-N690-SW-Micarta-Black-Bastinelli-Design-FX-591-MBB",
       "notes": "Imported from TODO.md (main list section). Price and specs captured from retailer listing 2026-07-17.",
-      "listing_title": "BlackBird Karambit Folding Knife N690 SW Micarta Black Bastinelli Design FX-591 MBB"
+      "listing_title": "BlackBird Karambit Folding Knife N690 SW Micarta Black Bastinelli Design FX-591 MBB",
+      "new": false
     },
     {
       "id": "pro-tech-tr-3-integrity-button-lock-magnacut-int1106",
@@ -527,7 +542,8 @@
       ],
       "source_input": "https://www.bladescanada.com/Pro-Tech-Knives/Pro-Tech-TR-3-Integrity-Button-Lock-Folding-Knife-CPM-MagnaCut-Black-Aluminum-Relic-Black-INT1106",
       "notes": "Imported from TODO.md (main list section). Price and specs captured from retailer listing 2026-07-17. Integrity line uses the button as a lock (manual action), not an auto opener — confirm on listing.",
-      "listing_title": "TR-3 Integrity Button Lock Folding Knife CPM MagnaCut Black Aluminum Relic Black INT1106"
+      "listing_title": "TR-3 Integrity Button Lock Folding Knife CPM MagnaCut Black Aluminum Relic Black INT1106",
+      "new": false
     },
     {
       "id": "benchmade-mini-barrage-osborne-s90v-585cu24",
@@ -556,7 +572,8 @@
       ],
       "source_input": "https://www.bladescanada.com/Benchmade-Special-Editions/Benchmade-Mini-Barrage-Osborne-Folding-Knife-Assisted-Opening-S90V-G10-Green-585CU24",
       "notes": "Imported from TODO.md (main list section). Price and specs captured from retailer listing 2026-07-17. Also listed in TODO.md UNSORTED section; deduplicated.",
-      "listing_title": "Mini Barrage Osborne Folding Knife Assisted Opening S90V G10 Green 585CU24"
+      "listing_title": "Mini Barrage Osborne Folding Knife Assisted Opening S90V G10 Green 585CU24",
+      "new": false
     },
     {
       "id": "spyderco-subvert-cpm-20cv-carbon-fiber-239cfp",
@@ -585,7 +602,8 @@
       ],
       "source_input": "https://www.bladescanada.com/Spyderco-Knives/Spyderco-Subvert-Folding-Knife-CPM-20CV-Carbon-Fiber-Sprint-Run-239CFP",
       "notes": "Imported from TODO.md (main list section). Price and specs captured from retailer listing 2026-07-17.",
-      "listing_title": "Subvert Folding Knife CPM 20CV Carbon Fiber Sprint Run 239CFP"
+      "listing_title": "Subvert Folding Knife CPM 20CV Carbon Fiber Sprint Run 239CFP",
+      "new": false
     },
     {
       "id": "kershaw-bel-air-duralock-cru-wear-6105mc",
@@ -614,7 +632,8 @@
       ],
       "source_input": "https://www.bladescanada.com/Kershaw-Knives/Kershaw-Bel-Air-DuraLock-Folding-Knife-CPM-Cru-Wear-Micarta-Brown-6105MC",
       "notes": "Imported from TODO.md (main list section). Price and specs captured from retailer listing 2026-07-17.",
-      "listing_title": "Bel Air DuraLock Folding Knife CPM Cru-Wear Micarta Brown 6105MC"
+      "listing_title": "Bel Air DuraLock Folding Knife CPM Cru-Wear Micarta Brown 6105MC",
+      "new": false
     },
     {
       "id": "kershaw-bel-air-xl-ke-6110",
@@ -643,7 +662,8 @@
       ],
       "source_input": "https://houseofknives.ca/bel-air-xl/",
       "notes": "Imported from TODO.md (main list section). Price and specs captured from retailer listing 2026-07-17.",
-      "listing_title": "Bel Air XL Folding Knife KE-6110"
+      "listing_title": "Bel Air XL Folding Knife KE-6110",
+      "new": false
     },
     {
       "id": "civivi-shawka-aluminum-red-black-c22029b-1",
@@ -672,7 +692,8 @@
       ],
       "source_input": "https://houseofknives.ca/civivi-shawka-aluminum-red-black-c22029b-1/",
       "notes": "Imported from TODO.md (main list section). Price and specs captured from retailer listing 2026-07-17.",
-      "listing_title": "Shawka Folding Knife Aluminum Red/Black C22029B-1"
+      "listing_title": "Shawka Folding Knife Aluminum Red/Black C22029B-1",
+      "new": false
     },
     {
       "id": "crkt-provoke-x-morphing-axe-4141kx",
@@ -701,7 +722,8 @@
       ],
       "source_input": "https://houseofknives.ca/crkt-provoke-x-4141kx/",
       "notes": "Imported from TODO.md (main list section). Price and specs captured from retailer listing 2026-07-17. Morphing axe (Provoke Kinematic platform), not a folding knife.",
-      "listing_title": "Provoke X Morphing Axe 4141KX"
+      "listing_title": "Provoke X Morphing Axe 4141KX",
+      "new": false
     },
     {
       "id": "elitedge-flipper-assisted-maiko-artwork-ee10a102mkb",
@@ -732,7 +754,8 @@
       ],
       "source_input": "https://www.bladescanada.com/ElitEdge-Knives/ElitEdge-Flipper-Folding-Knife-Assisted-Opening-Stainless-Black-Maiko-Artwork-Handle-EE10A102MKB",
       "notes": "Imported from TODO.md (BUDGET section). Price and specs captured from retailer listing 2026-07-17.",
-      "listing_title": "Flipper Folding Knife Assisted Opening Stainless Black Maiko Artwork Handle EE10A102MKB"
+      "listing_title": "Flipper Folding Knife Assisted Opening Stainless Black Maiko Artwork Handle EE10A102MKB",
+      "new": false
     },
     {
       "id": "sog-kiku-xr-assisted-cts-xhp-12-27-06-57",
@@ -761,7 +784,8 @@
       ],
       "source_input": "https://www.bladescanada.com/SOG-Knives/SOG-Kiku-XR-Flipper-Folding-Knife-Assisted-Opening-CTS-XHP-Black-G10-Gray-SOG-12-27-06-57",
       "notes": "Imported from TODO.md (BUDGET section). Price and specs captured from retailer listing 2026-07-17.",
-      "listing_title": "Kiku XR Flipper Folding Knife Assisted Opening CTS XHP Black G10 Gray SOG-12-27-06-57"
+      "listing_title": "Kiku XR Flipper Folding Knife Assisted Opening CTS XHP Black G10 Gray SOG-12-27-06-57",
+      "new": false
     },
     {
       "id": "kershaw-shoreline-assisted-ke-1845st",
@@ -792,7 +816,8 @@
       ],
       "source_input": "https://www.bladescanada.com/Kershaw-Knives/Kershaw-Shoreline-Flipper-Folding-Knife-Assisted-Opening-Partially-Serrated-Blade-GFN-Black-KE-1845ST",
       "notes": "Imported from TODO.md (BUDGET section). Price and specs captured from retailer listing 2026-07-17. Partially serrated blade.",
-      "listing_title": "Shoreline Flipper Folding Knife Assisted Opening Partially Serrated Blade GFN Black KE-1845ST"
+      "listing_title": "Shoreline Flipper Folding Knife Assisted Opening Partially Serrated Blade GFN Black KE-1845ST",
+      "new": false
     },
     {
       "id": "cold-steel-crawford-1-flipper-4116-20mwcb",
@@ -823,7 +848,8 @@
       ],
       "source_input": "https://www.bladescanada.com/Cold-Steel-Knives/Cold-Steel-Crawford-1-Flipper-Folding-Knife-4116-Steel-GRN-Black-20MWCB",
       "notes": "Imported from TODO.md (BUDGET section). Price and specs captured from retailer listing 2026-07-17.",
-      "listing_title": "Crawford 1 Flipper Folding Knife 4116 Steel GRN Black 20MWCB"
+      "listing_title": "Crawford 1 Flipper Folding Knife 4116 Steel GRN Black 20MWCB",
+      "new": false
     },
     {
       "id": "kershaw-conduit-assisted-ke-1407st",
@@ -854,7 +880,8 @@
       ],
       "source_input": "https://www.bladescanada.com/Kershaw-Knives/Kershaw-Conduit-Flipper-Folding-Knife-Black-Blade-Partially-Serrated-GFN-Black-KE-1407ST",
       "notes": "Imported from TODO.md (BUDGET section). Price and specs captured from retailer listing 2026-07-17. Partially serrated blade.",
-      "listing_title": "Conduit Flipper Folding Knife Assisted Opening Black Blade Partially Serrated GFN Black KE-1407ST"
+      "listing_title": "Conduit Flipper Folding Knife Assisted Opening Black Blade Partially Serrated GFN Black KE-1407ST",
+      "new": false
     },
     {
       "id": "elitedge-flipper-assisted-stainless-gray-10b010gy",
@@ -885,7 +912,8 @@
       ],
       "source_input": "https://www.bladescanada.com/ElitEdge-Knives/ElitEdge-Flipper-Folding-Knife-Assisted-Opening-Stainless-Satin-Stainless-Gray-Handle-10B010GY",
       "notes": "Imported from TODO.md (BUDGET section). Price and specs captured from retailer listing 2026-07-17.",
-      "listing_title": "Flipper Folding Knife Assisted Opening Stainless Satin Stainless Gray Handle 10B010GY"
+      "listing_title": "Flipper Folding Knife Assisted Opening Stainless Satin Stainless Gray Handle 10B010GY",
+      "new": false
     },
     {
       "id": "elitedge-flipper-assisted-wood-ee10a123wd",
@@ -916,7 +944,8 @@
       ],
       "source_input": "https://www.bladescanada.com/ElitEdge-Knives/ElitEdge-Flipper-Folding-Knife-Assisted-Opening-Stainless-Satin-Stainless-Wood-Handle-EE10A123WD",
       "notes": "Imported from TODO.md (BUDGET section). Price and specs captured from retailer listing 2026-07-17.",
-      "listing_title": "Flipper Folding Knife Assisted Opening Stainless Satin Stainless Wood Handle EE10A123WD"
+      "listing_title": "Flipper Folding Knife Assisted Opening Stainless Satin Stainless Wood Handle EE10A123WD",
+      "new": false
     },
     {
       "id": "schrade-702-cage-ultra-glide",
@@ -947,7 +976,8 @@
       ],
       "source_input": "https://www.bladescanada.com/Schrade-Knives/Schrade-702-Cage-Ultra-Glide-Folding-Knife",
       "notes": "Imported from TODO.md (BUDGET section). Price and specs captured from retailer listing 2026-07-17.",
-      "listing_title": "702 Cage Ultra-Glide Folding Knife"
+      "listing_title": "702 Cage Ultra-Glide Folding Knife",
+      "new": false
     },
     {
       "id": "elitedge-flipper-assisted-g10-black-ee10a123g10",
@@ -978,7 +1008,8 @@
       ],
       "source_input": "https://www.bladescanada.com/ElitEdge-Knives/ElitEdge-Flipper-Folding-Knife-Assisted-Opening-Stainless-Satin-Stainless-G10-Black-Handle-EE10A123G10",
       "notes": "Imported from TODO.md (BUDGET section). Price and specs captured from retailer listing 2026-07-17.",
-      "listing_title": "Flipper Folding Knife Assisted Opening Stainless Satin Stainless G10 Black Handle EE10A123G10"
+      "listing_title": "Flipper Folding Knife Assisted Opening Stainless Satin Stainless G10 Black Handle EE10A123G10",
+      "new": false
     },
     {
       "id": "elitedge-flipper-assisted-black-wood-ee10a123bw",
@@ -1009,7 +1040,8 @@
       ],
       "source_input": "https://www.bladescanada.com/ElitEdge-Knives/ElitEdge-Flipper-Folding-Knife-Assisted-Opening-Stainless-Black-Stainless-Wood-Handle-EE10A123BW",
       "notes": "Imported from TODO.md (BUDGET section). Price and specs captured from retailer listing 2026-07-17.",
-      "listing_title": "Flipper Folding Knife Assisted Opening Stainless Black Stainless Wood Handle EE10A123BW"
+      "listing_title": "Flipper Folding Knife Assisted Opening Stainless Black Stainless Wood Handle EE10A123BW",
+      "new": false
     },
     {
       "id": "elitedge-stiletto-flipper-assisted-420c-ee10a84bk",
@@ -1040,7 +1072,8 @@
       ],
       "source_input": "https://www.bladescanada.com/ElitEdge-Knives/ElitEdge-Siletto-Flipper-Folding-Knife-Assisted-Opening-420C-Black-Stainless-Black-EE10A84BK",
       "notes": "Imported from TODO.md (BUDGET section). Price and specs captured from retailer listing 2026-07-17.",
-      "listing_title": "Siletto Flipper Folding Knife Assisted Opening 420C Black Stainless Black EE10A84BK"
+      "listing_title": "Siletto Flipper Folding Knife Assisted Opening 420C Black Stainless Black EE10A84BK",
+      "new": false
     },
     {
       "id": "outdoor-edge-brutus-flipper-assisted-oebr1c",
@@ -1071,7 +1104,8 @@
       ],
       "source_input": "https://www.bladescanada.com/All-Folding-Knives/Outdoor-Edge-Brutus-Flipper-Folding-Knife-Assisted-Opening-Satin-Blade-GFN-Black-OEBR1C",
       "notes": "Imported from TODO.md (BUDGET section). Price and specs captured from retailer listing 2026-07-17.",
-      "listing_title": "Brutus Flipper Folding Knife Assisted Opening Satin Blade GFN Black OEBR1C"
+      "listing_title": "Brutus Flipper Folding Knife Assisted Opening Satin Blade GFN Black OEBR1C",
+      "new": false
     },
     {
       "id": "mtech-flipper-assisted-sw-aluminum-mta2042bk",
@@ -1102,7 +1136,8 @@
       ],
       "source_input": "https://www.bladescanada.com/MTech-Knives/MTech-Flipper-Folding-Knife-Assisted-Opening-Stainless-Black-SW-Aluminum-Black-MTA2042BK",
       "notes": "Imported from TODO.md (BUDGET section). Price and specs captured from retailer listing 2026-07-17.",
-      "listing_title": "Flipper Folding Knife Assisted Opening Stainless Black SW Aluminum Black MTA2042BK"
+      "listing_title": "Flipper Folding Knife Assisted Opening Stainless Black SW Aluminum Black MTA2042BK",
+      "new": false
     },
     {
       "id": "mtech-flipper-assisted-aluminum-mta2025bk",
@@ -1133,7 +1168,8 @@
       ],
       "source_input": "https://www.bladescanada.com/MTech-Knives/MTech-Flipper-Folding-Knife-Assisted-Opening-Stainless-Black-Aluminum-Black-MTA2025BK",
       "notes": "Imported from TODO.md (BUDGET section). Price and specs captured from retailer listing 2026-07-17.",
-      "listing_title": "Flipper Folding Knife Assisted Opening Stainless Black Aluminum Black MTA2025BK"
+      "listing_title": "Flipper Folding Knife Assisted Opening Stainless Black Aluminum Black MTA2025BK",
+      "new": false
     },
     {
       "id": "s-tec-stiletto-flipper-assisted-stt27107bk4",
@@ -1164,7 +1200,8 @@
       ],
       "source_input": "https://www.bladescanada.com/S-TEC-Knives/S-Tec-Stiletto-Style-Flipper-Folding-Knife-Assisted-Opening-Stainless-Black-G10-Black-STT27107BK4",
       "notes": "Imported from TODO.md (BUDGET section). Price and specs captured from retailer listing 2026-07-17.",
-      "listing_title": "Stiletto Style Flipper Folding Knife Assisted Opening Stainless Black G10 Black STT27107BK4"
+      "listing_title": "Stiletto Style Flipper Folding Knife Assisted Opening Stainless Black G10 Black STT27107BK4",
+      "new": false
     },
     {
       "id": "tac-force-flipper-assisted-aluminum-tf2003bk",
@@ -1195,7 +1232,8 @@
       ],
       "source_input": "https://www.bladescanada.com/Tac-Force-Knives/Tac-Force-Flipper-Folding-Knife-Assisted-Opening-Stainless-Satin-Aluminum-Black-TF2003BK",
       "notes": "Imported from TODO.md (BUDGET section). Price and specs captured from retailer listing 2026-07-17.",
-      "listing_title": "Flipper Folding Knife Assisted Opening Stainless Satin Aluminum Black TF2003BK"
+      "listing_title": "Flipper Folding Knife Assisted Opening Stainless Satin Aluminum Black TF2003BK",
+      "new": false
     },
     {
       "id": "s-tec-karambit-flipper-assisted-stt2734bk",
@@ -1226,7 +1264,8 @@
       ],
       "source_input": "https://www.bladescanada.com/S-TEC-Knives/S-Tec-Karambit-Flipper-Folding-Knife-Assisted-Opening-Stainless-Satin-Aluminum-Black-STT2734BK",
       "notes": "Imported from TODO.md (BUDGET section). Price and specs captured from retailer listing 2026-07-17.",
-      "listing_title": "Karambit Flipper Folding Knife Assisted Opening Stainless Satin Aluminum Black STT2734BK"
+      "listing_title": "Karambit Flipper Folding Knife Assisted Opening Stainless Satin Aluminum Black STT2734BK",
+      "new": false
     },
     {
       "id": "cnm-stripe-flipper-assisted-cn300510bk",
@@ -1257,7 +1296,8 @@
       ],
       "source_input": "https://www.bladescanada.com/CNM-Knives/CNM-Stripe-Flipper-Folding-Knife-Assisted-Opening-Stainless-Two-Tone-Black-Handle-CN300510BK",
       "notes": "Imported from TODO.md (BUDGET section). Price and specs captured from retailer listing 2026-07-17.",
-      "listing_title": "Stripe Flipper Folding Knife Assisted Opening Stainless Two-Tone Black Handle CN300510BK"
+      "listing_title": "Stripe Flipper Folding Knife Assisted Opening Stainless Two-Tone Black Handle CN300510BK",
+      "new": false
     },
     {
       "id": "tac-force-flipper-assisted-nylon-tf2002bk",
@@ -1288,7 +1328,8 @@
       ],
       "source_input": "https://www.bladescanada.com/Tac-Force-Knives/Tac-Force-Flipper-Folding-Knife-Assisted-Opening-Stainless-Two-Tone-Nylon-Black-TF2002BK",
       "notes": "Imported from TODO.md (BUDGET section). Price and specs captured from retailer listing 2026-07-17.",
-      "listing_title": "Flipper Folding Knife Assisted Opening Stainless Two-Tone Nylon Black TF2002BK"
+      "listing_title": "Flipper Folding Knife Assisted Opening Stainless Two-Tone Nylon Black TF2002BK",
+      "new": false
     },
     {
       "id": "krieger-german-stiletto-flipper-assisted-kg221",
@@ -1319,7 +1360,8 @@
       ],
       "source_input": "https://www.bladescanada.com/UC-BUDK-Group/Krieger-German-Style-Stiletto-Flipper-Folding-Knife-Assisted-Opening-KG221",
       "notes": "Imported from TODO.md (BUDGET section). Price and specs captured from retailer listing 2026-07-17.",
-      "listing_title": "German-Style Stiletto Flipper Folding Knife Assisted Opening KG221"
+      "listing_title": "German-Style Stiletto Flipper Folding Knife Assisted Opening KG221",
+      "new": false
     },
     {
       "id": "cobratec-stiletto-button-lock-vg10-od-green-cbtstblodbk",
@@ -1351,7 +1393,8 @@
       ],
       "source_input": "https://www.bladescanada.com/Cobratec-Knives/Cobratec-Stiletto-Button-Lock-Folding-Knife-VG10-Black-G10-OD-Green-CBTSTBLODBK",
       "notes": "Imported from TODO.md (BUDGET section). Price and specs captured from retailer listing 2026-07-17. TODO.md also gives SKU CTSTLG10ODGBLK; listed twice, deduplicated. Confirm the button is a lock only, not an auto opener. Re-confirmed on curated shortlist 2026-07-20 (section: STILETTO).",
-      "listing_title": "Stiletto Button Lock Folding Knife VG10 Black G10 OD Green CBTSTBLODBK"
+      "listing_title": "Stiletto Button Lock Folding Knife VG10 Black G10 OD Green CBTSTBLODBK",
+      "new": false
     },
     {
       "id": "cobratec-stiletto-flipper-button-lock-vg10-black-cbtstblbkbk",
@@ -1382,7 +1425,8 @@
       ],
       "source_input": "https://www.bladescanada.com/Cobratec-Knives/Cobratec-Stiletto-Flipper-Button-Lock-Folding-Knife-VG10-Black-G10-Black-CBTSTBLBKBK",
       "notes": "Imported from TODO.md (BUDGET section). Price and specs captured from retailer listing 2026-07-17. Confirm the button is a lock only, not an auto opener.",
-      "listing_title": "Stiletto Flipper Button Lock Folding Knife VG10 Black G10 Black CBTSTBLBKBK"
+      "listing_title": "Stiletto Flipper Button Lock Folding Knife VG10 Black G10 Black CBTSTBLBKBK",
+      "new": false
     },
     {
       "id": "uc-rampage-stiletto-flipper-assisted-uc2776",
@@ -1413,7 +1457,8 @@
       ],
       "source_input": "https://www.bladescanada.com/United-Cutlery-Group/UC-Rampage-Stiletto-Flipper-Folding-Knife-6-Blade-Assisted-Opening-UC2776",
       "notes": "Imported from TODO.md (BUDGET section). Price and specs captured from retailer listing 2026-07-17.",
-      "listing_title": "UC Rampage Stiletto Flipper Folding Knife 6in Blade Assisted Opening UC2776"
+      "listing_title": "UC Rampage Stiletto Flipper Folding Knife 6in Blade Assisted Opening UC2776",
+      "new": false
     },
     {
       "id": "krieger-folding-knife-assisted-kg228",
@@ -1444,7 +1489,8 @@
       ],
       "source_input": "https://www.bladescanada.com/United-Cutlery-Group/Krieger-Folding-Knife-Assisted-Opening-KG228",
       "notes": "Imported from TODO.md (BUDGET section). Price and specs captured from retailer listing 2026-07-17.",
-      "listing_title": "Folding Knife Assisted Opening KG228"
+      "listing_title": "Folding Knife Assisted Opening KG228",
+      "new": false
     },
     {
       "id": "black-legion-cyclone-flipper-assisted-set-bv143",
@@ -1475,7 +1521,8 @@
       ],
       "source_input": "https://www.bladescanada.com/United-Cutlery-Group/Black-Legion-Cyclone-Flipper-Folding-Knives-Assisted-Opening-Set-of-2-BV143",
       "notes": "Imported from TODO.md (BUDGET section). Price and specs captured from retailer listing 2026-07-17. Sold as a set of two knives.",
-      "listing_title": "Cyclone Flipper Folding Knives Assisted Opening Set of 2 BV143"
+      "listing_title": "Cyclone Flipper Folding Knives Assisted Opening Set of 2 BV143",
+      "new": false
     },
     {
       "id": "al-mar-slimline-quicksilver-flipper-framelock-d2-amk4046",
@@ -1504,7 +1551,8 @@
       ],
       "source_input": "https://www.bladescanada.com/Al-Mar-Knives/Al-Mar-Slimline-Quicksilver-Flipper-Framelock-Folder-5-D2-Titatinum-AMK4046",
       "notes": "Imported from TODO.md (AFFORDABLE (100-200) section). Price and specs captured from retailer listing 2026-07-17.",
-      "listing_title": "Slimline Quicksilver Flipper Framelock Folder 5in D2 Titanium AMK4046"
+      "listing_title": "Slimline Quicksilver Flipper Framelock Folder 5in D2 Titanium AMK4046",
+      "new": false
     },
     {
       "id": "cold-steel-gunsite-counter-point-aus-10a-10abv3",
@@ -1535,7 +1583,8 @@
       ],
       "source_input": "https://www.bladescanada.com/Cold-Steel-Knives/Cold-Steel-Gunsite-Counter-Point-Folding-Knife-AUS-10A-Dark-Earth-10ABV3",
       "notes": "Imported from TODO.md (AFFORDABLE (100-200) section). Price and specs captured from retailer listing 2026-07-17.",
-      "listing_title": "Gunsite Counter Point Folding Knife AUS 10A Dark Earth 10ABV3"
+      "listing_title": "Gunsite Counter Point Folding Knife AUS 10A Dark Earth 10ABV3",
+      "new": false
     },
     {
       "id": "boker-plus-kyoto-flipper-d2-01bo241",
@@ -1564,7 +1613,8 @@
       ],
       "source_input": "https://www.bladescanada.com/Boker-Knives/Boker-Plus-Kyoto-Flipper-Folding-Knife-D2-G10-Black-01BO241",
       "notes": "Imported from TODO.md (AFFORDABLE (100-200) section). Price and specs captured from retailer listing 2026-07-17.",
-      "listing_title": "Kyoto Flipper Folding Knife D2 G10 Black 01BO241"
+      "listing_title": "Kyoto Flipper Folding Knife D2 G10 Black 01BO241",
+      "new": false
     },
     {
       "id": "cold-steel-counter-point-xl-aus10a-serrated-10aas",
@@ -1593,7 +1643,8 @@
       ],
       "source_input": "https://www.bladescanada.com/Cold-Steel-Knives/Cold-Steel-Counter-Point-XL-Folding-Knife-AUS10A-Serrated-6-Griv-Ex-Black-10AAS",
       "notes": "Imported from TODO.md (AFFORDABLE (100-200) section). Price and specs captured from retailer listing 2026-07-17. Serrated blade.",
-      "listing_title": "Counter Point XL Folding Knife AUS10A Serrated 6in Griv-Ex Black 10AAS"
+      "listing_title": "Counter Point XL Folding Knife AUS10A Serrated 6in Griv-Ex Black 10AAS",
+      "new": false
     },
     {
       "id": "cold-steel-ti-lite-s35vn-aluminum-26b4",
@@ -1624,7 +1675,8 @@
       ],
       "source_input": "https://www.bladescanada.com/Cold-Steel-Knives/Cold-Steel-Ti-Lite-Folding-Knife-CPM-S35VN-Aluminum-26B4",
       "notes": "Imported from TODO.md (AFFORDABLE (100-200) section). Price and specs captured from retailer listing 2026-07-17. Re-confirmed on curated shortlist 2026-07-20 (section: STILETTO).",
-      "listing_title": "Ti-Lite Folding Knife CPM S35VN Aluminum CS-26B4"
+      "listing_title": "Ti-Lite Folding Knife CPM S35VN Aluminum CS-26B4",
+      "new": false
     },
     {
       "id": "bear-ops-stiletto-linerlock-s30v-carbon-fiber-bcmc300cfs",
@@ -1653,7 +1705,8 @@
       ],
       "source_input": "https://www.bladescanada.com/Bear-Son-Knives/Bear-Son-Stiletto-Linerlock-S30V-Carbon-Fiber-BCMC300CFS",
       "notes": "Imported from TODO.md (AFFORDABLE (100-200) section). Price and specs captured from retailer listing 2026-07-17. Bear & Son / Bear Ops line.",
-      "listing_title": "Stiletto Linerlock MC-300-CF-S S30V Carbon Fiber BCMC300CFS"
+      "listing_title": "Stiletto Linerlock MC-300-CF-S S30V Carbon Fiber BCMC300CFS",
+      "new": false
     },
     {
       "id": "kershaw-random-leek-assisted-14c28n-1660r",
@@ -1684,7 +1737,8 @@
       ],
       "source_input": "https://www.bladescanada.com/Kershaw-Knives/Kershaw-Random-Leek-Flipper-Folding-Knife-Assisted-Opening-14C28N-Sandvik-Stainless-Handle-K1660R",
       "notes": "Imported from TODO.md (AFFORDABLE (100-200) section). Price and specs captured from retailer listing 2026-07-17.",
-      "listing_title": "Random Leek Flipper Folding Knife Assisted Opening 14C28N Sandvik Stainless Handle 1660R"
+      "listing_title": "Random Leek Flipper Folding Knife Assisted Opening 14C28N Sandvik Stainless Handle 1660R",
+      "new": false
     },
     {
       "id": "fox-italy-pacifico-flipper-magnacut-fx-atc-og02-mcf",
@@ -1713,7 +1767,8 @@
       ],
       "source_input": "https://www.bladescanada.com/FOX-Knives/Fox-Italy-Pacifico-Flipper-Folding-Knife-Magnacut-Carbon-Fibre-Dark-Matter-FX-ATC-OG02-MCF",
       "notes": "Imported from TODO.md (UNSORTED section). Price and specs captured from retailer listing 2026-07-17.",
-      "listing_title": "Italy Pacifico Flipper Folding Knife MagnaCut Carbon Fibre Dark Matter FX-ATC-OG02 MCF"
+      "listing_title": "Italy Pacifico Flipper Folding Knife MagnaCut Carbon Fibre Dark Matter FX-ATC-OG02 MCF",
+      "new": false
     },
     {
       "id": "crkt-m16-flipper-assisted-d2-m16-04db",
@@ -1742,7 +1797,8 @@
       ],
       "source_input": "https://www.bladescanada.com/CRKT-Knives/CRKT-M16-Flipper-Folding-Knife-Assisted-Opening-D2-Aluminum-CRKTM16-04DB",
       "notes": "Imported from TODO.md (UNSORTED section). Price and specs captured from retailer listing 2026-07-17.",
-      "listing_title": "M16 Flipper Folding Knife Assisted Opening D2 Aluminum M16-04DB"
+      "listing_title": "M16 Flipper Folding Knife Assisted Opening D2 Aluminum M16-04DB",
+      "new": false
     },
     {
       "id": "kershaw-link-assisted-aluminum-od-k1776olsw",
@@ -1771,7 +1827,8 @@
       ],
       "source_input": "https://www.bladescanada.com/Kershaw-Knives/Kershaw-Link-Flipper-Folding-Knife-Assisted-Opening-CPM-20CV-Aluminum-OD-K1776OLSW",
       "notes": "Imported from TODO.md (UNSORTED section). Price and specs captured from retailer listing 2026-07-17. Steel conflict: TODO.md says MagnaCut SW but the listing URL says CPM 20CV — verify on the listing.",
-      "listing_title": "Link Flipper Folding Knife Assisted Opening Aluminum OD 1776OLSW"
+      "listing_title": "Link Flipper Folding Knife Assisted Opening Aluminum OD 1776OLSW",
+      "new": false
     },
     {
       "id": "zero-tolerance-0770cf-assisted-s35vn-carbon-fiber",
@@ -1800,7 +1857,8 @@
       ],
       "source_input": "https://www.bladescanada.com/Zero-Tolerance-Knives/Zero-Tolerance-0770CF-Flipper-Folding-Knife-Assisted-Opening-S35VN-Carbon-Fiber",
       "notes": "Imported from TODO.md (UNSORTED section). Price and specs captured from retailer listing 2026-07-17.",
-      "listing_title": "0770CF Flipper Folding Knife Assisted Opening S35VN Carbon Fiber ZT0770CF"
+      "listing_title": "0770CF Flipper Folding Knife Assisted Opening S35VN Carbon Fiber ZT0770CF",
+      "new": false
     },
     {
       "id": "sencut-excalis-flipper-g10-white-s23068-2",
@@ -1831,7 +1889,8 @@
       ],
       "source_input": "https://www.bladescanada.com/SENCUT-Knives/SENCUT-Excalis-Flipper-Folding-knife-Satin-Blade-G10-White-S23068-2",
       "notes": "Imported from TODO.md (UNSORTED section). Price and specs captured from retailer listing 2026-07-17.",
-      "listing_title": "Excalis Flipper Folding Knife Satin Blade G10 White S23068-2"
+      "listing_title": "Excalis Flipper Folding Knife Satin Blade G10 White S23068-2",
+      "new": false
     },
     {
       "id": "kubey-zephyr-integral-titanium-m390-kb470a",
@@ -1852,7 +1911,8 @@
       "canadian_online_retailers": [],
       "source_input": "https://kbknives.com/products/kb-zephyr-integral-tactical-folding-knife-grey-titanium-handle-4-65-silver-beadblast-m390-kb470a",
       "notes": "Imported from TODO.md (UNSORTED section). Brand site (US) lists USD $388.00, out of stock. User decision 2026-07-18: keep US source — not sold in Canada yet.",
-      "listing_title": "Zephyr Integral Tactical Folding Knife Grey Titanium Handle 4.65in Silver Beadblast M390 KB470A"
+      "listing_title": "Zephyr Integral Tactical Folding Knife Grey Titanium Handle 4.65in Silver Beadblast M390 KB470A",
+      "new": false
     },
     {
       "id": "chaves-redencion-street-229-elmax-g10-black-14492",
@@ -1881,7 +1941,8 @@
       ],
       "source_input": "https://www.bladescanada.com/Chaves-Knives/Chaves-Redencion-229-Folding-Knife-Elmax-SW-Satin-Drop-Point-G10-Black-14492",
       "notes": "Imported from TODO.md (UNSORTED section). Price and specs captured from retailer listing 2026-07-17.",
-      "listing_title": "Redencion Street / 229 Folding Knife Elmax SW/Satin Drop Point G10 Black 14492"
+      "listing_title": "Redencion Street / 229 Folding Knife Elmax SW/Satin Drop Point G10 Black 14492",
+      "new": false
     },
     {
       "id": "chaves-ntak-elmax-micarta-black-chav14328",
@@ -1910,7 +1971,8 @@
       ],
       "source_input": "https://www.bladescanada.com/Chaves-Knives/Chaves-NTAK-Folding-Knife-Elmax-Drop-Point-Satin-SW-Micarta-Black-CHAV14328",
       "notes": "Imported from TODO.md (UNSORTED section). Price and specs captured from retailer listing 2026-07-17.",
-      "listing_title": "NTAK Folding Knife Elmax Drop Point Satin/SW Micarta Black CHAV14328"
+      "listing_title": "NTAK Folding Knife Elmax Drop Point Satin/SW Micarta Black CHAV14328",
+      "new": false
     },
     {
       "id": "chris-reeve-large-sebenza-31-tanto-magnacut-bog-oak-l31-1130",
@@ -1939,7 +2001,8 @@
       ],
       "source_input": "https://www.bladescanada.com/Chris-Reeve-Knives/Chris-Reeve-Large-Sebenza-31-Tanto-Framelock-Folding-Knife-MagnaCut-SW-Titanium-Glass-Blasted-w-Bog-Oak-Inlay-L31-1130",
       "notes": "Imported from TODO.md (UNSORTED section). Price and specs captured from retailer listing 2026-07-17.",
-      "listing_title": "Large Sebenza 31 Tanto Framelock Folding Knife MagnaCut SW Titanium Glass Blasted w/Bog Oak Inlay L31-1130"
+      "listing_title": "Large Sebenza 31 Tanto Framelock Folding Knife MagnaCut SW Titanium Glass Blasted w/Bog Oak Inlay L31-1130",
+      "new": false
     },
     {
       "id": "spyderco-manix-2-xl-cru-wear-micarta-brown-c95mpcw2",
@@ -1968,7 +2031,8 @@
       ],
       "source_input": "https://www.bladescanada.com/Spyderco-Knives/Coming-Soon-Spyderco-Manix-2-XL-Folding-Knife-CPM-Cru-Wear-Micarta-Brown-C95MPCW2",
       "notes": "Imported from TODO.md (UNSORTED section). Price and specs captured from retailer listing 2026-07-17. Listing marked Coming Soon at import time.",
-      "listing_title": "Manix 2 XL Folding Knife CPM Cru-Wear Micarta Brown C95MPCW2"
+      "listing_title": "Manix 2 XL Folding Knife CPM Cru-Wear Micarta Brown C95MPCW2",
+      "new": false
     },
     {
       "id": "we-knife-ryson-framelock-m390-titanium-gray-we24086-2",
@@ -1997,7 +2061,8 @@
       ],
       "source_input": "https://www.bladescanada.com/WE-Knife-Co.-Knives/We-Knife-Ryson-Framelock-Folding-Knife-M390-Satin-Titanium-Gray-WE24086-2",
       "notes": "Imported from TODO.md (UNSORTED section). Price and specs captured from retailer listing 2026-07-17.",
-      "listing_title": "Ryson Framelock Folding Knife M390 Satin Titanium Gray WE24086-2"
+      "listing_title": "Ryson Framelock Folding Knife M390 Satin Titanium Gray WE24086-2",
+      "new": false
     },
     {
       "id": "crkt-zephyr-d2-g10-black-3840",
@@ -2028,7 +2093,8 @@
       ],
       "source_input": "https://www.bladescanada.com/CRKT-Knives/CRKT-Zephyr-Flipper-Folding-Knife-D2-Satin-G10-Black-3840",
       "notes": "Added by user 2026-07-18.",
-      "listing_title": "CRKT Zephyr Flipper Folding Knife, D2 Satin, G10 Black, 3840 [CRKT3840] - $109.99CDN"
+      "listing_title": "CRKT Zephyr Flipper Folding Knife, D2 Satin, G10 Black, 3840 [CRKT3840] - $109.99CDN",
+      "new": false
     },
     {
       "id": "kubey-gurkha-14c28n-g10-black-ku397a",
@@ -2059,7 +2125,8 @@
       ],
       "source_input": "https://www.bladescanada.com/Kubey-Knives/Kubey-Gurkha-EDC-Folding-Knife-14C28N-Beadblast-G10-Black-KU397A",
       "notes": "Added by user 2026-07-18.",
-      "listing_title": "Kubey Gurkha EDC Folding Knife, 14C28N Steel, G10 Black, KU397A [KuKU397A] - $89.99CDN"
+      "listing_title": "Kubey Gurkha EDC Folding Knife, 14C28N Steel, G10 Black, KU397A [KuKU397A] - $89.99CDN",
+      "new": false
     },
     {
       "id": "kunwu-padre-framelock-black-titanium-diamond-textured-706t4",
@@ -2089,7 +2156,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: BUY THESE).",
-      "listing_title": "Kunwu Padre Framelock Black Titanium Diamond Textured 706T4"
+      "listing_title": "Kunwu Padre Framelock Black Titanium Diamond Textured 706T4",
+      "new": false
     },
     {
       "id": "cold-steel-ad-10-g10-black-28dd",
@@ -2119,7 +2187,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: BUY THESE).",
-      "listing_title": "Cold Steel AD-10 G10 Black 28DD"
+      "listing_title": "Cold Steel AD-10 G10 Black 28DD",
+      "new": false
     },
     {
       "id": "kizer-harpoon-fold-titanium-grey-ki4784a1",
@@ -2150,7 +2219,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: BUY THESE). Variant note: Titanium Grey.",
-      "listing_title": "Kizer Harpoon Fold Titanium Grey KI4784A1"
+      "listing_title": "Kizer Harpoon Fold Titanium Grey KI4784A1",
+      "new": false
     },
     {
       "id": "kizer-militaw-3-15-kwikswap-aluminum-shipwreck-camocarbon-ki3634-31cda2",
@@ -2181,7 +2251,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: BUY THESE, TOP PICKS).",
-      "listing_title": "Kizer Militaw 3.15 KwikSwap Aluminum Shipwreck CamoCarbon KI3634-31CDA2"
+      "listing_title": "Kizer Militaw 3.15 KwikSwap Aluminum Shipwreck CamoCarbon KI3634-31CDA2",
+      "new": false
     },
     {
       "id": "kizer-harpoon-fold-titanium-grey-matte-dlc-ki4784a3",
@@ -2212,7 +2283,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: BUY THESE). Variant note: Titanium Grey.",
-      "listing_title": "Kizer Harpoon Fold Titanium Grey Matte DLC KI4784A3"
+      "listing_title": "Kizer Harpoon Fold Titanium Grey Matte DLC KI4784A3",
+      "new": false
     },
     {
       "id": "kizer-harpoon-fold-titanium-norplex-ultrex-micarta-brown-ki4784a4",
@@ -2243,7 +2315,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: BUY THESE). Variant note: Titanium Norplex.",
-      "listing_title": "Kizer Harpoon Fold Titanium Norplex Ultrex Micarta Brown KI4784A4"
+      "listing_title": "Kizer Harpoon Fold Titanium Norplex Ultrex Micarta Brown KI4784A4",
+      "new": false
     },
     {
       "id": "bestechman-sprite-titanium-bronze-bmk21b",
@@ -2274,7 +2347,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: BUY THESE).",
-      "listing_title": "BestechMan Sprite Titanium Bronze BMK21B"
+      "listing_title": "BestechMan Sprite Titanium Bronze BMK21B",
+      "new": false
     },
     {
       "id": "bestechman-sprite-titanium-dark-bead-blast-stonewash-bmk21d",
@@ -2307,7 +2381,8 @@
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: BUY THESE).",
       "listing_title": "BestechMan Sprite Titanium Dark Bead Blast Stonewash BMK21D",
-      "buy_priority": 8
+      "buy_priority": 8,
+      "new": false
     },
     {
       "id": "bestechman-sprite-titanium-bmk21a",
@@ -2338,7 +2413,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: BUY THESE).",
-      "listing_title": "BestechMan Sprite Titanium BMK21A"
+      "listing_title": "BestechMan Sprite Titanium BMK21A",
+      "new": false
     },
     {
       "id": "kizer-khamsin-aluminum-silver-v3791a3",
@@ -2369,7 +2445,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: BUY THESE). Variant note: Aluminum.",
-      "listing_title": "Kizer Khamsin Aluminum Silver V3791A3"
+      "listing_title": "Kizer Khamsin Aluminum Silver V3791A3",
+      "new": false
     },
     {
       "id": "kizer-roach-xl-micarta-black-v4477bda2",
@@ -2400,7 +2477,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: BUY THESE, TOP PICKS). Listed at both $123 and $108 in source shortlist.",
-      "listing_title": "Kizer Roach XL Micarta Black V4477BDA2"
+      "listing_title": "Kizer Roach XL Micarta Black V4477BDA2",
+      "new": false
     },
     {
       "id": "kizer-trestle-d-aluminum-leopardwood-v3760a3",
@@ -2430,7 +2508,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: BUY THESE).",
-      "listing_title": "Kizer Trestle D Aluminum Leopardwood V3760A3"
+      "listing_title": "Kizer Trestle D Aluminum Leopardwood V3760A3",
+      "new": false
     },
     {
       "id": "kansept-accipiter-black-aluminum-fish-scale-t1007f6",
@@ -2460,7 +2539,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: BUY THESE).",
-      "listing_title": "Kansept Accipiter Black Aluminum Fish Scale T1007F6"
+      "listing_title": "Kansept Accipiter Black Aluminum Fish Scale T1007F6",
+      "new": false
     },
     {
       "id": "vosteed-raccoon-tll-bowie-micarta-black-a2926",
@@ -2490,7 +2570,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: BUY THESE).",
-      "listing_title": "Vosteed Raccoon TLL Bowie Micarta Black A2926"
+      "listing_title": "Vosteed Raccoon TLL Bowie Micarta Black A2926",
+      "new": false
     },
     {
       "id": "vosteed-raccoon-tll-bowie-g10-white-a2925",
@@ -2520,7 +2601,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: BUY THESE).",
-      "listing_title": "Vosteed Raccoon TLL Bowie G10 White A2925"
+      "listing_title": "Vosteed Raccoon TLL Bowie G10 White A2925",
+      "new": false
     },
     {
       "id": "kizer-c01c-2-9-cd-richlite-brown-v3488-29cda2",
@@ -2550,7 +2632,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: BUY THESE).",
-      "listing_title": "Kizer C01C 2.9 CD Richlite Brown V3488-29CDA2"
+      "listing_title": "Kizer C01C 2.9 CD Richlite Brown V3488-29CDA2",
+      "new": false
     },
     {
       "id": "cold-steel-extra-large-espada-g10-black-62ma",
@@ -2580,7 +2663,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: WORTH THE PRICE).",
-      "listing_title": "Cold Steel Extra Large Espada G10 Black 62MA"
+      "listing_title": "Cold Steel Extra Large Espada G10 Black 62MA",
+      "new": false
     },
     {
       "id": "benchmade-bugout-m390-aluminum-535bk-4",
@@ -2610,7 +2694,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: WORTH THE PRICE).",
-      "listing_title": "Benchmade Bugout M390 Aluminum 535BK-4"
+      "listing_title": "Benchmade Bugout M390 Aluminum 535BK-4",
+      "new": false
     },
     {
       "id": "we-knife-co-limited-edition-bogey-titanium-grey-we23088-2",
@@ -2641,7 +2726,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: WORTH THE PRICE). Variant note: Titanium.",
-      "listing_title": "WE Knife Co. Limited Edition Bogey Titanium Grey WE23088-2"
+      "listing_title": "WE Knife Co. Limited Edition Bogey Titanium Grey WE23088-2",
+      "new": false
     },
     {
       "id": "benchmade-bailout-tanto-grey-partially-serrated-537sgy-03",
@@ -2671,7 +2757,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: WORTH THE PRICE).",
-      "listing_title": "Benchmade Bailout Tanto Grey Partially Serrated 537SGY-03"
+      "listing_title": "Benchmade Bailout Tanto Grey Partially Serrated 537SGY-03",
+      "new": false
     },
     {
       "id": "vosteed-zander-aluminum-olive-green-copper-dune-blade-a4604",
@@ -2702,7 +2789,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: TOP PICKS).",
-      "listing_title": "Vosteed Zander Aluminum Olive Green Copper Dune Blade A4604"
+      "listing_title": "Vosteed Zander Aluminum Olive Green Copper Dune Blade A4604",
+      "new": false
     },
     {
       "id": "kansept-strip-micarta-brown-titanium-stonewash-k1113a3",
@@ -2732,7 +2820,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: TOP PICKS).",
-      "listing_title": "Kansept Strip Micarta Brown Titanium Stonewash K1113A3"
+      "listing_title": "Kansept Strip Micarta Brown Titanium Stonewash K1113A3",
+      "new": false
     },
     {
       "id": "vosteed-parallel-titanium-acid-wash-black-a3522",
@@ -2762,7 +2851,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: TOP PICKS).",
-      "listing_title": "Vosteed Parallel Titanium Acid Wash Black A3522"
+      "listing_title": "Vosteed Parallel Titanium Acid Wash Black A3522",
+      "new": false
     },
     {
       "id": "kansept-falk-carbon-fiber-80s-camo-k1142a2",
@@ -2792,7 +2882,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: TOP PICKS).",
-      "listing_title": "Kansept Falk Carbon Fiber 80s Camo K1142A2"
+      "listing_title": "Kansept Falk Carbon Fiber 80s Camo K1142A2",
+      "new": false
     },
     {
       "id": "finch-knife-co-snub-nose-midnight-honey-carbon-fiber-sn180",
@@ -2822,7 +2913,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: TOP PICKS).",
-      "listing_title": "Finch Knife Co. Snub Nose Midnight Honey Carbon Fiber SN180"
+      "listing_title": "Finch Knife Co. Snub Nose Midnight Honey Carbon Fiber SN180",
+      "new": false
     },
     {
       "id": "crkt-limited-run-squid-ii-olive-wood-2496w",
@@ -2852,7 +2944,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: TOP PICKS).",
-      "listing_title": "CRKT Limited Run Squid II Olive Wood 2496W"
+      "listing_title": "CRKT Limited Run Squid II Olive Wood 2496W",
+      "new": false
     },
     {
       "id": "cjrb-sasaya-titanium-grey-j1959g-gy",
@@ -2882,7 +2975,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: TOP PICKS). House of Knives internal SKU AC25041. On sale from $360.",
-      "listing_title": "CJRB Sasaya Titanium Grey J1959G-GY"
+      "listing_title": "CJRB Sasaya Titanium Grey J1959G-GY",
+      "new": false
     },
     {
       "id": "kizer-draca-aluminum-carbon-fiber-black-green-ki4751a1",
@@ -2912,7 +3006,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: TOP PICKS).",
-      "listing_title": "Kizer Draca Aluminum Carbon Fiber Black Green KI4751A1"
+      "listing_title": "Kizer Draca Aluminum Carbon Fiber Black Green KI4751A1",
+      "new": false
     },
     {
       "id": "kizer-serpentine-titanium-micarta-ki3759fda2",
@@ -2942,7 +3037,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: TOP PICKS).",
-      "listing_title": "Kizer Serpentine Titanium Micarta KI3759FDA2"
+      "listing_title": "Kizer Serpentine Titanium Micarta KI3759FDA2",
+      "new": false
     },
     {
       "id": "vosteed-parallel-titanium-purple-a3521",
@@ -2972,7 +3068,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: TOP PICKS).",
-      "listing_title": "Vosteed Parallel Titanium Purple A3521"
+      "listing_title": "Vosteed Parallel Titanium Purple A3521",
+      "new": false
     },
     {
       "id": "kizer-melody-aluminum-panama-rosewood-ki3732a2",
@@ -3003,7 +3100,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: TOP PICKS). Variant note: Aluminum.",
-      "listing_title": "Kizer Melody Aluminum Panama Rosewood KI3732A2"
+      "listing_title": "Kizer Melody Aluminum Panama Rosewood KI3732A2",
+      "new": false
     },
     {
       "id": "kizer-takahe-titanium-grey-ki3701a1",
@@ -3034,7 +3132,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: TOP PICKS). Variant note: Titanium.",
-      "listing_title": "Kizer Takahe Titanium Grey KI3701A1"
+      "listing_title": "Kizer Takahe Titanium Grey KI3701A1",
+      "new": false
     },
     {
       "id": "civivi-brova-aluminum-forest-green-ce25093-3",
@@ -3064,7 +3163,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: TOP PICKS).",
-      "listing_title": "CIVIVI Brova Aluminum Forest Green CE25093-3"
+      "listing_title": "CIVIVI Brova Aluminum Forest Green CE25093-3",
+      "new": false
     },
     {
       "id": "kizer-tycho-titanium-mkuruti-wood-ki4761a1",
@@ -3095,7 +3195,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: TOP PICKS). Variant note: Titanium.",
-      "listing_title": "Kizer Tycho Titanium Mkuruti Wood KI4761A1"
+      "listing_title": "Kizer Tycho Titanium Mkuruti Wood KI4761A1",
+      "new": false
     },
     {
       "id": "crkt-q-compact-sand-7075s",
@@ -3125,7 +3226,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: TOP PICKS).",
-      "listing_title": "CRKT Q Compact Sand 7075S"
+      "listing_title": "CRKT Q Compact Sand 7075S",
+      "new": false
     },
     {
       "id": "crkt-q-compact-aqua-7075b",
@@ -3155,7 +3257,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: TOP PICKS).",
-      "listing_title": "CRKT Q Compact Aqua 7075B"
+      "listing_title": "CRKT Q Compact Aqua 7075B",
+      "new": false
     },
     {
       "id": "kershaw-celestion-duralock-d2-stonewash-g10-black-2057",
@@ -3185,7 +3288,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: TOP PICKS).",
-      "listing_title": "Kershaw Celestion DuraLock D2 Stonewash G10 Black 2057"
+      "listing_title": "Kershaw Celestion DuraLock D2 Stonewash G10 Black 2057",
+      "new": false
     },
     {
       "id": "finch-knife-co-road-runner-honey-ridge-rr320",
@@ -3215,7 +3319,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: TOP PICKS).",
-      "listing_title": "Finch Knife Co. Road Runner Honey Ridge RR320"
+      "listing_title": "Finch Knife Co. Road Runner Honey Ridge RR320",
+      "new": false
     },
     {
       "id": "civivi-gordo-guibourtia-wood-damascus-clad-c22018c-ds1",
@@ -3246,7 +3351,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: TOP PICKS). Variant note: Damascus.",
-      "listing_title": "CIVIVI Gordo Guibourtia Wood Damascus Clad C22018C-DS1"
+      "listing_title": "CIVIVI Gordo Guibourtia Wood Damascus Clad C22018C-DS1",
+      "new": false
     },
     {
       "id": "kizer-masu-vortex-micarta-black-grey-v3697a2",
@@ -3276,7 +3382,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: TOP PICKS).",
-      "listing_title": "Kizer Masu Vortex Micarta Black Grey V3697A2"
+      "listing_title": "Kizer Masu Vortex Micarta Black Grey V3697A2",
+      "new": false
     },
     {
       "id": "kizer-khamsin-aluminum-sandstorm-v3791a1",
@@ -3306,7 +3413,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: TOP PICKS).",
-      "listing_title": "Kizer Khamsin Aluminum Sandstorm V3791A1"
+      "listing_title": "Kizer Khamsin Aluminum Sandstorm V3791A1",
+      "new": false
     },
     {
       "id": "kizer-little-ringbo-aluminum-grey-v3708a1",
@@ -3337,7 +3445,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: TOP PICKS).",
-      "listing_title": "Kizer Little Ringbo Aluminum Grey V3708A1"
+      "listing_title": "Kizer Little Ringbo Aluminum Grey V3708A1",
+      "new": false
     },
     {
       "id": "tenable-fenrir-anodized-aluminum-dark-blue-fishscale-texture-b1034h9",
@@ -3368,7 +3477,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: TOP PICKS). Variant note: Anodized.",
-      "listing_title": "Tenable Fenrir Anodized Aluminum Dark Blue Fishscale Texture B1034H9"
+      "listing_title": "Tenable Fenrir Anodized Aluminum Dark Blue Fishscale Texture B1034H9",
+      "new": false
     },
     {
       "id": "tenable-tarkin-aluminum-grey-faceted-wave-texture-b1078a1",
@@ -3398,7 +3508,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: TOP PICKS).",
-      "listing_title": "Tenable Tarkin Aluminum Grey Faceted Wave Texture B1078A1"
+      "listing_title": "Tenable Tarkin Aluminum Grey Faceted Wave Texture B1078A1",
+      "new": false
     },
     {
       "id": "kizer-outposter-ultrex-micarta-black-v3802cda1",
@@ -3428,7 +3539,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: TOP PICKS).",
-      "listing_title": "Kizer Outposter Ultrex Micarta Black V3802CDA1"
+      "listing_title": "Kizer Outposter Ultrex Micarta Black V3802CDA1",
+      "new": false
     },
     {
       "id": "vosteed-porcupine-ivory-drift-bamboo-micarta-a2626",
@@ -3458,7 +3570,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: TOP PICKS).",
-      "listing_title": "Vosteed Porcupine Ivory Drift Bamboo Micarta A2626"
+      "listing_title": "Vosteed Porcupine Ivory Drift Bamboo Micarta A2626",
+      "new": false
     },
     {
       "id": "crkt-m16-02ss-tanto-m16-02ss",
@@ -3488,7 +3601,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: TOP PICKS).",
-      "listing_title": "CRKT M16-02SS Tanto M16-02SS"
+      "listing_title": "CRKT M16-02SS Tanto M16-02SS",
+      "new": false
     },
     {
       "id": "flytanium-beef-stonewash-stealth-grey-fly-1386gss",
@@ -3518,7 +3632,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: TOP PICKS).",
-      "listing_title": "Flytanium Beef Stonewash Stealth Grey FLY-1386GSS"
+      "listing_title": "Flytanium Beef Stonewash Stealth Grey FLY-1386GSS",
+      "new": false
     },
     {
       "id": "sencut-stria-g10-milled-ivory-s25112-1",
@@ -3548,7 +3663,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: TOP PICKS).",
-      "listing_title": "Sencut Stria G10 Milled Ivory S25112-1"
+      "listing_title": "Sencut Stria G10 Milled Ivory S25112-1",
+      "new": false
     },
     {
       "id": "kizer-aegis-damascus-g10-black-v3774a2",
@@ -3579,7 +3695,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: TOP PICKS). Variant note: Damascus.",
-      "listing_title": "Kizer Aegis Damascus G10 Black V3774A2"
+      "listing_title": "Kizer Aegis Damascus G10 Black V3774A2",
+      "new": false
     },
     {
       "id": "sencut-selkyris-aluminum-grey-s25068-2",
@@ -3611,7 +3728,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: TOP PICKS, UNDER 100$). Variant note: Aluminum.",
-      "listing_title": "Sencut Selkyris Aluminum Grey S25068-2"
+      "listing_title": "Sencut Selkyris Aluminum Grey S25068-2",
+      "new": false
     },
     {
       "id": "cjrb-kain-g10-black-j1956-bbk",
@@ -3641,7 +3759,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: TOP PICKS). House of Knives internal SKU AC25024.",
-      "listing_title": "CJRB Kain G10 Black J1956-BBK"
+      "listing_title": "CJRB Kain G10 Black J1956-BBK",
+      "new": false
     },
     {
       "id": "kizer-mithril-titanium-carbon-fiber-black-zx-fk08a1",
@@ -3671,7 +3790,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: HUGE SALES).",
-      "listing_title": "Kizer Mithril Titanium Carbon Fiber Black ZX FK08A1"
+      "listing_title": "Kizer Mithril Titanium Carbon Fiber Black ZX FK08A1",
+      "new": false
     },
     {
       "id": "kunwu-compadre-diamond-titanium-beadblast-k706c-t2",
@@ -3701,7 +3821,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: HUGE SALES). House of Knives internal SKU KW25047. On sale from $433.",
-      "listing_title": "Kunwu Compadre Diamond Titanium Beadblast K706C-T2"
+      "listing_title": "Kunwu Compadre Diamond Titanium Beadblast K706C-T2",
+      "new": false
     },
     {
       "id": "kansept-orion-bronze-anodized-machined-satin-titanium-k1089b3",
@@ -3731,7 +3852,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: HUGE SALES).",
-      "listing_title": "Kansept Orion Bronze Anodized Machined Satin Titanium K1089B3"
+      "listing_title": "Kansept Orion Bronze Anodized Machined Satin Titanium K1089B3",
+      "new": false
     },
     {
       "id": "kizer-militaw-s45vn-titanium-fat-carbon-ki3634a3",
@@ -3761,7 +3883,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: HUGE SALES).",
-      "listing_title": "Kizer Militaw S45VN Titanium Fat Carbon KI3634A3"
+      "listing_title": "Kizer Militaw S45VN Titanium Fat Carbon KI3634A3",
+      "new": false
     },
     {
       "id": "spyderco-reveal-16-native-5-micarta-brown-c41mpcw5",
@@ -3791,7 +3914,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: HUGE SALES).",
-      "listing_title": "Spyderco Reveal 16 Native 5 Micarta Brown C41MPCW5"
+      "listing_title": "Spyderco Reveal 16 Native 5 Micarta Brown C41MPCW5",
+      "new": false
     },
     {
       "id": "finch-knife-co-cherry-bomb-snakewood-cb202",
@@ -3821,7 +3945,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: HUGE SALES).",
-      "listing_title": "Finch Knife Co. Cherry Bomb Snakewood CB202"
+      "listing_title": "Finch Knife Co. Cherry Bomb Snakewood CB202",
+      "new": false
     },
     {
       "id": "kunwu-verta-excalibur-carbon-fiber-red-black-b709-cf1",
@@ -3851,7 +3976,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: NEW PRICY PICKS).",
-      "listing_title": "Kunwu Verta Excalibur Carbon Fiber Red Black B709-CF1"
+      "listing_title": "Kunwu Verta Excalibur Carbon Fiber Red Black B709-CF1",
+      "new": false
     },
     {
       "id": "we-knife-co-limited-edition-capstan-titanium-grey-we24047-2",
@@ -3881,7 +4007,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: NEW PRICY PICKS).",
-      "listing_title": "WE Knife Co. Limited Edition Capstan Titanium Grey WE24047-2"
+      "listing_title": "WE Knife Co. Limited Edition Capstan Titanium Grey WE24047-2",
+      "new": false
     },
     {
       "id": "we-knife-co-limited-edition-muster-titanium-olive-grey-we23058-2",
@@ -3911,7 +4038,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: NEW PRICY PICKS).",
-      "listing_title": "WE Knife Co. Limited Edition Muster Titanium Olive Grey WE23058-2"
+      "listing_title": "WE Knife Co. Limited Edition Muster Titanium Olive Grey WE23058-2",
+      "new": false
     },
     {
       "id": "we-knife-co-limited-edition-muster-titanium-desert-terrain-we23058-3",
@@ -3941,7 +4069,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: NEW PRICY PICKS).",
-      "listing_title": "WE Knife Co. Limited Edition Muster Titanium Desert Terrain WE23058-3"
+      "listing_title": "WE Knife Co. Limited Edition Muster Titanium Desert Terrain WE23058-3",
+      "new": false
     },
     {
       "id": "reate-vk-frok-titanium-dark-frosted-vk-frok-2",
@@ -3971,7 +4100,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: NEW PRICY PICKS).",
-      "listing_title": "Reate VK Frok Titanium Dark Frosted VK-FROK-2"
+      "listing_title": "Reate VK Frok Titanium Dark Frosted VK-FROK-2",
+      "new": false
     },
     {
       "id": "remette-rt-orca-titanium-luminous-carbon-fiber-orcals",
@@ -4001,7 +4131,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: NEW PRICY PICKS).",
-      "listing_title": "Remette RT Orca Titanium Luminous Carbon Fiber ORCALS"
+      "listing_title": "Remette RT Orca Titanium Luminous Carbon Fiber ORCALS",
+      "new": false
     },
     {
       "id": "remette-rt-orca-titanium-copper-foil-carbon-fiber-orcatb",
@@ -4031,7 +4162,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: NEW PRICY PICKS).",
-      "listing_title": "Remette RT Orca Titanium Copper Foil Carbon Fiber ORCATB"
+      "listing_title": "Remette RT Orca Titanium Copper Foil Carbon Fiber ORCATB",
+      "new": false
     },
     {
       "id": "giantmouse-ace-zoobie-titanium",
@@ -4061,7 +4193,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: NEW PRICY PICKS).",
-      "listing_title": "GiantMouse ACE Zoobie Titanium"
+      "listing_title": "GiantMouse ACE Zoobie Titanium",
+      "new": false
     },
     {
       "id": "remette-rt-cool-leopard-titanium-rtks-t",
@@ -4091,7 +4224,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: NEW PRICY PICKS).",
-      "listing_title": "Remette RT Cool Leopard Titanium RTKS-T"
+      "listing_title": "Remette RT Cool Leopard Titanium RTKS-T",
+      "new": false
     },
     {
       "id": "remette-rt-steed-black-titanium-carbon-fiber-purple-rtws-by",
@@ -4121,7 +4255,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: NEW PRICY PICKS).",
-      "listing_title": "Remette RT Steed Black Titanium Carbon Fiber Purple RTWS-BY"
+      "listing_title": "Remette RT Steed Black Titanium Carbon Fiber Purple RTWS-BY",
+      "new": false
     },
     {
       "id": "remette-rt-steed-titanium-carbon-fiber-purple-rtws-tp",
@@ -4151,7 +4286,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: NEW PRICY PICKS).",
-      "listing_title": "Remette RT Steed Titanium Carbon Fiber Purple RTWS-TP"
+      "listing_title": "Remette RT Steed Titanium Carbon Fiber Purple RTWS-TP",
+      "new": false
     },
     {
       "id": "kizer-t1-cd-titanium-silver-ki3490-2cda1",
@@ -4181,7 +4317,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: NEW PRICY PICKS).",
-      "listing_title": "Kizer T1 CD Titanium Silver KI3490-2CDA1"
+      "listing_title": "Kizer T1 CD Titanium Silver KI3490-2CDA1",
+      "new": false
     },
     {
       "id": "we-knife-co-inceptus-titanium-dark-grey-black-white-g10-we25017-1",
@@ -4211,7 +4348,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: NEW PRICY PICKS).",
-      "listing_title": "WE Knife Co. Inceptus Titanium Dark Grey Black White G10 WE25017-1"
+      "listing_title": "WE Knife Co. Inceptus Titanium Dark Grey Black White G10 WE25017-1",
+      "new": false
     },
     {
       "id": "we-knife-co-inceptus-titanium-champagne-aluminum-foil-carbon-foil-inlay-we25017-4",
@@ -4241,7 +4379,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: NEW PRICY PICKS).",
-      "listing_title": "WE Knife Co. Inceptus Titanium Champagne Aluminum Foil Carbon Foil Inlay WE25017-4"
+      "listing_title": "WE Knife Co. Inceptus Titanium Champagne Aluminum Foil Carbon Foil Inlay WE25017-4",
+      "new": false
     },
     {
       "id": "remette-wild-species-titanium-tiger-pattern-wd108-n4",
@@ -4271,7 +4410,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: NEW PRICY PICKS).",
-      "listing_title": "Remette Wild Species Titanium Tiger Pattern WD108-N4"
+      "listing_title": "Remette Wild Species Titanium Tiger Pattern WD108-N4",
+      "new": false
     },
     {
       "id": "we-knife-co-limited-edition-capstan-titanium-terrain-blue-we24047-3",
@@ -4301,7 +4441,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: NEW PRICY PICKS).",
-      "listing_title": "WE Knife Co. Limited Edition Capstan Titanium Terrain Blue WE24047-3"
+      "listing_title": "WE Knife Co. Limited Edition Capstan Titanium Terrain Blue WE24047-3",
+      "new": false
     },
     {
       "id": "cjrb-maximal-g10-blue-j1954-gyf",
@@ -4331,7 +4472,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: UNDER 100$).",
-      "listing_title": "CJRB Maximal G10 Blue J1954-GYF"
+      "listing_title": "CJRB Maximal G10 Blue J1954-GYF",
+      "new": false
     },
     {
       "id": "qsp-emu-stonewash-14c28n-g10-black-qs164-c1",
@@ -4361,7 +4503,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: UNDER 100$). House of Knives internal SKU QS25005. On sale from $120.",
-      "listing_title": "QSP Emu Stonewash 14C28N G10 Black QS164-C1"
+      "listing_title": "QSP Emu Stonewash 14C28N G10 Black QS164-C1",
+      "new": false
     },
     {
       "id": "kizer-phoca-bd-norplex-ultrex-micarta-brown-v3781bda1",
@@ -4391,7 +4534,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: UNDER 100$).",
-      "listing_title": "Kizer Phoca BD Norplex Ultrex Micarta Brown V3781BDA1"
+      "listing_title": "Kizer Phoca BD Norplex Ultrex Micarta Brown V3781BDA1",
+      "new": false
     },
     {
       "id": "qsp-ferret-g10-aluminum-foil-black-blade-qs170-d2",
@@ -4421,7 +4565,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: UNDER 100$).",
-      "listing_title": "QSP Ferret G10 Aluminum Foil Black Blade QS170-D2"
+      "listing_title": "QSP Ferret G10 Aluminum Foil Black Blade QS170-D2",
+      "new": false
     },
     {
       "id": "kershaw-sequence-ke-1426",
@@ -4451,7 +4596,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: UNDER 100$). House of Knives internal SKU KS25016.",
-      "listing_title": "Kershaw Sequence KE-1426"
+      "listing_title": "Kershaw Sequence KE-1426",
+      "new": false
     },
     {
       "id": "cjrb-large-pyrite-light-g10-desert-j1945l-bde",
@@ -4481,7 +4627,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: UNDER 100$).",
-      "listing_title": "CJRB Large Pyrite Light G10 Desert J1945L-BDE"
+      "listing_title": "CJRB Large Pyrite Light G10 Desert J1945L-BDE",
+      "new": false
     },
     {
       "id": "cjrb-fugly-g10-green-j1957-bgn",
@@ -4511,7 +4658,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: UNDER 100$). House of Knives internal SKU AC25027. On sale from $100.",
-      "listing_title": "CJRB Fugly G10 Green J1957-BGN"
+      "listing_title": "CJRB Fugly G10 Green J1957-BGN",
+      "new": false
     },
     {
       "id": "bestechman-cicada-s-wing-stainless-steel-frag-pattern-bmk06-s-5",
@@ -4541,7 +4689,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: UNDER 100$).",
-      "listing_title": "BestechMan Cicada-S Wing Stainless Steel Frag Pattern BMK06-S-5"
+      "listing_title": "BestechMan Cicada-S Wing Stainless Steel Frag Pattern BMK06-S-5",
+      "new": false
     },
     {
       "id": "sencut-tauron-g10-burgundy-s25060-2",
@@ -4571,7 +4720,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: UNDER 100$).",
-      "listing_title": "Sencut Tauron G10 Burgundy S25060-2"
+      "listing_title": "Sencut Tauron G10 Burgundy S25060-2",
+      "new": false
     },
     {
       "id": "civivi-kukei-g10-pink-c25036-1",
@@ -4601,7 +4751,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: UNDER 100$).",
-      "listing_title": "CIVIVI Kukei G10 Pink C25036-1"
+      "listing_title": "CIVIVI Kukei G10 Pink C25036-1",
+      "new": false
     },
     {
       "id": "zero-tolerance-factory-special-series-0203cf-duralock-carbon-fiber-black-zt-0203cf",
@@ -4631,7 +4782,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: UNDER 100$).",
-      "listing_title": "Zero Tolerance Factory Special Series 0203CF DuraLock Carbon Fiber Black ZT-0203CF"
+      "listing_title": "Zero Tolerance Factory Special Series 0203CF DuraLock Carbon Fiber Black ZT-0203CF",
+      "new": false
     },
     {
       "id": "flytanium-beef-stonewash-pitch-black-fly-1386pbs",
@@ -4661,7 +4813,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: UNDER 100$).",
-      "listing_title": "Flytanium Beef Stonewash Pitch Black FLY-1386PBS"
+      "listing_title": "Flytanium Beef Stonewash Pitch Black FLY-1386PBS",
+      "new": false
     },
     {
       "id": "flytanium-beef-pvd-pitch-black-fly-1386pbb",
@@ -4691,7 +4844,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: UNDER 100$).",
-      "listing_title": "Flytanium Beef PVD Pitch Black FLY-1386PBB"
+      "listing_title": "Flytanium Beef PVD Pitch Black FLY-1386PBB",
+      "new": false
     },
     {
       "id": "bestechman-cicada-s-wing-stainless-steel-bmk06-s-7",
@@ -4721,7 +4875,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: UNDER 100$).",
-      "listing_title": "BestechMan Cicada-S Wing Stainless Steel BMK06-S-7"
+      "listing_title": "BestechMan Cicada-S Wing Stainless Steel BMK06-S-7",
+      "new": false
     },
     {
       "id": "sencut-sylor-g10-ivory-s25056-2",
@@ -4751,7 +4906,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: UNDER 100$).",
-      "listing_title": "Sencut Sylor G10 Ivory S25056-2"
+      "listing_title": "Sencut Sylor G10 Ivory S25056-2",
+      "new": false
     },
     {
       "id": "crkt-slag-grey-7600",
@@ -4781,7 +4937,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: UNDER 100$).",
-      "listing_title": "CRKT Slag Grey 7600"
+      "listing_title": "CRKT Slag Grey 7600",
+      "new": false
     },
     {
       "id": "kershaw-inception-2031",
@@ -4811,7 +4968,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: UNDER 100$).",
-      "listing_title": "Kershaw Inception 2031"
+      "listing_title": "Kershaw Inception 2031",
+      "new": false
     },
     {
       "id": "qsp-reptile-black-stonewash-aluminum-od-green-qs165-b2",
@@ -4841,7 +4999,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: UNDER 100$). House of Knives internal SKU QS25036. On sale from $140.",
-      "listing_title": "QSP Reptile Black Stonewash Aluminum OD Green QS165-B2"
+      "listing_title": "QSP Reptile Black Stonewash Aluminum OD Green QS165-B2",
+      "new": false
     },
     {
       "id": "vosteed-psyop-2-99-micarta-red-titanium-bolster-a2217",
@@ -4871,7 +5030,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: OUT OF STOCK).",
-      "listing_title": "Vosteed Psyop 2.99 Micarta Red Titanium Bolster A2217"
+      "listing_title": "Vosteed Psyop 2.99 Micarta Red Titanium Bolster A2217",
+      "new": false
     },
     {
       "id": "kizer-nice-guy-micarta-brown-madder-v3011bca1",
@@ -4901,7 +5061,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: OUT OF STOCK).",
-      "listing_title": "Kizer Nice Guy Micarta Brown Madder V3011BCA1"
+      "listing_title": "Kizer Nice Guy Micarta Brown Madder V3011BCA1",
+      "new": false
     },
     {
       "id": "vosteed-raccoon-tll-bowie-g10-sand-a2927",
@@ -4931,7 +5092,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: OUT OF STOCK).",
-      "listing_title": "Vosteed Raccoon TLL Bowie G10 Sand A2927"
+      "listing_title": "Vosteed Raccoon TLL Bowie G10 Sand A2927",
+      "new": false
     },
     {
       "id": "kizer-glaux-aluminum-ink-blue-v3801a3",
@@ -4961,7 +5123,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: OUT OF STOCK).",
-      "listing_title": "Kizer Glaux Aluminum Ink Blue V3801A3"
+      "listing_title": "Kizer Glaux Aluminum Ink Blue V3801A3",
+      "new": false
     },
     {
       "id": "vosteed-shilin-cutter-carbon-fiber-black-a2810",
@@ -4991,7 +5154,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: OUT OF STOCK). House of Knives internal SKU VO25024. On sale from $281.",
-      "listing_title": "Vosteed Shilin Cutter Carbon Fiber Black A2810"
+      "listing_title": "Vosteed Shilin Cutter Carbon Fiber Black A2810",
+      "new": false
     },
     {
       "id": "civivi-pragma-prime-aluminum-champagne-c24067-3",
@@ -5021,7 +5185,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: OUT OF STOCK).",
-      "listing_title": "CIVIVI Pragma Prime Aluminum Champagne C24067-3"
+      "listing_title": "CIVIVI Pragma Prime Aluminum Champagne C24067-3",
+      "new": false
     },
     {
       "id": "cobratec-stiletto-button-lock-vg10-satin-g10-black-cbtstblbk",
@@ -5051,7 +5216,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: STILETTO).",
-      "listing_title": "Cobratec Stiletto Button Lock VG10 Satin G10 Black CBTSTBLBK"
+      "listing_title": "Cobratec Stiletto Button Lock VG10 Satin G10 Black CBTSTBLBK",
+      "new": false
     },
     {
       "id": "dreamtech-flipper-folding-knife-d4285tg",

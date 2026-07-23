@@ -85,7 +85,10 @@ def test_add_markdown_ingests_and_orders_buylist() -> None:
     assert not any("XX999" in json.dumps(k) for k in db["knives"])
 
 
-def test_update_ages_out_new_at_default_keep() -> None:
+def test_update_seals_batch_as_new_then_ages_on_second() -> None:
+    # `knivves update` is the line that TAGS the fresh batch as NEW —
+    # the batch survives the update that seals it (regression: the first
+    # update must not age out the knives it just filed)
     use_tmp()
     invoke("add", str(FIXTURE), "--yes")
     invoke("update", "--note", "test refresh")
@@ -93,6 +96,9 @@ def test_update_ages_out_new_at_default_keep() -> None:
     assert db["updates"]["generation"] == 2
     assert db["updates"]["history"][-1]["note"] == "test refresh"
     added = [k for k in db["knives"] if k["id"] != "legacy-knife"]
+    assert all(k.get("new") is True for k in added), "first update killed its own batch"
+    invoke("update")
+    added = [k for k in load()["knives"] if k["id"] != "legacy-knife"]
     assert all(k.get("new") is False for k in added)
 
 
@@ -100,11 +106,51 @@ def test_new_threeg_extends_cache() -> None:
     use_tmp()
     invoke("add", str(FIXTURE), "--yes")
     invoke("update")
+    invoke("update")
+    added = [k for k in load()["knives"] if k["id"] != "legacy-knife"]
+    assert all(k.get("new") is False for k in added)
     invoke("new", "-threeg")
     db = load()
     assert db["updates"]["keep_generations"] == 3
     added = [k for k in db["knives"] if k["id"] != "legacy-knife"]
     assert all(k.get("new") is True for k in added)
+
+
+def test_update_survey_shows_progress_and_records_history() -> None:
+    use_tmp()
+    invoke("add", str(FIXTURE), "--yes")
+
+    import knivves.scrape as scrape_mod
+
+    def stub_listing(url: str, timeout: float = 30.0) -> scrape_mod.Listing:
+        return scrape_mod.Listing(
+            url=url, retailer="stub", listing_title="stub",
+            price_cad=42.0, availability="in stock",
+        )
+
+    real_fetch = scrape_mod.fetch_listing
+    scrape_mod.fetch_listing = stub_listing
+    try:
+        result = invoke("update", "--survey")
+    finally:
+        scrape_mod.fetch_listing = real_fetch
+
+    assert "surveying the market" in result.output
+    assert "first price" in result.output  # ingested knives were unpriced
+    db = load()
+    surveyed = [
+        k for k in db["knives"]
+        if k["id"] != "legacy-knife" and (k.get("canadian_online_retailers") or [])
+        and scrape_mod.is_supported(str(k["canadian_online_retailers"][0].get("url") or ""))
+    ]
+    assert surveyed
+    for record in surveyed:
+        assert record["canadian_online_retailers"][0]["listed_price_cad"] == 42.0
+        history = record.get("price_history") or []
+        assert history and history[-1]["price_cad"] == 42.0, f"no history on {record['id']}"
+        assert "affordable" in record["user_tags"], f"$150 rule not applied to {record['id']}"
+    # the batch the survey-update sealed is still NEW
+    assert all(k.get("new") is True for k in surveyed)
 
 
 def test_new_oneg_and_status() -> None:

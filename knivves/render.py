@@ -441,6 +441,28 @@ def ingest_result(report: Any, backup: Any) -> Panel:
     return Panel("\n".join(lines), title="Ingested", border_style="green", box=box.ROUNDED)
 
 
+def survey_summary_panel(summary: dict[str, Any]) -> Panel:
+    movers: list[tuple[str, float]] = summary.get("movers") or []
+    lines = [
+        f"[bold]{summary['targets']}[/] live listings read · "
+        f"[#d7a455]{len(movers)} moved[/] · "
+        f"[#d7a455]{len(summary.get('first_priced') or [])} priced for the first time[/] · "
+        f"{summary['unchanged']} unchanged",
+        f"[dim]{summary['unreachable']} unreachable · {summary['unsupported']} unsupported retailer(s) — kept on record, not surveyed[/]",
+    ]
+    if movers:
+        lines.append("")
+        for rid, delta in sorted(movers, key=lambda m: -abs(m[1]))[:10]:
+            down = delta < 0
+            lines.append(
+                f"[{'green' if down else 'red'}]{'▼' if down else '▲'}[/] {escape(rid)}  "
+                f"[{'green' if down else 'red'}]{'-' if down else '+'}${abs(delta):,.2f}[/]"
+            )
+        if len(movers) > 10:
+            lines.append(f"[dim]… {len(movers) - 10} more movers in price_history[/]")
+    return Panel("\n".join(lines), title="market survey", border_style="#d7a455", box=box.HEAVY)
+
+
 def update_report_panel(entry: dict[str, Any], keep: int, new_total: int) -> Panel:
     lines = [
         f"[bold]Generation line advanced to {entry['generation']}[/] · cache keeps [bold]{keep}[/] generation(s)",

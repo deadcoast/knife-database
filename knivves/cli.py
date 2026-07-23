@@ -37,6 +37,7 @@ from .render import (
     raw_json_panel,
     stats_tables,
     summary_cards,
+    survey_summary_panel,
     title,
     update_report_panel,
     validation_table,
@@ -689,55 +690,147 @@ def add(
     console.print(detail_panel(KnifeView(added)))
 
 
+SURVEY_WORKERS = 6
+SURVEY_TIMEOUT = 12.0
+
+
+def _survey_market(db: dict[str, Any]) -> dict[str, Any]:
+    """Re-read every supported live listing, concurrently, with live progress.
+
+    Obeys the same laws as the Vault's Ledger survey: every observation
+    lands in ``price_history`` via ``ledger.observe`` and the $150
+    affordable rule re-tags via ``ledger.retag_affordable``. Movers print
+    as they land; the progress bar carries count, elapsed, and ETA.
+    """
+    from concurrent.futures import ThreadPoolExecutor, as_completed
+
+    from rich.progress import (
+        BarColumn,
+        MofNCompleteColumn,
+        Progress,
+        SpinnerColumn,
+        TextColumn,
+        TimeElapsedColumn,
+        TimeRemainingColumn,
+    )
+
+    from . import ledger as ledger_mod
+    from . import scrape
+
+    today = date.today().isoformat()
+    targets: list[tuple[dict[str, Any], str]] = []
+    unsupported = 0
+    for record in db.get("knives", []):
+        if not isinstance(record, dict):
+            continue
+        retailers = record.get("canadian_online_retailers") or []
+        first = retailers[0] if retailers and isinstance(retailers[0], dict) else None
+        url = str(first.get("url") or "") if first else ""
+        if not url:
+            continue
+        if scrape.is_supported(url):
+            targets.append((record, url))
+        else:
+            unsupported += 1
+
+    movers: list[tuple[str, float]] = []
+    first_priced: list[str] = []
+    unchanged = unreachable = 0
+
+    progress = Progress(
+        SpinnerColumn(style="#d7a455"),
+        TextColumn("[bold]surveying the market[/]"),
+        BarColumn(bar_width=26, complete_style="#d7a455", finished_style="#d7a455"),
+        MofNCompleteColumn(),
+        TimeElapsedColumn(),
+        TimeRemainingColumn(),
+        TextColumn("[dim]{task.fields[status]}[/]"),
+        console=console,
+    )
+    with progress:
+        task = progress.add_task("survey", total=len(targets), status="opening the lines …")
+        with ThreadPoolExecutor(max_workers=SURVEY_WORKERS) as pool:
+            futures = {
+                pool.submit(scrape.fetch_listing, url, SURVEY_TIMEOUT): record
+                for record, url in targets
+            }
+            try:
+                for future in as_completed(futures):
+                    record = futures[future]
+                    rid = str(record.get("id") or "?")
+                    try:
+                        listing = future.result()
+                    except scrape.ScrapeError:
+                        unreachable += 1
+                        progress.update(task, advance=1, status=f"unreachable · {rid[:38]}")
+                        continue
+                    retailers = record.get("canadian_online_retailers") or []
+                    old_price = retailers[0].get("listed_price_cad") if retailers else None
+                    delta = ledger_mod.observe(record, listing.price_cad, listing.availability, today)
+                    ledger_mod.retag_affordable(record)
+                    if delta:
+                        movers.append((rid, delta))
+                        down = delta < 0
+                        progress.console.print(
+                            f"  [{'green' if down else 'red'}]{'▼' if down else '▲'}[/] {rid}  "
+                            f"[{'green' if down else 'red'}]{'-' if down else '+'}${abs(delta):,.2f}[/]"
+                        )
+                        progress.update(task, advance=1, status=f"moved · {rid[:38]}")
+                    elif old_price is None and listing.price_cad is not None:
+                        first_priced.append(rid)
+                        progress.console.print(
+                            f"  [#d7a455]◆[/] {rid}  [#d7a455]first price ${listing.price_cad:,.2f}[/]"
+                        )
+                        progress.update(task, advance=1, status=f"first price · {rid[:38]}")
+                    else:
+                        unchanged += 1
+                        progress.update(task, advance=1, status=f"read · {rid[:38]}")
+            except KeyboardInterrupt:
+                pool.shutdown(wait=False, cancel_futures=True)
+                raise
+
+    return {
+        "targets": len(targets),
+        "movers": movers,
+        "first_priced": first_priced,
+        "unchanged": unchanged,
+        "unreachable": unreachable,
+        "unsupported": unsupported,
+    }
+
+
 @app.command()
 def update(
     gens: Annotated[Optional[int], typer.Option("--gens", help="Set the NEW cache depth (1–3) before advancing.")] = None,
     note: Annotated[str, typer.Option("--note", help="Note recorded in the update history.")] = "",
-    survey: Annotated[bool, typer.Option("--survey", help="Also re-read live retailer listings and record price/stock moves.")] = False,
+    survey: Annotated[bool, typer.Option("--survey", help="Also re-read live retailer listings (concurrent, with live progress) and record price/stock moves.")] = False,
 ) -> None:
     """Refresh the database: advance the generation line and retag what counts as [bold #d7a455]NEW[/]."""
     db = load_database()
     if gens is not None:
         generations.set_keep(db, gens)
-    surveyed = 0
-    moved = 0
+    summary = None
     if survey:
-        from .scrape import ScrapeError, fetch_listing
-
-        for record in db.get("knives", []):
-            if not isinstance(record, dict):
-                continue
-            for entry in record.get("canadian_online_retailers") or []:
-                url = entry.get("url") if isinstance(entry, dict) else None
-                if not url:
-                    continue
-                try:
-                    listing = fetch_listing(str(url))
-                except ScrapeError as exc:
-                    console.print(f"[dim]survey skip {record.get('id')}: {exc}[/]")
-                    continue
-                surveyed += 1
-                if listing.price_cad is not None and listing.price_cad != entry.get("listed_price_cad"):
-                    entry["listed_price_cad"] = listing.price_cad
-                    moved += 1
-                if listing.availability:
-                    entry["availability"] = listing.availability
-                entry["source_date"] = date.today().isoformat()
+        try:
+            summary = _survey_market(db)
+        except KeyboardInterrupt:
+            console.print("\n[yellow]Survey interrupted — nothing written; the generation line did not move.[/]")
+            raise typer.Exit(code=130)
     backup = backup_database("before-update")
     entry = generations.advance(db, note)
     save_database(db)
+    if summary is not None:
+        console.print(survey_summary_panel(summary))
     meta = generations.meta(db)
     console.print(update_report_panel(entry, meta["keep_generations"], generations.new_views_count(db)))
-    if survey:
-        console.print(f"[dim]survey: {surveyed} listings read · {moved} prices moved[/]")
     console.print(f"[dim]Backup: {backup}[/]")
 
 
 @app.command()
 def new(
-    oneg: Annotated[bool, typer.Option("--one-gen", "-oneg", help="Keep NEW for one database update.")] = False,
-    twog: Annotated[bool, typer.Option("--two-gen", "-twog", help="Keep NEW across two database updates.")] = False,
-    threeg: Annotated[bool, typer.Option("--three-gen", "-threeg", help="Keep NEW across three database updates.")] = False,
+    oneg: Annotated[bool, typer.Option("--one-gen", "-oneg", help="NEW survives one database update.")] = False,
+    twog: Annotated[bool, typer.Option("--two-gen", "-twog", help="NEW survives two database updates.")] = False,
+    threeg: Annotated[bool, typer.Option("--three-gen", "-threeg", help="NEW survives three database updates.")] = False,
     gens: Annotated[Optional[int], typer.Option("--gens", help="Set the NEW cache depth explicitly (clamped 1–3).")] = None,
     status: Annotated[bool, typer.Option("--status", help="Show the NEW cache state instead of listing.")] = False,
     output: Annotated[str, typer.Option("--output", "-o", help="table, compact, json, jsonl, csv, or ids.")] = "table",
