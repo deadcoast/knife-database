@@ -59,7 +59,7 @@ class BenchScreen(TipsMixin, Screen):
     ]
 
     TIPS = {
-        ROOM_KEY: Tip("the bench — two blades, measured"),
+        ROOM_KEY: Tip("compare models — two blades, measured"),
         "calipers": Tip(
             "the calipers read the deltas",
             "◀ ▶ point at the cheaper blade\nΔ price · Δ length in mm\n= match · ≠ differ\n\n"
@@ -76,7 +76,7 @@ class BenchScreen(TipsMixin, Screen):
         self._measured: tuple[str, ...] = ()  # the last pair the calipers read
 
     def compose(self) -> ComposeResult:
-        yield Masthead("THE BENCH")
+        yield Masthead("COMPARE MODELS")
         with Horizontal(id="bench"):
             yield Plate(id="bench-left", classes="bench-plate")
             with Vertical(id="calipers"):

@@ -70,7 +70,7 @@ class RackScreen(TipsMixin, Screen):
     ]
 
     TIPS = {
-        ROOM_KEY: Tip("the rack — browse, sort, send"),
+        ROOM_KEY: Tip("the library — browse, sort, send"),
         "rack-search": Tip(
             "live filter across every field",
             "matches brand, model, steel, lock,\ntags, notes, retailer — anything\nthe record knows\n\n"
@@ -109,7 +109,7 @@ class RackScreen(TipsMixin, Screen):
         return self.vault.knives
 
     def compose(self) -> ComposeResult:
-        yield Masthead("THE RACK")
+        yield Masthead("LIBRARY")
         yield Input(placeholder="/ searches the vault — brand, steel, lock, section …", id="rack-search")
         yield Plate(id="rack-plate")
         yield Reserve(id="rack-reserve")

@@ -24,8 +24,9 @@ from textual.containers import Horizontal, Vertical
 from textual.screen import Screen
 from textual.widgets import Footer, Input, Static
 
-from .. import scrape
-from ..store import make_knife_id
+from .. import ingest, scrape
+from ..models import knife_views
+from ..store import backup_database, make_knife_id, save_database
 from . import laws
 from .masthead import Masthead
 from .surfaces import Engraving
@@ -71,12 +72,13 @@ class ForgeScreen(TipsMixin, Screen):
     ]
 
     TIPS = {
-        ROOM_KEY: Tip("the forge line — records are made here"),
+        ROOM_KEY: Tip("import knives — records are made here"),
         "forge-intake": Tip(
-            "paste a listing url · enter runs the line",
-            "supported retailers:\n  bladescanada.com\n  houseofknives.ca\n\n"
-            "fields stamp as they parse · the\nlegal gates read the database's own\nrulebook · "
-            "a cleared record files\ninto the vault for real\n\nduplicates are refused by id",
+            "a listing url or an ingestion .md · enter runs the line",
+            "url intake:\n  bladescanada.com · houseofknives.ca\n  fields stamp as they parse ·\n"
+            "  the legal gates read the db's\n  own rulebook\n\n"
+            "file intake:\n  a path to an ingestion ledger —\n  sections read, the plan screens,\n  new knives file ★new in a batch\n\n"
+            "duplicates are refused either way",
         ),
         "st-extract": Tip("the listing is read and stamped here"),
         "st-legal": Tip(
@@ -93,9 +95,9 @@ class ForgeScreen(TipsMixin, Screen):
         self.dismiss_capsule()
 
     def compose(self) -> ComposeResult:
-        yield Masthead("THE FORGE LINE")
+        yield Masthead("IMPORT KNIVES")
         yield Input(
-            placeholder="paste a retailer listing URL — enter runs the line  ·  bladescanada.com / houseofknives.ca",
+            placeholder="a retailer listing URL or a path to an ingestion .md — enter runs the line",
             id="forge-intake",
         )
         with Horizontal(id="forge-line"):
@@ -126,11 +128,15 @@ class ForgeScreen(TipsMixin, Screen):
         self.run_worker(self.demo_transit(), exclusive=True)
 
     def on_input_submitted(self, event: Input.Submitted) -> None:
-        url = event.value.strip()
-        if url:
-            event.input.value = ""
-            self.set_focus(None)  # free the room keys the moment the line runs
-            self.run_worker(self.live_transit(url), exclusive=True)
+        value = event.value.strip().strip('"')
+        if not value:
+            return
+        event.input.value = ""
+        self.set_focus(None)  # free the room keys the moment the line runs
+        if value.lower().endswith(".md"):
+            self.run_worker(self.file_transit(value), exclusive=True)
+        else:
+            self.run_worker(self.live_transit(value), exclusive=True)
 
     # ------------------------------------------------------------- shared
 
@@ -318,6 +324,98 @@ class ForgeScreen(TipsMixin, Screen):
         self._line_state("line: filed ✓")
         self.query_one(Masthead).update_stats(self.vault.knives)
 
+    # ---------------------------------------------------------- file intake
+
+    async def file_transit(self, raw_path: str) -> None:
+        """Run an ingestion ledger down the line: sections read at EXTRACT,
+        the plan screens at LEGAL SCREEN, the batch files at VAULT."""
+        from pathlib import Path as _Path
+
+        plate, extract_log, gates, filed = self._stations()
+        self._reset_line(plate)
+        self._line_state("line: reading ledger ▸")
+        path = _Path(raw_path).expanduser()
+        plate.begin("INGESTION LEDGER", path.name[:42])
+
+        if not path.exists():
+            extract_log.update(Text(f"no such file: {path}", style=laws.FAIL))
+            plate.styles.border = ("heavy", laws.FAIL)
+            self._line_state("line: fault ✗")
+            return
+        try:
+            text = path.read_text(encoding="utf-8-sig")
+        except OSError as exc:
+            extract_log.update(Text(str(exc), style=laws.FAIL))
+            plate.styles.border = ("heavy", laws.FAIL)
+            self._line_state("line: fault ✗")
+            return
+
+        doc = ingest.parse_document(text)
+        if not doc.sections:
+            extract_log.update(Text("no SectionIDs found — not an ingestion ledger", style=laws.FAIL))
+            plate.styles.border = ("heavy", laws.FAIL)
+            self._line_state("line: fault ✗")
+            return
+
+        plate.begin((doc.title or "UNTITLED LEDGER")[:42], path.name[:42])
+        glyphs = {"buylist": ("⬖", laws.ACCENT), "sources": ("◈", laws.STEEL_MID)}
+        log = Text()
+        total = 0
+        for section in doc.sections:
+            plate.stamp(section.slug[:10], f"{len(section.entries)} entries")
+            self.call_after_refresh(self._settle)
+            glyph, style = glyphs.get(section.kind, ("▤", laws.STEEL_MID))
+            log.append(f"{glyph} ", style=style)
+            log.append(f"{section.name[:24]:<25}", style=laws.STEEL_BRIGHT)
+            log.append(f"{len(section.entries):>4}\n", style=laws.STEEL_DIM)
+            total += len(section.entries)
+            extract_log.update(log)
+            await asyncio.sleep(0.3)
+        log.append(f"\n{len(doc.sections)} sections · {total} entries read", style=laws.PASS)
+        extract_log.update(log)
+
+        self._line_state("line: the plan screens ▸")
+        await self._travel_to("st-legal", plate)
+        plan = ingest.build_plan(doc, self.vault.db)
+        screen = Text()
+        screen.append("THE PLAN\n\n", style=laws.PASS if plan.new_records else laws.STEEL_DIM)
+        for label, count, style in (
+            ("to file ★new", len(plan.new_records), laws.FRESH),
+            ("merge existing", len(plan.merges), laws.STEEL_MID),
+            ("duplicates", len(plan.skipped), laws.STEEL_DIM),
+            ("buy-list rungs", len(plan.buylist_keys), laws.ACCENT),
+            ("sources", len(plan.sources), laws.STEEL_MID),
+        ):
+            screen.append(f"  {label:<16}", style=laws.STEEL_DIM)
+            screen.append(f"{count:>4}\n", style=style if count else laws.STEEL_DIM)
+        warnings = sum(1 for d in plan.diagnostics if d.severity == "warning")
+        if warnings:
+            screen.append(f"\n  {warnings} format warning(s) — parsed anyway", style=laws.ACCENT)
+        gates.update(screen)
+        await asyncio.sleep(0.7)
+
+        self._line_state("line: filing ▸")
+        await self._travel_to("st-vault", plate)
+        if not plan.new_records and not plan.merges and not plan.sources:
+            filed.update(Text("nothing new — every entry already lives in the vault", style=laws.STEEL_DIM))
+            self._line_state("line idle · url, .md, or r")
+            return
+        backup_database("before-ingest", self.vault.db_path)
+        report = ingest.apply_plan(plan, self.vault.db)
+        save_database(self.vault.db, self.vault.db_path)
+        self.vault.knives = knife_views(self.vault.db)
+        landed = Text()
+        landed.append(f"{report.added} filed ★new", style=f"bold {laws.FRESH}")
+        landed.append(f" · {report.merged} merged\n", style=laws.STEEL_MID)
+        landed.append(f"⬖ buy list {report.buylist} deep", style=laws.ACCENT if report.buylist else laws.STEEL_DIM)
+        landed.append(f" · {report.sources} sources\n", style=laws.STEEL_DIM)
+        if report.repairs:
+            landed.append(f"{len(report.repairs)} damaged lines repaired\n", style=laws.STEEL_DIM)
+        landed.append("\nnow in the library · knivves update seals the batch", style=laws.STEEL_DIM)
+        filed.update(landed)
+        self._line_state(f"line: filed {report.added} ✓")
+        self.query_one(Masthead).update_stats(self.vault.knives)
+
     # ---------------------------------------------------------- demo transit
 
     def _sample(self):
@@ -369,4 +467,4 @@ class ForgeScreen(TipsMixin, Screen):
         invite.append(f"{len(stamps)} fields parsed\n", style=laws.PASS)
         invite.append("paste a url above for a real intake", style=laws.STEEL_DIM)
         extract_log.update(invite)
-        self._line_state("line idle · url or r")
+        self._line_state("line idle · url, .md, or r")

@@ -130,9 +130,9 @@ async def test_shell() -> None:
         await pilot.pause()
         assert table.row_count == n
         assert app.screen.query_one("#rack-empty", Static).display is False
-        # palette exposes the building's rooms and operations
+        # palette exposes the building's rooms and operations — normalized names
         commands = {c.title for c in app.get_system_commands(app.screen)}
-        for expected in ("The Rack", "The Forge Line", "The Bench", "The Ledger", "Survey the market"):
+        for expected in ("Library", "Import Knives", "Compare Models", "Market Prices", "Update market prices"):
             assert expected in commands, f"palette missing: {expected}"
 
         # ---- tip system: rail on hover, capsule on demand ----
@@ -444,6 +444,40 @@ async def test_freshness_and_reserve() -> None:
     print("PASS: rack NEW chips · masthead new-count · reserve travels in and out")
 
 
+async def test_file_import_transit() -> None:
+    """Import Knives runs an ingestion .md down the line and files a batch."""
+    tmp_db = Path(tempfile.mkdtemp()) / "knives.json"
+    shutil.copyfile(REPO / "knivves" / "data" / "knives.json", tmp_db)
+    before = len(json.loads(tmp_db.read_text(encoding="utf-8"))["knives"])
+    ledger_path = REPO / "tests" / "fixtures" / "knife-additions.md"
+
+    app = KnivvesVault(db_path=tmp_db)
+    async with app.run_test(size=(170, 45)) as pilot:
+        await asyncio.sleep(2.3)
+        await pilot.pause()
+        await pilot.press("2")
+        await asyncio.sleep(1.2)
+        await pilot.pause()
+        assert isinstance(app.screen, ForgeScreen)
+        intake = app.screen.query_one("#forge-intake", Input)
+        intake.focus()
+        intake.value = str(ledger_path)
+        await pilot.press("enter")
+        await asyncio.sleep(6.0)
+        await pilot.pause()
+        filed_text = str(app.screen.query_one("#filed", Static).render())
+        assert "filed" in filed_text and "★new" in filed_text, f"filed: {filed_text[:120]}"
+        gates_text = str(app.screen.query_one("#gates", Static).render())
+        assert "THE PLAN" in gates_text, f"gates: {gates_text[:120]}"
+        on_disk = json.loads(tmp_db.read_text(encoding="utf-8"))
+        assert len(on_disk["knives"]) > before, "file import wrote nothing"
+        assert on_disk.get("buy_list", {}).get("items"), "buy list not ordered"
+        assert len(app.knives) == len(on_disk["knives"]), "views not refreshed"
+
+    print(f"PASS: import knives file intake · {len(on_disk['knives']) - before} filed from the ledger")
+
+
 if __name__ == "__main__":
     asyncio.run(test_shell())
     asyncio.run(test_freshness_and_reserve())
+    asyncio.run(test_file_import_transit())

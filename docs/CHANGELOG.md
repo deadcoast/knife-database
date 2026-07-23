@@ -1,5 +1,36 @@
 # CHANGELOG
 
+## 005 — v0.9.0 (2026-07-23) — PLAIN WORDS ON THE DOORS
+
+Normalized names, a real front door, and the ledger intake inside the
+vault. The craft stays; the labels stop being homework.
+
+- **Rooms renamed** — proprietary titles normalized to plain function:
+  **Library** (was The Rack), **Import Knives** (The Forge Line),
+  **Compare Models** (The Bench), **Market Prices** (The Ledger). Keys,
+  modules, and mechanics unchanged; only the doors read differently.
+- **Import Knives takes ingestion files** — enter a path to an ingestion
+  `.md` in the same intake slot: sections read at EXTRACT, the plan
+  screens at LEGAL SCREEN (file / merge / duplicates / buy-list rungs /
+  format warnings), and the batch files ★new at VAULT — the same line the
+  URL intake runs, with its own output fitted to the stations.
+- **`--survey` → `--prices`** — `knivves update --prices` is the flag;
+  "Market Prices" is the room that references it. Progress reads
+  "reading market prices"; first prices are counted in the summary, never
+  streamed (nothing to compare against); movers keep live ▼/▲ deltas.
+- **A real home page** — bare `knivves` now opens the welcome page: vault
+  state, ★new window, next acquisitions, and every door with its command.
+  The classic interactive table lives on as `knivves browse` — nothing
+  removed, everything reachable.
+- **One palette everywhere** — the classic CLI's drifting colors
+  (default cyan/magenta/blue) normalized to the house laws: steel text,
+  machined edges, single amber accent, mint ★new. `★new` placement:
+  end of Brand marks a new maker, start of Model marks a new blade,
+  aligned in the gutter across the Library and every CLI table.
+- **Freshness ages by batches** — an update that files nothing holds the
+  generation line (`--force` ages the window deliberately); the batch an
+  update seals survives that update.
+
 ## 004 — v0.8.0 (2026-07-23) — THE INTAKE DOCK
 
 Ingestion, freshness, and the acquisition ladder. The database now eats

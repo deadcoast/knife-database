@@ -39,13 +39,13 @@ SUPPORTED = scrape.SUPPORTED_HOSTS
 
 class LedgerScreen(TipsMixin, Screen):
     BINDINGS = [
-        ("s", "survey", "Survey the market"),
-        ("escape", "cancel_survey", "Cancel survey"),
+        ("s", "survey", "Update prices"),
+        ("escape", "cancel_survey", "Cancel price read"),
         Binding("t", "expand_tip", "tip detail", show=False),
     ]
 
     TIPS = {
-        ROOM_KEY: Tip("the ledger — the vault's money"),
+        ROOM_KEY: Tip("market prices — the vault's money"),
         "ledger-valuation": Tip(
             "the collection's financial shape",
             "value sums each knife's best price ·\nthe histogram is the price\ndistribution across the vault",
@@ -69,7 +69,7 @@ class LedgerScreen(TipsMixin, Screen):
         self._surveying = False
 
     def compose(self) -> ComposeResult:
-        yield Masthead("THE LEDGER")
+        yield Masthead("MARKET PRICES")
         with Horizontal(id="ledger"):
             with Vertical(classes="station", id="ledger-valuation"):
                 yield Engraving("valuation")

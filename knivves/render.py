@@ -16,29 +16,41 @@ from .models import KnifeView
 
 console = Console()
 
+# The house palette, mirrored from vault laws.py — the classic CLI and the
+# vault are one application and read in one voice.
+STEEL_BRIGHT = "#dde6ee"
+STEEL_MID = "#8b96a0"
+STEEL_DIM = "#5c6670"
+EDGE = "#31363c"
+EDGE_BRIGHT = "#525a62"
+ACCENT = "#d7a455"
+PASS = "#79b473"
+FAIL = "#c05b4d"
+INK = "#7aa2c4"  # section/tag ink — muted steel-blue, never neon
+
 
 def badge(value: str | None) -> str:
     raw = str(value or "unknown")
     clean = escape(raw.replace("_", " "))
     low = raw.lower()
     if low in {"approved", "approved_for_further_research", "canadian_retailer_verified", "no"}:
-        return f"[bold green]✓ {clean}[/]"
+        return f"[bold {PASS}]✓ {clean}[/]"
     if low in {"rejected", "fail", "failed", "prohibited", "illegal", "yes"}:
-        return f"[bold red]✗ {clean}[/]"
+        return f"[bold {FAIL}]✗ {clean}[/]"
     if low in {"pending_research", "pending_canadian_retailer_search", "unknown", "unclassified", "not_yet_validated"} or "pending" in low:
-        return f"[bold yellow]… {clean}[/]"
-    return f"[cyan]{clean}[/]"
+        return f"[bold {ACCENT}]… {clean}[/]"
+    return f"[{STEEL_MID}]{clean}[/]"
 
 
 def title(subtitle: str | None = None) -> Panel:
     text = Text()
-    text.append("KNIVVES", style="bold white")
-    text.append("  ╱╱  ", style="dim")
-    text.append("Folding Knife Research Database", style="cyan")
-    text.append("\nlocal JSON · Canadian retailer research · terminal-native", style="dim")
+    text.append("KNIVVES", style=f"bold {STEEL_BRIGHT}")
+    text.append("  ╱╱  ", style=STEEL_DIM)
+    text.append("Folding Knife Research Database", style=STEEL_MID)
+    text.append("\nlocal JSON · Canadian retailer research · terminal-native", style=STEEL_DIM)
     if subtitle:
-        text.append(f"\n{subtitle}", style="italic")
-    return Panel(text, border_style="cyan", box=box.DOUBLE)
+        text.append(f"\n{subtitle}", style=f"italic {STEEL_MID}")
+    return Panel(text, border_style=EDGE_BRIGHT, box=box.HEAVY)
 
 
 def _money(value: Any) -> str:
@@ -61,7 +73,7 @@ def _short_status(value: str) -> str:
 def _tag_text(tags: list[str]) -> str:
     if not tags:
         return "[dim]—[/]"
-    return " ".join(f"[blue]#{escape(tag)}[/]" for tag in tags)
+    return " ".join(f"[{INK}]#{escape(tag)}[/]" for tag in tags)
 
 
 FRESH = "#5fd3bc"  # mirrors vault laws.FRESH — ★new wears it everywhere
@@ -118,7 +130,7 @@ def summary_cards(db: dict[str, Any], knives: list[KnifeView]) -> Panel:
     )
     db_name = escape(str(db.get("database_name") or "knivves"))
     version = escape(str(db.get("version") or "unknown"))
-    return Panel(table, title=f"{db_name} · v{version}", border_style="green", box=box.ROUNDED)
+    return Panel(table, title=f"[{STEEL_MID}]{db_name} · v{version}[/]", border_style=EDGE_BRIGHT, box=box.ROUNDED)
 
 def _active_filters(filters: dict[str, Any]) -> str:
     parts: list[str] = []
@@ -139,15 +151,17 @@ def interactive_header(db: dict[str, Any], knives: list[KnifeView], filters: dic
     prices = [k.price for k in knives if k.price is not None]
     avg = sum(prices) / len(prices) if prices else None
     sep = " [dim]·[/] "
+    fresh = sum(1 for k in knives if k.is_new)
     stats = sep.join(
         [
-            f"[bold white]KNIVVES[/] [dim]v{escape(str(db.get('version') or '?'))}[/]",
-            f"{len(knives)} knives",
-            f"[green]{approved} approved[/]",
-            f"[red]{rejected} rejected[/]",
-            f"[yellow]{unclassified} open[/]",
-            f"[magenta]{canadian} CA retail[/]",
-            f"[blue]avg {_money(avg)}[/]",
+            f"[bold {STEEL_BRIGHT}]KNIVVES[/] [dim]v{escape(str(db.get('version') or '?'))}[/]",
+            f"[{STEEL_MID}]{len(knives)} knives[/]",
+            f"[bold {FRESH}]{fresh} new[/]" if fresh else f"[{STEEL_DIM}]0 new[/]",
+            f"[{PASS}]{approved} approved[/]",
+            f"[{FAIL}]{rejected} rejected[/]",
+            f"[{STEEL_MID}]{unclassified} open[/]",
+            f"[{STEEL_MID}]{canadian} CA retail[/]",
+            f"[{ACCENT}]avg {_money(avg)}[/]",
         ]
     )
     return f"{stats}\n[dim]{result_count}/{len(knives)} shown[/]  {_active_filters(filters)}"
@@ -155,7 +169,7 @@ def interactive_header(db: dict[str, Any], knives: list[KnifeView], filters: dic
 
 def filter_bar(filters: dict[str, Any], result_count: int, total_count: int) -> Panel:
     active = _active_filters(filters)
-    return Panel(f"{active}  [dim]· {result_count}/{total_count} shown[/]", title="Active View", border_style="blue", box=box.ROUNDED)
+    return Panel(f"{active}  [dim]· {result_count}/{total_count} shown[/]", title="Active View", border_style=EDGE_BRIGHT, box=box.ROUNDED)
 
 
 def knives_table(
@@ -181,7 +195,7 @@ def knives_table(
         fresh_brands = new_brands(items)
 
     narrow = console.width < 100
-    table = Table(box=box.ROUNDED, expand=True, show_lines=False, pad_edge=True)
+    table = Table(box=box.ROUNDED, expand=True, show_lines=False, pad_edge=True, border_style=EDGE, header_style=f"bold {STEEL_MID}")
     table.add_column("#", justify="right", style="dim", width=3, no_wrap=True)
     if compact:
         table.add_column("ID", style="bold cyan", ratio=5, overflow="fold")
@@ -245,7 +259,7 @@ Clear Prohibited Mechanism Found: {badge(knife.prohibited_flag)}
 [bold cyan]Notes[/]
 {escape(knife.notes) if knife.notes else '—'}
 """.strip()
-    base = Panel(body, title=f"{escape(knife.brand)} — {escape(knife.model)}", border_style="magenta", box=box.ROUNDED)
+    base = Panel(body, title=f"{escape(knife.brand)} — {escape(knife.model)}", border_style=EDGE_BRIGHT, box=box.ROUNDED)
     if not include_json:
         return base
     return Group(base, Panel(json_syntax(knife.raw), title="Raw JSON", border_style="white", box=box.ROUNDED))
@@ -526,7 +540,7 @@ def survey_summary_panel(summary: dict[str, Any]) -> Panel:
             )
         if len(movers) > 10:
             lines.append(f"[dim]… {len(movers) - 10} more movers in price_history[/]")
-    return Panel("\n".join(lines), title="market survey", border_style="#d7a455", box=box.HEAVY)
+    return Panel("\n".join(lines), title="market prices", border_style="#d7a455", box=box.HEAVY)
 
 
 def update_hold_panel(meta_block: dict[str, Any], new_total: int) -> Panel:
@@ -568,6 +582,72 @@ def new_status_panel(meta_block: dict[str, Any], new_total: int) -> Panel:
     else:
         lines.append("[dim]no updates recorded yet — run knivves update to move the line[/]")
     return Panel("\n".join(lines), title="NEW cache", border_style="#d7a455", box=box.ROUNDED)
+
+
+def home_page(db: dict[str, Any], knives: list[KnifeView], buylist: list[tuple[int, Any]], meta_block: dict[str, Any]) -> Group:
+    """The welcome page — what bare `knivves` opens onto.
+
+    One glance answers: what's in the vault, what's fresh, what's next to
+    buy, and where every door is.
+    """
+    from rich.rule import Rule
+
+    brand = Text()
+    brand.append("  KNIVVES", style=f"bold {STEEL_BRIGHT}")
+    brand.append("  ╱╱  ", style=STEEL_DIM)
+    brand.append("VAULT", style=f"bold {STEEL_BRIGHT}")
+    brand.append(f"   v{escape(str(db.get('version') or '?'))}", style=STEEL_DIM)
+    brand.append("\n  folding knife research · Canadian retail · local JSON", style=STEEL_DIM)
+
+    fresh = sum(1 for k in knives if k.is_new)
+    approved = sum(1 for k in knives if k.classification == "approved")
+    prices = [k.price for k in knives if k.price is not None]
+    avg = sum(prices) / len(prices) if prices else 0.0
+    stats = Text("  ")
+    stats.append(f"{len(knives)}", style=f"bold {STEEL_BRIGHT}")
+    stats.append(" knives", style=STEEL_MID)
+    stats.append("   ·   ", style=STEEL_DIM)
+    stats.append(f"{fresh} ★new", style=f"bold {FRESH}" if fresh else STEEL_DIM)
+    stats.append("   ·   ", style=STEEL_DIM)
+    stats.append(f"{approved} approved", style=PASS)
+    stats.append("   ·   ", style=STEEL_DIM)
+    stats.append(f"avg ${avg:,.0f} CAD", style=ACCENT)
+    gen = meta_block.get("generation")
+    keep = meta_block.get("keep_generations")
+    stats.append(f"   ·   generation {gen} · keeps {keep}", style=STEEL_DIM)
+
+    blocks: list[Any] = [Text(), brand, Text(), stats, Text()]
+
+    if buylist:
+        ladder = Text("  next acquisitions\n", style=f"bold {ACCENT}")
+        for priority, knife in buylist[:3]:
+            ladder.append(f"  {priority:>2}. ", style=f"bold {ACCENT}")
+            ladder.append(f"{knife.display_name[:52]:<53}", style=STEEL_BRIGHT)
+            ladder.append(f"{knife.price_label:>12}\n", style=STEEL_DIM)
+        more = len(buylist) - 3
+        if more > 0:
+            ladder.append(f"      +{more} deeper — knivves buylist", style=STEEL_DIM)
+        blocks.extend([ladder, Text()])
+
+    doors = Table.grid(padding=(0, 3))
+    doors.add_column(style=f"bold {STEEL_BRIGHT}", no_wrap=True)
+    doors.add_column(style=STEEL_MID)
+    doors.add_row("knivves vault", f"the visual application — [{ACCENT}]1[/] Library · [{ACCENT}]2[/] Import Knives · [{ACCENT}]3[/] Compare Models · [{ACCENT}]4[/] Market Prices")
+    doors.add_row("knivves add <file.md>", "ingest a markdown ledger — new knives file ★new")
+    doors.add_row("knivves update", f"seal the fresh batch · [{ACCENT}]--prices[/] re-reads the market")
+    doors.add_row("knivves new", "list what's fresh · -oneg / -twog / -threeg set the cache")
+    doors.add_row("knivves buylist", "the acquisition ladder with running cost")
+    doors.add_row("knivves list · search", "filter the collection — -new, -section, --steel, prices …")
+    doors.add_row("knivves browse", "the classic interactive table")
+    doors.add_row("knivves show · section · doctor", "one record · assign SectionIDs · validate the JSON")
+
+    blocks.extend(
+        [
+            Rule(style=EDGE),
+            Panel(doors, title=f"[{STEEL_MID}]the doors[/]", border_style=EDGE, box=box.ROUNDED, padding=(1, 2)),
+        ]
+    )
+    return Group(*blocks)
 
 
 def validation_table(issues: list[Any]) -> Table:

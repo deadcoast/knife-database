@@ -16,48 +16,54 @@ machined vault door — drawn steel leaves, a bolt cascade, staged parting —
 and every record is a **plate**: one physical object with one visual
 identity that travels between rooms.
 
-### The Rack — browse
+Room names are normalized — plain words on the doors, the craft behind
+them: **1 Library · 2 Import Knives · 3 Compare Models · 4 Market Prices**.
 
-![The Rack](docs/media/room-rack.svg)
+### Library — browse (1)
+
+![Library](docs/media/room-rack.svg)
 
 The collection. Click a column header to sort (again reverses — the active
 sort reads on the masthead). `/` is a live filter across everything a
-record knows. Click a knife and its plate travels in while the rack
-recedes behind it. Judge from the chair: `a` approves, `x` rejects — the
-row recolors, the database writes, the counts tick.
+record knows. Click a knife and its plate travels in while the shelf
+recedes behind it. `★new` aligns in the gutter — end of Brand marks a new
+maker, start of Model marks a new blade. `y` slides in The Reserve (the
+buy list). Judge from the chair: `a` approves, `x` rejects — the row
+recolors, the database writes, the counts tick.
 
-### The Forge Line — intake
+### Import Knives — intake (2)
 
-The room the app is named for. Paste a retailer listing URL and watch the
-vault do its own research: a blank plate appears at EXTRACT and the
-listing's actually-parsed fields stamp on as they arrive; the plate
-travels to LEGAL SCREEN where the database's own prohibited-mechanism
-rulebook executes gate by gate — a hit slams the gate and stamps the
-plate REJECTED; a cleared plate travels on and files into the real
-database, already in the rack when you return. `r` replays a
-deterministic no-network demo of the transit.
+Two intakes, one line. **Paste a retailer listing URL** and watch the
+vault do its own research: fields stamp at EXTRACT as they parse; the
+plate travels to LEGAL SCREEN where the database's own
+prohibited-mechanism rulebook executes gate by gate — a hit slams the
+gate and stamps the plate REJECTED; a cleared plate files into the real
+database. **Or enter a path to an ingestion `.md`** and the ledger runs
+the same line: sections read at EXTRACT, the plan screens (file / merge /
+duplicates / buy-list rungs), and the batch files ★new at VAULT. `r`
+replays a deterministic no-network demo of the transit.
 
-### The Bench — compare
+### Compare Models — measure (3)
 
-![The Bench](docs/media/room-bench.svg)
+![Compare Models](docs/media/room-bench.svg)
 
-Send any knife from the rack with `b` — its plate follows you here.
+Send any knife from the Library with `b` — its plate follows you here.
 Between two plates, the calipers **take the measurement**: readings appear
 line by line — price delta with the cheaper blade marked, blade length
 delta in millimetres, spec match/differ — and hold. Gaps read
 "incomparable — missing measurement": honest gaps, never guesses.
 
-### The Ledger — price intelligence
+### Market Prices — the vault's money (4)
 
-![The Ledger](docs/media/room-ledger.svg)
+![Market Prices](docs/media/room-ledger.svg)
 
-The vault's money on drawn instruments: the average price rides a
-machined scale with the $150 affordable rule cut into it in accent; the
-price distribution is gradient-lit bars. Press `s` and the vault
-**surveys its own market** — every live listing re-read, price history
-appended to every record, movers surfacing by magnitude, and the
-affordable rule re-tagging whatever crossed the line. Cancel anytime;
-observations made are kept.
+Drawn instruments: the average price rides a machined scale with the
+$150 affordable rule cut into it in accent; the price distribution is
+gradient-lit bars. Press `s` and the vault **re-reads its own market** —
+every live listing fetched, price history appended to every record,
+movers surfacing by magnitude, and the affordable rule re-tagging
+whatever crossed the line (same engine as `knivves update --prices`).
+Cancel anytime; observations made are kept.
 
 ## Why it looks the way it does
 
@@ -98,7 +104,8 @@ The original Rich CLI ships alongside the vault and works on the same
 database:
 
 ```bash
-knivves                          # classic interactive table
+knivves                          # the welcome page — vault state + every door
+knivves browse                   # classic interactive table
 knivves list -q bugout           # search
 knivves list -section affordable # filter by SectionID (-t/--tag is the alias)
 knivves list -new                # only knives currently tagged NEW
@@ -107,7 +114,8 @@ knivves list --output csv > knives.csv
 knivves show <id>                # one record
 knivves approve <id>             # classification from the shell
 knivves add ledger.md            # ingest a markdown link ledger (see below)
-knivves update                   # advance the NEW generation line
+knivves update                   # seal the fresh batch as NEW
+knivves update --prices          # …and re-read market prices while at it
 knivves new -threeg              # keep NEW across three updates
 knivves buylist                  # The Reserve: acquisition priorities + Σ CAD
 knivves add / section / note / retailer …
@@ -168,11 +176,11 @@ update that files nothing holds the line (`--force` ages the window
 anyway), and with the default `-oneg` cache a batch ages out when the
 next real batch seals; `-twog`/`-threeg` keep two or three batches.
 `knivves new` lists what's fresh; `knivves new --status` shows the cache
-state; `knivves update --survey` also re-reads every supported live
+state; `knivves update --prices` also re-reads every supported live
 listing concurrently — a progress bar carries count/elapsed/ETA, movers
 print as they land, every observation is appended to `price_history`,
 and the $150 affordable rule re-tags line-crossers, exactly like the
-Ledger room's survey.
+Market Prices room.
 
 ## Data model
 

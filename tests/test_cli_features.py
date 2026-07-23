@@ -138,11 +138,11 @@ def test_update_survey_shows_progress_and_records_history() -> None:
     real_fetch = scrape_mod.fetch_listing
     scrape_mod.fetch_listing = stub_listing
     try:
-        result = invoke("update", "--survey")
+        result = invoke("update", "--prices")
     finally:
         scrape_mod.fetch_listing = real_fetch
 
-    assert "surveying the market" in result.output
+    assert "reading market prices" in result.output
     # first prices have nothing to compare against: counted in the summary,
     # never streamed line by line
     assert "◆" not in result.output
@@ -196,6 +196,14 @@ def test_section_command_group_and_tag_alias() -> None:
     assert "camping" not in load()["knives"][0]["user_tags"]
     invoke("tag", "add", "legacy-knife", "edc")  # QOL alias stays
     assert "edc" in load()["knives"][0]["user_tags"]
+
+
+def test_bare_knivves_opens_the_home_page() -> None:
+    use_tmp()
+    result = invoke()
+    assert "KNIVVES" in result.output
+    assert "the doors" in result.output
+    assert "Import Knives" in result.output  # the vault's rooms, normalized
 
 
 def test_buylist_command_shows_cumulative() -> None:

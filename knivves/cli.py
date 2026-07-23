@@ -29,6 +29,7 @@ from .render import (
     detail_panel,
     filter_bar,
     help_panel,
+    home_page,
     ingest_overview,
     ingest_result,
     interactive_header,
@@ -298,9 +299,22 @@ def run_list(
 
 @app.callback(invoke_without_command=True)
 def main(ctx: typer.Context) -> None:
-    """Open the interactive database when called as plain [bold]knivves[/]."""
+    """Plain [bold]knivves[/] opens the welcome page — every door in one glance."""
     if ctx.invoked_subcommand is None:
-        interactive()
+        home()
+
+
+def home() -> None:
+    """The welcome page: vault state, next acquisitions, and every door."""
+    db = load_database()
+    knives = knife_views(db)
+    console.print(home_page(db, knives, buylist_mod.buylist_views(db), generations.meta(db)))
+
+
+@app.command()
+def browse() -> None:
+    """Open the classic interactive table browser."""
+    interactive()
 
 
 @app.command(name="list")
@@ -740,7 +754,7 @@ def _survey_market(db: dict[str, Any]) -> dict[str, Any]:
 
     progress = Progress(
         SpinnerColumn(style="#d7a455"),
-        TextColumn("[bold]surveying the market[/]"),
+        TextColumn("[bold]reading market prices[/]"),
         BarColumn(bar_width=26, complete_style="#d7a455", finished_style="#d7a455"),
         MofNCompleteColumn(),
         TimeElapsedColumn(),
@@ -803,7 +817,7 @@ def _survey_market(db: dict[str, Any]) -> dict[str, Any]:
 def update(
     gens: Annotated[Optional[int], typer.Option("--gens", help="Set the NEW cache depth (1–3) before advancing.")] = None,
     note: Annotated[str, typer.Option("--note", help="Note recorded in the update history.")] = "",
-    survey: Annotated[bool, typer.Option("--survey", help="Also re-read live retailer listings (concurrent, with live progress) and record price/stock moves.")] = False,
+    prices: Annotated[bool, typer.Option("--prices", "-prices", help="Also re-read live retailer listings (concurrent, with live progress) and record market price/stock moves.")] = False,
     force: Annotated[bool, typer.Option("--force", help="Advance the line even if nothing was filed since the last update (ages the NEW window).")] = False,
 ) -> None:
     """Refresh the database: seal the fresh batch as [bold #d7a455]NEW[/] and move the generation line."""
@@ -811,11 +825,11 @@ def update(
     if gens is not None:
         generations.set_keep(db, gens)
     summary = None
-    if survey:
+    if prices:
         try:
             summary = _survey_market(db)
         except KeyboardInterrupt:
-            console.print("\n[yellow]Survey interrupted — nothing written; the generation line did not move.[/]")
+            console.print("\n[yellow]Price read interrupted — nothing written; the generation line did not move.[/]")
             raise typer.Exit(code=130)
     backup = backup_database("before-update")
     entry = generations.advance(db, note, force=force)

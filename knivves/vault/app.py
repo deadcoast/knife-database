@@ -31,10 +31,10 @@ class KnivvesVault(App):
         "ledger": LedgerScreen,
     }
     BINDINGS = [
-        ("1", "room('rack')", "The Rack"),
-        ("2", "room('forge')", "The Forge Line"),
-        ("3", "room('bench')", "The Bench"),
-        ("4", "room('ledger')", "The Ledger"),
+        ("1", "room('rack')", "Library"),
+        ("2", "room('forge')", "Import Knives"),
+        ("3", "room('bench')", "Compare Models"),
+        ("4", "room('ledger')", "Market Prices"),
         ("q", "quit", "Quit"),
     ]
 
@@ -70,12 +70,12 @@ class KnivvesVault(App):
     def get_system_commands(self, screen: Screen) -> Iterable[SystemCommand]:
         """The building's rooms and operations, reachable from the palette."""
         yield from super().get_system_commands(screen)
-        yield SystemCommand("The Rack", "Browse the collection", lambda: self.action_room("rack"))
-        yield SystemCommand("The Forge Line", "Intake a retailer listing", lambda: self.action_room("forge"))
-        yield SystemCommand("The Bench", "Compare two blades", lambda: self.action_room("bench"))
-        yield SystemCommand("The Ledger", "Price intelligence", lambda: self.action_room("ledger"))
+        yield SystemCommand("Library", "Browse the collection", lambda: self.action_room("rack"))
+        yield SystemCommand("Import Knives", "Intake a listing URL or an ingestion .md", lambda: self.action_room("forge"))
+        yield SystemCommand("Compare Models", "Two blades, measured", lambda: self.action_room("bench"))
+        yield SystemCommand("Market Prices", "Valuation, the $150 line, price reads", lambda: self.action_room("ledger"))
         yield SystemCommand(
-            "Survey the market",
+            "Update market prices",
             "Re-read every live listing and record what moved",
             self._palette_survey,
         )
