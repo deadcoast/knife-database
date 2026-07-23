@@ -1,3 +1,6 @@
+<!-- { "CHANGELOG_REFERENCE": { "file": "docs/CHANGELOG.md", "entries": ["008 — v0.12.0 (2026-07-23) — ONE BUILDING"] },
+     "STATUS": "CLOSED (2026-07-23) — archived to docs/closed/ · ledger fully shipped (3/3 REQs)",
+     "NOTE": "Canon below is the doc AS AUTHORED/WRITTEN. Drift since is annotated inline. Do not treat unannotated details as current without checking docs/CHANGELOG.md." } -->
 <!-- { "DEV_SPEC": { "case": "2026-07-23-one-building", "doc": "DS-2 requirements", "bus": "BUS-B" },
      "STATUS": "OPEN (2026-07-23) — this case must be closed out at checkpoint",
      "STEERED_BY": ["MIVIM-spec.yaml", ".claude/skills/mivim-agent-spec/SKILL.md", ".claude/skills/closing-out-docs/SKILL.md"],

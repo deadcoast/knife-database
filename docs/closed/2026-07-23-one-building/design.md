@@ -1,3 +1,6 @@
+<!-- { "CHANGELOG_REFERENCE": { "file": "docs/CHANGELOG.md", "entries": ["008 — v0.12.0 (2026-07-23) — ONE BUILDING"] },
+     "STATUS": "CLOSED (2026-07-23) — archived to docs/closed/ · all three REQs shipped; one acceptance approach annotated inline",
+     "NOTE": "Canon below is the doc AS AUTHORED/WRITTEN. Drift since is annotated inline. Do not treat unannotated details as current without checking docs/CHANGELOG.md." } -->
 <!-- { "DEV_SPEC": { "case": "2026-07-23-one-building", "doc": "DS-1 design", "bus": "BUS-B" },
      "STATUS": "OPEN (2026-07-23) — this case must be closed out at checkpoint",
      "STEERED_BY": ["MIVIM-spec.yaml", ".claude/skills/mivim-agent-spec/SKILL.md", ".claude/skills/closing-out-docs/SKILL.md"],
@@ -112,6 +115,9 @@ the transit's first `begin`, carried thereafter.
   `knivves/tui/pages/imports.tcss`
 - **ACCEPTANCE**: `tests/test_tui_shell.py::test_imports_plate_carries`
   — fresh entry shows no plate; the demo's first begin shows it.
+
+<!-- { "CHANGELOG_REFERENCE": { "file": "docs/CHANGELOG.md", "entry": "008 — v0.12.0", "bullet": "The carrying law reaches the intake line" },
+     "CHANGES": ["SUPERSEDED: the acceptance approach — 'fresh entry shows no plate' is untestable as a sampled state because the demo transit carries within milliseconds of mount; the shipped test proves the law's CSS binding directly (remove .carrying -> not displayed, add -> displayed) after the demo settles, which is the stronger claim: no carry, no plate, ever."] } -->
 
 ## Cross-cutting constraints
 
