@@ -59,7 +59,7 @@ Case: `2026-07-23-standards-realignment` · Design: [design.md](design.md) · Hu
 
 ### T5 — the teletype
 
-- [ ] **T5** A reusable `Teletype` surface — paced line printing, block
+- [x] **T5** A reusable `Teletype` surface — paced line printing, block
   cursor, honest truncation, compositor-law-exact strips — adopted by the
   research page's READ station for live and demo transits both.
   - **Satisfies**: [REQ-TRM-1](design.md#req-trm-1--the-teletype)

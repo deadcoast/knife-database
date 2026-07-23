@@ -5,13 +5,21 @@
   Used as the masthead's under-layer.
 - Engraving: a station header cut into the surface — letterspaced caps
   over a machined rule, bright beneath the title, falling off dim.
+- Teletype: a surface that PRINTS its data — lines land at the house
+  cadence with a block cursor riding the print head. It dramatizes
+  arrival only; an interrupted print keeps exactly what landed.
 """
 from __future__ import annotations
 
+import asyncio
+from typing import Iterable
+
 from rich.segment import Segment
 from rich.style import Style
+from rich.text import Text
 from textual.strip import Strip
 from textual.widget import Widget
+from textual.widgets import Static
 
 from . import laws
 
@@ -58,6 +66,62 @@ class BrushedSteel(Widget):
                 segments.append(Segment(" " * (x - run_start), tone))
                 run_start, run_delta = x, delta
         return Strip(segments, width)
+
+
+class Teletype(Static):
+    """A window that acts as a terminal: data prints line by line at the
+    house cadence, a block cursor riding the print head. The cursor
+    exists only while the machine prints. The surface never fakes
+    latency — context already known is handed in as ``lead`` and lands
+    instantly; only arriving lines are paced. Interrupting a print
+    (worker cancelled) keeps exactly the lines that landed — honest
+    truncation, cursor off.
+    """
+
+    CURSOR = "▮"
+
+    def __init__(self, *args, **kwargs) -> None:
+        super().__init__(*args, **kwargs)
+        self._printed = Text()
+        self._printing = False
+
+    @property
+    def printing(self) -> bool:
+        return self._printing
+
+    @property
+    def printed_lines(self) -> int:
+        return self._printed.plain.count("\n")
+
+    async def type_lines(
+        self,
+        lines: Iterable[Text],
+        *,
+        lead: Text | None = None,
+        cadence: float | None = None,
+    ) -> None:
+        """Print ``lines`` one per beat. ``lead`` renders instantly."""
+        pace = laws.TELETYPE_CADENCE if cadence is None else cadence
+        self._printed = lead.copy() if lead is not None else Text()
+        self._printing = True
+        try:
+            for line in lines:
+                self._printed.append_text(line.copy())
+                self._printed.append("\n")
+                head = self._printed.copy()
+                head.append(self.CURSOR, style=laws.ACCENT)
+                self.update(head)
+                await asyncio.sleep(pace)
+        finally:
+            # however the print ends — completed or interrupted — the
+            # cursor lifts and only what actually landed remains
+            self._printing = False
+            self.update(self._printed)
+
+    def clear(self) -> None:
+        self._printed = Text()
+        self._printing = False
+        self.update("")
 
 
 class Engraving(Widget):

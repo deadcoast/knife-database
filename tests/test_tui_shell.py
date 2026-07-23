@@ -888,6 +888,54 @@ async def test_card_lights_column() -> None:
     print("PASS: one instrument — card lights column · column answers card · dies on leave")
 
 
+async def test_teletype_paces_and_truncates() -> None:
+    """REQ-TRM-1: the teletype prints on the house cadence with the
+    cursor riding the head; an interrupted print keeps exactly what
+    landed, cursor off; a completed print ends clean."""
+    from rich.text import Text as RichText
+
+    from knivves.tui import laws
+    from knivves.tui.surfaces import Teletype
+
+    tmp_db = Path(tempfile.mkdtemp()) / "knives.json"
+    shutil.copyfile(REPO / "knivves" / "data" / "knives.json", tmp_db)
+    app = KnivvesApp(db_path=tmp_db)
+    async with app.run_test(size=(170, 45)) as pilot:
+        await asyncio.sleep(2.3)
+        await pilot.pause()
+        teletype = Teletype()
+        await app.screen.mount(teletype)
+        lines = [RichText(f"fact {i}") for i in range(5)]
+
+        # pacing: after two beats, the print is underway but not done
+        task = asyncio.ensure_future(teletype.type_lines(lines))
+        await asyncio.sleep(laws.TELETYPE_CADENCE * 2 + 0.03)
+        await pilot.pause()
+        mid = str(teletype.render())
+        assert teletype.printing, "print already over — no pacing"
+        assert "fact 0" in mid and "fact 4" not in mid, f"mid-print: {mid!r}"
+        assert Teletype.CURSOR in mid, "no cursor riding the print head"
+
+        # interrupt: what landed stays, the cursor lifts
+        task.cancel()
+        try:
+            await task
+        except asyncio.CancelledError:
+            pass
+        await pilot.pause()
+        cut = str(teletype.render())
+        assert not teletype.printing
+        assert Teletype.CURSOR not in cut, "cursor survived the interrupt"
+        assert "fact 0" in cut and "fact 4" not in cut, f"truncation lies: {cut!r}"
+
+        # a full print completes clean
+        await teletype.type_lines(lines)
+        await pilot.pause()
+        done = str(teletype.render())
+        assert "fact 4" in done and Teletype.CURSOR not in done, f"end state: {done!r}"
+    print("PASS: teletype — paced print · cursor on the head · honest truncation")
+
+
 if __name__ == "__main__":
     test_pages_map_to_doors()
     test_pages_own_stylesheets()
@@ -898,6 +946,7 @@ if __name__ == "__main__":
     asyncio.run(test_map_power_on())
     asyncio.run(test_idle_stands_down())
     asyncio.run(test_card_lights_column())
+    asyncio.run(test_teletype_paces_and_truncates())
     asyncio.run(test_shell())
     asyncio.run(test_freshness_and_reserve())
     asyncio.run(test_file_import_transit())

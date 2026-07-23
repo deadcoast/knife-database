@@ -78,6 +78,7 @@ REVEAL_STAGGER = 0.06   # per-element offset in a reveal cascade
 IDLE_CADENCE = 7.0      # seconds between ambient breaths, page-idle only
 IDLE_STEP = 1.6         # one ambient breath, edge to edge
 CUE_DURATION = 0.18     # response under the hand — TCSS speaks it as $cue-duration
+TELETYPE_CADENCE = 0.12  # one printed line per beat on a teletype surface
 
 
 def travel(widget: Widget, x: int, y: int, duration: float = TRAVEL_DURATION) -> None:

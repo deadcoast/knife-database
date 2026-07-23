@@ -44,7 +44,7 @@ from .. import laws
 from ..gauges import EIGHTHS, _lerp
 from ..masthead import Masthead
 from ..plate import Plate
-from ..surfaces import Engraving
+from ..surfaces import Engraving, Teletype
 from ..tips import ROOM_KEY, Tip, TipCapsule, TipRail, TipsMixin
 
 if TYPE_CHECKING:
@@ -300,7 +300,9 @@ class UnknownsMap(Widget):
         cells = [" "] * width
         styles = [Style(color=laws.STEEL_DIM)] * width
         hidden = len(self._columns) - shown
-        if self._reveal is None:
+        # the legend stands down while a marker is up — they never share cells
+        marker_up = self._working is not None or self._spotlight is not None
+        if self._reveal is None and not marker_up:
             note = f"1 column = 1 knife · dark socket = unknown{f' · +{hidden} beyond the edge' if hidden > 0 else ''}"
             start = max(self.LABEL_W, width - len(note) - 1)
             for i, ch in enumerate(note):
@@ -391,7 +393,7 @@ class ResearchScreen(TipsMixin, Screen):
                 yield Vertical(id="docket", classes="station-body")
             with Vertical(classes="station", id="st-read"):
                 yield Engraving("read")
-                yield Static("", id="read-log", classes="station-body")
+                yield Teletype(id="read-log", classes="station-body")
             with Vertical(classes="station", id="st-stamp"):
                 yield Engraving("stamp")
                 yield Static("", id="stamped", classes="station-body")
@@ -628,7 +630,7 @@ class ResearchScreen(TipsMixin, Screen):
         """One card over the desk: PULL from the file, READ its listing
         fact by fact, STAMP only the empty fields — the map lighting as
         each one lands. Returns None on a fault."""
-        read_log = self.query_one("#read-log", Static)
+        read_log = self.query_one("#read-log", Teletype)
         stamped = self.query_one("#stamped", Static)
         await self._travel_to("st-docket", plate)
         plate.add_class("carrying")
@@ -648,13 +650,12 @@ class ResearchScreen(TipsMixin, Screen):
             plate.styles.border = ("heavy", laws.FAIL)
             await asyncio.sleep(0.5)
             return None
-        learned = Text()
-        learned.append(f"{listing.retailer[:30]}\n\n", style=laws.STEEL_MID)
-        for label, value in listing.stamped_fields():
-            learned.append_text(laws.field(label, value[:26], laws.STEEL_BRIGHT))
-            learned.append("\n")
-            read_log.update(learned)
-            await asyncio.sleep(0.12)
+        # the listing prints — the teletype dramatizes arrival, fact by fact
+        await read_log.type_lines(
+            [laws.field(label, value[:26], laws.STEEL_BRIGHT)
+             for label, value in listing.stamped_fields()],
+            lead=Text(f"{listing.retailer[:30]}\n\n", style=laws.STEEL_MID),
+        )
 
         await self._travel_to("st-stamp", plate)
         report = research.research_record(record, listing, rules=rules)
@@ -681,7 +682,7 @@ class ResearchScreen(TipsMixin, Screen):
         truthful — nothing was written, so nothing lights."""
         knife = self._sample()
         plate = self.query_one(Plate)
-        read_log = self.query_one("#read-log", Static)
+        read_log = self.query_one("#read-log", Teletype)
         stamped = self.query_one("#stamped", Static)
         unknowns = self.query_one("#desk-map", UnknownsMap)
         self._pass_active = True
@@ -697,15 +698,14 @@ class ResearchScreen(TipsMixin, Screen):
         await asyncio.sleep(0.6)
 
         await self._travel_to("st-read", plate)
-        learned = Text()
-        learned.append("the record's own listing, replayed\n\n", style=laws.STEEL_DIM)
-        learned.append_text(laws.field("steel", knife.blade_steel, laws.STEEL_BRIGHT))
-        learned.append("\n")
-        read_log.update(learned)
-        await asyncio.sleep(0.35)
-        learned.append_text(laws.field("price", knife.price_label, laws.STEEL_BRIGHT))
-        read_log.update(learned)
-        await asyncio.sleep(0.55)
+        await read_log.type_lines(
+            [
+                laws.field("steel", knife.blade_steel, laws.STEEL_BRIGHT),
+                laws.field("price", knife.price_label, laws.STEEL_BRIGHT),
+            ],
+            lead=Text("the record's own listing, replayed\n\n", style=laws.STEEL_DIM),
+            cadence=0.45,  # the demo prints deliberately — it is being watched
+        )
 
         await self._travel_to("st-stamp", plate)
         for label, value in (("steel", knife.blade_steel), ("price", knife.price_label)):

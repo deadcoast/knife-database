@@ -65,6 +65,18 @@ steered by `revisions.md`.
   caught a naked record plate floating over the card file before the
   demo pulled it — a plate now exists on the desk only while it
   carries a record.
+- **The teletype surface** — some windows print their data instead of
+  painting it: `surfaces.py::Teletype`, a reusable paced line-printer —
+  lines land one per beat (`TELETYPE_CADENCE` in the laws), an amber
+  block cursor rides the print head and exists only while the machine
+  prints, and an interrupted print keeps exactly the lines that landed.
+  The surface dramatizes arrival only: already-known context is handed
+  in as a lead and renders instantly. The research page's READ station
+  adopts it for live and demo transits both (the demo prints at a
+  deliberate watched pace). Eyes on the mid-print frame caught the
+  working column's ▲ marker landing inside the rail legend — markers
+  and legend never share cells now; the legend stands down while a
+  marker is up.
 - The capture pipeline is `tests/capture_pages.py` (exhibits export as
   `page-<name>.svg`, the hall included); the shell suite is
   `tests/test_tui_shell.py` with the boot-lands-in-the-hall flow and
