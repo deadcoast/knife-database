@@ -382,7 +382,13 @@ async def test_freshness_and_reserve() -> None:
 
     tmp_db = Path(tempfile.mkdtemp()) / "knives.json"
     db = json.loads((REPO / "knivves" / "data" / "knives.json").read_text(encoding="utf-8"))
-    # stamp the first two records as freshly filed, and rank them in the reserve
+    # neutralize whatever freshness the shipped data carries, then stamp
+    # exactly two records as freshly filed and rank them in the reserve
+    for record in db["knives"]:
+        record.pop("new", None)
+        record.pop("added_generation", None)
+        record.pop("buy_priority", None)
+    db.pop("buy_list", None)
     first, second = db["knives"][0], db["knives"][1]
     for record in (first, second):
         record["new"] = True

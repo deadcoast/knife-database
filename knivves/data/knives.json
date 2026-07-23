@@ -2251,7 +2251,8 @@
       "model": "Sprite Titanium Bronze (BMK21B)",
       "user_classification": "approved",
       "user_tags": [
-        "buy_these"
+        "buy_these",
+        "unsorted"
       ],
       "research_status": "canadian_retailer_verified",
       "acquisition_status": "approved_for_further_research",
@@ -2281,7 +2282,9 @@
       "model": "Sprite Titanium Dark Bead Blast Stonewash (BMK21D)",
       "user_classification": "approved",
       "user_tags": [
-        "buy_these"
+        "buy_list",
+        "buy_these",
+        "unsorted"
       ],
       "research_status": "canadian_retailer_verified",
       "acquisition_status": "approved_for_further_research",
@@ -2303,7 +2306,8 @@
         }
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: BUY THESE).",
-      "listing_title": "BestechMan Sprite Titanium Dark Bead Blast Stonewash BMK21D"
+      "listing_title": "BestechMan Sprite Titanium Dark Bead Blast Stonewash BMK21D",
+      "buy_priority": 8
     },
     {
       "id": "bestechman-sprite-titanium-bmk21a",
@@ -2311,7 +2315,8 @@
       "model": "Sprite Titanium (BMK21A)",
       "user_classification": "approved",
       "user_tags": [
-        "buy_these"
+        "buy_these",
+        "unsorted"
       ],
       "research_status": "canadian_retailer_verified",
       "acquisition_status": "approved_for_further_research",
@@ -2674,7 +2679,8 @@
       "model": "Zander Aluminum Olive Green Copper Dune Blade (A4604)",
       "user_classification": "approved",
       "user_tags": [
-        "top_picks"
+        "top_picks",
+        "unsorted"
       ],
       "research_status": "canadian_retailer_verified",
       "acquisition_status": "approved_for_further_research",
@@ -3308,7 +3314,8 @@
       "model": "Little Ringbo Aluminum Grey (V3708A1)",
       "user_classification": "approved",
       "user_tags": [
-        "top_picks"
+        "top_picks",
+        "unsorted"
       ],
       "research_status": "canadian_retailer_verified",
       "acquisition_status": "approved_for_further_research",
@@ -5045,6 +5052,3350 @@
       ],
       "notes": "Imported 2026-07-20 from curated shortlist (section: STILETTO).",
       "listing_title": "Cobratec Stiletto Button Lock VG10 Satin G10 Black CBTSTBLBK"
+    },
+    {
+      "id": "dreamtech-flipper-folding-knife-d4285tg",
+      "brand": "DreamTech",
+      "model": "Flipper Folding Knife (D4285TG)",
+      "user_classification": null,
+      "user_tags": [
+        "buy_list"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "D2",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/DreamTech/DreamTech-Flipper-Folding-Knife-D2-Satin-Titanium-Grey-D4285TG",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[DreamTech Flipper Folding Knife, D2 Satin, Titanium Grey, D4285TG](https://www.bladescanada.com/DreamTech/DreamTech-Flipper-Folding-Knife-D2-Satin-Titanium-Grey-D4285TG)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true,
+      "buy_priority": 1
+    },
+    {
+      "id": "dreamtech-flipper-crossbar-lock-folding-knife-d4032tg",
+      "brand": "DreamTech",
+      "model": "Flipper Crossbar Lock Folding Knife (D4032TG)",
+      "user_classification": null,
+      "user_tags": [
+        "buy_list"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "VG-10",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/DreamTech/DreamTech-Flipper-Crossbar-Lock-Folding-Knife-VG-10-Titanium-Grey-D4032TG",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[DreamTech Flipper Crossbar Lock Folding Knife, VG-10, Titanium Grey, D4032TG](https://www.bladescanada.com/DreamTech/DreamTech-Flipper-Crossbar-Lock-Folding-Knife-VG-10-Titanium-Grey-D4032TG)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true,
+      "buy_priority": 2
+    },
+    {
+      "id": "bestech-toddler-g10-beige-bg64c",
+      "brand": "Bestech",
+      "model": "Toddler G10 Beige (BG64C)",
+      "user_classification": null,
+      "user_tags": [
+        "buy_list"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": null,
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/toddler-g10-beige-bt25034/",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[Bestech Toddler G10 Beige (BG64C)](https://houseofknives.ca/toddler-g10-beige-bt25034/)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true,
+      "buy_priority": 3
+    },
+    {
+      "id": "bestech-ququ-satin-14c28n-g10-black-bg57a-1",
+      "brand": "Bestech",
+      "model": "Ququ Satin 14C28N G10 Black (BG57A-1)",
+      "user_classification": null,
+      "user_tags": [
+        "buy_list"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "14C28N",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/bestech-ququ-satin-14c28n-g10-black-bg57a-1/",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[Bestech Ququ Satin 14C28N G10 Black (BG57A-1)](https://houseofknives.ca/bestech-ququ-satin-14c28n-g10-black-bg57a-1/)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true,
+      "buy_priority": 4
+    },
+    {
+      "id": "vosteed-porcupine-folding-knife-a2601",
+      "brand": "Vosteed",
+      "model": "Porcupine Folding Knife (A2601)",
+      "user_classification": null,
+      "user_tags": [
+        "buy_list"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "14C28N",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Vosteed-Knives/Vosteed-Porcupine-Folding-Knife-14C28N-Black-SW-Micarta-Black-A2601",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[Vosteed Porcupine Folding Knife, 14C28N Black SW, Micarta Black, A2601](https://www.bladescanada.com/Vosteed-Knives/Vosteed-Porcupine-Folding-Knife-14C28N-Black-SW-Micarta-Black-A2601)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true,
+      "buy_priority": 5
+    },
+    {
+      "id": "bestech-swordfish-satin-14c28n-g10-black-white-bg62b",
+      "brand": "Bestech",
+      "model": "Swordfish Satin 14C28N G10 Black/White (BG62B)",
+      "user_classification": null,
+      "user_tags": [
+        "buy_list"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "14C28N",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/bestech-swordfish-satin-14c28n-g10-black-white-bg62b/",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[Bestech Swordfish Satin 14C28N G10 Black/White - BG62B](https://houseofknives.ca/bestech-swordfish-satin-14c28n-g10-black-white-bg62b/)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true,
+      "buy_priority": 6
+    },
+    {
+      "id": "bestech-swordfish-stonewashed-14c28n-g10-black-blue-bg62f",
+      "brand": "Bestech",
+      "model": "Swordfish Stonewashed 14C28N G10 Black/Blue (BG62F)",
+      "user_classification": null,
+      "user_tags": [
+        "buy_list"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "14C28N",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/bestech-swordfish-stonewashed-14c28n-g10-black-blue-bg62f/",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[Bestech Swordfish Stonewashed 14C28N G10 Black/Blue - BG62F](https://houseofknives.ca/bestech-swordfish-stonewashed-14c28n-g10-black-blue-bg62f/)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true,
+      "buy_priority": 7
+    },
+    {
+      "id": "bestechman-lanza-flipper-folding-knife-bmk14-d-4",
+      "brand": "BestechMan",
+      "model": "Lanza Flipper Folding Knife (BMK14-D-4)",
+      "user_classification": null,
+      "user_tags": [
+        "buy_list"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "Damascus",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Bestechman-Knives/Bestechman-Lanza-Flipper-Folding-Knife-Damascus-Olive-Wood-BMK14-D-4",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[Bestechman Lanza Flipper Folding Knife, Damascus, Olive Wood, BMK14-D-4](https://www.bladescanada.com/Bestechman-Knives/Bestechman-Lanza-Flipper-Folding-Knife-Damascus-Olive-Wood-BMK14-D-4)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true,
+      "buy_priority": 9
+    },
+    {
+      "id": "bestechman-flick-flipper-folding-knife-bmk13d",
+      "brand": "BestechMan",
+      "model": "Flick Flipper Folding Knife (BMK13D)",
+      "user_classification": null,
+      "user_tags": [
+        "buy_list"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "D2",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Bestechman-Knives/Bestechman-Flick-Flipper-Folding-Knife-D2-Satin-G10-Light-Blue-BMK13D",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[Bestechman Flick Flipper Folding Knife, D2 Satin, G10 Light Blue, BMK13D](https://www.bladescanada.com/Bestechman-Knives/Bestechman-Flick-Flipper-Folding-Knife-D2-Satin-G10-Light-Blue-BMK13D)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true,
+      "buy_priority": 10
+    },
+    {
+      "id": "bestechman-velix-flipper-button-lock-folding-knife-bmk07g",
+      "brand": "BestechMan",
+      "model": "Velix Flipper Button Lock Folding Knife (BMK07G)",
+      "user_classification": null,
+      "user_tags": [
+        "buy_list"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "14C28N",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Bestechman-Knives/Bestchman-Velix-Flipper-Button-Lock-Folding-Knife-14C28N-Gold-PVD-G10-OD-Green-BMK07G",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[Bestchman Velix Flipper Button Lock Folding Knife, 14C28N Gold PVD, G10 OD Green, BMK07G](https://www.bladescanada.com/Bestechman-Knives/Bestchman-Velix-Flipper-Button-Lock-Folding-Knife-14C28N-Gold-PVD-G10-OD-Green-BMK07G)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true,
+      "buy_priority": 11
+    },
+    {
+      "id": "gerber-sharkbelly-lockback-folding-knife-g3214",
+      "brand": "Gerber",
+      "model": "Sharkbelly Lockback Folding Knife (G3214)",
+      "user_classification": null,
+      "user_tags": [
+        "buy_list"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "420HC",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Gerber-Gear-Knives/Gerber-Sharkbelly-Lockback-Folding-Knife-420HC-Satin-GRN-Black-Sharkskin-Grip-G3214",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[Gerber Sharkbelly Lockback Folding Knife, 420HC Satin, GRN Black Sharkskin Grip, G3214](https://www.bladescanada.com/Gerber-Gear-Knives/Gerber-Sharkbelly-Lockback-Folding-Knife-420HC-Satin-GRN-Black-Sharkskin-Grip-G3214)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true,
+      "buy_priority": 12
+    },
+    {
+      "id": "vixino-knives-rockshark-crossbar-lock-folding-knife-vx501g1",
+      "brand": "Vixino Knives",
+      "model": "Rockshark Crossbar Lock Folding Knife (VX501G1)",
+      "user_classification": null,
+      "user_tags": [
+        "buy_list"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "14C28N",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/All-Folding-Knives/Vixino-Knives-Rockshark-Crossbar-Lock-Folding-Knife-14C28N-Black-SW-G10-White-Textured-VX501G1",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[Vixino Knives Rockshark Crossbar Lock Folding Knife, 14C28N Black SW, G10 White Textured, VX501G1](https://www.bladescanada.com/All-Folding-Knives/Vixino-Knives-Rockshark-Crossbar-Lock-Folding-Knife-14C28N-Black-SW-G10-White-Textured-VX501G1)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true,
+      "buy_priority": 13
+    },
+    {
+      "id": "falcon-flipper-folding-knife-ks2110gy",
+      "brand": "Falcon",
+      "model": "Flipper Folding Knife (KS2110GY)",
+      "user_classification": null,
+      "user_tags": [
+        "buy_list"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "440",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/All-Folding-Knives/Falcon-Flipper-Folding-Knife-Assisted-Opening-440-Stainless-Satin-Aluminum-Grey-KS2110GY",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[Falcon Flipper Folding Knife, Assisted Opening, 440 Stainless Satin, Aluminum Grey, KS2110GY](https://www.bladescanada.com/All-Folding-Knives/Falcon-Flipper-Folding-Knife-Assisted-Opening-440-Stainless-Satin-Aluminum-Grey-KS2110GY)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true,
+      "buy_priority": 14
+    },
+    {
+      "id": "dreamtech-button-lock-folding-knife-d4542mr",
+      "brand": "DreamTech",
+      "model": "Button Lock Folding Knife (D4542MR)",
+      "user_classification": null,
+      "user_tags": [
+        "buy_list"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "D2",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/DreamTech/DreamTech-Button-Lock-Folding-Knife-D2-Bead-Blast-Micarta-Black-Red-D4542MR",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[DreamTech Button Lock Folding Knife, D2 Bead Blast, Micarta Black/Red, D4542MR](https://www.bladescanada.com/DreamTech/DreamTech-Button-Lock-Folding-Knife-D2-Bead-Blast-Micarta-Black-Red-D4542MR)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true,
+      "buy_priority": 15
+    },
+    {
+      "id": "dreamtech-button-lock-folding-knife-d4542mbl",
+      "brand": "DreamTech",
+      "model": "Button Lock Folding Knife (D4542MBL)",
+      "user_classification": null,
+      "user_tags": [
+        "buy_list"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "D2",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/DreamTech/DreamTech-Button-Lock-Folding-Knife-D2-Bead-Blast-Micarta-Blue-Green-D4542MBL",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[DreamTech Button Lock Folding Knife, D2 Bead Blast, Micarta Blue/Green, D4542MBL](https://www.bladescanada.com/DreamTech/DreamTech-Button-Lock-Folding-Knife-D2-Bead-Blast-Micarta-Blue-Green-D4542MBL)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true,
+      "buy_priority": 16
+    },
+    {
+      "id": "dreamtech-button-lock-folding-knife-d4542gb",
+      "brand": "DreamTech",
+      "model": "Button Lock Folding KNife (D4542GB)",
+      "user_classification": null,
+      "user_tags": [
+        "buy_list"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "D2",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/DreamTech/DreamTech-Button-Lock-Folding-KNife-D2-Bead-Blast-G10-Black-D4542GB",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[DreamTech Button Lock Folding KNife, D2 Bead Blast, G10 Black, D4542GB](https://www.bladescanada.com/DreamTech/DreamTech-Button-Lock-Folding-KNife-D2-Bead-Blast-G10-Black-D4542GB)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true,
+      "buy_priority": 17
+    },
+    {
+      "id": "bestechman-cicada-s-wing-b-lock-folding-knife-bmk06h",
+      "brand": "BestechMan",
+      "model": "Cicada's Wing B-Lock Folding Knife (BMK06H)",
+      "user_classification": null,
+      "user_tags": [
+        "buy_list"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "10Cr15MoV",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Bestechman-Knives/Bestechman-Cicadas-Wing-B-Lock-Folding-Knife-10Cr15MoV-Pink-Ultem-Jade-BMK06H",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[Bestechman Cicada's Wing B-Lock Folding Knife, 10Cr15MoV Pink, Ultem Jade , BMK06H](https://www.bladescanada.com/Bestechman-Knives/Bestechman-Cicadas-Wing-B-Lock-Folding-Knife-10Cr15MoV-Pink-Ultem-Jade-BMK06H)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true,
+      "buy_priority": 18
+    },
+    {
+      "id": "bestechman-cicada-s-wing-b-lock-folding-knife-bmk06d",
+      "brand": "BestechMan",
+      "model": "Cicada's Wing B-Lock Folding Knife (BMK06D)",
+      "user_classification": null,
+      "user_tags": [
+        "buy_list"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "10Cr15MoV",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Bestechman-Knives/Bestechman-Cicadas-Wing-B-Lock-Folding-Knife-10Cr15MoV-Gold-Ultem-BMK06D",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[Bestechman Cicada's Wing B-Lock Folding Knife, 10Cr15MoV Gold, Ultem, BMK06D](https://www.bladescanada.com/Bestechman-Knives/Bestechman-Cicadas-Wing-B-Lock-Folding-Knife-10Cr15MoV-Gold-Ultem-BMK06D)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true,
+      "buy_priority": 19
+    },
+    {
+      "id": "bestech-noctar-bar-lock-folding-knife-bg66c",
+      "brand": "Bestech",
+      "model": "Noctar Bar Lock Folding Knife (BG66C)",
+      "user_classification": null,
+      "user_tags": [
+        "buy_list"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "14C28N",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Bestech-Knives/Bestech-Noctar-Bar-Lock-Folding-Knife-14C28N-Satin-G10-Khaki-BG66C",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[Bestech Noctar Bar Lock Folding Knife, 14C28N Satin, G10 Khaki, BG66C](https://www.bladescanada.com/Bestech-Knives/Bestech-Noctar-Bar-Lock-Folding-Knife-14C28N-Satin-G10-Khaki-BG66C)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true,
+      "buy_priority": 20
+    },
+    {
+      "id": "bestech-noctar-bar-lock-folding-knife-bg66a",
+      "brand": "Bestech",
+      "model": "Noctar Bar Lock Folding Knife (BG66A)",
+      "user_classification": null,
+      "user_tags": [
+        "buy_list"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "14C28N",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Bestech-Knives/Bestech-Noctar-Bar-Lock-Folding-Knife-14C28N-Satin-G10-Black-BG66A",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[Bestech Noctar Bar Lock Folding Knife, 14C28N Satin, G10 Black, BG66A](https://www.bladescanada.com/Bestech-Knives/Bestech-Noctar-Bar-Lock-Folding-Knife-14C28N-Satin-G10-Black-BG66A)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true,
+      "buy_priority": 21
+    },
+    {
+      "id": "bestech-noctar-bar-lock-folding-knife-bg66h",
+      "brand": "Bestech",
+      "model": "Noctar Bar Lock Folding Knife (BG66H)",
+      "user_classification": null,
+      "user_tags": [
+        "buy_list"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "14C28N",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Bestech-Knives/Bestech-Noctar-Bar-Lock-Folding-Knife-14C28N-Black-SW-G10-Black-BG66H",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[Bestech Noctar Bar Lock Folding Knife, 14C28N Black SW, G10 Black, BG66H](https://www.bladescanada.com/Bestech-Knives/Bestech-Noctar-Bar-Lock-Folding-Knife-14C28N-Black-SW-G10-Black-BG66H)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true,
+      "buy_priority": 22
+    },
+    {
+      "id": "bestech-duoz-flipper-folding-knife-bg65f",
+      "brand": "Bestech",
+      "model": "Duoz Flipper Folding Knife (BG65F)",
+      "user_classification": null,
+      "user_tags": [
+        "buy_list"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "14C28N",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Bestech-Knives/Bestech-Duoz-Flipper-Folding-Knife-14C28N-Gold-PVD-G10-OD-Green-BG65F",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[https://www.bladescanada.com/Bestech-Knives/Bestech-Duoz-Flipper-Folding-Knife-14C28N-Gold-PVD-G10-OD-Green-BG65F](Bestech Duoz Flipper Folding Knife, 14C28N Gold PVD, G10 OD Green, BG65F)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true,
+      "buy_priority": 23
+    },
+    {
+      "id": "dreamtech-flipper-button-lock-knife-d4052gb",
+      "brand": "DreamTech",
+      "model": "Flipper Button Lock Knife (D4052GB)",
+      "user_classification": null,
+      "user_tags": [
+        "buy_list"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "14C28N",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/DreamTech/DreamTech-Flipper-Button-Lock-Knife-14C28N-Bead-Blast-G10-Black-D4052GB",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[DreamTech Flipper Button Lock Knife, 14C28N Bead Blast, G10 Black, D4052GB](https://www.bladescanada.com/DreamTech/DreamTech-Flipper-Button-Lock-Knife-14C28N-Bead-Blast-G10-Black-D4052GB)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true,
+      "buy_priority": 24
+    },
+    {
+      "id": "molsect-croc-flipper-button-lock-folding-knife-m1216b",
+      "brand": "Molsect",
+      "model": "Croc Flipper Button Lock Folding Knife (M1216B)",
+      "user_classification": null,
+      "user_tags": [
+        "buy_list"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "14C28N",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Molsect-Knives/Molsect-Croc-Flipper-Button-Lock-Folding-Knife-14C28N-Satin-G10-Black-Textured-M1216B",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[Molsect Croc Flipper Button Lock Folding Knife, 14C28N Satin, G10 Black Textured, M1216B](https://www.bladescanada.com/Molsect-Knives/Molsect-Croc-Flipper-Button-Lock-Folding-Knife-14C28N-Satin-G10-Black-Textured-M1216B)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true,
+      "buy_priority": 25
+    },
+    {
+      "id": "honey-badger-large-flipper-folding-knife-hb1010",
+      "brand": "Honey Badger",
+      "model": "Large Flipper Folding Knife (HB1010)",
+      "user_classification": null,
+      "user_tags": [
+        "buy_list"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "D2",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Honey-Badger-Knives/Honey-Badger-Large-Flipper-Folding-Knife-D2-Satin-Nylon-Textured-Tan-HB1010",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[Honey Badger Large Flipper Folding Knife, D2 Satin, Nylon Textured Tan, HB1010](https://www.bladescanada.com/Honey-Badger-Knives/Honey-Badger-Large-Flipper-Folding-Knife-D2-Satin-Nylon-Textured-Tan-HB1010)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true,
+      "buy_priority": 26
+    },
+    {
+      "id": "kershaw-skyline-folding-knife-175-2469-8",
+      "brand": "Kershaw",
+      "model": "Skyline Folding Knife (175-2469-8)",
+      "user_classification": null,
+      "user_tags": [
+        "affordable_source",
+        "buy_list",
+        "new_source"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": null,
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Canadian Tire",
+          "url": "https://www.canadiantire.ca/en/pdp/kershaw-skyline-folding-knife-1752469p.html",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[Kershaw Skyline Folding Knife#175-2469-8](https://www.canadiantire.ca/en/pdp/kershaw-skyline-folding-knife-1752469p.html)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true,
+      "buy_priority": 27
+    },
+    {
+      "id": "vosteed-psyop-button-lock-flipper-folding-knife-a2204",
+      "brand": "Vosteed",
+      "model": "Psyop Button Lock Flipper Folding Knife (A2204)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "Elmax",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Vosteed-Knives/Vosteed-Psyop-Button-Lock-Flipper-Folding-Knife-Elmax-Satin-Titanium-Grey-Curved-A2204",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[Vosteed Psyop Button Lock Flipper Folding Knife, Elmax Satin, Titanium Grey Curved, A2204](<https://www.bladescanada.c>om/Vosteed-Knives/Vosteed-Psyop-Button-Lock-Flipper-Folding-Knife-Elmax-Satin-Titanium-Grey-Curved-A2204)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "kunwu-gringo-verta-titanium-honeydew-b712t-r2-1",
+      "brand": "Kunwu",
+      "model": "Gringo Verta Titanium Honeydew (B712T-R2-1)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": null,
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/kunwu-gringo-verta-titanium-honeydew-b712t-r2-1/",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[Kunwu Gringo Verta Titanium Honeydew (B712T-R2-1)](https://houseofknives.ca/kunwu-gringo-verta-titanium-honeydew-b712t-r2-1/?srsltid=AfmBOoo72H_0fG5M6TChLD1obmB1HUzFAsm8OsWTE8trPFhIHBO2XSaL)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "microtech-m-stitch-ram-lok-folding-knife-169mrl-10frta",
+      "brand": "Microtech",
+      "model": "M-Stitch Ram-Lok Folding Knife (169MRL-10FRTA)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "M390",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Microtech-Knives/Microtech-M-Stitch-Ram-Lok-Folding-Knife-M390-SW-Aluminum-Tan-Frag-169MRL-10FRTA",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[Microtech M-Stitch Ram-Lok Folding Knife, M390 SW, Aluminum Tan Frag, 169MRL-10FRTA](https://www.bladescanada.com/Microtech-Knives/Microtech-M-Stitch-Ram-Lok-Folding-Knife-M390-SW-Aluminum-Tan-Frag-169MRL-10FRTA)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "microtech-msi-mini-ram-lok-folding-knife-210m-1flnc",
+      "brand": "Microtech",
+      "model": "MSI Mini Ram-Lok Folding Knife (210M-1FLNC)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "M390MK",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/index.php?main_page=knife_fold_info&cPath=118&products_id=54388",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[Microtech MSI Mini Ram-Lok Folding Knife, M390MK Two-Tone, Aluminum Grey Fluted, 210M-1FLNC](https://www.bladescanada.com/index.php?main_page=knife_fold_info&cPath=118&products_id=54388)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "microtech-msi-mini-ram-lok-folding-knife-210m-10flod",
+      "brand": "Microtech",
+      "model": "MSI Mini Ram-Lok Folding Knife (210M-10FLOD)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "M390MK",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Microtech-Knives/Microtech-MSI-Mini-Ram-Lok-Folding-Knife-M390MK-SW-Aluminum-OD-Green-Fluted-210M-10FLOD",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[Microtech MSI Mini Ram-Lok Folding Knife, M390MK SW, Aluminum OD Green Fluted, 210M-10FLOD](https://www.bladescanada.com/Microtech-Knives/Microtech-MSI-Mini-Ram-Lok-Folding-Knife-M390MK-SW-Aluminum-OD-Green-Fluted-210M-10FLOD)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "civivi-buster-fg-superlock-folding-knife-c24052-1",
+      "brand": "CIVIVI",
+      "model": "Buster FG Superlock Folding Knife (C24052-1)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "Nitro-V",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/CIVIVI-Knives/Civivi-Buster-FG-Superlock-Folding-Knife-Nitro-V-Black-SW-G10-Black-Golden-C24052-1",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[CIVIVI Buster FG Superlock Folding Knife, Nitro-V Black SW, G10 Black/Golden, C24052-1](https://www.bladescanada.com/CIVIVI-Knives/Civivi-Buster-FG-Superlock-Folding-Knife-Nitro-V-Black-SW-G10-Black-Golden-C24052-1)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "civivi-buster-fg-superlock-folding-knife-c24052-3",
+      "brand": "CIVIVI",
+      "model": "Buster FG Superlock Folding Knife (C24052-3)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "Nitro-V",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/CIVIVI-Knives/Civivi-Buster-FG-Superlock-Folding-Knife-Nitro-V-Black-SW-Micarta-Green-C24052-3",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[CIVIVI Buster FG Superlock Folding Knife, Nitro-V Black SW, Micarta Green, C24052-3](https://www.bladescanada.com/CIVIVI-Knives/Civivi-Buster-FG-Superlock-Folding-Knife-Nitro-V-Black-SW-Micarta-Green-C24052-3)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "trivisa-batwing-crossbar-lock-folding-knife-jm10l-cg-14",
+      "brand": "Trivisa",
+      "model": "Batwing Crossbar Lock Folding Knife (JM10L-CG-14)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "14C28N",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Trivisa-Knives/Trivisa-Batwing-Crossbar-Lock-Folding-Knife-14C28N-Rose-Gold-G10-Black-Carbon-Fiber-JM10L-CG-14",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[Trivisa Batwing Crossbar Lock Folding Knife, 14C28N Rose Gold, G10 Black/Carbon Fiber, JM10L-CG-14](https://www.bladescanada.com/Trivisa-Knives/Trivisa-Batwing-Crossbar-Lock-Folding-Knife-14C28N-Rose-Gold-G10-Black-Carbon-Fiber-JM10L-CG-14)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "trivisa-batwing-crossbar-lock-folding-knife-jm10s-bm-14",
+      "brand": "Trivisa",
+      "model": "Batwing Crossbar Lock Folding Knife (JM10S-BM-14)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "14C28N",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Trivisa-Knives/Trivisa-Batwing-Crossbar-Lock-Folding-Knife-14C28N-Black-Micarta-Black-JM10S-BM-14",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[Trivisa Batwing Crossbar Lock Folding Knife, 14C28N Black, Micarta Black, JM10S-BM-14](https://www.bladescanada.com/Trivisa-Knives/Trivisa-Batwing-Crossbar-Lock-Folding-Knife-14C28N-Black-Micarta-Black-JM10S-BM-14)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "trivisa-batwing-crossbar-lock-folding-knife-jm10s-bg-14",
+      "brand": "Trivisa",
+      "model": "Batwing Crossbar Lock Folding Knife (JM10S-BG-14)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "14C28N",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Trivisa-Knives/Trivisa-Batwing-Crossbar-Lock-Folding-Knife-14C28N-SW-G10-Black-JM10S-BG-14",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[Trivisa Batwing Crossbar Lock Folding Knife, 14C28N SW, G10 Black, JM10S-BG-14]<https://www.bladescanada.com/Trivisa-Knives/Trivisa-Batwing-Crossbar-Lock-Folding-Knife-14C28N-SW-G10-Black-JM10S-BG-14()>",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "trivisa-batwing-crossbar-lock-folding-knife-jm10l-bm-14",
+      "brand": "Trivisa",
+      "model": "Batwing Crossbar Lock Folding Knife (JM10L-BM-14)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "14C28N",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Trivisa-Knives/Trivisa-Batwing-Crossbar-Lock-Folding-Knife-14C28N-SW-Micarta-Black-JM10L-BM-14",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[Trivisa Batwing Crossbar Lock Folding Knife, 14C28N SW, Micarta Black, JM10L-BM-14](https://www.bladescanada.com/Trivisa-Knives/Trivisa-Batwing-Crossbar-Lock-Folding-Knife-14C28N-SW-Micarta-Black-JM10L-BM-14)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "we-knife-flight-line-flipper-folding-knife-we23089-2",
+      "brand": "WE Knife",
+      "model": "Flight Line Flipper Folding Knife (WE23089-2)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "M390",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/index.php?main_page=knife_fold_info&cPath=428&products_id=54277",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[WE Knife Flight Line Flipper Folding Knife, Limited Edition, M390 Black SW, Titanium Bronze, WE23089-2](https://www.bladescanada.com/index.php?main_page=knife_fold_info&cPath=428&products_id=54277)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "we-knife-flight-line-flipper-folding-knife-we23089-3",
+      "brand": "WE Knife",
+      "model": "Flight Line Flipper Folding Knife (WE23089-3)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "M390",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/WE-Knife-Co.-Knives/WE-Knife-Flight-Line-Flipper-Folding-Knife-Limited-Edition-M390-Satin-Titanium-Bead-Blasted-WE23089-3",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[WE Knife Flight Line Flipper Folding Knife, Limited Edition, M390 Satin, Titanium Bead Blasted, WE23089-3](https://www.bladescanada.com/WE-Knife-Co.-Knives/WE-Knife-Flight-Line-Flipper-Folding-Knife-Limited-Edition-M390-Satin-Titanium-Bead-Blasted-WE23089-3)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "we-knife-flight-line-flipper-folding-knife-we23089-1",
+      "brand": "WE Knife",
+      "model": "Flight Line Flipper Folding Knife (WE23089-1)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "M390",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/WE-Knife-Co.-Knives/WE-Knife-Flight-Line-Flipper-Folding-Knife-Limited-Edition-M390-SW-Titanium-Dark-Grey-WE24046-3",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[WE Knife Flight Line Flipper Folding Knife, Limited Edition, M390 SW, Titanium Dark Grey, WE23089-1](https://www.bladescanada.com/WE-Knife-Co.-Knives/WE-Knife-Flight-Line-Flipper-Folding-Knife-Limited-Edition-M390-SW-Titanium-Dark-Grey-WE24046-3)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "rike-knife-1902-flipper-framelock-knife-rk1902-bcf",
+      "brand": "Rike Knife",
+      "model": "1902 Flipper Framelock Knife (RK1902-BCF)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "M390",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Rike-Knives/Rike-Knife-1902-Flipper-Framelock-Knife-M390-Bead-Blast-Satin-Titanium-Dark-Grey-CF-Marble-Blue-Black-RK1902-BCF",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[Rike Knife 1902 Flipper Framelock Knife, M390 Bead Blast/Satin, Titanium Dark Grey/CF Marble Blue & Black, RK1902-BCF](https://www.bladescanada.com/Rike-Knives/Rike-Knife-1902-Flipper-Framelock-Knife-M390-Bead-Blast-Satin-Titanium-Dark-Grey-CF-Marble-Blue-Black-RK1902-BCF)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "okc-corporal-crossbar-lock-folding-knife-on9006",
+      "brand": "OKC",
+      "model": "Corporal Crossbar Lock Folding Knife (ON9006)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": null,
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Ontario-Knives-OKC/OKC-Corporal-Crossbar-Lock-Folding-Knife-Stainless-SW-G10-Tan-ON9006",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[OKC Corporal Crossbar Lock Folding Knife, Stainless SW, G10 Tan, ON9006](https://www.bladescanada.com/Ontario-Knives-OKC/OKC-Corporal-Crossbar-Lock-Folding-Knife-Stainless-SW-G10-Tan-ON9006)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "knafs-lander-5-framelock-folding-knife-00684",
+      "brand": "Knafs",
+      "model": "Lander 5 Framelock Folding Knife (00684)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": null,
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Knafs-Knives/Knafs-Lander-5-Frame-Lock-Folding-Knife-Black-Stonewash-Blade-Cold-Forged-Steel-Topo-00684",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[Knafs Lander 5 Framelock Folding Knife, Black Stonewash Blade, Cold Forged Steel Topo, 00684](https://www.bladescanada.com/Knafs-Knives/Knafs-Lander-5-Frame-Lock-Folding-Knife-Black-Stonewash-Blade-Cold-Forged-Steel-Topo-00684)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "srm-knives-palfrey-framelock-folding-knife-135l-gt",
+      "brand": "SRM Knives",
+      "model": "Palfrey Framelock Folding Knife (135L-GT)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "14C28N",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/SRM-Knives/SRM-Knives-Palfrey-Framelock-Folding-Knife-14C28N-Bead-Blast-G10-Ivory-135L-GT",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[SRM Knives Palfrey Framelock Folding Knife, 14C28N Bead Blast, G10 Ivory, 135L-GT](https://www.bladescanada.com/SRM-Knives/SRM-Knives-Palfrey-Framelock-Folding-Knife-14C28N-Bead-Blast-G10-Ivory-135L-GT)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "civivi-iron-tide-flipper-button-lock-folding-knife-c25011-3",
+      "brand": "CIVIVI",
+      "model": "Iron Tide Flipper Button Lock Folding Knife (C25011-3)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "14C28N",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/CIVIVI-Knives/CIVIVI-Iron-Tide-Flipper-Button-Lock-Folding-Knife-14C28N-Grey-SW-Aluminum-Grey-C25011-3",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[CIVIVI Iron Tide Flipper Button Lock Folding Knife, 14C28N Grey SW, Aluminum Grey, C25011-3](https://www.bladescanada.com/CIVIVI-Knives/CIVIVI-Iron-Tide-Flipper-Button-Lock-Folding-Knife-14C28N-Grey-SW-Aluminum-Grey-C25011-3)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "sencut-vyrce-flipper-folding-knife-s25104-3",
+      "brand": "SENCUT",
+      "model": "Vyrce Flipper Folding Knife (S25104-3)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "D2",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/SENCUT-Knives/SENCUT-Vyrce-Flipper-Folding-Knife-D2-Satin-Micarta-Purple-S25104-3",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[SENCUT Vyrce Flipper Folding Knife, D2 Satin, Micarta Purple, S25104-3](https://www.bladescanada.com/SENCUT-Knives/SENCUT-Vyrce-Flipper-Folding-Knife-D2-Satin-Micarta-Purple-S25104-3)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "bestech-vk-kuze-titanium-dark-bead-blast-stonewash-bt2504b",
+      "brand": "Bestech",
+      "model": "VK-KUZE Titanium Dark Bead Blast/Stonewash (BT2504B)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": null,
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/vk-kuze-ti-dark-bead-blast-stonewash-bt25039/",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[Bestech VK-KUZE Titanium Dark Bead Blast/Stonewash (BT2504B)](https://houseofknives.ca/vk-kuze-ti-dark-bead-blast-stonewash-bt25039/)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "bestech-mothus-g10-dark-blue-bg67f",
+      "brand": "Bestech",
+      "model": "Mothus G10 Dark Blue (BG67F)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": null,
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/bestech-mothus-g10-dark-blue-bg67f/",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[Bestech Mothus G10 Dark Blue - BG67F](https://houseofknives.ca/bestech-mothus-g10-dark-blue-bg67f/)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "bestech-mothus-g10-beige-bg67b",
+      "brand": "Bestech",
+      "model": "Mothus G10 Beige (BG67B)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": null,
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/bestech-mothus-g10-beige-bg67b/",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[Bestech Mothus G10 Beige - BG67B](https://houseofknives.ca/bestech-mothus-g10-beige-bg67b/)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "gerber-ripstop-ii-stainless-steel-fine-edge-folding-pocket-knife",
+      "brand": "Gerber",
+      "model": "Ripstop II Stainless Steel Fine Edge Folding Pocket Knife",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": null,
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Canadian Tire",
+          "url": "https://www.canadiantire.ca/en/pdp/gerber-ripstop-ii-stainless-steel-fine-edge-folding-pocket-knife-7-4-in-3750210p.html",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[Gerber Ripstop II Stainless Steel Fine Edge Folding Pocket Knife, 7.4-in](https://www.canadiantire.ca/en/pdp/gerber-ripstop-ii-stainless-steel-fine-edge-folding-pocket-knife-7-4-in-3750210p.html?rq=FOLDING+KNIFE)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "sog-fielder-folding-knife-with-wood-handle",
+      "brand": "SOG",
+      "model": "Fielder Folding Knife with Wood Handle",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": null,
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Canadian Tire",
+          "url": "https://www.canadiantire.ca/en/pdp/sog-fielder-folding-knife-with-wood-handle-3-3-in-0755603p.html",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[SOG Fielder Folding Knife with Wood Handle, 3.3-in](https://www.canadiantire.ca/en/pdp/sog-fielder-folding-knife-with-wood-handle-3-3-in-0755603p.html?rq=FOLDING+KNIFE)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "bestech-wet-nellie-titanium-timascus-bt2505e",
+      "brand": "Bestech",
+      "model": "Wet Nellie Titanium Timascus (BT2505E)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": null,
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/bestech-wet-nellie-titanium-timascus-bt2505e/",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[Bestech Wet Nellie Titanium Timascus - BT2505E](https://houseofknives.ca/bestech-wet-nellie-titanium-timascus-bt2505e/)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "bestech-seraph-black-stonewashed-m390-ti-black-bronze-bt2403e",
+      "brand": "Bestech",
+      "model": "Seraph Black Stonewashed M390 Ti Black/Bronze (BT2403E)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "M390",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/bestech-seraph-black-stonewashed-m390-ti-black-bronze-bt2403e/",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[Bestech Seraph Black Stonewashed M390 Ti Black/Bronze - BT2403E](https://houseofknives.ca/bestech-seraph-black-stonewashed-m390-ti-black-bronze-bt2403e/)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "bestech-razon-black-magnacut-ti-white-bt2406c",
+      "brand": "Bestech",
+      "model": "Razon Black Magnacut Ti White (BT2406C)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "Magnacut",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/bestech-razon-black-magnacut-ti-white-bt2406c/",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[Bestech Razon Black Magnacut Ti White - BT2406C](https://houseofknives.ca/bestech-razon-black-magnacut-ti-white-bt2406c/)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "bestechman-vector-aluminum-grey-bmk15b",
+      "brand": "BestechMan",
+      "model": "Vector Aluminum Grey (BMK15B)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": null,
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/bestechman-vector-aluminum-grey-bmk15b/",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[Bestechman Vector Aluminum Grey - BMK15B](https://houseofknives.ca/bestechman-vector-aluminum-grey-bmk15b/)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "bestech-vk-kuze-titanium-black-stonewash-bt2504c",
+      "brand": "Bestech",
+      "model": "VK-KUZE Titanium Black Stonewash (BT2504C)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": null,
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/vk-kuze-ti-blk-stonewash-bt25040/",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[Bestech VK-KUZE Titanium Black Stonewash - BT2504C](https://houseofknives.ca/vk-kuze-ti-blk-stonewash-bt25040/)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "bestech-wet-nellie-titanium-bt2505b",
+      "brand": "Bestech",
+      "model": "Wet Nellie Titanium (BT2505B)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": null,
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/bestech-wet-nellie-titanium-bt2505b/",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[Bestech Wet Nellie Titanium - BT2505B](https://houseofknives.ca/bestech-wet-nellie-titanium-bt2505b/)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "bestech-wet-nellie-titanium-bead-blasted-dlc-bt2505g",
+      "brand": "Bestech",
+      "model": "Wet Nellie Titanium Bead Blasted DLC (BT2505G)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": null,
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/bestech-wet-nellie-titanium-bead-blasted-dlc-bt2505g/",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[Bestech Wet Nellie Titanium Bead Blasted DLC - BT2505G](https://houseofknives.ca/bestech-wet-nellie-titanium-bead-blasted-dlc-bt2505g/)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "bestech-mini-taipan-titanium-black-pvd-left-handed-bt2603e-l",
+      "brand": "Bestech",
+      "model": "Mini Taipan Titanium Black PVD Left Handed (BT2603E-L)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": null,
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/bestech-mini-taipan-titanium-black-pvd-left-handed-bt2603e-l/",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[Bestech Mini Taipan Titanium Black PVD Left Handed - BT2603E-L](https://houseofknives.ca/bestech-mini-taipan-titanium-black-pvd-left-handed-bt2603e-l/)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "bestech-mini-taipan-titanium-bronze-bt2603b",
+      "brand": "Bestech",
+      "model": "Mini Taipan Titanium Bronze (BT2603B)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": null,
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/bestech-mini-taipan-titanium-bronze-bt2603b/",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[Bestech Mini Taipan Titanium Bronze - BT2603B](https://houseofknives.ca/bestech-mini-taipan-titanium-bronze-bt2603b/)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "bestech-mini-taipan-titanium-black-pvd-bt2603e",
+      "brand": "Bestech",
+      "model": "Mini Taipan Titanium Black PVD (BT2603E)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": null,
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "House of Knives",
+          "url": "https://houseofknives.ca/bestech-mini-taipan-titanium-black-pvd-bt2603e/",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[Bestech Mini Taipan Titanium Black PVD - BT2603E](https://houseofknives.ca/bestech-mini-taipan-titanium-black-pvd-bt2603e/)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "we-knife-hull-flipper-folding-knife-we24046-2",
+      "brand": "WE Knife",
+      "model": "Hull Flipper Folding Knife (WE24046-2)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "M390",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/WE-Knife-Co.-Knives/WE-Knife-Hull-Flipper-Folding-Knife-Limited-Edition-M390-Grey-SW-Titanium-Grey-WE24046-2",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[WE Knife Hull Flipper Folding Knife, Limited Edition, M390 Grey SW, Titanium Grey, WE24046-2](https://www.bladescanada.com/WE-Knife-Co.-Knives/WE-Knife-Hull-Flipper-Folding-Knife-Limited-Edition-M390-Grey-SW-Titanium-Grey-WE24046-2)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "we-knife-breach-flipper-framelock-knife-we25077-2",
+      "brand": "WE Knife",
+      "model": "Breach Flipper Framelock Knife (WE25077-2)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "M390",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/WE-Knife-Co.-Knives/WE-Knife-Breach-Flipper-Framelock-Knife-Limited-Edition-M390-Black-Brushed-Titanium-Black-WE25077-2",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[WE Knife Breach Flipper Framelock Knife, Limited Edition, M390 Black Brushed, Titanium Black, WE25077-2](https://www.bladescanada.com/WE-Knife-Co.-Knives/WE-Knife-Breach-Flipper-Framelock-Knife-Limited-Edition-M390-Black-Brushed-Titanium-Black-WE25077-2)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "we-knife-breach-flipper-framelock-knife-we25077-1",
+      "brand": "WE Knife",
+      "model": "Breach Flipper Framelock Knife (WE25077-1)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "M390",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/WE-Knife-Co.-Knives/WE-Knife-Breach-Flipper-Framelock-Knife-Limited-Edition-M390-Dark-Grey-SW-Titanium-Charcoal-Grey-WE25077-1",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[WE Knife Breach Flipper Framelock Knife, Limited Edition, M390 Dark Grey SW, Titanium Charcoal Grey, WE25077-1](https://www.bladescanada.com/WE-Knife-Co.-Knives/WE-Knife-Breach-Flipper-Framelock-Knife-Limited-Edition-M390-Dark-Grey-SW-Titanium-Charcoal-Grey-WE25077-1)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "we-knife-hull-flipper-folding-knife-we24046-1",
+      "brand": "WE Knife",
+      "model": "Hull Flipper Folding Knife (WE24046-1)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "M390",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/WE-Knife-Co.-Knives/WE-Knife-Hull-Flipper-Folding-Knife-Limited-Edition-M390-Satin-Titanium-Black-WE24046-1",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[WE Knife Hull Flipper Folding Knife, Limited Edition, M390 Satin, Titanium Black, WE24046-1](https://www.bladescanada.com/WE-Knife-Co.-Knives/WE-Knife-Hull-Flipper-Folding-Knife-Limited-Edition-M390-Satin-Titanium-Black-WE24046-1)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "we-knife-reveille-framelock-folding-knife-we23057-2",
+      "brand": "WE Knife",
+      "model": "Reveille Framelock Folding Knife (WE23057-2)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "M390",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/WE-Knife-Co.-Knives/WE-Knife-Reveille-Framelock-Folding-Knife-Limited-Edition-M390-Two-Tone-Titanium-Olive-Grey-WE23057-2",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[WE Knife Reveille Framelock Folding Knife, Limited Edition, M390 Two-Tone, Titanium Olive Grey, WE23057-2](https://www.bladescanada.com/WE-Knife-Co.-Knives/WE-Knife-Reveille-Framelock-Folding-Knife-Limited-Edition-M390-Two-Tone-Titanium-Olive-Grey-WE23057-2)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "kizer-microbe-button-lock-folding-knife-v2742a5",
+      "brand": "Kizer",
+      "model": "Microbe Button Lock Folding Knife (V2742A5)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "14C28N",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Kizer-Knives/Kizer-Microbe-Button-Lock-Folding-Knife-14C28N-Grey-Stonewash-Micarta-Vortex-V2742A5",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[https://www.bladescanada.com/Kizer-Knives/Kizer-Microbe-Button-Lock-Folding-Knife-14C28N-Grey-Stonewash-Micarta-Vortex-V2742A5](Kizer Microbe Button Lock Folding Knife, 14C28N Grey Stonewash, Micarta Vortex, V2742A5)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "kizer-microbe-button-folding-knife-v2742a2",
+      "brand": "Kizer",
+      "model": "Microbe Button Folding Knife (V2742A2)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "14C28N",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Kizer-Knives/Kizer-Microbe-Button-Folding-Knife-14C28N-Micarta-Norplex-UltreX-V2742A2",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[Kizer Microbe Button Folding Knife, 14C28N, Micarta Norplex UltreX, V2742A2](https://www.bladescanada.com/Kizer-Knives/Kizer-Microbe-Button-Folding-Knife-14C28N-Micarta-Norplex-UltreX-V2742A2)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "kizer-microbe-button-lock-folding-knife-ki2742a2",
+      "brand": "Kizer",
+      "model": "Microbe Button Lock Folding Knife (KI2742A2)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "M390",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Kizer-Knives/Kizer-Microbe-Button-Lock-Folding-Knife-M390-Matt-Black-Fat-Carbon-Fiber-KI2742A2",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[Kizer Microbe Button Lock Folding Knife, M390 Matt Black, Fat Carbon Fiber, KI2742A2](https://www.bladescanada.com/Kizer-Knives/Kizer-Microbe-Button-Lock-Folding-Knife-M390-Matt-Black-Fat-Carbon-Fiber-KI2742A2)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "petrified-fish-zonda-folding-knife-pfb06ddw",
+      "brand": "Petrified Fish",
+      "model": "Zonda Folding Knife (PFB06DDW)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "14C28N",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Petrified-Fish-Knives/Petrified-Fish-Zonda-Folding-Knife-14C28N-Black-SW-G10-Black-PFB06DDW",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[Petrified Fish Zonda Folding Knife, 14C28N Black SW, G10 Black, PFB06DDW](https://www.bladescanada.com/Petrified-Fish-Knives/Petrified-Fish-Zonda-Folding-Knife-14C28N-Black-SW-G10-Black-PFB06DDW)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "bestech-cobber-crossbar-lock-folding-knife-bg68f",
+      "brand": "Bestech",
+      "model": "Cobber Crossbar Lock Folding Knife (BG68F)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "14C28N",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Bestech-Knives/Bestech-Cobber-Crossbar-Lock-Folding-Knife-14C28N-Black-Micarta-Brown-BG68F",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[Bestech Cobber Crossbar Lock Folding Knife, 14C28N Black, Micarta Brown, BG68F](https://www.bladescanada.com/Bestech-Knives/Bestech-Cobber-Crossbar-Lock-Folding-Knife-14C28N-Black-Micarta-Brown-BG68F)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "bestech-constellation-flipper-framelock-knife-bt2501c",
+      "brand": "Bestech",
+      "model": "Constellation Flipper Framelock Knife (BT2501C)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "M-Cut",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Bestech-Knives/Bestech-Constellation-Flipper-Framelock-Knife-M-Cut-Black-Titanium-Fat-CF-Dark-Matter-Gold-BT2501C",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[Bestech Constellation Flipper Framelock Knife, M-Cut Black, Titanium/Fat CF Dark Matter Gold, BT2501C](https://www.bladescanada.com/Bestech-Knives/Bestech-Constellation-Flipper-Framelock-Knife-M-Cut-Black-Titanium-Fat-CF-Dark-Matter-Gold-BT2501C)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "dreamtech-pivot-button-lock-folding-knife-d4129tp",
+      "brand": "DreamTech",
+      "model": "Pivot Button Lock Folding Knife (D4129TP)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "M390",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/DreamTech/DreamTech-Pivot-Button-Lock-Folding-Knife-M390-Satin-Titanium-Purple-Frag-D4129TP",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[DreamTech Pivot Button Lock Folding Knife, M390 Satin, Titanium Purple Frag, D4129TP](https://www.bladescanada.com/DreamTech/DreamTech-Pivot-Button-Lock-Folding-Knife-M390-Satin-Titanium-Purple-Frag-D4129TP)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "bestechman-velix-flipper-button-lock-folding-knife-bmk07a",
+      "brand": "BestechMan",
+      "model": "Velix Flipper Button Lock Folding Knife (BMK07A)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "14C28N",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Bestechman-Knives/Bestchman-Velix-Flipper-Button-Lock-Folding-Knife-14C28N-Two-Tone-G10-Black-BMK07A",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[Bestchman Velix Flipper Button Lock Folding Knife, 14C28N Two-Tone, G10 Black, BMK07A](https://www.bladescanada.com/Bestechman-Knives/Bestchman-Velix-Flipper-Button-Lock-Folding-Knife-14C28N-Two-Tone-G10-Black-BMK07A)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "microtech-msi-mini-ram-lok-folding-knife-210m-1frcsg-z13",
+      "brand": "Microtech",
+      "model": "MSI Mini Ram-Lok Folding Knife (210M-1FRCSG-Z13)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "M390MK",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Microtech-Knives/Microtech-MSI-Mini-Ram-Lok-Folding-Knife-M390MK-Cerakote-Sniper-Gray-Aluminum-Black-Frag-210M-1FRCSG-Z13",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[Microtech MSI Mini Ram-Lok Folding Knife, M390MK Cerakote Sniper Gray, Aluminum Black Frag, 210M-1FRCSG-Z13](https://www.bladescanada.com/Microtech-Knives/Microtech-MSI-Mini-Ram-Lok-Folding-Knife-M390MK-Cerakote-Sniper-Gray-Aluminum-Black-Frag-210M-1FRCSG-Z13)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "cold-steel-engage-folding-knife-fl-30dplc-35",
+      "brand": "Cold Steel",
+      "model": "Engage Folding Knife (FL-30DPLC-35)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "S35VN",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Cold-Steel-Knives/Cold-Steel-Engage-Folding-Knife-S35VN-3-G10-Black-FL-30DPLC-35",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[Cold Steel Engage Folding Knife, S35VN 3\", G10 Black, FL-30DPLC-35](https://www.bladescanada.com/Cold-Steel-Knives/Cold-Steel-Engage-Folding-Knife-S35VN-3-G10-Black-FL-30DPLC-35)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "trivisa-skarn-crossbar-lock-folding-knife-jm11-w-m",
+      "brand": "Trivisa",
+      "model": "Skarn Crossbar Lock Folding Knife (JM11-W-M)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "M390",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Trivisa-Knives/Trivisa-Skarn-Crossbar-Lock-Folding-Knife-M390-Satin-Titanium-Silver-JM11-W-M",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[Trivisa Skarn Crossbar Lock Folding Knife, M390 Satin, Titanium Silver, JM11-W-M](https://www.bladescanada.com/Trivisa-Knives/Trivisa-Skarn-Crossbar-Lock-Folding-Knife-M390-Satin-Titanium-Silver-JM11-W-M)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "trivisa-skarn-crossbar-lock-folding-knife-jm11-rg-m",
+      "brand": "Trivisa",
+      "model": "Skarn Crossbar Lock Folding Knife (JM11-RG-M)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "M390",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Trivisa-Knives/Trivisa-Skarn-Crossbar-Lock-Folding-Knife-M390-Rose-Gold-Titanium-Rose-Gold-JM11-RG-M",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[Trivisa Skarn Crossbar Lock Folding Knife, M390 Rose Gold, Titanium Rose Gold, JM11-RG-M](https://www.bladescanada.com/Trivisa-Knives/Trivisa-Skarn-Crossbar-Lock-Folding-Knife-M390-Rose-Gold-Titanium-Rose-Gold-JM11-RG-M)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "microtech-socom-delta-ram-lok-s-e-folding-knife-159rl-10od",
+      "brand": "Microtech",
+      "model": "Socom Delta RAM-LOK S/E Folding Knife (159RL-10OD)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "M390",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Microtech-Knives/Microtech-Socom-Delta-RAM-LOK-S-E-Folding-Knife-M390-SW-Aluminum-OD-Green-159RL-10OD",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[Microtech Socom Delta RAM-LOK S/E Folding Knife, M390 SW, Aluminum OD Green, 159RL-10OD](https://www.bladescanada.com/Microtech-Knives/Microtech-Socom-Delta-RAM-LOK-S-E-Folding-Knife-M390-SW-Aluminum-OD-Green-159RL-10OD)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "microtech-socom-delta-ram-lok-folding-knife-159rl-10ta",
+      "brand": "Microtech",
+      "model": "Socom Delta RAM-LOK Folding Knife (159RL-10TA)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "M390",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Microtech-Knives/Microtech-Socom-Delta-RAM-LOK-Folding-Knife-M390-SW-Alumium-Tan-159RL-10TA",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[Microtech Socom Delta RAM-LOK Folding Knife, M390 SW, Alumium Tan, 159RL-10TA](https://www.bladescanada.com/Microtech-Knives/Microtech-Socom-Delta-RAM-LOK-Folding-Knife-M390-SW-Alumium-Tan-159RL-10TA)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "kunwu-diablo-framelock-folding-knife-k717t-2r",
+      "brand": "Kunwu",
+      "model": "Diablo Framelock Folding Knife (K717T-2R)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "Vanax",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Kunwu-Knives/Kunwu-Diablo-Framelock-Folding-Knife-Vanax-Black-Titanium-Grey-Orange-Peel-K717T-2R",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[Kunwu Diablo Framelock Folding Knife, Vanax Black, Titanium Grey Orange Peel, K717T-2R](https://www.bladescanada.com/Kunwu-Knives/Kunwu-Diablo-Framelock-Folding-Knife-Vanax-Black-Titanium-Grey-Orange-Peel-K717T-2R)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "kunwu-poon-padre-framelock-folding-knife-k706to-t2r",
+      "brand": "Kunwu",
+      "model": "Poon Padre Framelock Folding Knife (K706TO-T2R)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "S90V",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Kunwu-Knives/Kunwu-Poon-Padre-Framelock-Folding-Knife-S90V-Black-Titanium-Grey-Orange-Peel-K706TO-T2R",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[Kunwu Poon Padre Framelock Folding Knife, S90V Black, Titanium Grey Orange Peel, K706TO-T2R](https://www.bladescanada.com/Kunwu-Knives/Kunwu-Poon-Padre-Framelock-Folding-Knife-S90V-Black-Titanium-Grey-Orange-Peel-K706TO-T2R)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "kunwu-poon-padre-framelock-folding-knife-k706to-t2a",
+      "brand": "Kunwu",
+      "model": "Poon Padre Framelock Folding Knife (K706TO-T2A)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "S90V",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Kunwu-Knives/Kunwu-Poon-Padre-Framelock-Folding-Knife-S90V-Satin-Titanium-Grey-Orange-Peel-K706TO-T2A",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[Kunwu Poon Padre Framelock Folding Knife, S90V Satin, Titanium Grey Orange Peel, K706TO-T2A](https://www.bladescanada.com/Kunwu-Knives/Kunwu-Poon-Padre-Framelock-Folding-Knife-S90V-Satin-Titanium-Grey-Orange-Peel-K706TO-T2A)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "hogue-deka-able-lock-folding-knife-ho24379",
+      "brand": "Hogue",
+      "model": "Deka ABLE Lock Folding Knife (HO24379)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "CPM MagnaCut",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Hogue-Knives/Hogue-Deka-ABLE-Lock-Folding-Knife-CPM-MagnaCut-Tumbled-Finish-Polymer-Black-HO24379",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[Hogue Deka ABLE Lock Folding Knife, CPM MagnaCut Tumbled Finish, Polymer Black, HO24379](https://www.bladescanada.com/Hogue-Knives/Hogue-Deka-ABLE-Lock-Folding-Knife-CPM-MagnaCut-Tumbled-Finish-Polymer-Black-HO24379)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "hogue-mysto-able-lock-folding-knife-ho24453",
+      "brand": "Hogue",
+      "model": "Mysto ABLE Lock Folding Knife (HO24453)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "CPM MagnaCut",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Hogue-Knives/Hogue-Mysto-ABLE-Lock-Folding-Knife-CPM-MagnaCut-Black-SW-Richlite-Browns-Point-HO24453",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[Hogue Mysto ABLE Lock Folding Knife, CPM MagnaCut Black SW, Richlite Browns Point, HO24453](https://www.bladescanada.com/Hogue-Knives/Hogue-Mysto-ABLE-Lock-Folding-Knife-CPM-MagnaCut-Black-SW-Richlite-Browns-Point-HO24453)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "dreamtech-flipper-folding-knife-d4285tbl",
+      "brand": "DreamTech",
+      "model": "Flipper Folding Knife (D4285TBL)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "D2",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/DreamTech/DreamTech-Flipper-Folding-Knife-D2-Satin-Titanium-Blue-D4285TBL",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[DreamTech Flipper Folding Knife, D2 Satin, Titanium Blue, D4285TBL](https://www.bladescanada.com/DreamTech/DreamTech-Flipper-Folding-Knife-D2-Satin-Titanium-Blue-D4285TBL)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "dreamtech-flipper-crossbar-lock-folding-knife-d4032tb",
+      "brand": "DreamTech",
+      "model": "Flipper Crossbar Lock Folding Knife (D4032TB)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "VG-10",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/DreamTech/DreamTech-Flipper-Crossbar-Lock-Folding-Knife-VG-10-Black-Titanium-Black-D4032TB",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[DreamTech Flipper Crossbar Lock Folding Knife, VG-10 Black, Titanium Black, D4032TB](https://www.bladescanada.com/DreamTech/DreamTech-Flipper-Crossbar-Lock-Folding-Knife-VG-10-Black-Titanium-Black-D4032TB)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "vosteed-raccoon-tislim-crossbar-lock-folding-knife-a4508",
+      "brand": "Vosteed",
+      "model": "Raccoon TiSlim Crossbar Lock Folding Knife (A4508)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "S35VN",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Vosteed-Knives/Vosteed-Raccoon-TiSlim-Crossbar-Lock-Folding-Knife-S35VN-Acid-Wash-Stonewash-Titanium-Acid-Wash-Copper-A4508",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[Vosteed Raccoon TiSlim Crossbar Lock Folding Knife, S35VN Acid Wash & Stonewash, Titanium Acid Wash Copper, A4508](https://www.bladescanada.com/Vosteed-Knives/Vosteed-Raccoon-TiSlim-Crossbar-Lock-Folding-Knife-S35VN-Acid-Wash-Stonewash-Titanium-Acid-Wash-Copper-A4508)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "vosteed-zander-flipper-vanchor-lock-folding-knife-a4605",
+      "brand": "Vosteed",
+      "model": "Zander Flipper Vanchor Lock Folding Knife (A4605)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "S35VN",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Vosteed-Knives/Vosteed-Zander-Flipper-Vanchor-Lock-Folding-Knife-S35VN-Satin-Aluminum-Gray-A4605",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[Vosteed Zander Flipper Vanchor Lock Folding Knife, S35VN Satin, Aluminum Gray, A4605](https://www.bladescanada.com/Vosteed-Knives/Vosteed-Zander-Flipper-Vanchor-Lock-Folding-Knife-S35VN-Satin-Aluminum-Gray-A4605)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "vosteed-zander-flipper-vanchor-lock-folding-knife-a4602",
+      "brand": "Vosteed",
+      "model": "Zander Flipper Vanchor Lock Folding Knife (A4602)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "S35VN",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Vosteed-Knives/Vosteed-Zander-Flipper-Vanchor-Lock-Folding-Knife-S35VN-Stonewash-Aluminum-Olive-Green-A4602",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[Vosteed Zander Flipper Vanchor Lock Folding Knife, S35VN Stonewash, Aluminum Olive Green, A4602](https://www.bladescanada.com/Vosteed-Knives/Vosteed-Zander-Flipper-Vanchor-Lock-Folding-Knife-S35VN-Stonewash-Aluminum-Olive-Green-A4602)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "vosteed-zander-flipper-vanchor-lock-folding-knife-a4601",
+      "brand": "Vosteed",
+      "model": "Zander Flipper Vanchor Lock Folding Knife (A4601)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "S35VN",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Vosteed-Knives/Vosteed-Zander-Flipper-Vanchor-Lock-Folding-Knife-S35VN-Copper-Dune-Aluminum-Black-A4601",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[Vosteed Zander Flipper Vanchor Lock Folding Knife, S35VN Copper Dune, Aluminum Black, A4601](https://www.bladescanada.com/Vosteed-Knives/Vosteed-Zander-Flipper-Vanchor-Lock-Folding-Knife-S35VN-Copper-Dune-Aluminum-Black-A4601)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "bestech-cobber-crossbar-lock-folding-knife-14c28n-satin-sw-g10-black-bg68a",
+      "brand": "Bestech",
+      "model": "Cobber Crossbar Lock Folding Knife 14C28N Satin SW G10 Black (BG68A)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "14C28N",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Bestech-Knives/Bestech-Cobber-Crossbar-Lock-Folding-Knife-14C28N-Satin-SW-G10-Black-BG68A",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[TODO:GET-KNIFE-DATA](https://www.bladescanada.com/Bestech-Knives/Bestech-Cobber-Crossbar-Lock-Folding-Knife-14C28N-Satin-SW-G10-Black-BG68A)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "bestech-mothus-crossbar-lock-folding-knife-14c28n-black-g10-black-bg67g",
+      "brand": "Bestech",
+      "model": "Mothus Crossbar Lock Folding Knife 14C28N Black G10 Black (BG67G)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "14C28N",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Bestech-Knives/Bestech-Mothus-Crossbar-Lock-Folding-Knife-14C28N-Black-G10-Black-BG67G",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[TODO:GET-KNIFE-DATA](https://www.bladescanada.com/Bestech-Knives/Bestech-Mothus-Crossbar-Lock-Folding-Knife-14C28N-Black-G10-Black-BG67G)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "bestech-wet-nelly-flipper-button-lock-knife-magnacut-grey-titanium-grey-bronze-sw-bt2505d",
+      "brand": "Bestech",
+      "model": "Wet Nelly Flipper Button Lock Knife MagnaCut Grey Titanium Grey Bronze SW (BT2505D)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "MagnaCut",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Bestech-Knives/Bestech-Wet-Nelly-Flipper-Button-Lock-Knife-MagnaCut-Grey-Titanium-Grey-Bronze-SW-BT2505D",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[TODO:GET-KNIFE-DATA](https://www.bladescanada.com/Bestech-Knives/Bestech-Wet-Nelly-Flipper-Button-Lock-Knife-MagnaCut-Grey-Titanium-Grey-Bronze-SW-BT2505D)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "bestech-taipan-framelock-folding-knife-magnacut-satin-titanium-grey-bt2503c",
+      "brand": "Bestech",
+      "model": "Taipan Framelock Folding Knife MagnaCut Satin Titanium Grey (BT2503C)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "MagnaCut",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Bestech-Knives/Bestech-Taipan-Framelock-Folding-Knife-MagnaCut-Satin-Titanium-Grey-BT2503C",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[TODO:GET-KNIFE-DATA](https://www.bladescanada.com/Bestech-Knives/Bestech-Taipan-Framelock-Folding-Knife-MagnaCut-Satin-Titanium-Grey-BT2503C)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "bestechman-sprite-b-lock-folding-knife-m390-sw-saitn-titanium-crystallized-blue-bmk21g",
+      "brand": "BestechMan",
+      "model": "Sprite B Lock Folding Knife M390 SW Saitn Titanium Crystallized Blue (BMK21G)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "M390",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Bestechman-Knives/Bestechman-Sprite-B-Lock-Folding-Knife-M390-SW-Saitn-Titanium-Crystallized-Blue-BMK21G",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[TODO:GET-KNIFE-DATA](https://www.bladescanada.com/Bestechman-Knives/Bestechman-Sprite-B-Lock-Folding-Knife-M390-SW-Saitn-Titanium-Crystallized-Blue-BMK21G)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
     }
-  ]
+  ],
+  "updates": {
+    "generation": 1,
+    "keep_generations": 1,
+    "history": []
+  },
+  "sources": [
+    {
+      "name": "KershawCanada",
+      "url": "https://kershawcanada.com/",
+      "sections": [
+        "main_sources"
+      ]
+    },
+    {
+      "name": "BladesCanada",
+      "url": "https://www.bladescanada.com/",
+      "sections": [
+        "main_sources"
+      ]
+    },
+    {
+      "name": "HouseOfKnives",
+      "url": "https://houseofknives.ca/",
+      "sections": [
+        "main_sources"
+      ]
+    },
+    {
+      "name": "CanadianTire",
+      "url": "https://www.canadiantire.ca/en/cat/sports-recreation/hunting/hunting-knives/pocket-knives-DC0002384.html",
+      "sections": [
+        "main_sources"
+      ]
+    }
+  ],
+  "buy_list": {
+    "updated": "2026-07-23",
+    "items": [
+      {
+        "id": "dreamtech-flipper-folding-knife-d4285tg",
+        "priority": 1
+      },
+      {
+        "id": "dreamtech-flipper-crossbar-lock-folding-knife-d4032tg",
+        "priority": 2
+      },
+      {
+        "id": "bestech-toddler-g10-beige-bg64c",
+        "priority": 3
+      },
+      {
+        "id": "bestech-ququ-satin-14c28n-g10-black-bg57a-1",
+        "priority": 4
+      },
+      {
+        "id": "vosteed-porcupine-folding-knife-a2601",
+        "priority": 5
+      },
+      {
+        "id": "bestech-swordfish-satin-14c28n-g10-black-white-bg62b",
+        "priority": 6
+      },
+      {
+        "id": "bestech-swordfish-stonewashed-14c28n-g10-black-blue-bg62f",
+        "priority": 7
+      },
+      {
+        "id": "bestechman-sprite-titanium-dark-bead-blast-stonewash-bmk21d",
+        "priority": 8
+      },
+      {
+        "id": "bestechman-lanza-flipper-folding-knife-bmk14-d-4",
+        "priority": 9
+      },
+      {
+        "id": "bestechman-flick-flipper-folding-knife-bmk13d",
+        "priority": 10
+      },
+      {
+        "id": "bestechman-velix-flipper-button-lock-folding-knife-bmk07g",
+        "priority": 11
+      },
+      {
+        "id": "gerber-sharkbelly-lockback-folding-knife-g3214",
+        "priority": 12
+      },
+      {
+        "id": "vixino-knives-rockshark-crossbar-lock-folding-knife-vx501g1",
+        "priority": 13
+      },
+      {
+        "id": "falcon-flipper-folding-knife-ks2110gy",
+        "priority": 14
+      },
+      {
+        "id": "dreamtech-button-lock-folding-knife-d4542mr",
+        "priority": 15
+      },
+      {
+        "id": "dreamtech-button-lock-folding-knife-d4542mbl",
+        "priority": 16
+      },
+      {
+        "id": "dreamtech-button-lock-folding-knife-d4542gb",
+        "priority": 17
+      },
+      {
+        "id": "bestechman-cicada-s-wing-b-lock-folding-knife-bmk06h",
+        "priority": 18
+      },
+      {
+        "id": "bestechman-cicada-s-wing-b-lock-folding-knife-bmk06d",
+        "priority": 19
+      },
+      {
+        "id": "bestech-noctar-bar-lock-folding-knife-bg66c",
+        "priority": 20
+      },
+      {
+        "id": "bestech-noctar-bar-lock-folding-knife-bg66a",
+        "priority": 21
+      },
+      {
+        "id": "bestech-noctar-bar-lock-folding-knife-bg66h",
+        "priority": 22
+      },
+      {
+        "id": "bestech-duoz-flipper-folding-knife-bg65f",
+        "priority": 23
+      },
+      {
+        "id": "dreamtech-flipper-button-lock-knife-d4052gb",
+        "priority": 24
+      },
+      {
+        "id": "molsect-croc-flipper-button-lock-folding-knife-m1216b",
+        "priority": 25
+      },
+      {
+        "id": "honey-badger-large-flipper-folding-knife-hb1010",
+        "priority": 26
+      },
+      {
+        "id": "kershaw-skyline-folding-knife-175-2469-8",
+        "priority": 27
+      }
+    ]
+  }
 }

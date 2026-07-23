@@ -1,5 +1,13 @@
 # KNIFE DATABASE 4 - RAW NOTES
 
+> [!TIP]
+> **SHIPPED in v0.8.0 (2026-07-23).** Every feature below is implemented and tested:
+> `knivves add <file.md>` (ingestion ledger with SLI/SectionID grammar and repair pipeline),
+> `knivves update` + `knivves new` (three-generation NEW cache), `section` (with `tag` alias),
+> BuyList (The Reserve on the Rack via `y`, `knivves buylist`, list-page window).
+> The knife additions below were ingested via `additions/2026-07-23-knife-additions.md` —
+> 96 added, 5 merged, 27 buy-list priorities, 4 sources. See docs/CHANGELOG.md.
+
 -------------------------------
 > [!NOTE]
 > Feature Additions Dependency Graph
