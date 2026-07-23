@@ -55,7 +55,6 @@
 > MARKDOWN INGESTION LINKS FILE, FORMAT EXAMPLE
 
 ```markdown
--------------------------------
 # KNIFE ADDITIONS
 
 -------------------------------
