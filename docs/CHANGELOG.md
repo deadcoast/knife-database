@@ -46,6 +46,15 @@ The vault researches its own unknowns. Case:
   shows `gaps  N unresearched` in accent on its plate, in every room
   it travels to (Library, Compare Models): the object knows what it
   doesn't know, and door 5 is where it gets filled.
+- **The frame-capture pipeline is committed** —
+  `tests/capture_rooms.py` drives every room to its demonstrative
+  state headlessly and exports the `docs/media/room-*.svg` exhibits;
+  all five refreshed (the old frames predated the room renames and
+  the one-palette pass). Eyes-on review of the new frames caught and
+  fixed what no test flagged: docket rows wrapped an orphaned
+  "gap(s)" onto a second line (now one line, `×N`), the station name
+  read twice, and plate titles sliced mid-SKU (now wrap whole).
+  Version stamps bumped to 0.10.0 (pyproject, bundled DB).
 
 ## 005 — v0.9.0 (2026-07-23) — PLAIN WORDS ON THE DOORS
 

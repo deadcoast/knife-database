@@ -203,28 +203,30 @@ class DeskScreen(TipsMixin, Screen):
         self._line_state(f"desk: {len(plan.planned)} on the docket · {audit.complete}/{audit.records} complete")
 
     def _docket_text(self, plan: research.PassSummary) -> Text:
+        # one line per record — the engraving names the station, the
+        # masthead and meter carry the counts; ×N is the gap count
         text = Text()
         if plan.planned:
-            text.append(f"THE DOCKET  {len(plan.planned)}\n\n", style=f"bold {laws.STEEL_MID}")
-            for rank, entry in enumerate(plan.planned[:12], start=1):
-                text.append(f"{rank:>3} ", style=laws.ACCENT)
+            for rank, entry in enumerate(plan.planned[:10], start=1):
+                text.append(f"{rank:>2} ", style=laws.ACCENT)
                 if entry.buy_priority:
                     text.append(f"⬖{entry.buy_priority} ", style="bold magenta")
                 if entry.is_new:
                     text.append("★ ", style=laws.FRESH)
-                text.append(f"{entry.knife_id[:26]:<27}", style=laws.STEEL_BRIGHT)
-                text.append(f"{len(entry.gaps)} gap(s)\n", style=laws.STEEL_DIM)
-            if len(plan.planned) > 12:
-                text.append(f"    +{len(plan.planned) - 12} deeper\n", style=laws.STEEL_DIM)
+                text.append(f"{entry.knife_id[:22]:<23}", style=laws.STEEL_BRIGHT)
+                text.append(f"×{len(entry.gaps)}\n", style=laws.STEEL_DIM)
+            if len(plan.planned) > 10:
+                text.append(f"   +{len(plan.planned) - 10} deeper\n", style=laws.STEEL_DIM)
         else:
             text.append("fully researched — no open gaps\nwith a supported listing\n", style=laws.PASS)
         if plan.unreachable:
             text.append(f"\nUNREACHABLE  {len(plan.unreachable)}\n", style=f"bold {laws.STEEL_DIM}")
-            for entry in plan.unreachable[:6]:
-                text.append(f"  {entry.knife_id[:24]}", style=laws.STEEL_MID)
-                text.append(f" — {entry.reason}\n", style=laws.STEEL_DIM)
-            if len(plan.unreachable) > 6:
-                text.append(f"  +{len(plan.unreachable) - 6} more on the shelf\n", style=laws.STEEL_DIM)
+            for entry in plan.unreachable[:4]:
+                text.append(f" {entry.knife_id[:26]:<27}", style=laws.STEEL_MID)
+                text.append(f"×{len(entry.gaps)}\n", style=laws.STEEL_DIM)
+                text.append(f"   {entry.reason[:30]}\n", style=laws.STEEL_DIM)
+            if len(plan.unreachable) > 4:
+                text.append(f" +{len(plan.unreachable) - 4} more on the shelf\n", style=laws.STEEL_DIM)
         return text
 
     # ------------------------------------------------------------ live pass
@@ -279,7 +281,7 @@ class DeskScreen(TipsMixin, Screen):
         read_log = self.query_one("#read-log", Static)
         stamped = self.query_one("#stamped", Static)
         await self._travel_to("st-docket", plate)
-        plate.begin(entry.knife_id[:42], f"{len(entry.gaps)} open gap(s)")
+        plate.begin(entry.knife_id, f"{len(entry.gaps)} open gap(s)")
         plate.stamp("gaps", ", ".join(g.field for g in entry.gaps)[:32])
         self.call_after_refresh(self._settle)
         await asyncio.sleep(0.4)
@@ -332,7 +334,7 @@ class DeskScreen(TipsMixin, Screen):
         self._line_state("desk: demo ▸")
 
         await asyncio.sleep(0.4)
-        plate.begin(knife.display_name[:42], "demo — 2 gaps assumed")
+        plate.begin(knife.display_name, "demo — 2 gaps assumed")
         plate.stamp("gaps", "steel, price")
         self.call_after_refresh(self._settle)
         await asyncio.sleep(0.6)
