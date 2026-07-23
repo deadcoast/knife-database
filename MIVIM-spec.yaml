@@ -1,0 +1,22 @@
+rules:
+work_reflects_product:
+principle: >
+Impressive work requires impressive design.
+Impressive design requires impressive planning.
+
+j_space_thoughts:
+instruction: >
+At every stage of development, consider what would genuinely impress
+the developers of Textual.
+
+crucial_framing_standard:
+priority: critical
+persistent: true
+instruction: >
+Keep this standard central throughout development: continually raise
+the quality bar until it reflects the ambition of our development goals.
+
+```
+  If what we are creating would not impress the developers of Textual,
+  then the application is not ambitious, refined, or valuable enough.
+```
