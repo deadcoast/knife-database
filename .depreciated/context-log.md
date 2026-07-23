@@ -1542,7 +1542,7 @@ before we continue; just refresh design contept of original vision without any d
 
 the following notes ARE NOT OFFICIAL SPEC, OR POLISHED DOCUMENTATION. THEY ARE THE ORIGINAL IDEAS, ROUGH NOTES, AND FRAMING AROUND PROJECET STANDARD, GOALS.
 
-## WORKFLOW AND CONTEXT
+## ARCHIVED CHAT SNIPPETS FOR CONTEXT
 
 > { [WORK-REFLECTS-PRODUCT]:"IMPRESSIVE WORK REQUIRES IMPRESSIVE DESIGNS, IMPRESSIVE DESIGNS REQUIRE IMPRESSIVE PLANNING",[J-SPACE, THOUGHTS]:"THINK ABOUT WHAT WOULD IMPRESS THE DEVS OF TEXTUAL THROUGH ALL STEPS OF DEVELOPMENT.", [CRUCIAL-FRAMING-STANDARD]:"IT IS A CRUCIAL CRITICAL THOUGHT YOU MUST ALWAYS KEEP IN MIND TO RAISE STANDARDS TO A POINT THEY ARE RELATIVE IN OUR DEVELOPMENT GOALS. IF WE ARENT IMPRESSIVE THE DEVS WITH WHAT WE ARE CREATING, WE ARE CREATING A POINTLESS APPLIUCATION." }
 
@@ -1576,45 +1576,51 @@ This is a well designed feature on an application. Not a well designed applicati
 [3.2.e] IS IT SOMETHING YOU THINK WILL IMPRESS THE DEVS?
 
 > REMEMBER TO THINK ABOUT WHAT WOULD IMPRESS THE DEVS OF TEXTUAL THROUGH ALL STEPS OF DEVELOPMENT. IT IS A CRUCIAL CRITICAL THOUGHT PROCESS TO KEEP STANDARDS WHERE WE WANT THEM. IF WE ARENT IMPRESSIVE THE DEVS WITH WHAT WE ARE CREATING, WE ARE CREATING A POINTLESS APPLIUCATION.
+>> *OUR INNER THOUGHTS WHEN DEVELOPING TEXTUALIZE PROJECTS IS ALWAYS TO THINK ABOUT NEW, CREATIVE AND EXCITING WAYS OF DELVERING TEXTUALIZE ASSETS. THIS IS A MIVIM SPEC PROJECT, IN MIVIM OUR INTEGRATIONS ARE CREATIVE AND UI DESIGN FOCUSED. OUR MOST IMPORTANT INNER THOUGHT AND QUALITY WE DEVELOP WITH IS CREATING THINGS WE THINK WOULD IMPRESS THE PEOPLE WHO KNOW THE FRAMEWORK BEST; THE DEVS OF TEXTUALIZE. SO MUCH SO; THAT OUR SPECIFIC PROJECT GOAL IS CENTERED AROUND OUR DEVELOPMENT INTEGRATIONS BEING SO CREATIVE, OUTSIDE OF THE BOX AND WELL DELIVERED VISUALLY, THAT OUR PROJECT IS FEATURED ON THE TEXTUALIZE REPOSITORY WITH THE OTHER OUTSTANDING INDEPENDANT REPOSITORIES. THESE ARE STANDARDS THAT REQUIRE CONSTANT CRITICAL THOUGHT, TO SEEK ROOM FOR IMPROVEMENT WHERE THE VERY CREATORS DID NOT TO; OR HOW TO CREATE AND ASSET IN A VERY WAY THE CREATORS DID NOT THINK TO DELIVER IT VISUALLY. WE HAVE TO GO ABOVE AND BEYOND TO BE FEATURED. ITS DESIGNED TO DELIVER AN EXPERIENCE USERS REMEMBER. COMPLETELY TARGETED, DEVELOPED, AND CREATED FROM THE GROUND UP; AS WE HAVE BEEN DOING ASSURING OUR CURRENT FOUNDATIONS IN PYTHON ARE EXTREMELY WELL DOCUMENTED, ORGANIZED, AND FOLLOW BEST PRACTICES.*
 
 ---
 
-```text
-survey skip al-mar-slimline-quicksilver-flipper-framelock-d2-amk4046: fetch failed: HTTP Error 410: Gone
-survey skip kershaw-skyline-folding-knife-175-2469-8: unsupported retailer:
-https://www.canadiantire.ca/en/pdp/kershaw-skyline-folding-knife-1752469p.html
-survey skip gerber-ripstop-ii-stainless-steel-fine-edge-folding-pocket-knife: unsupported retailer:
-https://www.canadiantire.ca/en/pdp/gerber-ripstop-ii-stainless-steel-fine-edge-folding-pocket-knife-7-4-in-3750210p.html
-survey skip sog-fielder-folding-knife-with-wood-handle: unsupported retailer:
-https://www.canadiantire.ca/en/pdp/sog-fielder-folding-knife-with-wood-handle-3-3-in-0755603p.html
-```
+❯ [1] This style of notation, contextually, functionally will be defined as "Closing out documentation". (1.1) "the SYNTAX; referencing the CHANGELOG, direct
+  notation citing and sourcing all hidden with `<!-- -->` to CLOSE OUT THE DOCUMENTATION." (1.2)  "opening the docs, would be similar to saying; 'you opened
+  this case'; as in there is burdon and accountability held to closing them."  (1.3) "ONCE the notes are cited, noted and closed out they are archived to a
+  @docs/closed/ directory." (1.4) "THIS FULL PROCESS IS WHAT IS REFERRED TO AS `closing out the docs, closing out documentation, closing the docs out, closing
+  the docs, the docs are closed, these docs are closed, etc..." (1.5) close out @docs/featured-bar-review.md with the correct notation format. [2] KNOWLEDGE: {
+  "PURPOSE":"Relieve documentation bloat by holding each and every document accountable to both opening and closing them. Documentation should be held with
+  absolute authority, and thus should be left as history, but corrected where necessary, closed out when relevant.", "EFFECT":"(a): Provides accurate archiving
+  for any drift correction, without conflation of what IS LEGACY, what was FLAWED DESIGN, what was ALREADY CORRECTED. The agent can accurately assess what is
+  missing from canon, conflict, and flaw. (b): FREES UP space for new documentation, avoiding design bloat and conflicting drifted, detatched or dead design.
+  (c): BETTER WORKFLOW, a design or plan doc is created, it is developed using the changelog as up-to-date docs, then the CHANGELOG changes are ADDED to the
+  OUTDATED DESIGN and PLAN SPECS by CLOSING THEM OUT." [3] CONFIRM AND IDENTIFY THIS WORKFLOW; THEN CREATE A SKILL / WORKFLOW / MEMORY FOR: ["WHAT IT IS", "HOW
+  TO OPERATE", "HOW-TO-UTILIZE", "HOW-TO-LEARN"] THE WORKFLOW IN A MARKDOWN DOCUMENT FOR FUTURE INSTANCES OF FALBE5.
 
-- the CLI should ask if these want to be imported as retailers AFTER IT IS COMPLETE. IT SHOULD SHOW SOMETHING ABOUT ADDING IT AFTER THE SURVEY IS COMPLETE. THEN WHEN THE SURVEY IS COMPLETE, IT SHOULD ASK THE USER IF IT WANTS TO ADD THE UNSUPPORTED RETAILERS AND ADD THEM **TO THE LAST UPDATE**(THIS IS SIMILAR TO A SIMPLIFIED, PSEUDO VERSION CONTROL AS THE *NEW* KNIFE LISTS.)
+## WORKFLOW AND CONTEXT
+
+> { [WORK-REFLECTS-PRODUCT]:"IMPRESSIVE WORK REQUIRES IMPRESSIVE DESIGNS, IMPRESSIVE DESIGNS REQUIRE IMPRESSIVE PLANNING",[J-SPACE, THOUGHTS]:"THINK ABOUT WHAT WOULD IMPRESS THE DEVS OF TEXTUAL THROUGH ALL STEPS OF DEVELOPMENT.", [CRUCIAL-FRAMING-STANDARD]:"IT IS A CRUCIAL CRITICAL THOUGHT YOU MUST ALWAYS KEEP IN MIND TO RAISE STANDARDS TO A POINT THEY ARE RELATIVE IN OUR DEVELOPMENT GOALS. IF WE ARENT IMPRESSIVE THE DEVS WITH WHAT WE ARE CREATING, WE ARE CREATING A POINTLESS APPLIUCATION." }
+
+---
+[1]: IF WE ARE USING TEXTUALIZE; WE ARE LOOKING TO UTILIZE IT TO ITS FULL POTENTIAL, CREATIVELY INTEGRATING ITS VISUAL ASSETS FOR OUR PURPOSES.
+
+- *OUR INNER THOUGHTS WHEN DEVELOPING TEXTUALIZE PROJECTS IS ALWAYS TO THINK ABOUT NEW, CREATIVE AND EXCITING WAYS OF DELVERING TEXTUALIZE ASSETS. THIS IS A MIVIM SPEC PROJECT, IN MIVIM OUR INTEGRATIONS ARE CREATIVE AND UI DESIGN FOCUSED. OUR MOST IMPORTANT INNER THOUGHT AND QUALITY WE DEVELOP WITH IS CREATING THINGS WE THINK WOULD IMPRESS THE PEOPLE WHO KNOW THE FRAMEWORK BEST; THE DEVS OF TEXTUALIZE. SO MUCH SO; THAT OUR SPECIFIC PROJECT GOAL IS CENTERED AROUND OUR DEVELOPMENT INTEGRATIONS BEING SO CREATIVE, OUTSIDE OF THE BOX AND WELL DELIVERED VISUALLY, THAT OUR PROJECT IS FEATURED ON THE TEXTUALIZE REPOSITORY WITH THE OTHER OUTSTANDING INDEPENDANT REPOSITORIES. THESE ARE STANDARDS THAT REQUIRE CONSTANT CRITICAL THOUGHT, TO SEEK ROOM FOR IMPROVEMENT WHERE THE VERY CREATORS DID NOT TO; OR HOW TO CREATE AND ASSET IN A VERY WAY THE CREATORS DID NOT THINK TO DELIVER IT VISUALLY. WE HAVE TO GO ABOVE AND BEYOND TO BE FEATURED.
+- ITS DESIGNED TO DELIVER AN EXPERIENCE USERS REMEMBER. COMPLETELY TARGETED, DEVELOPED, AND CREATED FROM THE GROUND UP; AS WE HAVE BEEN DOING ASSURING OUR CURRENT FOUNDATIONS IN PYTHON ARE EXTREMELY WELL DOCUMENTED, ORGANIZED, AND FOLLOW BEST PRACTICES
+
+---
+[2]: WE NEED TO SEPERATE OURSELVES IF WE WANT TO BE FEATURED.  WE ARE LOOKING TO UTILIZE IT TO ITS FULL POTENTIAL, CREATIVELY INTEGRATING ITS VISUAL ASSETS FOR OUR PURPOSES.
+[2.a]: OUR INNER THOUGHTS WHEN DEVELOPING TEXTUALIZE PROJECTS IS ALWAYS TO THINK ABOUT NEW, CREATIVE AND EXCITING WAYS OF DELVERING TEXTUALIZE ASSETS. THIS IS A MIVIM SPEC PROJECT, IN MIVIM OUR INTEGRATIONS ARE CREATIVE AND UI DESIGN FOCUSED. OUR MOST IMPORTANT INNER THOUGHT AND QUALITY WE DEVELOP WITH IS CREATING THINGS WE THINK WOULD IMPRESS THE PEOPLE WHO KNOW THE FRAMEWORK BEST; THE DEVS OF TEXTUALIZE. SO MUCH SO; THAT OUR SPECIFIC PROJECT GOAL IS CENTERED AROUND OUR DEVELOPMENT INTEGRATIONS BEING SO CREATIVE, OUTSIDE OF THE BOX AND WELL DELIVERED VISUALLY, THAT OUR PROJECT IS FEATURED ON THE TEXTUALIZE REPOSITORY WITH THE OTHER OUTSTANDING INDEPENDANT REPOSITORIES. THESE ARE STANDARDS THAT REQUIRE CONSTANT CRITICAL THOUGHT, TO SEEK ROOM FOR IMPROVEMENT WHERE THE VERY CREATORS DID NOT TO; OR HOW TO CREATE AND ASSET IN A VERY WAY THE CREATORS DID NOT THINK TO DELIVER IT VISUALLY. WE HAVE TO GO ABOVE AND BEYOND TO BE FEATURED. ITS DESIGNED TO DELIVER AN EXPERIENCE USERS REMEMBER. COMPLETELY TARGETED, DEVELOPED, AND CREATED FROM THE GROUND UP; AS WE HAVE BEEN DOING ASSURING OUR CURRENT FOUNDATIONS IN PYTHON ARE EXTREMELY WELL DOCUMENTED, ORGANIZED, AND FOLLOW BEST PRACTICES.
+[2.b]: IMPRESSIVE WORK REQUIRES IMPRESSIVE DESIGNS, IMPRESSIVE DESIGNS REQUIRE IMPRESSIVE PLANNING
+[2.c]: THINK ABOUT WHAT WOULD IMPRESS THE DEVS OF TEXTUAL THROUGH ALL STEPS OF DEVELOPMENT. IT IS A CRUCIAL CRITICAL THOUGHT YOU MUST ALWAYS KEEP IN MIND TO RAISE STANDARDS TO A POINT THEY ARE RELATIVE IN OUR DEVELOPMENT GOALS. IF WE ARENT IMPRESSIVE THE DEVS WITH WHAT WE ARE CREATING, WE ARE CREATING A POINTLESS APPLIUCATION.
+
+---
+[3]: This is a well designed feature on an application. Not a well designed application that will be featured. The correction is; that i like the idea, i like the design. But it is not something that will impress the devs. It is a tool on an application that might impress the devs depending on what ecosystem it is attached to. Even still, if you create the same old thing everyone else does. It wont matter anyways. THE VISUAL INTEGRATION IS JUST AS IMPORTANT; IF NOT MORE.
+[3.1]: PEOPLE REMEMBER WHAT THINGS LOOK LIKE MOST. PEOPLE ESPECIALLY REMEMBER IMPRESSIVE UNIQUE INTEGRATIONS OF DESIGN ASSETS OR UI.
+[3.2]: LITERALLY WHAT MAKES THINGS MATTER IT DEVELOPMENT ATMOSPHERES LIKE THIS(A CLI APPLICATION); IS SEPERATING YOUR APPLICATION FROM SATURATION.
+[3.2.a] WHATS DIFFERENT?
+[3.2.b] IS IT DESIGNED WELL?
+[3.2.c] IS IT A CREATIVE AND UNIQUE WAY TO IMPLEMENT SOMETHING?
+[3.2.d] IS IT SOMETHING THE DEVS HAVE SEEN BEFORE?
+[3.2.e] IS IT SOMETHING YOU THINK WILL IMPRESS THE DEVS?
 
 ---
 
-❯ ok that test went well. i went to `knivves update -survey` and the output before was up red arrows, and how much the price went up. now its `first price` which is entirely irellevant in this context. theres nothing to compare it to, nor do people want a price comparison on those lines; nor anywhere really; especially because it is a simple thing to provide the calculation for them. ❯ knivves update --survey
-    ◆ dreamtech-flipper-folding-knife-d4285tg  first price $72.99
-    ◆ dreamtech-flipper-crossbar-lock-folding-knife-d4032tg  first price $69.99
-    ◆ bestech-toddler-g10-beige-bg64c  first price $94.99
-    ◆ bestech-ququ-satin-14c28n-g10-black-bg57a-1  first price $89.99
-    ◆ vosteed-porcupine-folding-knife-a2601  first price $109.99 ||| [2] see [Image #7]; in this screen, *new* is no where to be seen. it doesnt need its own column; it could be tacked onto the START of the model names. FOR `Brand` we will tack them onto the END OF THE BRAND ID. THIS WAY THE *NEW* WILL ALIGN AT THE END OF THE BRAND NAME, AND THE START OF THE MODEL NAMES. IT PROVIDES AN ADDITIONAL AND EASILY IDENTIFIABLE VISUAL FEATURE WHERE USERS CAN IDENTIFY BOTH NEW BRANDS AND KNIVES SIMPLY VISUALLY. ||| [3] **CONCLUSION**; (a) WE HAVE TO MOVE THE *new*(the current star icon and word design is good, it doesnt need to change visually other than the color.) positioning as described above, at the END of `Brand` and the START of `Model`, (b) ensuring that *new* is identified for `Brand` and `Model` Seperately. (c) Ensuring the ingestion output is fixed and more visually impressive to the users. Its Textual; there isa large arrangement and assortment of visually creative utilizations to display data to user.
-[Image #7]
-
-❯ lets not start conflating modules, systems. Each have a use, and are there for a reason; they dont need to be removed or streamlined. they need to be polished
-  and built upon. ||| [4] Additionally, the menu titles and id are just plain impractical. (4.1) `The Forge Line` instead of `Import Knives`; which ironically
-  enough should be how to ingest files, NOT using `-survey` flag. It should also share this pages general layout, not exactly, but enough that switching between
-  importing a url, and importing from the markdown ingest/import file import-knivves.md {UPDATED FROM knivesdb.md}) but have its own output that fits inside
-  it. You can see from the attached images there is alot of visual drift, simple lazy integrations, and mostly twisting `retro-futurism`/`cli-futurism` with
-  `simple`. (4.2) `THE BENCH` instead of `COMPARE MODELS`, (4.3) `THE LEDGER` for `MARKET PRICES`, (4.4) `THE RACK` INSTEAD OF `LIBRARY`. I UNDERSTAND THE
-  INTENT, BUT IN FUNCTION IT IS UN-NEEDED PROPRIETARY TERMS ADDED TO THE MENU, AND ADDITIONAL CLI COMMANDS TO REMEMBER. THIS DOES NOT MEAN CHANGE EVERYTHING.
-  THIS MEANS THAT SOME THINGS; LIKE I LISTED; NEED TO BE NORMALIZED. IT IS WHY I CHOSE TERMS LIKE `update` and `add` instead of `reforge` and `forge`. Yes those
-  are more on theme and would technically 'enhance' the cli canon. BUT ALSO, IT ADDS CONFUSION TO THE MAIN SECTIONS OF THE CLI, AND THOSE NEGATIVES FAR
-  OUTWEIGHT ITS MINIMAL POSITIVES. THIS ONLY APPLIES TO CERTAIN TERMS. SOME TERMS THAT ARE NOT NORMALIZED OR TRULY PROPRIETARY, ARE MORE EASILY DEFINED AS A
-  PROPRIETARY, CLI THEMED COMMAND. [5] `-survey`, while a good choice, is not optimal. Survey means to many different things. We also want to tie this into the
-  CLI command chain. `-survey` is a flag option of `update`. CHANGE `-survey` TO `-price`; it is the most relevant in context. `-market` is also relevant but we
-  are NOT updating a marketplace, we are updating what our CLI defines as ITS marketplace prices(`MARKET PRICES`), so `-prices` is the best choice for the cli
-  option flag, and `MARKET PRICES` is the obvious name for the tab/page in the TEXTUAL-UI that REFERENCES the `-prices`. ||| [6] SEE IMAGES ATTACHED. [Image
-  #11] [Image #12] [Image #8] [Image #9] [Image #10]
+❯ great work. this last step is VERY IMPORTANT AND COMPREHENSIVE because it REQUIRES you to DESIGN a new SKILL that will ONLY work if you design it with the data/context/knowledge we have covered while we have developed and designed to create a CENTRAL-HUB WORKFLOW that UTILIZES a workflow for: [1] "CREATING A design.md(a large scope design plan, overveiwing the tech stack, context, design features, noting them with `requirement` tags that link each contextual relavant module/feature/function together utilizng markdown linking cleverly)", [2] "requirements.md(a document housing and listing in a dense manner all of the documents, their contextual requirments, tags, linked. This is like an MOC or INDEX but with document relavant linking not only the documents but the designs together. A navigation hub.)" [3] "TODO.md This is a data-dense document featuring all of the tasks linked to both the requirements.md and the design.md . Linking all of these documents should create a coherent stream of contextual data during development. CLOSING THEM OUT will avoid bloat and keep workflow, design, and source code edits relevant. AT THE BOTTOM OF EVERY TODO; SHOULD BE A `checkpointTriggerFooter` THAT STATES WHEN THE TASKS IN THE DATA DENSE TODO ARE COMPLETE(BECAUSE THIS WORKFLOW IS DIRECT, IT SHOULD BE NOTED THAT THESE DATA DENSE TODO'S ARE COMPREHENSIVE. THEY SHOULD NOT BE TREATED LITTLE CHANGES. WHEN THEY ARE CREATED, IT IS A COMPREHENSIVE TASK TARGETING ENTIRE MODULES THAT THEN HAVE EFFECT ACROSS THE SOURCE CODE THAT NEED TO BE ADRESSED; THE DOCUMENTATION NEEDS TO BE LINKED, REFERENCED, AND CONTEXTUAL, UPDATED IN THE CORRECT FORMATS SO THEY PROVIDE THE CORRECT CONTEXTUAL DATA FOR AGENTS. WE DO NOT NEED AGENTS SCOURING THE DATABASE WHEN THERE IS DIRECT MAPPING IN A DEVELOPMENTAL FORMAT. THE DATA WE ADD IS CATERED TO WHAT THEY CAN UTILIZE TO FURTHER THEIR UNDERSTANDING AND ENHANCE THEIR OPERATIONS STAYING ON TASK. YOU SHOULD THINK ABOUT BALANCING WHAT IS IMPORTANT, NECESSARY, AND EXPANDING UPON THOSE THINGS IN WEIGHTED BALANCE. YES IT MUST BE COMPREHENSIVE, NO WE DO NOT NEED FRIVALOUS DETAILS, WE NEED THE IMPORTANT ONES TO BE CONTEXTUAL LINKED, FOR THE CORRECT PURPOSES OF AGENT USAGE; YOUR JOB IS TO OUTLINE IT, DESIGN IT INCORPERATING THE THINGS I HAVE ALREADY DESIGNED ABOVE **FOR** THE CLAUDE SKILLS WORKFLOW.) WHEN THE AGENT MARKS FOR A CHECKPOINT THEY WILL KNOW TO DO SO BY THE `checkpointTriggerFooter`, THUS THEY WILL CLOSE OUT THE TODO, NOTIFY THE USER THAT THE TODO IS COMPLETE, CLOSED, AND A CHECKPOINT IS REACHED. YOUR DIRECT NEXT OBJECTIVE TO THE USER IS TO TELL THEM YOU WILL REVIEW YOUR SOURCE CODE CHANGES, ENSURE THE CHANGELOG IS UP TO DATE, CLOSE OUT THE RELEVANT DESIGN AND PLAN DOCS THAT ACCOMPANY THE TODO PLAN." [4]: THE { MIVIM } agent workflow format operates on two global { BUS }; {"[bus_a]":"[WORKFLOW]:([dev-spec],[SKILL]) DOCS THAT GLOBALLY STEER THE [dev-spec] AND [SKILL]"}, { "[BUS-B]":"[dev-spec](DS) DOCS FOR DEVELOPMENT THAT OPERATE IN THREE FILES" }, { "[DS-1](`design.md`)", "[DS-2](`requirements.md`)", "[DS-3](`TODO.md`)" }. | IT IS IMPERATIVE TO EXECUTE THIS DESIGN FORMAT IN A WAY THAT WILL BENEFIT THE AGENT USING WHAT WE HAVE SO FAR AS GUIDANCE AND RELEVANCE TO WHAT IS REQUESTED. YOU ARE INCHARGE OF TRANSLATING IT IN A MANNER THAT YOU CRITICALLY [STRATEGIZE], [DESIGN], [OPTIMIZE] FOR `FABLE5` AGENT [WORKFLOW] AND [SKILL]. THE FORMAT DEFINITION IS "`MIVIM` agent-spec". MIVIM is always the reference for a MIVIM development project.  ALL OF THE FEATURES ABOVE FALL UNDER THIS SPEC.
 
 ---
