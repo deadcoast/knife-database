@@ -82,6 +82,9 @@ Controlled verbs for `CHANGES` entries — pick the honest one:
   docs are closed* → run this workflow on the named doc(s).
 - A spec/plan finished shipping → close it out as the final step of the
   feature (the CHANGELOG entry you just wrote is the citation source).
+- A MIVIM dev-spec case reaches its `checkpointTriggerFooter` → this
+  skill is the close-out mechanism for all three DS docs (see
+  `.claude/skills/mivim-agent-spec/SKILL.md`).
 - You catch a doc contradicting current behavior → flag it to the user
   as a candidate for closing; don't silently rewrite its canon.
 - **Reading side**: when any doc in `docs/closed/` (or any doc carrying
