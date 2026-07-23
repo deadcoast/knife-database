@@ -17,11 +17,15 @@ import asyncio
 from datetime import date
 from typing import TYPE_CHECKING, cast
 
+from rich.segment import Segment
+from rich.style import Style
 from rich.text import Text
 from textual.app import ComposeResult
 from textual.binding import Binding
 from textual.containers import Horizontal, Vertical
 from textual.screen import Screen
+from textual.strip import Strip
+from textual.widget import Widget
 from textual.widgets import Footer, Input, Static
 
 from .. import ingest, scrape
@@ -49,6 +53,241 @@ RULE_DISPLAY: dict[str, str] = {
     "button/spring/device in handle that automatically opens the blade": "AUTO-OPENING DEVICE",
 }
 
+# Bolt engravings: the same rules cut short enough for a bolt's label plate.
+BOLT_LABELS: dict[str, str] = {
+    "automatic switchblade": "AUTO/SWITCHBLADE",
+    "OTF automatic": "OTF AUTO",
+    "gravity knife": "GRAVITY",
+    "balisong": "BALISONG",
+    "butterfly knife": "BUTTERFLY",
+    "explicit centrifugal/flick knife": "CENTRIF/FLICK",
+    "button/spring/device in handle that automatically opens the blade": "AUTO-OPEN DEVICE",
+}
+
+
+class GateBank(Widget):
+    """The legal screen as hardware: the rulebook is a seven-bolt lock —
+    the same bolts the vault door throws, one per rule, drawn across the
+    line. A rule that clears RETRACTS its bolt into the housing; a hit
+    throws the bolt in FAIL red and the lock stays shut. All bolts
+    retracted = the lock is open and the plate may pass."""
+
+    DEFAULT_CSS = """
+    GateBank {
+        height: auto;
+        margin-bottom: 1;
+    }
+    """
+
+    LABEL_W = 17
+
+    def __init__(self, **kwargs) -> None:
+        super().__init__(**kwargs)
+        self._rules: list[str] = []
+        self._state: list[float] = []
+        self._probing: int | None = None
+        self._slammed: int | None = None
+        self._hits: list[str] = []
+
+    # ------------------------------------------------------------------ api
+
+    @property
+    def total(self) -> int:
+        return len(self._rules)
+
+    @property
+    def open_count(self) -> int:
+        return sum(1 for value in self._state if value >= 1.0)
+
+    @property
+    def slammed(self) -> int | None:
+        return self._slammed
+
+    def set_rules(self, rules: list[str]) -> None:
+        self._rules = list(rules)
+        self.reset()
+
+    def reset(self) -> None:
+        self._state = [0.0] * len(self._rules)
+        self._probing = None
+        self._slammed = None
+        self._hits = []
+        self.refresh()
+
+    def probe(self, index: int) -> None:
+        self._probing = index
+        self.refresh()
+
+    def slam(self, index: int, hits: list[str]) -> None:
+        self._probing = None
+        self._slammed = index
+        self._state[index] = 0.0
+        self._hits = hits
+        self.refresh()
+
+    async def retract(self, index: int, duration: float = 0.3) -> None:
+        """The bolt slides into its housing — the only way a rule clears."""
+        steps = 6
+        for step in range(1, steps + 1):
+            self._state[index] = step / steps
+            self.refresh()
+            await asyncio.sleep(duration / steps)
+        self._probing = None
+        self.refresh()
+
+    # --------------------------------------------------------------- render
+
+    def get_content_height(self, container, viewport, width: int) -> int:
+        return len(self._rules) + 1
+
+    def render_line(self, y: int) -> Strip:
+        # every strip must be exactly width cells — a short strip shifts
+        # every widget sharing the screen line (learned the hard way)
+        width = self.size.width
+        if width <= 0:
+            return Strip([])
+        if not self._rules:
+            return Strip([]).adjust_cell_length(width)
+        if y == 0:
+            return self._status_line(width).adjust_cell_length(width)
+        index = y - 1
+        if index >= len(self._rules):
+            return Strip([]).adjust_cell_length(width)
+        return self._bolt_line(width, index).adjust_cell_length(width)
+
+    def _status_line(self, width: int) -> Strip:
+        if self._slammed is not None:
+            hit = ", ".join(self._hits)
+            text, color = f"LOCK THROWN ✗ matched: {hit}", laws.FAIL
+        elif self.open_count == self.total:
+            text, color = "LOCK OPEN — CLEAR TO PROCEED", laws.PASS
+        elif self._probing is not None:
+            text, color = f"BOLT {self._probing + 1}/{self.total} UNDER TEST", laws.ACCENT
+        else:
+            text, color = f"{self.total}-BOLT LOCK — thrown", laws.STEEL_DIM
+        return Strip([Segment(text[:width], Style(color=color, bold=True))])
+
+    def _bolt_line(self, width: int, index: int) -> Strip:
+        rule = self._rules[index]
+        label = BOLT_LABELS.get(rule, rule.upper())[: self.LABEL_W - 1]
+        track_w = max(width - self.LABEL_W - 1, 6)
+        state = self._state[index]
+        slammed = self._slammed == index
+        probing = self._probing == index
+        if slammed:
+            label_style = Style(color=laws.FAIL, bold=True)
+            bolt_style = Style(color=laws.FAIL, bold=True)
+        elif probing:
+            label_style = Style(color=laws.ACCENT, bold=True)
+            bolt_style = Style(color=laws.ACCENT)
+        elif state >= 1.0:
+            label_style = Style(color=laws.STEEL_DIM)
+            bolt_style = Style(color=laws.STEEL_MID)
+        else:
+            label_style = Style(color=laws.STEEL_MID)
+            bolt_style = Style(color=laws.STEEL_MID)
+        bolt_len = round((1.0 - state) * track_w)
+        segments = [Segment(f"{label:<{self.LABEL_W}}", label_style)]
+        if bolt_len:
+            segments.append(Segment("▓" * bolt_len, bolt_style))
+        if track_w - bolt_len > 0:
+            segments.append(Segment("╌" * (track_w - bolt_len), Style(color=laws.EDGE_BRIGHT)))
+        housing = Style(color=laws.PASS if state >= 1.0 and not slammed else laws.EDGE_BRIGHT, bold=True)
+        segments.append(Segment("▐", housing))
+        return Strip(segments)
+
+
+class TapeReader(Widget):
+    """The extractor as hardware: the raw listing title runs through the
+    room as a tape, and the exact substrings the parser pulled fields
+    from light in accent as they land — the parse itself, visible."""
+
+    DEFAULT_CSS = """
+    TapeReader {
+        height: 4;
+        margin-bottom: 1;
+    }
+    """
+
+    def __init__(self, **kwargs) -> None:
+        super().__init__(**kwargs)
+        self._tape = ""
+        self._spans: list[tuple[int, int]] = []
+
+    # ------------------------------------------------------------------ api
+
+    @property
+    def lit_count(self) -> int:
+        return len(self._spans)
+
+    def set_tape(self, text: str) -> None:
+        self._tape = text
+        self._spans = []
+        self.refresh()
+
+    def light(self, start: int, length: int) -> None:
+        self._spans.append((start, length))
+        self.refresh()
+
+    def clear(self) -> None:
+        self._tape = ""
+        self._spans = []
+        self.refresh()
+
+    # --------------------------------------------------------------- render
+
+    def render_line(self, y: int) -> Strip:
+        return self._render_row(y).adjust_cell_length(max(self.size.width, 0))
+
+    def _render_row(self, y: int) -> Strip:
+        width = self.size.width
+        if width <= 0:
+            return Strip([])
+        lane = width - 2
+        if y in (0, 1):
+            chunk = self._tape[y * lane : (y + 1) * lane]
+            lit = set()
+            for start, length in self._spans:
+                lit.update(range(start, start + length))
+            segments = [Segment("▐", Style(color=laws.EDGE_BRIGHT))]
+            for i, ch in enumerate(chunk):
+                pos = y * lane + i
+                if pos in lit:
+                    segments.append(Segment(ch, Style(color=laws.ACCENT, bold=True, underline=True, bgcolor=laws.SURFACE)))
+                else:
+                    segments.append(Segment(ch, Style(color=laws.STEEL_MID, bgcolor=laws.SURFACE)))
+            if len(chunk) < lane:
+                segments.append(Segment(" " * (lane - len(chunk)), Style(bgcolor=laws.SURFACE)))
+            segments.append(Segment("▌", Style(color=laws.EDGE_BRIGHT)))
+            return Strip(segments)
+        if y == 2:
+            if not self._tape:
+                note = "tape empty — awaiting a listing"
+            else:
+                note = f"{len(self._spans)} span(s) lit from the tape"
+            return Strip([Segment(note[:width], Style(color=laws.STEEL_DIM))])
+        return Strip([])
+
+
+def _find_span(tape: str, value: str) -> tuple[int, int] | None:
+    """Where a parsed value actually came from on the tape, if it did.
+    Only real matches light — a field learned off-tape stays unlit."""
+    low = tape.lower()
+    candidates = [value]
+    stripped = value.replace("$", "").replace(" CAD", "").replace(",", "")
+    if stripped != value:
+        candidates.append(stripped)
+    if "(" in value and value.endswith(")"):
+        candidates.append(value[value.rindex("(") + 1 : -1])
+    for candidate in candidates:
+        candidate = candidate.strip()
+        if len(candidate) < 3:
+            continue
+        found = low.find(candidate.lower())
+        if found >= 0:
+            return found, len(candidate)
+    return None
+
 
 class ForgeScreen(TipsMixin, Screen):
     AUTO_FOCUS = ""  # the intake slot is entered by click, not by default
@@ -67,13 +306,16 @@ class ForgeScreen(TipsMixin, Screen):
             "file intake:\n  a path to an ingestion ledger —\n  sections read, the plan screens,\n  new knives file ★new in a batch\n\n"
             "duplicates are refused either way",
         ),
-        "st-extract": Tip("the listing is read and stamped here"),
+        "st-extract": Tip(
+            "the tape is read — fields are stamped here",
+            "the raw listing title runs\nas a tape; the substrings\nthe parser actually used\nlight in amber\n\n"
+            "a field learned off-tape\n(price, stock) stays unlit —\nthe tape never lies",
+        ),
         "st-legal": Tip(
-            "gates execute the db's rulebook",
-            "the seven gates:\n  AUTOMATIC / SWITCHBLADE\n  OTF AUTOMATIC\n  GRAVITY\n  BALISONG\n"
-            "  BUTTERFLY\n  CENTRIFUGAL / FLICK\n  AUTO-OPENING DEVICE\n\n"
-            "'assisted opening' is legal and\nnever trips a gate\n\n"
-            "a hit slams the gate, stamps the\nplate REJECTED — nothing is written",
+            "the rulebook is a seven-bolt lock",
+            "one bolt per rule — the same\nbolts the vault door throws\n\n"
+            "a rule that clears RETRACTS\nits bolt · a hit throws it\nred and nothing files\n\n"
+            "'assisted opening' is legal\nand never throws a bolt",
         ),
         "st-vault": Tip("cleared records file here — for real"),
     }
@@ -90,9 +332,11 @@ class ForgeScreen(TipsMixin, Screen):
         with Horizontal(id="forge-line"):
             with Vertical(classes="station", id="st-extract"):
                 yield Engraving("extract")
+                yield TapeReader(id="tape")
                 yield Static("", id="extract-log", classes="station-body")
             with Vertical(classes="station", id="st-legal"):
                 yield Engraving("legal screen")
+                yield GateBank(id="gatebank")
                 yield Static("", id="gates", classes="station-body")
             with Vertical(classes="station", id="st-vault"):
                 yield Engraving("vault")
@@ -108,6 +352,7 @@ class ForgeScreen(TipsMixin, Screen):
 
     def on_mount(self) -> None:
         self.query_one(Masthead).update_stats(self.vault.knives)
+        self.query_one(GateBank).set_rules(self._rules())
         self.show_room_tip()
         self.run_worker(self.demo_transit(), exclusive=True)
 
@@ -149,6 +394,8 @@ class ForgeScreen(TipsMixin, Screen):
     def _reset_line(self, plate: Plate) -> None:
         for selector in ("#extract-log", "#gates", "#filed"):
             self.query_one(selector, Static).update("")
+        self.query_one(GateBank).reset()
+        self.query_one(TapeReader).clear()
         self._plate_x = 4
         self.call_after_refresh(self._settle)
 
@@ -164,33 +411,29 @@ class ForgeScreen(TipsMixin, Screen):
     def _line_state(self, text: str) -> None:
         self.query_one(Masthead).set_context(text)
 
-    def _render_gates(
-        self,
-        passed: list[str],
-        checking: str | None = None,
-        failed: tuple[str, list[str]] | None = None,
-        total: int = 0,
-    ) -> Text:
-        text = Text()
-        if total:
-            if failed:
-                text.append(f"GATE {len(passed) + 1}/{total} — HALT\n\n", style=laws.FAIL)
-            elif checking:
-                text.append(f"GATE {len(passed) + 1}/{total}\n\n", style=laws.STEEL_DIM)
-            else:
-                text.append(f"GATES {len(passed)}/{total}\n\n", style=laws.PASS)
-        for rule in passed:
-            text.append("  ✓  ", style=laws.PASS)
-            text.append(f"{RULE_DISPLAY.get(rule, rule)}\n", style=laws.STEEL_DIM)
-        if checking:
-            text.append("  ── ", style=laws.ACCENT)
-            text.append(f"{RULE_DISPLAY.get(checking, checking)}\n", style=laws.STEEL_MID)
-        if failed:
-            rule, hits = failed
-            text.append("  ✗  ", style=laws.FAIL)
-            text.append(f"{RULE_DISPLAY.get(rule, rule)}\n", style=laws.FAIL)
-            text.append(f"     listing matched: {', '.join(hits)}\n", style=laws.STEEL_DIM)
-        return text
+    async def _run_lock(self, title_text: str) -> tuple[str, list[str]] | None:
+        """Throw the listing at the lock: every rule probes its bolt — a
+        clear rule retracts it, a hit slams it. Returns the (rule, hits)
+        that threw the lock, or None when it opened."""
+        bank = self.query_one(GateBank)
+        gates = self.query_one("#gates", Static)
+        rules = self._rules()
+        bank.set_rules(rules)
+        low = title_text.lower()
+        for index, rule in enumerate(rules):
+            bank.probe(index)
+            await asyncio.sleep(0.22)
+            hits = [kw for kw in RULE_KEYWORDS.get(rule, (rule.lower(),)) if kw in low]
+            if hits:
+                bank.slam(index, hits)
+                gates.update(Text(
+                    f"✗ {RULE_DISPLAY.get(rule, rule)} — listing matched: {', '.join(hits)}",
+                    style=laws.FAIL,
+                ))
+                return rule, hits
+            await bank.retract(index)
+        gates.update(Text("the lock is open — CLEAR TO PROCEED", style=laws.PASS))
+        return None
 
     async def _travel_to(self, station_id: str, plate: Plate) -> None:
         x = self.query_one(f"#{station_id}").region.x + 2
@@ -269,35 +512,30 @@ class ForgeScreen(TipsMixin, Screen):
             return
 
         plate.begin(listing.listing_title[:42] or "UNTITLED LISTING", listing.url.split("//")[-1][:42])
+        tape = self.query_one(TapeReader)
+        tape.set_tape(listing.listing_title)
         stamps = listing.stamped_fields()
         for label, value in stamps:
+            span = _find_span(listing.listing_title, value)
+            if span:
+                tape.light(*span)
             plate.stamp(label, value)
             self.call_after_refresh(self._settle)
             await asyncio.sleep(0.35)
-        extract_log.update(Text(f"{len(stamps)} fields parsed", style=laws.PASS))
+        extract_log.update(Text(f"{len(stamps)} fields parsed · {tape.lit_count} from the tape", style=laws.PASS))
 
         self._line_state("line: legal screen ▸")
         await self._travel_to("st-legal", plate)
 
-        title_lower = listing.listing_title.lower()
-        rules = self._rules()
-        passed: list[str] = []
-        for rule in rules:
-            gates.update(self._render_gates(passed, checking=rule, total=len(rules)))
-            await asyncio.sleep(0.3)
-            hits = [kw for kw in RULE_KEYWORDS.get(rule, (rule.lower(),)) if kw in title_lower]
-            if hits:
-                gates.update(self._render_gates(passed, failed=(rule, hits), total=len(rules)))
-                plate.styles.border = ("heavy", laws.FAIL)
-                plate.stamp("verdict", f"REJECTED — {RULE_DISPLAY.get(rule, rule)}")
-                self.call_after_refresh(self._settle)
-                filed.update(Text("not filed — prohibited mechanism identified", style=laws.FAIL))
-                self._line_state("line: rejected ✗")
-                return
-            passed.append(rule)
-        done = self._render_gates(passed, total=len(rules))
-        done.append("\n  CLEAR TO PROCEED", style=laws.PASS)
-        gates.update(done)
+        thrown = await self._run_lock(listing.listing_title)
+        if thrown is not None:
+            rule, _hits = thrown
+            plate.styles.border = ("heavy", laws.FAIL)
+            plate.stamp("verdict", f"REJECTED — {RULE_DISPLAY.get(rule, rule)}")
+            self.call_after_refresh(self._settle)
+            filed.update(Text("not filed — prohibited mechanism identified", style=laws.FAIL))
+            self._line_state("line: rejected ✗")
+            return
         await asyncio.sleep(0.5)
 
         self._line_state("line: vault ▸")
@@ -419,6 +657,9 @@ class ForgeScreen(TipsMixin, Screen):
         await asyncio.sleep(0.6)
 
         plate.begin(knife.display_name, knife.id)
+        demo_tape = str(knife.raw.get("listing_title") or knife.display_name)
+        tape = self.query_one(TapeReader)
+        tape.set_tape(demo_tape)
         best = knife.best_retailer or {}
         stamps = [
             ("source", str(best.get("retailer") or "—")),
@@ -428,21 +669,16 @@ class ForgeScreen(TipsMixin, Screen):
             ("price", knife.price_label),
         ]
         for label, value in stamps:
+            span = _find_span(demo_tape, value)
+            if span:
+                tape.light(*span)
             plate.stamp(label, value)
             self.call_after_refresh(self._settle)
             await asyncio.sleep(0.45)
-        extract_log.update(Text(f"{len(stamps)} fields parsed", style=laws.PASS))
+        extract_log.update(Text(f"{len(stamps)} fields parsed · {tape.lit_count} from the tape", style=laws.PASS))
 
         await self._travel_to("st-legal", plate)
-        rules = self._rules()
-        passed: list[str] = []
-        for rule in rules:
-            gates.update(self._render_gates(passed, checking=rule, total=len(rules)))
-            await asyncio.sleep(0.35)
-            passed.append(rule)
-        done = self._render_gates(passed, total=len(rules))
-        done.append("\n  CLEAR TO PROCEED", style=laws.PASS)
-        gates.update(done)
+        await self._run_lock(demo_tape)
         await asyncio.sleep(0.6)
 
         await self._travel_to("st-vault", plate)

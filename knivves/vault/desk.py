@@ -149,18 +149,22 @@ class UnknownsMap(Widget):
     # --------------------------------------------------------------- render
 
     def render_line(self, y: int) -> Strip:
+        # strips must be exactly width cells: a short strip shifts every
+        # widget sharing the screen line
         width = self.size.width
-        if width <= 0 or not self._columns:
+        if width <= 0:
             return Strip([])
+        if not self._columns:
+            return Strip([]).adjust_cell_length(width)
         if y == 0:
-            return self._gauge_line(width)
+            return self._gauge_line(width).adjust_cell_length(width)
         if y == 1:
-            return Strip([])
+            return Strip([]).adjust_cell_length(width)
         if 2 <= y <= 8:
-            return self._field_line(width, y - 2)
+            return self._field_line(width, y - 2).adjust_cell_length(width)
         if y == 9:
-            return self._rail_line(width)
-        return Strip([])
+            return self._rail_line(width).adjust_cell_length(width)
+        return Strip([]).adjust_cell_length(width)
 
     def _gauge_line(self, width: int) -> Strip:
         total = self.records
@@ -183,7 +187,7 @@ class UnknownsMap(Widget):
         if used < span:
             segments.append(Segment(" " * (span - used), Style(bgcolor=laws.EDGE)))
         segments.append(Segment(pct, Style(color=laws.ACCENT if fraction < 1 else laws.PASS)))
-        return Strip(segments, width)
+        return Strip(segments)
 
     def _field_line(self, width: int, row: int) -> Strip:
         label, keys = FIELD_ROWS[row]
@@ -199,7 +203,7 @@ class UnknownsMap(Widget):
             else:
                 tone = laws.ACCENT if knife_id == self._working else _lerp(col / max(shown - 1, 1))
                 segments.append(Segment("▪", Style(color=tone)))
-        return Strip(segments, width)
+        return Strip(segments)
 
     def _rail_line(self, width: int) -> Strip:
         shown = min(len(self._columns), width - self.LABEL_W)
@@ -222,9 +226,7 @@ class UnknownsMap(Widget):
                 x = self.LABEL_W + col
                 cells[x] = "▲"
                 styles[x] = Style(color=laws.ACCENT, bold=True)
-        return Strip(
-            [Segment(ch, style) for ch, style in zip(cells, styles)], width
-        )
+        return Strip([Segment(ch, style) for ch, style in zip(cells, styles)])
 
 
 class DeskScreen(TipsMixin, Screen):

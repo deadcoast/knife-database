@@ -22,7 +22,7 @@ from knivves.vault.app import KnivvesVault  # noqa: E402
 from knivves.vault.bench import BenchScreen  # noqa: E402
 from knivves.vault.plate import Plate  # noqa: E402
 from knivves.vault.rack import RackScreen  # noqa: E402
-from knivves.vault.forge import ForgeScreen  # noqa: E402
+from knivves.vault.forge import ForgeScreen, GateBank, TapeReader  # noqa: E402
 
 
 def _clean_listing(url: str, timeout: float = 30.0) -> scrape_mod.Listing:
@@ -172,6 +172,10 @@ async def test_shell() -> None:
         await pilot.hover("#st-extract", offset=(4, 2))
         await pilot.pause()
         assert forge_rail.current and "stamped here" in forge_rail.current.short
+        assert forge_rail.has_class("expandable"), "tape tip has extended content — ❯ missing"
+        await pilot.hover("#st-vault", offset=(4, 2))
+        await pilot.pause()
+        assert forge_rail.current and "file here" in forge_rail.current.short
         assert not forge_rail.has_class("expandable"), "❯ shown without extended content"
         await pilot.press("1")
         await pilot.pause()
@@ -180,15 +184,20 @@ async def test_shell() -> None:
         await pilot.press("2")
         await pilot.pause()
         assert isinstance(app.screen, ForgeScreen), f"screen: {app.screen}"
-        await asyncio.sleep(8.5)
+        await asyncio.sleep(10.5)
         await pilot.pause()
         gates_text = str(app.screen.query_one("#gates", Static).render())
         filed_text = str(app.screen.query_one("#filed", Static).render())
         assert "CLEAR TO PROCEED" in gates_text, f"gates: {gates_text[:80]}"
         assert "demo transit" in filed_text, f"filed: {filed_text[:80]}"
-        # pass B: gates read as stamped labels with a counter; line state on masthead
-        assert "AUTOMATIC / SWITCHBLADE" in gates_text, f"gates: {gates_text[:120]}"
-        assert "GATES 7/7" in gates_text, f"gate counter missing: {gates_text[:60]}"
+        # the legal screen is a seven-bolt lock: the demo retracts every bolt
+        bank = app.screen.query_one(GateBank)
+        assert bank.total == 7, f"bolts: {bank.total}"
+        assert bank.open_count == 7, f"open bolts: {bank.open_count}"
+        assert bank.slammed is None, "demo threw a bolt"
+        # the tape reader lights the substrings the parse actually used
+        tape = app.screen.query_one(TapeReader)
+        assert tape.lit_count >= 1, "demo tape lights nothing"
         from knivves.vault.masthead import Masthead as MastheadWidget
         forge_context = app.screen.query_one(MastheadWidget).context
         assert "line idle" in forge_context, f"context: {forge_context}"
@@ -275,10 +284,12 @@ async def test_shell() -> None:
             intake.focus()
             intake.value = "https://www.bladescanada.com/Testbrand-Knives/test-listing"
             await pilot.press("enter")
-            await asyncio.sleep(7.5)
+            await asyncio.sleep(10.0)
             await pilot.pause()
             filed_text = str(app.screen.query_one("#filed", Static).render())
             assert "Testbrand" in filed_text and "filed" in filed_text, f"filed: {filed_text[:100]}"
+            assert app.screen.query_one(GateBank).open_count == 7, "live intake left bolts thrown"
+            assert app.screen.query_one(TapeReader).lit_count >= 2, "tape spans not lit on live intake"
             on_disk = json.loads(tmp_db.read_text(encoding="utf-8"))
             ids = {k["id"] for k in on_disk["knives"]}
             assert "testbrand-testblade-tb123" in ids, "record not written to database"
@@ -308,12 +319,13 @@ async def test_shell() -> None:
             intake.focus()
             intake.value = "https://www.bladescanada.com/Badbrand-Knives/balisong-trainer"
             await pilot.press("enter")
-            await asyncio.sleep(6.0)
+            await asyncio.sleep(8.0)
             await pilot.pause()
             gates_now = str(app.screen.query_one("#gates", Static).render())
             filed_now = str(app.screen.query_one("#filed", Static).render())
             assert "✗" in gates_now, f"gates: {gates_now[:100]}"
             assert "not filed" in filed_now, f"filed: {filed_now[:100]}"
+            assert app.screen.query_one(GateBank).slammed is not None, "prohibited hit threw no bolt"
             on_disk = json.loads(tmp_db.read_text(encoding="utf-8"))
             assert len(on_disk["knives"]) == n + 1, "prohibited record was written"
             # ---- the ledger: survey with a stubbed market ----
@@ -470,6 +482,7 @@ async def test_file_import_transit() -> None:
         assert "filed" in filed_text and "★new" in filed_text, f"filed: {filed_text[:120]}"
         gates_text = str(app.screen.query_one("#gates", Static).render())
         assert "THE PLAN" in gates_text, f"gates: {gates_text[:120]}"
+        assert app.screen.query_one(GateBank).slammed is None, "file intake touched the lock"
         on_disk = json.loads(tmp_db.read_text(encoding="utf-8"))
         assert len(on_disk["knives"]) > before, "file import wrote nothing"
         assert on_disk.get("buy_list", {}).get("items"), "buy list not ordered"

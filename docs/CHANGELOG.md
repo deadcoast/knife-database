@@ -55,6 +55,23 @@ The vault researches its own unknowns. Case:
   shows `gaps  N unresearched` in accent on its plate, in every room
   it travels to (Library, Compare Models): the object knows what it
   doesn't know, and door 5 is where it gets filled.
+- **The forge rebuilt as hardware** — the legal screen is now a
+  **seven-bolt lock**, the same bolts the vault door throws: one drawn
+  bolt per rule, each retracting into its housing as its rule clears
+  (animated, cell by cell), the housing nub lighting pass-green; a hit
+  throws the bolt full-red with the matched word on the header and the
+  lock stays shut. EXTRACT is now a **tape reader**: the raw listing
+  title runs as a tape and the exact substrings the parser pulled
+  fields from light in amber underline as they stamp — a field learned
+  off-tape stays unlit, because the tape never lies. Both transits
+  (live and demo) drive the same hardware; the file intake's plan
+  screen is untouched.
+- **Compositor law, learned the hard way** — a `render_line` strip
+  shorter than the widget's width shifts every widget sharing that
+  screen line; declaring a false cell length hides it from
+  `adjust_cell_length`. All drawn widgets (lock, tape, unknowns map)
+  now pad every strip to exact width. Found by eyes on captured
+  frames — no test flagged it.
 - **The frame-capture pipeline is committed** —
   `tests/capture_rooms.py` drives every room to its demonstrative
   state headlessly and exports the `docs/media/room-*.svg` exhibits;

@@ -63,7 +63,7 @@ async def capture_forge() -> None:
         await pilot.press("2")
         await asyncio.sleep(1.0)
         await pilot.pause()
-        await asyncio.sleep(6.5)  # demo transit completes
+        await asyncio.sleep(9.0)  # demo transit completes and settles
         await pilot.pause()
         _save(app, "forge")
 
