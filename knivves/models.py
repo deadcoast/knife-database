@@ -87,6 +87,26 @@ class KnifeView:
         return [str(tag).strip() for tag in tags if str(tag).strip()]
 
     @property
+    def sections(self) -> list[str]:
+        """SectionIDs — the application's formal word for tags. Same storage."""
+        return self.tags
+
+    @property
+    def is_new(self) -> bool:
+        """Materialized freshness flag, governed by the update generations."""
+        return bool(self.raw.get("new"))
+
+    @property
+    def buy_priority(self) -> int | None:
+        """BuyList rank (1 = most sought), materialized from the buy list."""
+        value = self.raw.get("buy_priority")
+        return value if isinstance(value, int) and value > 0 else None
+
+    @property
+    def date_added(self) -> str:
+        return clean_text(self.raw.get("date_added"), "")
+
+    @property
     def research_status(self) -> str:
         return clean_text(self.raw.get("research_status"), "unknown")
 
@@ -218,6 +238,8 @@ class KnifeView:
             " ".join(self.retailer_names),
             self.notes,
             self.source_input,
+            "new" if self.is_new else "",
+            f"buylist priority {self.buy_priority}" if self.buy_priority else "",
         ]
         return " ".join(str(part) for part in parts if part).lower()
 
@@ -237,6 +259,9 @@ class KnifeView:
             "blade_length": self.blade_length,
             "blade_steel": self.blade_steel,
             "clear_prohibited_mechanism_found": self.prohibited_flag,
+            "new": self.is_new,
+            "buy_priority": self.buy_priority,
+            "date_added": self.date_added or None,
             "price_cad": self.price,
             "retailer": best.get("retailer") if isinstance(best, dict) else None,
             "retailer_url": best.get("url") if isinstance(best, dict) else None,

@@ -125,10 +125,13 @@ def _unique_id(existing: set[str], base: str) -> str:
 
 
 def add_knife(db: dict[str, Any], record: dict[str, Any]) -> dict[str, Any]:
+    from . import generations
+
     knives = knives_list(db)
     existing = {str(k.get("id")) for k in knives if isinstance(k, dict) and k.get("id")}
     base = str(record.get("id") or make_knife_id(str(record.get("brand") or "knife"), str(record.get("model") or "unknown")))
     record["id"] = _unique_id(existing, base)
+    generations.stamp_new(db, record)
     knives.append(record)
     return record
 
