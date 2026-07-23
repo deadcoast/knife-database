@@ -17,20 +17,28 @@ from rich import box
 from rich.prompt import Confirm, IntPrompt, Prompt
 from rich.table import Table
 
+from . import buylist as buylist_mod
+from . import generations, ingest
 from .models import KnifeView
 from .render import (
     aggregate_table,
     backups_table,
+    buylist_panel,
+    buylist_strip,
     console,
     detail_panel,
     filter_bar,
     help_panel,
+    ingest_overview,
+    ingest_result,
     interactive_header,
     knives_table,
+    new_status_panel,
     raw_json_panel,
     stats_tables,
     summary_cards,
     title,
+    update_report_panel,
     validation_table,
 )
 from .store import (
@@ -55,8 +63,10 @@ app = typer.Typer(
     add_completion=False,
     rich_markup_mode="rich",
 )
-tag_app = typer.Typer(help="Manage user tags on knives.", add_completion=False, rich_markup_mode="rich")
+section_app = typer.Typer(help="Manage SectionIDs on knives — the formal word for group identifiers.", add_completion=False, rich_markup_mode="rich")
+tag_app = typer.Typer(help="Alias for [bold]section[/] — kept for quality of life.", add_completion=False, rich_markup_mode="rich")
 retailer_app = typer.Typer(help="Manage Canadian retailer entries.", add_completion=False, rich_markup_mode="rich")
+app.add_typer(section_app, name="section")
 app.add_typer(tag_app, name="tag")
 app.add_typer(retailer_app, name="retailer")
 
@@ -111,8 +121,11 @@ def filter_knives(
     flag: str | None = None,
     min_price: float | None = None,
     max_price: float | None = None,
+    new: bool | None = None,
 ) -> list[KnifeView]:
     result = knives
+    if new is not None:
+        result = [k for k in result if k.is_new == new]
     if query:
         q = query.lower().strip()
         result = [k for k in result if q in k.haystack()]
@@ -236,6 +249,7 @@ def run_list(
     flag: str | None = None,
     min_price: float | None = None,
     max_price: float | None = None,
+    new: bool | None = None,
     sort_by: str = "brand",
     reverse: bool = False,
     limit: int | None = None,
@@ -261,6 +275,7 @@ def run_list(
         flag=flag,
         min_price=min_price,
         max_price=max_price,
+        new=new,
     )
     filtered = sort_knives(filtered, sort_by, reverse=reverse)
     if limit is not None:
@@ -268,7 +283,11 @@ def run_list(
     if output in {"table", "compact"}:
         console.print(title())
         if summary:
-            console.print(filter_bar(current_filter_dict(query=query, classification=classification, tags=tags, status=status, canadian=canadian, brand=brand, steel=steel, lock=lock, assist=assist, retailer=retailer, flag=flag, min_price=min_price, max_price=max_price, sort=sort_by, reverse=reverse), len(filtered), len(all_knives)))
+            console.print(filter_bar(current_filter_dict(query=query, classification=classification, tags=tags, status=status, canadian=canadian, brand=brand, steel=steel, lock=lock, assist=assist, retailer=retailer, flag=flag, min_price=min_price, max_price=max_price, new=new, sort=sort_by, reverse=reverse), len(filtered), len(all_knives)))
+        if summary:
+            reserve = buylist_mod.buylist_views(db)
+            if reserve:
+                console.print(buylist_strip(reserve))
     render_or_emit(filtered, output, compact=compact, show_id=show_id)
     if output in {"table", "compact"}:
         console.print(f"[dim]{len(filtered)} result(s)[/]")
@@ -286,7 +305,9 @@ def main(ctx: typer.Context) -> None:
 def list_command(
     query: Annotated[Optional[str], typer.Option("--query", "-q", help="Search text across all knife fields.")] = None,
     classification: Annotated[Optional[str], typer.Option("--classification", "-c", help="approved, rejected, or unclassified.")] = None,
-    tag: Annotated[Optional[list[str]], typer.Option("--tag", "-t", help="Filter by tag. Repeat or comma-separate.")] = None,
+    section: Annotated[Optional[list[str]], typer.Option("--section", "-section", help="Filter by SectionID. Repeat or comma-separate.")] = None,
+    tag: Annotated[Optional[list[str]], typer.Option("--tag", "-t", help="Alias for --section.")] = None,
+    new: Annotated[bool, typer.Option("--new", "-new", help="Only knives currently tagged NEW.")] = False,
     status: Annotated[Optional[str], typer.Option("--status", "-s", help="Filter by research/acquisition status text.")] = None,
     canadian: Annotated[Optional[bool], typer.Option("--canadian/--not-canadian", help="Filter by saved Canadian retailer presence.")] = None,
     brand: Annotated[Optional[str], typer.Option("--brand", "-b", help="Filter by brand text.")] = None,
@@ -311,7 +332,8 @@ def list_command(
     run_list(
         query=query,
         classification=c,
-        tags=parse_multi(tag),
+        tags=parse_multi(section) + parse_multi(tag),
+        new=True if new else None,
         status=status,
         canadian=canadian,
         brand=brand,
@@ -569,8 +591,39 @@ def doctor() -> None:
         raise typer.Exit(code=1)
 
 
+def run_ingest(path: Path, *, dry_run: bool, yes: bool) -> None:
+    """Ingest a markdown link ledger — the `knivves add <file.md>` flow."""
+    try:
+        text = path.read_text(encoding="utf-8-sig")
+    except OSError as exc:
+        console.print(f"[red]Could not read ledger:[/] {exc}")
+        raise typer.Exit(code=1)
+    doc = ingest.parse_document(text)
+    db = load_database()
+    plan = ingest.build_plan(doc, db)
+    console.print(ingest_overview(doc, plan, path.name))
+    if not doc.sections:
+        console.print("[yellow]No SectionIDs found — nothing to ingest. See the ledger format in the README.[/]")
+        raise typer.Exit(code=1)
+    if dry_run:
+        console.print("[dim]Dry run — nothing written.[/]")
+        return
+    if not plan.new_records and not plan.merges and not plan.sources:
+        console.print("[yellow]Nothing new to file — every entry already lives in the database.[/]")
+        return
+    if not yes and not Confirm.ask(f"File {len(plan.new_records)} new and merge {len(plan.merges)} existing record(s)?", default=True):
+        raise typer.Exit(code=0)
+    backup = backup_database("before-ingest")
+    report = ingest.apply_plan(plan, db)
+    save_database(db)
+    console.print(ingest_result(report, backup))
+
+
 @app.command()
 def add(
+    source: Annotated[Optional[Path], typer.Argument(help="Markdown ingestion ledger (.md). Omit to add one knife from options/prompts.")] = None,
+    dry_run: Annotated[bool, typer.Option("--dry-run", help="Parse and show the ingestion plan without writing.")] = False,
+    yes: Annotated[bool, typer.Option("--yes", "-y", help="Skip the ingestion confirmation prompt.")] = False,
     brand: Annotated[Optional[str], typer.Option("--brand", "-b", help="Knife brand.")] = None,
     model: Annotated[Optional[str], typer.Option("--model", "-m", help="Knife model.")] = None,
     classification: Annotated[Optional[str], typer.Option("--classification", "-c", help="approved, rejected, or unclassified.")] = None,
@@ -587,7 +640,13 @@ def add(
     prohibited: Annotated[Optional[bool], typer.Option("--prohibited/--not-prohibited", help="Clear prohibited mechanism flag.")] = None,
     notes: Annotated[Optional[str], typer.Option("--notes", "-n", help="Notes.")] = None,
 ) -> None:
-    """Add a knife record from the CLI."""
+    """Add knives: point at a markdown ledger ([bold]knivves add file.md[/]) or add one record from options."""
+    if source is not None:
+        if not source.exists():
+            console.print(f"[red]No such file:[/] {source}")
+            raise typer.Exit(code=1)
+        run_ingest(source, dry_run=dry_run, yes=yes)
+        return
     brand = brand or Prompt.ask("Brand").strip()
     model = model or Prompt.ask("Model").strip()
     classification_norm = normalize_classification(classification) if classification else None
@@ -628,6 +687,97 @@ def add(
     save_database(db)
     console.print(f"[green]Added:[/] {added['id']}  [dim]Backup: {backup}[/]")
     console.print(detail_panel(KnifeView(added)))
+
+
+@app.command()
+def update(
+    gens: Annotated[Optional[int], typer.Option("--gens", help="Set the NEW cache depth (1–3) before advancing.")] = None,
+    note: Annotated[str, typer.Option("--note", help="Note recorded in the update history.")] = "",
+    survey: Annotated[bool, typer.Option("--survey", help="Also re-read live retailer listings and record price/stock moves.")] = False,
+) -> None:
+    """Refresh the database: advance the generation line and retag what counts as [bold #d7a455]NEW[/]."""
+    db = load_database()
+    if gens is not None:
+        generations.set_keep(db, gens)
+    surveyed = 0
+    moved = 0
+    if survey:
+        from .scrape import ScrapeError, fetch_listing
+
+        for record in db.get("knives", []):
+            if not isinstance(record, dict):
+                continue
+            for entry in record.get("canadian_online_retailers") or []:
+                url = entry.get("url") if isinstance(entry, dict) else None
+                if not url:
+                    continue
+                try:
+                    listing = fetch_listing(str(url))
+                except ScrapeError as exc:
+                    console.print(f"[dim]survey skip {record.get('id')}: {exc}[/]")
+                    continue
+                surveyed += 1
+                if listing.price_cad is not None and listing.price_cad != entry.get("listed_price_cad"):
+                    entry["listed_price_cad"] = listing.price_cad
+                    moved += 1
+                if listing.availability:
+                    entry["availability"] = listing.availability
+                entry["source_date"] = date.today().isoformat()
+    backup = backup_database("before-update")
+    entry = generations.advance(db, note)
+    save_database(db)
+    meta = generations.meta(db)
+    console.print(update_report_panel(entry, meta["keep_generations"], generations.new_views_count(db)))
+    if survey:
+        console.print(f"[dim]survey: {surveyed} listings read · {moved} prices moved[/]")
+    console.print(f"[dim]Backup: {backup}[/]")
+
+
+@app.command()
+def new(
+    oneg: Annotated[bool, typer.Option("--one-gen", "-oneg", help="Keep NEW for one database update.")] = False,
+    twog: Annotated[bool, typer.Option("--two-gen", "-twog", help="Keep NEW across two database updates.")] = False,
+    threeg: Annotated[bool, typer.Option("--three-gen", "-threeg", help="Keep NEW across three database updates.")] = False,
+    gens: Annotated[Optional[int], typer.Option("--gens", help="Set the NEW cache depth explicitly (clamped 1–3).")] = None,
+    status: Annotated[bool, typer.Option("--status", help="Show the NEW cache state instead of listing.")] = False,
+    output: Annotated[str, typer.Option("--output", "-o", help="table, compact, json, jsonl, csv, or ids.")] = "table",
+) -> None:
+    """List [bold #d7a455]NEW[/] knives, or set the three-generation cache depth."""
+    wanted = [keep for keep, chosen in ((1, oneg), (2, twog), (3, threeg)) if chosen]
+    if gens is not None:
+        wanted.append(gens)
+    if len(wanted) > 1:
+        raise typer.BadParameter("choose one cache depth: -oneg, -twog, -threeg, or --gens N")
+    if wanted:
+        db = load_database()
+        backup = backup_database("before-new-cache")
+        effective = generations.set_keep(db, wanted[0])
+        save_database(db)
+        console.print(f"[green]NEW cache set:[/] keeps [bold]{effective}[/] generation(s).  [dim]Backup: {backup}[/]")
+        console.print(new_status_panel(generations.meta(db), generations.new_views_count(db)))
+        return
+    if status:
+        db = load_database()
+        console.print(new_status_panel(generations.meta(db), generations.new_views_count(db)))
+        return
+    run_list(new=True, sort_by="brand", output=output, show_id=True)
+
+
+@app.command()
+def buylist(
+    limit: Annotated[Optional[int], typer.Option("--limit", "-n", help="Show only the top N priorities.")] = None,
+) -> None:
+    """Show The Reserve — BuyList acquisition priorities with running cost."""
+    db = load_database()
+    views = buylist_mod.buylist_views(db)
+    console.print(buylist_panel(views, buylist_mod.cumulative(views), limit=limit))
+
+
+@app.command()
+def sections() -> None:
+    """Show all SectionIDs and counts (alias: tags)."""
+    db = load_database()
+    console.print(aggregate_table(knife_views(db), "tags"))
 
 
 @app.command()
@@ -743,6 +893,30 @@ def tag_remove(
     console.print(detail_panel(KnifeView(record)))
 
 
+@section_app.command(name="list")
+def section_list() -> None:
+    """Show all SectionIDs and counts."""
+    tags()
+
+
+@section_app.command(name="add")
+def section_add(
+    identifier: Annotated[str, typer.Argument(help="Knife ID, brand, model, or search text.")],
+    section: Annotated[str, typer.Argument(help="SectionID to add.")],
+) -> None:
+    """Assign a SectionID to a knife."""
+    tag_add(identifier, section)
+
+
+@section_app.command(name="remove")
+def section_remove(
+    identifier: Annotated[str, typer.Argument(help="Knife ID, brand, model, or search text.")],
+    section: Annotated[str, typer.Argument(help="SectionID to remove.")],
+) -> None:
+    """Remove a SectionID from a knife."""
+    tag_remove(identifier, section)
+
+
 @retailer_app.command(name="add")
 def retailer_add(
     identifier: Annotated[str, typer.Argument(help="Knife ID, brand, model, or search text.")],
@@ -807,6 +981,7 @@ def interactive() -> None:
         "flag": None,
         "min_price": None,
         "max_price": None,
+        "new": None,
     }
     current_sort = "brand"
     reverse = False
@@ -882,18 +1057,22 @@ def interactive() -> None:
             filter_menu.add_row("steel", str(state["steel"] or "any"))
             filter_menu.add_row("retailer", str(state["retailer"] or "any"))
             filter_menu.add_row("flag", str(state["flag"] or "any"))
+            filter_menu.add_row("new", str(state["new"] if state["new"] is not None else "any"))
             console.print(filter_menu)
             field = Prompt.ask(
                 "Filter field",
-                choices=["classification", "tag", "status", "canadian", "brand", "steel", "lock", "assist", "retailer", "flag", "price"],
+                choices=["classification", "section", "tag", "status", "canadian", "brand", "steel", "lock", "assist", "retailer", "flag", "price", "new"],
                 default="classification",
             )
             if field == "classification":
                 value = Prompt.ask("Classification", choices=["approved", "rejected", "unclassified", "any"], default="approved")
                 state["classification"] = None if value == "any" else value
-            elif field == "tag":
-                value = Prompt.ask("Tags, comma-separated; blank for any", default=", ".join(state["tags"]))
+            elif field in {"tag", "section"}:
+                value = Prompt.ask("SectionIDs, comma-separated; blank for any", default=", ".join(state["tags"]))
                 state["tags"] = split_tags(value)
+            elif field == "new":
+                value = Prompt.ask("Only NEW knives?", choices=["yes", "no", "any"], default="yes")
+                state["new"] = True if value == "yes" else False if value == "no" else None
             elif field == "status":
                 value = Prompt.ask("Status contains; blank for any", default=state.get("status") or "")
                 state["status"] = value.strip() or None

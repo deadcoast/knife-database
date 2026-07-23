@@ -64,24 +64,36 @@ def _tag_text(tags: list[str]) -> str:
     return " ".join(f"[blue]#{escape(tag)}[/]" for tag in tags)
 
 
+NEW_CHIP = "[bold #d7a455]★NEW[/]"
+
+
+def _knife_cell(knife: KnifeView, *, show_id: bool = False) -> str:
+    cell = f"[bold]{escape(knife.brand)}[/] — [dim]{escape(knife.model)}[/]"
+    if knife.is_new:
+        cell = f"{NEW_CHIP} {cell}"
+    if knife.buy_priority:
+        cell += f" [bold magenta]⬖{knife.buy_priority}[/]"
+    if show_id:
+        cell += f"\n[cyan]{escape(knife.id)}[/]"
+    return cell
+
+
 def summary_cards(db: dict[str, Any], knives: list[KnifeView]) -> Panel:
     approved = sum(1 for k in knives if k.classification == "approved")
     rejected = sum(1 for k in knives if k.classification == "rejected")
     unclassified = sum(1 for k in knives if k.classification == "unclassified")
     canadian = sum(1 for k in knives if k.has_canadian_retailer)
     pending = sum(1 for k in knives if k.is_pending)
+    fresh = sum(1 for k in knives if k.is_new)
     prices = [k.price for k in knives if k.price is not None]
     avg = sum(prices) / len(prices) if prices else None
 
     table = Table.grid(expand=True, padding=(0, 2))
-    table.add_column(justify="center")
-    table.add_column(justify="center")
-    table.add_column(justify="center")
-    table.add_column(justify="center")
-    table.add_column(justify="center")
-    table.add_column(justify="center")
+    for _ in range(7):
+        table.add_column(justify="center")
     table.add_row(
         "[bold cyan]TOTAL[/]",
+        "[bold #d7a455]NEW[/]",
         "[bold green]APPROVED[/]",
         "[bold red]REJECTED[/]",
         "[bold yellow]OPEN[/]",
@@ -90,6 +102,7 @@ def summary_cards(db: dict[str, Any], knives: list[KnifeView]) -> Panel:
     )
     table.add_row(
         f"[bold white]{len(knives)}[/]",
+        f"[bold #d7a455]{fresh}[/]" if fresh else "0",
         str(approved),
         str(rejected),
         f"{unclassified} · {pending} pending",
@@ -164,7 +177,8 @@ def knives_table(
         table.add_column("CAD", justify="right", width=11, no_wrap=True)
         table.add_column("CA", justify="center", width=4, no_wrap=True)
         for idx, knife in enumerate(items, start=start_index + 1):
-            table.add_row(str(idx), escape(knife.id), badge(knife.classification), knife.price_label, "[green]✓[/]" if knife.retailer_count else "[dim]—[/]")
+            id_cell = f"{NEW_CHIP} {escape(knife.id)}" if knife.is_new else escape(knife.id)
+            table.add_row(str(idx), id_cell, badge(knife.classification), knife.price_label, "[green]✓[/]" if knife.retailer_count else "[dim]—[/]")
         return table
 
     table.add_column("Knife", style="bold white", ratio=7, no_wrap=True, overflow="ellipsis")
@@ -177,10 +191,7 @@ def knives_table(
     table.add_column("CA", justify="center", width=4, no_wrap=True)
 
     for idx, knife in enumerate(items, start=start_index + 1):
-        knife_cell = f"[bold]{escape(knife.brand)}[/] — [dim]{escape(knife.model)}[/]"
-        if show_id:
-            knife_cell += f"\n[cyan]{escape(knife.id)}[/]"
-        row = [str(idx), knife_cell, badge(knife.classification), _tag_text(knife.tags)]
+        row = [str(idx), _knife_cell(knife, show_id=show_id), badge(knife.classification), _tag_text(knife.tags)]
         if not narrow:
             row.extend([badge(_short_status(knife.research_status)), escape(knife.blade_steel)])
         row.extend([knife.price_label, "[green]✓[/]" if knife.retailer_count else "[dim]—[/]"])
@@ -324,6 +335,141 @@ def help_panel() -> Panel:
 [bold]path[/] show DB path       [bold]q[/] quit
 """.strip()
     return Panel(body, title="Interactive Commands", border_style="blue", box=box.ROUNDED)
+
+
+def buylist_panel(views: list[tuple[int, Any]], totals: list[float], *, limit: int | None = None) -> Panel:
+    """The Reserve — the full BuyList priority ladder with running cost."""
+    if not views:
+        return Panel(
+            "[yellow]The buy list is empty.[/]\n[dim]Ingest a markdown ledger with a BuyList section:  knivves add <file.md>[/]",
+            title="THE RESERVE · BUY LIST",
+            border_style="#d7a455",
+            box=box.HEAVY,
+        )
+    shown = views[:limit] if limit else views
+    table = Table(box=box.SIMPLE_HEAVY, expand=True, pad_edge=True)
+    table.add_column("Pri", justify="right", width=4, style="bold #d7a455")
+    table.add_column("Knife", ratio=6, overflow="ellipsis")
+    table.add_column("Sections", ratio=2, overflow="ellipsis")
+    table.add_column("CAD", justify="right", width=11)
+    table.add_column("Σ CAD", justify="right", width=12, style="dim")
+    for (priority, knife), running in zip(shown, totals):
+        name = f"[bold]{escape(knife.brand)}[/] — [dim]{escape(knife.model)}[/]"
+        if knife.is_new:
+            name = f"{NEW_CHIP} {name}"
+        table.add_row(
+            str(priority),
+            name,
+            _tag_text([t for t in knife.tags if t != "buy_list"]),
+            knife.price_label,
+            _money(running),
+        )
+    known = sum(1 for _, k in shown if k.price is not None)
+    subtitle = f"{len(views)} priorities · running total covers {known} priced"
+    if limit and len(views) > limit:
+        subtitle += f" · showing top {limit}"
+    return Panel(table, title="THE RESERVE · BUY LIST", subtitle=subtitle, border_style="#d7a455", box=box.HEAVY)
+
+
+def buylist_strip(views: list[tuple[int, Any]], *, limit: int = 5) -> Panel:
+    """Compact BuyList window for the top of the list page."""
+    lines: list[str] = []
+    for priority, knife in views[:limit]:
+        chip = f" {NEW_CHIP}" if knife.is_new else ""
+        lines.append(
+            f"[bold #d7a455]{priority}.[/] [bold]{escape(knife.display_name)}[/]{chip}  [dim]{knife.price_label}[/]"
+        )
+    more = len(views) - limit
+    if more > 0:
+        lines.append(f"[dim]… {more} more — knivves buylist[/]")
+    return Panel("\n".join(lines), title="BUY LIST · next acquisitions", border_style="#d7a455", box=box.ROUNDED)
+
+
+def _diagnostics_lines(diagnostics: list[Any], limit: int = 12) -> list[str]:
+    lines = [
+        f"[{'yellow' if getattr(d, 'severity', '') == 'warning' else 'dim'}]line {getattr(d, 'line', '?'):>4}[/]  {escape(str(getattr(d, 'message', d)))}"
+        for d in diagnostics[:limit]
+    ]
+    if len(diagnostics) > limit:
+        lines.append(f"[dim]… {len(diagnostics) - limit} more[/]")
+    return lines
+
+
+def ingest_overview(doc: Any, plan: Any, source: str) -> Group:
+    """What the ledger contains and what applying it would do."""
+    sections = Table(box=box.ROUNDED, expand=True, title=f"{escape(doc.title or 'Untitled ledger')} · {escape(source)}")
+    sections.add_column("SectionID", ratio=3)
+    sections.add_column("Kind", width=9)
+    sections.add_column("Entries", justify="right", width=8)
+    sections.add_column("Tags", ratio=2)
+    sections.add_column("Note", ratio=4, style="dim", overflow="ellipsis")
+    kind_style = {"buylist": "bold #d7a455", "sources": "cyan", "knives": "white"}
+    for section in doc.sections:
+        sections.add_row(
+            escape(section.name),
+            f"[{kind_style.get(section.kind, 'white')}]{section.kind}[/]",
+            str(len(section.entries)),
+            _tag_text(section.tags),
+            escape(section.notes[0]) if section.notes else "—",
+        )
+
+    plan_line = (
+        f"[green]{len(plan.new_records)} to add[/] · [cyan]{len(plan.merges)} merge into existing[/] · "
+        f"[#d7a455]{len(plan.buylist_keys)} buy-list priorities[/] · [magenta]{len(plan.sources)} sources[/] · "
+        f"[dim]{len(plan.skipped)} duplicates skipped[/]"
+    )
+    blocks: list[Any] = [sections, Panel(plan_line, title="Plan", border_style="green", box=box.ROUNDED)]
+    if plan.diagnostics:
+        blocks.append(Panel("\n".join(_diagnostics_lines(plan.diagnostics)), title="Diagnostics", border_style="yellow", box=box.ROUNDED))
+    return Group(*blocks)
+
+
+def ingest_result(report: Any, backup: Any) -> Panel:
+    lines = [
+        f"[green]Added {report.added}[/] · merged {report.merged} · buy list {report.buylist} deep · "
+        f"{report.sources} sources · {report.duplicates} duplicates skipped",
+    ]
+    if report.repairs:
+        lines.append("")
+        lines.append("[bold]Repairs applied[/]")
+        for line_no, note in report.repairs[:12]:
+            lines.append(f"[dim]line {line_no:>4}[/]  {escape(note)}")
+        if len(report.repairs) > 12:
+            lines.append(f"[dim]… {len(report.repairs) - 12} more[/]")
+    if backup:
+        lines.append(f"\n[dim]Backup: {escape(str(backup))}[/]")
+    return Panel("\n".join(lines), title="Ingested", border_style="green", box=box.ROUNDED)
+
+
+def update_report_panel(entry: dict[str, Any], keep: int, new_total: int) -> Panel:
+    lines = [
+        f"[bold]Generation line advanced to {entry['generation']}[/] · cache keeps [bold]{keep}[/] generation(s)",
+        f"[green]{entry['added']} filed since last update[/] · "
+        f"[#d7a455]{new_total} currently NEW[/] · [dim]{len(entry['aged_out'])} aged out[/]",
+    ]
+    if entry.get("note"):
+        lines.append(f"[italic]{escape(str(entry['note']))}[/]")
+    if entry["aged_out"]:
+        aged = ", ".join(entry["aged_out"][:8])
+        if len(entry["aged_out"]) > 8:
+            aged += " …"
+        lines.append(f"[dim]aged out: {escape(aged)}[/]")
+    return Panel("\n".join(lines), title="knivves update", border_style="#d7a455", box=box.HEAVY)
+
+
+def new_status_panel(meta_block: dict[str, Any], new_total: int) -> Panel:
+    history = meta_block.get("history") or []
+    last = history[-1] if history else None
+    lines = [
+        f"[bold]Open generation:[/] {meta_block.get('generation')}",
+        f"[bold]Cache depth:[/] {meta_block.get('keep_generations')} generation(s) [dim](three-generation cache; set with -oneg/-twog/-threeg)[/]",
+        f"[bold]Currently NEW:[/] [#d7a455]{new_total}[/]",
+    ]
+    if last:
+        lines.append(f"[dim]last update: gen {last.get('generation')} on {last.get('date')} — {last.get('added')} filed[/]")
+    else:
+        lines.append("[dim]no updates recorded yet — run knivves update to move the line[/]")
+    return Panel("\n".join(lines), title="NEW cache", border_style="#d7a455", box=box.ROUNDED)
 
 
 def validation_table(issues: list[Any]) -> Table:
