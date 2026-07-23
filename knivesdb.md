@@ -118,7 +118,7 @@
 - [SENCUT Vyrce Flipper Folding Knife, D2 Satin, Micarta Purple, S25104-3](https://www.bladescanada.com/SENCUT-Knives/SENCUT-Vyrce-Flipper-Folding-Knife-D2-Satin-Micarta-Purple-S25104-3)
 - [WE Knife Reveille Framelock Folding Knife, Limited Edition, M390 Two-Tone, Titanium Olive Grey, WE23057-2](https://www.bladescanada.com/WE-Knife-Co.-Knives/WE-Knife-Reveille-Framelock-Folding-Knife-Limited-Edition-M390-Two-Tone-Titanium-Olive-Grey-WE23057-2)
 - [WE Knife Reveille Framelock Folding Knife, Limited Edition, M390 Two-Tone, Titanium Bronze, WE23089-3](https://www.bladescanada.com/WE-Knife-Co.-Knives/WE-Knife-Reveille-Framelock-Folding-Knife-Limited-Edition-M390-Two-Tone-Titanium-Bronze-WE23089-3)
-- [https://www.bladescanada.com/Kizer-Knives/Kizer-Microbe-Button-Lock-Folding-Knife-14C28N-Grey-Stonewash-Micarta-Vortex-V2742A5](Kizer Microbe Button Lock Folding Knife, 14C28N Grey Stonewash, Micarta Vortex, V2742A5)
+- [Kizer Microbe Button Lock Folding Knife, 14C28N Grey Stonewash, Micarta Vortex, V2742A5](https://www.bladescanada.com/Kizer-Knives/Kizer-Microbe-Button-Lock-Folding-Knife-14C28N-Grey-Stonewash-Micarta-Vortex-V2742A5)
 - [Kizer Microbe Button Folding Knife, 14C28N, Micarta Norplex UltreX, V2742A2](https://www.bladescanada.com/Kizer-Knives/Kizer-Microbe-Button-Folding-Knife-14C28N-Micarta-Norplex-UltreX-V2742A2)
 - [Kizer Microbe Button Lock Folding Knife, M390 Matt Black, Fat Carbon Fiber, KI2742A2](https://www.bladescanada.com/Kizer-Knives/Kizer-Microbe-Button-Lock-Folding-Knife-M390-Matt-Black-Fat-Carbon-Fiber-KI2742A2)
 - [SENCUT Vyrce Flipper Folding Knife, D2 Satin, Micarta Purple, S25104-3](https://www.bladescanada.com/SENCUT-Knives/SENCUT-Vyrce-Flipper-Folding-Knife-D2-Satin-Micarta-Purple-S25104-3)
