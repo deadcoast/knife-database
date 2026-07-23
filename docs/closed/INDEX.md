@@ -13,3 +13,4 @@ The workflow is defined in `.claude/skills/closing-out-docs/SKILL.md`.
 | 2026-07-23 | [2026-07-23-ingestion-freshness-design.md](2026-07-23-ingestion-freshness-design.md) | Design spec for the v0.8.0 ingestion/freshness feature set | CHANGELOG 004, 005 |
 | 2026-07-23 | [2026-07-23-ingestion-freshness-plan.md](2026-07-23-ingestion-freshness-plan.md) | Implementation plan for the spec above | CHANGELOG 004, 005 |
 | 2026-07-23 | [featured-bar-review.md](featured-bar-review.md) | Featured-bar review of the v0.7.0 vault | CHANGELOG 004, 005 |
+| 2026-07-23 | [2026-07-23-research-desk/](2026-07-23-research-desk/) | MIVIM dev-spec case DS-1/2/3 — the Research Desk (v0.10.0): gap audit, docket, fill-only-empty pass, `knivves research`, door 5 | CHANGELOG 006 |

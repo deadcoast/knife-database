@@ -1,3 +1,6 @@
+<!-- { "CHANGELOG_REFERENCE": { "file": "docs/CHANGELOG.md", "entries": ["006 — v0.10.0 (2026-07-23) — THE RESEARCH DESK"] },
+     "STATUS": "CLOSED (2026-07-23) — archived to docs/closed/ · every REQ shipped with its named acceptance test green",
+     "NOTE": "Canon below is the doc AS AUTHORED/WRITTEN. Drift since is annotated inline. Do not treat unannotated details as current without checking docs/CHANGELOG.md." } -->
 <!-- { "DEV_SPEC": { "case": "2026-07-23-research-desk", "doc": "DS-1 design", "bus": "BUS-B" },
      "STATUS": "OPEN (2026-07-23) — this case must be closed out at checkpoint",
      "STEERED_BY": ["MIVIM-spec.yaml", ".claude/skills/mivim-agent-spec/SKILL.md", ".claude/skills/closing-out-docs/SKILL.md"],
@@ -181,6 +184,9 @@ demo transit (the forge's replay law). Motion is travel; nothing fades.
   headless Pilot on a throwaway DB: room 5 opens, demo transit stamps
   learned fields, docket count decreases, layout laws hold.
 
+<!-- { "CHANGELOG_REFERENCE": { "file": "docs/CHANGELOG.md", "entry": "006 — v0.10.0", "bullet": "Door 5 — Research" },
+     "CHANGES": ["ADDED AFTER AUTHORING: the meter shipped as a dedicated drawn CompletenessMeter render_line widget (gradient-lit, eighth-block tip — the gauges vocabulary) riding above the line, in addition to the masthead readout named in WHAT; masthead.py itself needed no modification (set_context sufficed)."] } -->
+
 ### Completeness readouts — the unknowns visible everywhere
 
 #### REQ-RES-6 — home, list, and Library readouts
@@ -198,6 +204,9 @@ demo transit (the forge's replay law). Motion is travel; nothing fades.
 - **ACCEPTANCE**: `tests/test_cli_features.py::test_home_completeness_line`
   and `tests/test_cli_features.py::test_list_gaps_filter` — home prints
   the completeness line; `--gaps` returns exactly the incomplete records.
+
+<!-- { "CHANGELOG_REFERENCE": { "file": "docs/CHANGELOG.md", "entry": "006 — v0.10.0", "bullet": "The plate carries its incompleteness" },
+     "CHANGES": ["SUPERSEDED: the 'UNRESEARCHED n chip' shipped in the field grammar instead of as a chip element — a `gaps  N unresearched` row in accent rendered by laws.field on the Plate, carried into every room the object travels (vault/plate.py::Plate.set_knife, commit 396c23d)."] } -->
 
 ## Cross-cutting constraints
 

@@ -1,3 +1,6 @@
+<!-- { "CHANGELOG_REFERENCE": { "file": "docs/CHANGELOG.md", "entries": ["006 — v0.10.0 (2026-07-23) — THE RESEARCH DESK"] },
+     "STATUS": "CLOSED (2026-07-23) — archived to docs/closed/ · all four tasks shipped and verified; checkpoint executed same day",
+     "NOTE": "Canon below is the doc AS AUTHORED/WRITTEN. Drift since is annotated inline. Do not treat unannotated details as current without checking docs/CHANGELOG.md." } -->
 <!-- { "DEV_SPEC": { "case": "2026-07-23-research-desk", "doc": "DS-3 TODO", "bus": "BUS-B" },
      "STATUS": "OPEN (2026-07-23) — this case must be closed out at checkpoint",
      "STEERED_BY": ["MIVIM-spec.yaml", ".claude/skills/mivim-agent-spec/SKILL.md", ".claude/skills/closing-out-docs/SKILL.md"],
@@ -32,6 +35,9 @@ Case: `2026-07-23-research-desk` · Design: [design.md](design.md) · Hub: [requ
     user-entered field is never overwritten under any fixture.
   - **Proof**: `python -m pytest tests/test_research.py -q` → all pass,
     no network.
+
+<!-- { "CHANGELOG_REFERENCE": { "file": "docs/CHANGELOG.md", "entry": "006 — v0.10.0", "bullet": "One rulebook table" },
+     "CHANGES": ["ADDED AFTER AUTHORING: knivves/vault/forge.py was also touched (not listed in Touches) — the legal-screen RULE_KEYWORDS table moved to its backend home in research.py and forge imports it back; one source of truth, no behavior change (commit f53bea7)."] } -->
 
 ### T2 — the CLI surfaces
 
@@ -73,9 +79,13 @@ Case: `2026-07-23-research-desk` · Design: [design.md](design.md) · Hub: [requ
   - **Proof**: `python -m pytest tests/test_vault_shell.py -q` → all
     pass; eyes-on frame capture of the desk transit for `docs/media/`.
 
+<!-- { "CHANGELOG_REFERENCE": { "file": "docs/CHANGELOG.md", "entry": "006 — v0.10.0", "bullet": "Door 5 — Research" },
+     "CHANGES": ["SUPERSEDED: Touches listed knivves/vault/masthead.py (readout) — the readout shipped through the existing Masthead.set_context API; masthead.py itself was not modified (commit 396c23d).",
+                 "ADDED AFTER AUTHORING: a dedicated drawn CompletenessMeter render_line widget (vault/desk.py, gauges vocabulary) rides above the line, beyond the masthead readout the canon named."] } -->
+
 ### T4 — the doors updated
 
-- [ ] **T4** Update the building's paperwork to the five-room truth:
+- [x] **T4** Update the building's paperwork to the five-room truth:
   README gains the Research room section with a captured exhibit,
   room count/door listings corrected everywhere they are stated
   (README, home page copy shipped in T2), and the CHANGELOG entry 006
@@ -99,17 +109,22 @@ noted here as TODOs the moment they are seen. They never block the
 checkpoint; they are triaged when it fires — promoted to the next case,
 or recorded and closed with this one. -->
 
-- [ ] TA-3 — `list` grew `--gaps/--no-gaps` without the house single-dash
+- [x] TA-3 — `list` grew `--gaps/--no-gaps` without the house single-dash
   alias (`-new`, `-section` have one) · seen while wiring T2 — decide the
   alias convention for paired bool options.
-- [ ] TA-1 — CHANGELOG entries 001/002 still carry dead sandbox
+- [x] TA-1 — CHANGELOG entries 001/002 still carry dead sandbox
   download links (`sandbox:/mnt/data/…`) · seen while reviewing the
   living record to open this case — candidates for an annotated tidy,
   never a silent rewrite.
-- [ ] TA-2 — `import-knivves.md` sits at the repo root while
+- [x] TA-2 — `import-knivves.md` sits at the repo root while
   `additions/` is the intake home · seen while surveying the ledgers —
   flag to the user (their file, their move); one intake directory
   would give the Research docket and future ingests a single door.
+
+<!-- { "HARVEST_TRIAGE": { "closed": "2026-07-23", "dispositions": [
+  "TA-3: recorded and closed with this case — the alias convention is a one-line decision for whichever case next touches the CLI option surface.",
+  "TA-1: recorded and closed with this case — touching the living record's oldest entries is the owner's call; surfaced to the user at checkpoint.",
+  "TA-2: recorded and closed with this case — the file is the user's; surfaced to the user at checkpoint, no move made." ] } } -->
 
 ---
 
