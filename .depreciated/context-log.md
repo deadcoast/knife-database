@@ -1578,3 +1578,43 @@ This is a well designed feature on an application. Not a well designed applicati
 > REMEMBER TO THINK ABOUT WHAT WOULD IMPRESS THE DEVS OF TEXTUAL THROUGH ALL STEPS OF DEVELOPMENT. IT IS A CRUCIAL CRITICAL THOUGHT PROCESS TO KEEP STANDARDS WHERE WE WANT THEM. IF WE ARENT IMPRESSIVE THE DEVS WITH WHAT WE ARE CREATING, WE ARE CREATING A POINTLESS APPLIUCATION.
 
 ---
+
+```text
+survey skip al-mar-slimline-quicksilver-flipper-framelock-d2-amk4046: fetch failed: HTTP Error 410: Gone
+survey skip kershaw-skyline-folding-knife-175-2469-8: unsupported retailer:
+https://www.canadiantire.ca/en/pdp/kershaw-skyline-folding-knife-1752469p.html
+survey skip gerber-ripstop-ii-stainless-steel-fine-edge-folding-pocket-knife: unsupported retailer:
+https://www.canadiantire.ca/en/pdp/gerber-ripstop-ii-stainless-steel-fine-edge-folding-pocket-knife-7-4-in-3750210p.html
+survey skip sog-fielder-folding-knife-with-wood-handle: unsupported retailer:
+https://www.canadiantire.ca/en/pdp/sog-fielder-folding-knife-with-wood-handle-3-3-in-0755603p.html
+```
+
+- the CLI should ask if these want to be imported as retailers AFTER IT IS COMPLETE. IT SHOULD SHOW SOMETHING ABOUT ADDING IT AFTER THE SURVEY IS COMPLETE. THEN WHEN THE SURVEY IS COMPLETE, IT SHOULD ASK THE USER IF IT WANTS TO ADD THE UNSUPPORTED RETAILERS AND ADD THEM **TO THE LAST UPDATE**(THIS IS SIMILAR TO A SIMPLIFIED, PSEUDO VERSION CONTROL AS THE *NEW* KNIFE LISTS.)
+
+---
+
+❯ ok that test went well. i went to `knivves update -survey` and the output before was up red arrows, and how much the price went up. now its `first price` which is entirely irellevant in this context. theres nothing to compare it to, nor do people want a price comparison on those lines; nor anywhere really; especially because it is a simple thing to provide the calculation for them. ❯ knivves update --survey
+    ◆ dreamtech-flipper-folding-knife-d4285tg  first price $72.99
+    ◆ dreamtech-flipper-crossbar-lock-folding-knife-d4032tg  first price $69.99
+    ◆ bestech-toddler-g10-beige-bg64c  first price $94.99
+    ◆ bestech-ququ-satin-14c28n-g10-black-bg57a-1  first price $89.99
+    ◆ vosteed-porcupine-folding-knife-a2601  first price $109.99 ||| [2] see [Image #7]; in this screen, *new* is no where to be seen. it doesnt need its own column; it could be tacked onto the START of the model names. FOR `Brand` we will tack them onto the END OF THE BRAND ID. THIS WAY THE *NEW* WILL ALIGN AT THE END OF THE BRAND NAME, AND THE START OF THE MODEL NAMES. IT PROVIDES AN ADDITIONAL AND EASILY IDENTIFIABLE VISUAL FEATURE WHERE USERS CAN IDENTIFY BOTH NEW BRANDS AND KNIVES SIMPLY VISUALLY. ||| [3] **CONCLUSION**; (a) WE HAVE TO MOVE THE *new*(the current star icon and word design is good, it doesnt need to change visually other than the color.) positioning as described above, at the END of `Brand` and the START of `Model`, (b) ensuring that *new* is identified for `Brand` and `Model` Seperately. (c) Ensuring the ingestion output is fixed and more visually impressive to the users. Its Textual; there isa large arrangement and assortment of visually creative utilizations to display data to user.
+[Image #7]
+
+❯ lets not start conflating modules, systems. Each have a use, and are there for a reason; they dont need to be removed or streamlined. they need to be polished
+  and built upon. ||| [4] Additionally, the menu titles and id are just plain impractical. (4.1) `The Forge Line` instead of `Import Knives`; which ironically
+  enough should be how to ingest files, NOT using `-survey` flag. It should also share this pages general layout, not exactly, but enough that switching between
+  importing a url, and importing from the markdown ingest/import file import-knivves.md {UPDATED FROM knivesdb.md}) but have its own output that fits inside
+  it. You can see from the attached images there is alot of visual drift, simple lazy integrations, and mostly twisting `retro-futurism`/`cli-futurism` with
+  `simple`. (4.2) `THE BENCH` instead of `COMPARE MODELS`, (4.3) `THE LEDGER` for `MARKET PRICES`, (4.4) `THE RACK` INSTEAD OF `LIBRARY`. I UNDERSTAND THE
+  INTENT, BUT IN FUNCTION IT IS UN-NEEDED PROPRIETARY TERMS ADDED TO THE MENU, AND ADDITIONAL CLI COMMANDS TO REMEMBER. THIS DOES NOT MEAN CHANGE EVERYTHING.
+  THIS MEANS THAT SOME THINGS; LIKE I LISTED; NEED TO BE NORMALIZED. IT IS WHY I CHOSE TERMS LIKE `update` and `add` instead of `reforge` and `forge`. Yes those
+  are more on theme and would technically 'enhance' the cli canon. BUT ALSO, IT ADDS CONFUSION TO THE MAIN SECTIONS OF THE CLI, AND THOSE NEGATIVES FAR
+  OUTWEIGHT ITS MINIMAL POSITIVES. THIS ONLY APPLIES TO CERTAIN TERMS. SOME TERMS THAT ARE NOT NORMALIZED OR TRULY PROPRIETARY, ARE MORE EASILY DEFINED AS A
+  PROPRIETARY, CLI THEMED COMMAND. [5] `-survey`, while a good choice, is not optimal. Survey means to many different things. We also want to tie this into the
+  CLI command chain. `-survey` is a flag option of `update`. CHANGE `-survey` TO `-price`; it is the most relevant in context. `-market` is also relevant but we
+  are NOT updating a marketplace, we are updating what our CLI defines as ITS marketplace prices(`MARKET PRICES`), so `-prices` is the best choice for the cli
+  option flag, and `MARKET PRICES` is the obvious name for the tab/page in the TEXTUAL-UI that REFERENCES the `-prices`. ||| [6] SEE IMAGES ATTACHED. [Image
+  #11] [Image #12] [Image #8] [Image #9] [Image #10]
+
+---
