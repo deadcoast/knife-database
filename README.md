@@ -11,13 +11,14 @@ objects, your own acquisition rules executing visibly on screen.
 
 ## The building
 
-Everything lives in one building with four rooms. You arrive through a
+Everything lives in one building with five rooms. You arrive through a
 machined vault door — drawn steel leaves, a bolt cascade, staged parting —
 and every record is a **plate**: one physical object with one visual
 identity that travels between rooms.
 
 Room names are normalized — plain words on the doors, the craft behind
-them: **1 Library · 2 Import Knives · 3 Compare Models · 4 Market Prices**.
+them: **1 Library · 2 Import Knives · 3 Compare Models · 4 Market
+Prices · 5 Research**.
 
 ### Library — browse (1)
 
@@ -65,6 +66,23 @@ movers surfacing by magnitude, and the affordable rule re-tagging
 whatever crossed the line (same engine as `knivves update --prices`).
 Cancel anytime; observations made are kept.
 
+### Research — the vault fills its own unknowns (5)
+
+![Research](docs/media/room-desk.svg)
+
+The vault knows what it doesn't know. The **docket** ranks every
+incomplete record — BuyList priorities first, then ★new, then
+most-gaps-first — with the **unreachable shelf** below it, every
+absence given its reason; a drawn **completeness meter** rides above
+the line. Press `s` and the desk works the docket for real: each
+record's plate is PULLED, its own listing is READ, and only its
+**empty** fields STAMP on — user data is never overwritten, a first
+price seeds its history, and a rulebook hit is reported on the log
+without ever touching the record's flag. `r` replays a no-network
+demo transit. Same engine as `knivves research`; a record with open
+gaps carries a `gaps  N unresearched` line on its plate into every
+room it travels.
+
 ## Why it looks the way it does
 
 The design is governed by house laws that are code, not convention
@@ -78,9 +96,9 @@ The design is governed by house laws that are code, not convention
    fade. Every animation shares one easing.
 
 The surfaces are drawn, not styled: the vault door's leaves, the
-masthead's brushed grain, the engraved station headers, and the Ledger's
-instruments are all custom `render_line` widgets that own every cell
-they paint.
+masthead's brushed grain, the engraved station headers, the Ledger's
+instruments, and the Research desk's completeness meter are all custom
+`render_line` widgets that own every cell they paint.
 
 ## Quickstart
 
@@ -90,7 +108,7 @@ uv sync          # or: python -m pip install -e .
 knivves vault
 ```
 
-Keys, everywhere: `1`–`4` rooms · `ctrl+p` command palette · `t` expands
+Keys, everywhere: `1`–`5` rooms · `ctrl+p` command palette · `t` expands
 the tip rail's ❯ mark into a capsule · `esc` closes/clears · `q` quits.
 The mouse works on everything the keyboard does.
 
@@ -116,6 +134,9 @@ knivves approve <id>             # classification from the shell
 knivves add ledger.md            # ingest a markdown link ledger (see below)
 knivves update                   # seal the fresh batch as NEW
 knivves update --prices          # …and re-read market prices while at it
+knivves research                 # fill empty fields from each record's own listing
+knivves research --dry-run       # preview the docket — no fetch, no write
+knivves list --gaps              # only records with unresearched gaps
 knivves new -threeg              # keep NEW across three updates
 knivves buylist                  # The Reserve: acquisition priorities + Σ CAD
 knivves add / section / note / retailer …
