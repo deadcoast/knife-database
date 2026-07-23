@@ -28,6 +28,7 @@ STEEL_MID = "#8b96a0"
 STEEL_DIM = "#5c6670"
 
 ACCENT = "#d7a455"          # the only accent in the building
+FRESH = "#5fd3bc"           # cold mint — the glint of a fresh edge; ★new wears it in every room
 PASS = "#79b473"
 FAIL = "#c05b4d"
 

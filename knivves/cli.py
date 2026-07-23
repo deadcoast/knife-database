@@ -19,7 +19,7 @@ from rich.table import Table
 
 from . import buylist as buylist_mod
 from . import generations, ingest
-from .models import KnifeView
+from .models import KnifeView, new_brands
 from .render import (
     aggregate_table,
     backups_table,
@@ -208,7 +208,7 @@ def resolve_knife(db: dict[str, Any], identifier: str) -> tuple[int, KnifeView] 
     return None
 
 
-def render_or_emit(knives: list[KnifeView], output: str, *, compact: bool = False, show_id: bool = False) -> None:
+def render_or_emit(knives: list[KnifeView], output: str, *, compact: bool = False, show_id: bool = False, fresh_brands: set[str] | None = None) -> None:
     if output not in OUTPUT_FORMATS:
         raise typer.BadParameter(f"output must be one of: {', '.join(sorted(OUTPUT_FORMATS))}")
     if output == "json":
@@ -229,7 +229,7 @@ def render_or_emit(knives: list[KnifeView], output: str, *, compact: bool = Fals
         for knife in knives:
             sys.stdout.write(knife.id + "\n")
     else:
-        console.print(knives_table(knives, compact=compact or output == "compact", show_id=show_id))
+        console.print(knives_table(knives, compact=compact or output == "compact", show_id=show_id, fresh_brands=fresh_brands))
 
 
 def current_filter_dict(**kwargs: object) -> dict[str, object]:
@@ -290,7 +290,7 @@ def run_list(
             reserve = buylist_mod.buylist_views(db)
             if reserve:
                 console.print(buylist_strip(reserve))
-    render_or_emit(filtered, output, compact=compact, show_id=show_id)
+    render_or_emit(filtered, output, compact=compact, show_id=show_id, fresh_brands=new_brands(all_knives))
     if output in {"table", "compact"}:
         console.print(f"[dim]{len(filtered)} result(s)[/]")
     return filtered
@@ -778,11 +778,10 @@ def _survey_market(db: dict[str, Any]) -> dict[str, Any]:
                         )
                         progress.update(task, advance=1, status=f"moved · {rid[:38]}")
                     elif old_price is None and listing.price_cad is not None:
+                        # a first price has nothing to compare against —
+                        # count it for the summary, don't stream it
                         first_priced.append(rid)
-                        progress.console.print(
-                            f"  [#d7a455]◆[/] {rid}  [#d7a455]first price ${listing.price_cad:,.2f}[/]"
-                        )
-                        progress.update(task, advance=1, status=f"first price · {rid[:38]}")
+                        progress.update(task, advance=1, status=f"priced · {rid[:38]}")
                     else:
                         unchanged += 1
                         progress.update(task, advance=1, status=f"read · {rid[:38]}")
@@ -1098,7 +1097,7 @@ def interactive() -> None:
         # Also wipe scrollback so stale frames don't pile up above the live one.
         print("\x1b[3J", end="", flush=True)
         console.print(interactive_header(db, all_knives, {**state, "sort": current_sort, "reverse": reverse}, len(filtered_all)))
-        console.print(knives_table(page_items, start_index=start, compact=False))
+        console.print(knives_table(page_items, start_index=start, compact=False, fresh_brands=new_brands(all_knives)))
         console.print(f"[dim]Page {page + 1}/{total_pages} · rows {start + 1}-{min(start + len(page_items), len(filtered_all))} of {len(filtered_all)}[/]")
         console.print("[bold cyan]Commands[/] type text → search · row number → detail · n/p page · s search · f filters · sort · o open · stats · clear · reload · path · ? help · q quit")
         choice = Prompt.ask("knivves", default="?").strip()

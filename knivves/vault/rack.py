@@ -18,7 +18,7 @@ from textual.events import ScreenResume
 from textual.screen import Screen
 from textual.widgets import DataTable, Footer, Input, Static
 
-from ..models import KnifeView
+from ..models import KnifeView, new_brands
 
 if TYPE_CHECKING:
     from .app import KnivvesVault
@@ -149,17 +149,25 @@ class RackScreen(TipsMixin, Screen):
         search.border_subtitle = f"{len(knives)} / {len(self.knives)}"
         self.query_one("#rack-empty", Static).display = not knives
         table.display = bool(knives)
+        fresh_brands = new_brands(self.knives)
         for k in knives:
             cls = k.classification
-            sections_cell = Text()
+            # ★new aligns in the gutter: end of Brand marks a new maker,
+            # start of Model marks a new blade — readable at a glance
+            brand_cell = Text(k.brand, style=laws.STEEL_BRIGHT)
+            if k.brand.lower() in fresh_brands:
+                brand_cell.append(" ★new", style=f"bold {laws.FRESH}")
+            model_cell = Text()
             if k.is_new:
-                sections_cell.append("★new ", style=f"bold {laws.ACCENT}")
+                model_cell.append("★new ", style=f"bold {laws.FRESH}")
+            model_cell.append(k.model, style=laws.STEEL_MID)
+            sections_cell = Text()
             if k.buy_priority:
                 sections_cell.append(f"⬖{k.buy_priority} ", style=laws.ACCENT)
             sections_cell.append(", ".join(k.tags) or ("—" if not sections_cell.plain else ""), style=laws.STEEL_DIM)
             table.add_row(
-                Text(k.brand, style=laws.STEEL_BRIGHT),
-                Text(k.model, style=laws.STEEL_MID),
+                brand_cell,
+                model_cell,
                 Text(cls, style=laws.CLASS_COLORS.get(cls, laws.STEEL_MID)),
                 Text(k.blade_steel if k.blade_steel != "Unknown" else "—", style=laws.STEEL_MID),
                 Text(k.price_label, style=laws.ACCENT if k.price else laws.STEEL_DIM, justify="right"),

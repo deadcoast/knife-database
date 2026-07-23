@@ -137,6 +137,20 @@ def test_is_new_pure_rule() -> None:
     assert gen.is_new({}, meta) is False
 
 
+def test_new_brands_requires_whole_brand_fresh() -> None:
+    from knivves.models import new_brands
+
+    views = [
+        KnifeView({"id": "a", "brand": "Kansept", "new": True}),
+        KnifeView({"id": "b", "brand": "Kansept", "new": True}),
+        KnifeView({"id": "c", "brand": "Spyderco", "new": True}),
+        KnifeView({"id": "d", "brand": "Spyderco", "new": False}),
+        KnifeView({"id": "e", "brand": "Unknown", "new": True}),
+    ]
+    fresh = new_brands(views)
+    assert fresh == {"kansept"}  # Spyderco existed before; Unknown never counts
+
+
 def test_knife_view_surface() -> None:
     view = KnifeView({"id": "x", "new": True, "buy_priority": 3, "user_tags": ["buy_list"]})
     assert view.is_new

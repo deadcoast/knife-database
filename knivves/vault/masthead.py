@@ -58,7 +58,7 @@ class Masthead(Widget):
             (f"avg ${avg:,.0f} CAD", laws.STEEL_MID, False),
         ]
         if fresh:
-            self._stats.extend([dot, (f"{fresh} new", laws.ACCENT, True)])
+            self._stats.extend([dot, (f"{fresh} new", laws.FRESH, True)])
         self.refresh()
 
     # --------------------------------------------------------------- render

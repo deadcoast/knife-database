@@ -67,7 +67,7 @@ class Reserve(Vertical):
             body.append(f"{priority:>2} ", style=f"bold {laws.ACCENT}")
             body.append(knife.display_name[:40], style=laws.STEEL_BRIGHT)
             if knife.is_new:
-                body.append("  ★new", style=laws.ACCENT)
+                body.append("  ★new", style=laws.FRESH)
             body.append("\n   ")
             body.append(f"{knife.price_label:<14}", style=laws.STEEL_MID)
             body.append(f"Σ ${running:,.0f}", style=laws.STEEL_DIM)

@@ -64,13 +64,20 @@ def _tag_text(tags: list[str]) -> str:
     return " ".join(f"[blue]#{escape(tag)}[/]" for tag in tags)
 
 
-NEW_CHIP = "[bold #d7a455]★NEW[/]"
+FRESH = "#5fd3bc"  # mirrors vault laws.FRESH — ★new wears it everywhere
+NEW_CHIP = f"[bold {FRESH}]★new[/]"
 
 
-def _knife_cell(knife: KnifeView, *, show_id: bool = False) -> str:
-    cell = f"[bold]{escape(knife.brand)}[/] — [dim]{escape(knife.model)}[/]"
+def _knife_cell(knife: KnifeView, *, show_id: bool = False, fresh_brands: set[str] | None = None) -> str:
+    """One knife, one cell. ★new aligns in the gutter: end of the brand
+    marks a new maker, start of the model marks a new blade."""
+    brand = f"[bold]{escape(knife.brand)}[/]"
+    if fresh_brands and knife.brand.lower() in fresh_brands:
+        brand += f" {NEW_CHIP}"
+    model = f"[dim]{escape(knife.model)}[/]"
     if knife.is_new:
-        cell = f"{NEW_CHIP} {cell}"
+        model = f"{NEW_CHIP} {model}"
+    cell = f"{brand} — {model}"
     if knife.buy_priority:
         cell += f" [bold magenta]⬖{knife.buy_priority}[/]"
     if show_id:
@@ -93,7 +100,7 @@ def summary_cards(db: dict[str, Any], knives: list[KnifeView]) -> Panel:
         table.add_column(justify="center")
     table.add_row(
         "[bold cyan]TOTAL[/]",
-        "[bold #d7a455]NEW[/]",
+        f"[bold {FRESH}]NEW[/]",
         "[bold green]APPROVED[/]",
         "[bold red]REJECTED[/]",
         "[bold yellow]OPEN[/]",
@@ -102,7 +109,7 @@ def summary_cards(db: dict[str, Any], knives: list[KnifeView]) -> Panel:
     )
     table.add_row(
         f"[bold white]{len(knives)}[/]",
-        f"[bold #d7a455]{fresh}[/]" if fresh else "0",
+        f"[bold {FRESH}]{fresh}[/]" if fresh else "0",
         str(approved),
         str(rejected),
         f"{unclassified} · {pending} pending",
@@ -161,12 +168,17 @@ def knives_table(
     view: str = "default",
     limit: int | None = None,
     numbered: bool = False,
+    fresh_brands: set[str] | None = None,
 ) -> Table | Panel:
     items = list(knives)
     if limit is not None:
         items = items[:limit]
     if not items:
         return Panel(f"[yellow]{escape(empty_message)}[/]", border_style="yellow", box=box.ROUNDED)
+    if fresh_brands is None:
+        from .models import new_brands
+
+        fresh_brands = new_brands(items)
 
     narrow = console.width < 100
     table = Table(box=box.ROUNDED, expand=True, show_lines=False, pad_edge=True)
@@ -191,7 +203,7 @@ def knives_table(
     table.add_column("CA", justify="center", width=4, no_wrap=True)
 
     for idx, knife in enumerate(items, start=start_index + 1):
-        row = [str(idx), _knife_cell(knife, show_id=show_id), badge(knife.classification), _tag_text(knife.tags)]
+        row = [str(idx), _knife_cell(knife, show_id=show_id, fresh_brands=fresh_brands), badge(knife.classification), _tag_text(knife.tags)]
         if not narrow:
             row.extend([badge(_short_status(knife.research_status)), escape(knife.blade_steel)])
         row.extend([knife.price_label, "[green]✓[/]" if knife.retailer_count else "[dim]—[/]"])
@@ -395,50 +407,104 @@ def _diagnostics_lines(diagnostics: list[Any], limit: int = 12) -> list[str]:
     return lines
 
 
-def ingest_overview(doc: Any, plan: Any, source: str) -> Group:
-    """What the ledger contains and what applying it would do."""
-    sections = Table(box=box.ROUNDED, expand=True, title=f"{escape(doc.title or 'Untitled ledger')} · {escape(source)}")
-    sections.add_column("SectionID", ratio=3)
-    sections.add_column("Kind", width=9)
-    sections.add_column("Entries", justify="right", width=8)
-    sections.add_column("Tags", ratio=2)
-    sections.add_column("Note", ratio=4, style="dim", overflow="ellipsis")
-    kind_style = {"buylist": "bold #d7a455", "sources": "cyan", "knives": "white"}
-    for section in doc.sections:
-        sections.add_row(
-            escape(section.name),
-            f"[{kind_style.get(section.kind, 'white')}]{section.kind}[/]",
-            str(len(section.entries)),
-            _tag_text(section.tags),
-            escape(section.notes[0]) if section.notes else "—",
-        )
+_SECTION_GLYPHS = {
+    "buylist": ("⬖", "#d7a455"),
+    "sources": ("◈", "cyan"),
+    "knives": ("▤", "white"),
+}
 
-    plan_line = (
-        f"[green]{len(plan.new_records)} to add[/] · [cyan]{len(plan.merges)} merge into existing[/] · "
-        f"[#d7a455]{len(plan.buylist_keys)} buy-list priorities[/] · [magenta]{len(plan.sources)} sources[/] · "
-        f"[dim]{len(plan.skipped)} duplicates skipped[/]"
+
+def _outcome_meter(parts: list[tuple[str, int, str]], width: int = 46) -> Text:
+    """A proportional bar of where the ledger's entries land, with legend."""
+    total = sum(count for _, count, _ in parts)
+    meter = Text()
+    segments = [(count, color) for _, count, color in parts if count > 0]
+    if segments:
+        remaining = width
+        for i, (count, color) in enumerate(segments):
+            cells = remaining if i == len(segments) - 1 else min(remaining, max(1, round(width * count / total)))
+            meter.append("█" * cells, style=color)
+            remaining -= cells
+    else:
+        meter.append("░" * width, style="grey23")
+    meter.append("\n")
+    for i, (label, count, color) in enumerate(parts):
+        if i:
+            meter.append("   ")
+        meter.append("■ ", style=color)
+        meter.append(f"{count} {label}", style="default")
+    return meter
+
+
+def ingest_overview(doc: Any, plan: Any, source: str) -> Group:
+    """The ledger, read back: its sections as a tree, its fate as a meter."""
+    from rich.rule import Rule
+    from rich.tree import Tree
+
+    header = Rule(f"[bold white]{escape(doc.title or 'UNTITLED LEDGER')}[/] [dim]· {escape(source)}[/]", style="#d7a455")
+
+    tree = Tree(f"[dim]{len(doc.sections)} SectionID(s)[/]", guide_style="grey23")
+    for section in doc.sections:
+        glyph, color = _SECTION_GLYPHS.get(section.kind, ("▤", "white"))
+        entries = len(section.entries)
+        label = (
+            f"[{color}]{glyph}[/] [bold]{escape(section.name)}[/]  "
+            f"[{color}]{entries} entr{'y' if entries == 1 else 'ies'}[/] [dim]· {section.kind}[/]"
+        )
+        node = tree.add(label)
+        if section.tags:
+            node.add(_tag_text(section.tags))
+        for note in section.notes[:1]:
+            node.add(f"[dim italic]{escape(note)}[/]")
+
+    meter = _outcome_meter(
+        [
+            ("to add", len(plan.new_records), "green"),
+            ("merge into existing", len(plan.merges), "cyan"),
+            ("duplicates skipped", len(plan.skipped), "grey50"),
+        ]
     )
-    blocks: list[Any] = [sections, Panel(plan_line, title="Plan", border_style="green", box=box.ROUNDED)]
+    plan_extra = f"[#d7a455]⬖ {len(plan.buylist_keys)} buy-list priorities[/]   [cyan]◈ {len(plan.sources)} sources[/]"
+    blocks: list[Any] = [
+        header,
+        tree,
+        Panel(Group(meter, Text(), Text.from_markup(plan_extra)), title="the plan", border_style="green", box=box.ROUNDED),
+    ]
     if plan.diagnostics:
-        blocks.append(Panel("\n".join(_diagnostics_lines(plan.diagnostics)), title="Diagnostics", border_style="yellow", box=box.ROUNDED))
+        blocks.append(Panel("\n".join(_diagnostics_lines(plan.diagnostics)), title="diagnostics", border_style="yellow", box=box.ROUNDED))
     return Group(*blocks)
 
 
-def ingest_result(report: Any, backup: Any) -> Panel:
-    lines = [
-        f"[green]Added {report.added}[/] · merged {report.merged} · buy list {report.buylist} deep · "
-        f"{report.sources} sources · {report.duplicates} duplicates skipped",
+def ingest_result(report: Any, backup: Any) -> Group:
+    from rich.rule import Rule
+
+    meter = _outcome_meter(
+        [
+            ("filed ★new", report.added, FRESH),
+            ("merged", report.merged, "cyan"),
+            ("duplicates skipped", report.duplicates, "grey50"),
+        ]
+    )
+    lines: list[str] = [
+        "",
+        f"[#d7a455]⬖ buy list {report.buylist} deep[/]   [cyan]◈ {report.sources} sources registered[/]",
     ]
     if report.repairs:
         lines.append("")
-        lines.append("[bold]Repairs applied[/]")
-        for line_no, note in report.repairs[:12]:
-            lines.append(f"[dim]line {line_no:>4}[/]  {escape(note)}")
-        if len(report.repairs) > 12:
-            lines.append(f"[dim]… {len(report.repairs) - 12} more[/]")
+        lines.append(f"[bold]{len(report.repairs)} repairs applied[/] [dim]— the parser straightened these lines[/]")
+        for line_no, note in report.repairs[:10]:
+            lines.append(f"  [dim]line {line_no:>4}[/]  {escape(note)}")
+        if len(report.repairs) > 10:
+            lines.append(f"  [dim]… {len(report.repairs) - 10} more[/]")
+    lines.append("")
+    lines.append(f"[dim]next:[/] [bold]knivves new[/] [dim]·[/] [bold]knivves buylist[/] [dim]·[/] [bold]knivves update[/] [dim]seals the batch[/]")
     if backup:
-        lines.append(f"\n[dim]Backup: {escape(str(backup))}[/]")
-    return Panel("\n".join(lines), title="Ingested", border_style="green", box=box.ROUNDED)
+        lines.append(f"[dim]backup: {escape(str(backup))}[/]")
+    body = Group(meter, Text.from_markup("\n".join(lines)))
+    return Group(
+        Panel(body, title=f"[bold {FRESH}]★ filed[/]", border_style=FRESH, box=box.HEAVY),
+        Rule(style="grey23"),
+    )
 
 
 def survey_summary_panel(summary: dict[str, Any]) -> Panel:
@@ -466,7 +532,7 @@ def survey_summary_panel(summary: dict[str, Any]) -> Panel:
 def update_hold_panel(meta_block: dict[str, Any], new_total: int) -> Panel:
     lines = [
         "[bold]The generation line holds[/] — nothing filed since the last update.",
-        f"[#d7a455]{new_total} still NEW[/] · open generation {meta_block.get('generation')} · "
+        f"[{FRESH}]{new_total} still NEW[/] · open generation {meta_block.get('generation')} · "
         f"cache keeps {meta_block.get('keep_generations')} generation(s)",
         "[dim]freshness ages when new arrivals push it out · knivves update --force ages the window anyway[/]",
     ]
@@ -477,7 +543,7 @@ def update_report_panel(entry: dict[str, Any], keep: int, new_total: int) -> Pan
     lines = [
         f"[bold]Generation line advanced to {entry['generation']}[/] · cache keeps [bold]{keep}[/] generation(s)",
         f"[green]{entry['added']} filed since last update[/] · "
-        f"[#d7a455]{new_total} currently NEW[/] · [dim]{len(entry['aged_out'])} aged out[/]",
+        f"[{FRESH}]{new_total} currently NEW[/] · [dim]{len(entry['aged_out'])} aged out[/]",
     ]
     if entry.get("note"):
         lines.append(f"[italic]{escape(str(entry['note']))}[/]")
@@ -495,7 +561,7 @@ def new_status_panel(meta_block: dict[str, Any], new_total: int) -> Panel:
     lines = [
         f"[bold]Open generation:[/] {meta_block.get('generation')}",
         f"[bold]Cache depth:[/] {meta_block.get('keep_generations')} generation(s) [dim](three-generation cache; set with -oneg/-twog/-threeg)[/]",
-        f"[bold]Currently NEW:[/] [#d7a455]{new_total}[/]",
+        f"[bold]Currently NEW:[/] [{FRESH}]{new_total}[/]",
     ]
     if last:
         lines.append(f"[dim]last update: gen {last.get('generation')} on {last.get('date')} — {last.get('added')} filed[/]")

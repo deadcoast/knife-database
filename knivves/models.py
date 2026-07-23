@@ -275,6 +275,22 @@ def knife_views(db: dict[str, Any]) -> list[KnifeView]:
     return [KnifeView(k) for k in knives if isinstance(k, dict)]
 
 
+def new_brands(knives: list[KnifeView]) -> set[str]:
+    """Brands whose entire presence arrived inside the NEW window.
+
+    A brand is new when every knife it has in the collection is NEW —
+    the maker itself just entered the vault, not merely another variant.
+    Returned lowercased for case-insensitive lookup.
+    """
+    seen: dict[str, bool] = {}
+    for knife in knives:
+        brand = knife.brand.lower()
+        if brand in {"", "unknown"}:
+            continue
+        seen[brand] = seen.get(brand, True) and knife.is_new
+    return {brand for brand, fresh in seen.items() if fresh}
+
+
 def next_unique_id(existing_ids: set[str], base: str) -> str:
     candidate = slugify(base)
     if candidate not in existing_ids:

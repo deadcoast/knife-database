@@ -143,7 +143,10 @@ def test_update_survey_shows_progress_and_records_history() -> None:
         scrape_mod.fetch_listing = real_fetch
 
     assert "surveying the market" in result.output
-    assert "first price" in result.output  # ingested knives were unpriced
+    # first prices have nothing to compare against: counted in the summary,
+    # never streamed line by line
+    assert "◆" not in result.output
+    assert "priced for the first time" in result.output
     db = load()
     surveyed = [
         k for k in db["knives"]

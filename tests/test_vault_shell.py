@@ -407,11 +407,14 @@ async def test_freshness_and_reserve() -> None:
         await pilot.pause()
         assert isinstance(app.screen, RackScreen)
 
-        # the sections cell carries the NEW chip and the reserve rank
+        # ★new aligns in the gutter — start of the Model cell; the sections
+        # cell keeps only the reserve rank
         table = app.screen.query_one(DataTable)
         row = table.get_row_at(0)
+        model_cell = str(row[1])
+        assert model_cell.startswith("★new "), f"model cell: {model_cell!r}"
         sections_cell = str(row[5])
-        assert "new" in sections_cell, f"sections cell: {sections_cell!r}"
+        assert "new" not in sections_cell, f"★new left in sections cell: {sections_cell!r}"
         assert "⬖1" in sections_cell, f"priority mark missing: {sections_cell!r}"
 
         # the masthead counts the fresh arrivals
