@@ -16,7 +16,7 @@ Case: `2026-07-23-research-desk` · Design: [design.md](design.md) · Hub: [requ
 
 ### T1 — the research backend
 
-- [ ] **T1** Build `knivves/research.py`: the gap audit, the docket, the
+- [x] **T1** Build `knivves/research.py`: the gap audit, the docket, the
   fill-only-empty merge with provenance, and the `run_research`
   orchestrator with injectable fetch — pure logic, no network in tests.
   - **Satisfies**: [REQ-RES-1](design.md#req-res-1--gap-audit),

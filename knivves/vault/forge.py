@@ -26,6 +26,7 @@ from textual.widgets import Footer, Input, Static
 
 from .. import ingest, scrape
 from ..models import knife_views
+from ..research import RULE_KEYWORDS
 from ..store import backup_database, make_knife_id, save_database
 from . import laws
 from .masthead import Masthead
@@ -35,20 +36,6 @@ from .tips import ROOM_KEY, Tip, TipCapsule, TipRail, TipsMixin
 
 if TYPE_CHECKING:
     from .app import KnivvesVault
-
-# Keywords that make a rulebook line trip on a listing title. Deliberately
-# precise: "assisted opening" is legal and must never trip a gate.
-RULE_KEYWORDS: dict[str, tuple[str, ...]] = {
-    "automatic switchblade": ("switchblade", "automatic knife"),
-    "OTF automatic": ("otf",),
-    "gravity knife": ("gravity knife",),
-    "balisong": ("balisong",),
-    "butterfly knife": ("butterfly",),
-    "explicit centrifugal/flick knife": ("centrifugal", "flick knife"),
-    "button/spring/device in handle that automatically opens the blade": (
-        "auto opening", "push button open",
-    ),
-}
 
 # Gate labels: the rulebook's legal prose, machined down to stamps.
 # Full wording remains in the database and the legal-screen tip capsule.

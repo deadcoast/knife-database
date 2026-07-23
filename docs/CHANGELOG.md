@@ -1,5 +1,27 @@
 # CHANGELOG
 
+## 006 — v0.10.0 (2026-07-23) — THE RESEARCH DESK
+
+The vault researches its own unknowns. Case:
+`docs/dev-spec/2026-07-23-research-desk` (in development).
+
+- **The research backend** (`knivves/research.py`) — three pure stages,
+  offline-testable: `audit_record`/`audit_database` name every gap in a
+  record as data (placeholder `TODO:` titles, Unknown mechanism fields,
+  missing prices); `build_docket` orders the work BuyList-rank first,
+  then ★new, then most-gaps-first, shelving records with no supported
+  listing URL as *unreachable* with the reason said; `research_record`
+  merges a fetched listing under the law **fill only what is empty** —
+  user data is never overwritten, every fill carries provenance
+  (`research.filled` names the host per field), a filled first price
+  seeds `price_history` and re-tags the $150 rule, and rulebook hits
+  are **reported, never written** — the prohibited flag stays the
+  user's decision. `run_research` works the docket concurrently with
+  deterministic apply order and an injectable fetch.
+- **One rulebook table** — the legal-screen keyword table
+  (`RULE_KEYWORDS`) moved to its backend home in `research.py`; the
+  Forge Line imports it. Same words, one source of truth.
+
 ## 005 — v0.9.0 (2026-07-23) — PLAIN WORDS ON THE DOORS
 
 Normalized names, a real front door, and the ledger intake inside the
