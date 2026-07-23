@@ -1,3 +1,6 @@
+<!-- { "CHANGELOG_REFERENCE": { "file": "docs/CHANGELOG.md", "entries": ["007 — v0.11.0 (2026-07-23) — THE STANDARDS RE-ALIGNMENT"] },
+     "STATUS": "CLOSED (2026-07-23) — archived to docs/closed/ · ledger fully shipped (11/11 REQs); drift annotated inline",
+     "NOTE": "Canon below is the doc AS AUTHORED/WRITTEN. Drift since is annotated inline. Do not treat unannotated details as current without checking docs/CHANGELOG.md." } -->
 <!-- { "DEV_SPEC": { "case": "2026-07-23-standards-realignment", "doc": "DS-2 requirements", "bus": "BUS-B" },
      "STATUS": "OPEN (2026-07-23) — this case must be closed out at checkpoint",
      "STEERED_BY": ["MIVIM-spec.yaml", ".claude/skills/mivim-agent-spec/SKILL.md", ".claude/skills/closing-out-docs/SKILL.md", "revisions.md"],
@@ -31,6 +34,9 @@ document, every requirement, every binding — one glance, one hop.
 Binding paths in this case are **post-restructure** (`knivves/tui/...`);
 until T1 lands they read `knivves/vault/` on disk with the old module
 names (`rack.py`, `forge.py`, `bench.py`, `ledger.py`, `desk.py`).
+
+<!-- { "CHANGELOG_REFERENCE": { "file": "docs/CHANGELOG.md", "entry": "007 — v0.11.0", "bullet": "Pages own their modules" },
+     "CHANGES": ["VERSION MOVED ON: T1 landed (commit f24d93f) — the paths read knivves/tui/ on disk. The registry's revisions.md row now resolves to docs/closed/revisions.md (closed with this case)."] } -->
 
 ## Requirements ledger
 

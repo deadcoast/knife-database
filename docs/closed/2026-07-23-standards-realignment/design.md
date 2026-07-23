@@ -1,3 +1,6 @@
+<!-- { "CHANGELOG_REFERENCE": { "file": "docs/CHANGELOG.md", "entries": ["007 — v0.11.0 (2026-07-23) — THE STANDARDS RE-ALIGNMENT"] },
+     "STATUS": "CLOSED (2026-07-23) — archived to docs/closed/ · every REQ shipped; drift annotated inline",
+     "NOTE": "Canon below is the doc AS AUTHORED/WRITTEN. Drift since is annotated inline. Do not treat unannotated details as current without checking docs/CHANGELOG.md." } -->
 <!-- { "DEV_SPEC": { "case": "2026-07-23-standards-realignment", "doc": "DS-1 design", "bus": "BUS-B" },
      "STATUS": "OPEN (2026-07-23) — this case must be closed out at checkpoint",
      "STEERED_BY": ["MIVIM-spec.yaml", ".claude/skills/mivim-agent-spec/SKILL.md", ".claude/skills/closing-out-docs/SKILL.md", "revisions.md"],
@@ -213,6 +216,9 @@ dramatize true data (the 006 law: nothing lights that is not known).
   a page's reveal fires on open, does not re-fire on refresh, re-arms on
   re-entry.
 
+<!-- { "CHANGELOG_REFERENCE": { "file": "docs/CHANGELOG.md", "entry": "007 — v0.11.0", "bullet": "The Reveal runner is a sequence, not timers" },
+     "CHANGES": ["SUPERSEDED: the runner's mechanism — shipped first on one-shot set_timer calls, rebuilt in the proof pass as one sequenced worker because Textual one-shot timers skip a firing they missed under load (commit 9d5fa5b). The contract here (once per open, settle lands the tail, re-arm on exit) is unchanged and is what the acceptance test proves."] } -->
+
 #### REQ-MOT-2 — cues live in the stylesheets
 
 - **WHAT**: every interactive surface (inputs, tables, docket cards,
@@ -225,6 +231,9 @@ dramatize true data (the 006 law: nothing lights that is not known).
 - **ACCEPTANCE**: `tests/test_tui_shell.py::test_cues_declared_in_css` —
   each page's stylesheet declares `transition:` rules; captured hover
   frames reviewed eyes-on.
+
+<!-- { "CHANGELOG_REFERENCE": { "file": "docs/CHANGELOG.md", "entry": "007 — v0.11.0", "bullet": "The motion law grows tiers" },
+     "CHANGES": ["SUPERSEDED: CUE scope as shipped — the pointer-facing pages (vault, library, imports) plus the research docket cards carry transitions; compare and market are keyboard instruments with nothing pointer-tracked and stay still under the balance law; tip capsules unchanged. The acceptance test asserts the three pointer-facing stylesheets, not all six."] } -->
 
 ### The research page — the showcase ([5.2.1], [5.2.2])
 
@@ -321,6 +330,9 @@ else on the page holds still while it performs:
 | Compare | the caliper beams | rails draw, jaws park at rest |
 | Market | the price scale | scale draws, the $150 line cuts in accent last |
 | Research | the unknowns map | REQ-RES-1 |
+
+<!-- { "CHANGELOG_REFERENCE": { "file": "docs/CHANGELOG.md", "entry": "007 — v0.11.0", "bullet": "Every page opens" },
+     "CHANGES": ["SUPERSEDED: the Compare row — the hero shipped as the instrument warming in, not 'rails draw': the rails and jaws already animate at pair arrival (006's choreography), and an empty bench has nothing true to draw (instruments never lie)."] } -->
 
 #### REQ-REV-1 — one hero per page
 

@@ -1,3 +1,6 @@
+<!-- { "CHANGELOG_REFERENCE": { "file": "docs/CHANGELOG.md", "entries": ["007 — v0.11.0 (2026-07-23) — THE STANDARDS RE-ALIGNMENT"] },
+     "STATUS": "CLOSED (2026-07-23) — archived to docs/closed/ · all seven tasks shipped and verified; checkpoint executed same day",
+     "NOTE": "Canon below is the doc AS AUTHORED/WRITTEN. Drift since is annotated inline. Do not treat unannotated details as current without checking docs/CHANGELOG.md." } -->
 <!-- { "DEV_SPEC": { "case": "2026-07-23-standards-realignment", "doc": "DS-3 TODO", "bus": "BUS-B" },
      "STATUS": "OPEN (2026-07-23) — this case must be closed out at checkpoint",
      "STEERED_BY": ["MIVIM-spec.yaml", ".claude/skills/mivim-agent-spec/SKILL.md", ".claude/skills/closing-out-docs/SKILL.md", "revisions.md"],
@@ -24,6 +27,10 @@ Case: `2026-07-23-standards-realignment` · Design: [design.md](design.md) · Hu
   - **Done when**: `test_tui_shell.py::test_pages_map_to_doors` and `::test_entry_hall_doors` pass; full suite green post-move; `python -m knivves.tui` boots to the hall
   - **Proof**: `python -m pytest tests/ -x -q` → all pass; `python tests/capture_pages.py` → six page frames including the hall
 
+<!-- { "CHANGELOG_REFERENCE": { "file": "docs/CHANGELOG.md", "entry": "007 — v0.11.0", "bullet": "the shell suite is tests/test_tui_shell.py" },
+     "CHANGES": ["CORRECTED INTENT: pytest is not configured in this repo — every proof in this plan ran through the plain-python runners (python tests/test_tui_shell.py, python tests/<suite>.py), the house test convention since 004.",
+                 "STANDING RULE: proofs cite the plain-python runners, not pytest."] } -->
+
 ### T2 — one theme, six stylesheets
 
 - [x] **T2** The house palette becomes the registered `knivves` Theme
@@ -45,6 +52,10 @@ Case: `2026-07-23-standards-realignment` · Design: [design.md](design.md) · Hu
   - **Touches**: `knivves/tui/laws.py` (tier constants, `Reveal`); `knivves/tui/app.tcss` + `pages/*.tcss` (transitions, pseudo-class states across inputs, tables, cards, doors, capsules)
   - **Done when**: `test_tui_shell.py::test_reveal_runs_once_per_open` and `::test_cues_declared_in_css` pass; hover frames captured and reviewed eyes-on
   - **Proof**: `python -m pytest tests/test_tui_shell.py -q` → pass; captured cue frames viewed
+
+<!-- { "CHANGELOG_REFERENCE": { "file": "docs/CHANGELOG.md", "entry": "007 — v0.11.0", "bullet": "The Reveal runner is a sequence, not timers" },
+     "CHANGES": ["SUPERSEDED: the Reveal runner shipped here on a bank of one-shot set_timer calls; the proof pass (T7) found Textual one-shot timers skip a firing they missed (skip=True, no override) and a lagged cascade silently lost its tail — the runner was rebuilt as one sequenced worker (laws.py::Reveal._perform, commit 9d5fa5b).",
+                 "STANDING RULE: never schedule an ordered performance on independent one-shot timers — sequence it; late beats lost."] } -->
 
 ### T4 — the research showcase
 
@@ -75,6 +86,9 @@ Case: `2026-07-23-standards-realignment` · Design: [design.md](design.md) · Hu
   scale draws with the $150 line cut last — nothing else moves on open.
   - **Satisfies**: [REQ-REV-1](design.md#req-rev-1--one-hero-per-page)
   - **Touches**: `knivves/tui/pages/vault.py`, `library.py`, `imports.py`, `compare.py`, `market.py` (reveal hooks); their `.tcss` files (reveal states)
+
+<!-- { "CHANGELOG_REFERENCE": { "file": "docs/CHANGELOG.md", "entry": "007 — v0.11.0", "bullet": "Every page opens" },
+     "CHANGES": ["SUPERSEDED: the compare hero shipped as the instrument warming in (opacity), not 'caliper rails draw' — the rails and jaws already perform their own animation at pair arrival (006's choreography), so the entrance warms and the work animates; drawing rails on an empty bench would dramatize nothing (instruments never lie)."] } -->
   - **Done when**: `test_tui_shell.py::test_one_hero_per_page` passes; all six open-frames captured and reviewed eyes-on; reveals never block input (keypress jumps to settled)
   - **Proof**: `python -m pytest tests/test_tui_shell.py -q` → pass; six open-frames viewed
 
@@ -107,6 +121,9 @@ and closed with this one.>
 - [ ] TA-4 — the imports page's record plate could adopt the research
   page's "carrying" law (exists only while holding a record) — its
   empty frame shows briefly before the demo begins · seen at T4
+
+<!-- { "CHANGELOG_REFERENCE": { "file": "docs/CHANGELOG.md", "entry": "007 — v0.11.0" },
+     "CHANGES": ["ADDED AFTER AUTHORING: harvest triage at checkpoint — TA-1 executed with this close-out (revisions.md closed to docs/closed/revisions.md); TA-2 (shared vault-state provider), TA-3 (clickable hall doors), TA-4 (imports plate carrying law) recorded here as candidates for the next case's design — none blocked this checkpoint."] } -->
 
 ---
 
