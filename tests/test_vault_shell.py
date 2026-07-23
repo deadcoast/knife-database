@@ -226,10 +226,16 @@ async def test_shell() -> None:
         await pilot.pause()
         assert len(app.screen.slots) == 2, f"slots: {len(app.screen.slots)}"
         assert app.screen.slots[0].id == first_id
-        await asyncio.sleep(2.4)  # arrival travel + staged caliper readings
+        await asyncio.sleep(3.2)  # arrival travel + the jaws closing per beam
         await pilot.pause()
-        calipers = str(app.screen.query_one("#calipers-read", Static).render())
-        assert "Δ" in calipers or "incomparable" in calipers, f"calipers: {calipers[:80]}"
+        # the calipers are an instrument now: beams with jaws on a shared
+        # scale for the numeric facts, linkages for the categorical ones
+        from knivves.vault.bench import Calipers
+
+        cal = app.screen.query_one(Calipers)
+        assert cal.measured == tuple(k.id for k in app.screen.slots), "calipers did not read the pair"
+        assert len(cal.beams) == 2 and len(cal.links) == 3, "instrument rows missing"
+        assert all(b.delta is not None or b.missing for b in cal.beams), "a beam is neither read nor honest"
         assert app.screen._seated == [k.id for k in app.screen.slots], "seating not tracked"
         from knivves.vault.masthead import Masthead as MH
         bench_ctx = app.screen.query_one(MH).context

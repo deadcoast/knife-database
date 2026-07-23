@@ -80,7 +80,7 @@ async def capture_bench() -> None:
         await pilot.press("1")
         await pilot.pause()
         await pilot.press("down", "down", "b")
-        await asyncio.sleep(3.0)  # arrival choreography + line-by-line read
+        await asyncio.sleep(4.0)  # arrival choreography + jaws closing per beam
         await pilot.pause()
         _save(app, "bench")
 

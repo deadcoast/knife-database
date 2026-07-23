@@ -55,6 +55,17 @@ The vault researches its own unknowns. Case:
   shows `gaps  N unresearched` in accent on its plate, in every room
   it travels to (Library, Compare Models): the object knows what it
   doesn't know, and door 5 is where it gets filled.
+- **The bench rebuilt as hardware** — the calipers are now the
+  instrument the room is named for: for each numeric fact one drawn
+  **beam** holds both knives' values as jaws on a single shared scale,
+  the jaws travel in from the rail ends and close onto the work
+  (animated), and the Δ engraves in the amber span between the jaw
+  tips. The cheaper price reads pass-green; the longer blade reads
+  bright; a tight lane reads in whole dollars, never clipped digits.
+  Categorical facts are **linkages** — ● joined on a match, ╳ broken
+  on a differ, truncation marked with an honest ellipsis. An open jaw
+  still says "incomparable — missing measurement". A pair already read
+  settles instantly; only a new pair animates.
 - **The forge rebuilt as hardware** — the legal screen is now a
   **seven-bolt lock**, the same bolts the vault door throws: one drawn
   bolt per rule, each retracting into its housing as its rule clears
