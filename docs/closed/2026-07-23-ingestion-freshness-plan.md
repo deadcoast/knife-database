@@ -1,6 +1,6 @@
 <!-- { "CHANGELOG_REFERENCE": { "file": "docs/CHANGELOG.md", "entries": ["004 — v0.8.0 (2026-07-23) — THE INTAKE DOCK", "005 — v0.9.0 (2026-07-23) — PLAIN WORDS ON THE DOORS"] },
-     "STATUS": "ARCHIVED PLAN — executed and shipped in v0.8.0; several deliverables amended through v0.9.0",
-     "NOTE": "Canon below is the plan AS AUTHORED. Post-execution changes are annotated inline at the tasks they supersede. Companion spec: docs/superpowers/specs/2026-07-23-ingestion-freshness-design.md (annotated the same way)." } -->
+     "STATUS": "CLOSED (2026-07-23) — archived to docs/closed/ · executed and shipped in v0.8.0, deliverables amended through v0.9.0",
+     "NOTE": "Canon below is the plan AS AUTHORED. Post-execution changes are annotated inline at the tasks they supersede. Companion spec: docs/closed/2026-07-23-ingestion-freshness-design.md (closed the same way)." } -->
 
 # Ingestion & Freshness Implementation Plan
 

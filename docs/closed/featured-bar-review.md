@@ -1,3 +1,7 @@
+<!-- { "CHANGELOG_REFERENCE": { "file": "docs/CHANGELOG.md", "entries": ["004 — v0.8.0 (2026-07-23) — THE INTAKE DOCK", "005 — v0.9.0 (2026-07-23) — PLAIN WORDS ON THE DOORS"] },
+     "STATUS": "CLOSED (2026-07-23) — archived to docs/closed/",
+     "NOTE": "This review graded v0.7.0 as of 2026-07-21. The canon below is the review AS WRITTEN; drift since is annotated inline. It remains an accurate exhibit of the v0.7.0 state — read the inline notes before citing any claim as current." } -->
+
 # KNIVVES VAULT — Featured-Bar Review (v2)
 
 Date: 2026-07-21 · Scope: the complete application after the escalation
@@ -35,12 +39,17 @@ The house laws held through every escalation because they are code
 the current captures: consistent chrome in all four rooms with live
 state readouts; motion only where meaning is; honest states everywhere;
 guidance in a reserved rail that never chases the mouse.
+<!-- { "CHANGELOG_REFERENCE": { "file": "docs/CHANGELOG.md", "entries": ["005 — v0.9.0 (Rooms renamed)", "005 — v0.9.0 (One palette everywhere)"] },
+     "CHANGES": ["RENAMED AFTER REVIEW: the four rooms now wear normalized names — Library, Import Knives, Compare Models, Market Prices (mechanics/modules unchanged).",
+                 "PALETTE EXTENDED: laws.py gained FRESH (#5fd3bc mint) as the designated freshness color for ★new — amber remains the only *accent*; FRESH joins PASS/FAIL as a semantic color. The classic CLI was also normalized onto the house palette."] } -->
 
 ## Q3 — Creative and unique implementation?
 
 The custom-render inventory now includes: SteelLeaf (door), PriceScale,
 GradientBars, BrushedSteel/Engraving, plus the Plate/transit/calipers
 choreography. All draw their own cells; none are styled stock widgets.
+<!-- { "CHANGELOG_REFERENCE": { "file": "docs/CHANGELOG.md", "entries": ["004 — v0.8.0 (The Reserve)", "005 — v0.9.0 (Import Knives takes ingestion files)"] },
+     "CHANGES": ["INVENTORY GREW AFTER REVIEW: The Reserve (buy-list ladder panel, y on the Library) travels under the motion law; Import Knives runs ingestion .md ledgers down the same station line as URL intake (file_transit); the CLI gained the ingest tree + outcome meter and a home page — all post-v0.7.0."] } -->
 
 ## Q4 — Has it been seen before?
 
@@ -85,3 +94,6 @@ The application now argues its own case on screen. The remaining
 distance to "featured" is entirely release engineering: the repo page
 must carry the motion — a transit GIF, the room exhibits, and a README
 written as the pitch. That is the next and final phase before submission.
+<!-- { "CHANGELOG_REFERENCE": { "file": "docs/CHANGELOG.md", "entries": ["004 — v0.8.0", "005 — v0.9.0"] },
+     "CHANGES": ["SINCE THE VERDICT: two feature releases shipped (ingestion ecosystem; normalized rooms/home page/--prices) and the README was rewritten around them. The release-engineering phase named here has not yet run — the transit GIF and pitch pass remain open work, now against v0.9.0.",
+                 "TEST DEPTH GREW: five plain-python suites (generations, ingest, buylist, cli features, vault shell) incl. the file-intake transit and freshness/reserve scenarios."] } -->

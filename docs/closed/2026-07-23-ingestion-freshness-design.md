@@ -1,5 +1,5 @@
 <!-- { "CHANGELOG_REFERENCE": { "file": "docs/CHANGELOG.md", "entries": ["004 — v0.8.0 (2026-07-23) — THE INTAKE DOCK", "005 — v0.9.0 (2026-07-23) — PLAIN WORDS ON THE DOORS"] },
-     "STATUS": "ARCHIVED SPEC — shipped in v0.8.0, then amended in place through v0.9.0",
+     "STATUS": "CLOSED (2026-07-23) — archived to docs/closed/ · shipped in v0.8.0, amended through v0.9.0",
      "NOTE": "The canon below is the design AS AUTHORED. Post-authoring changes are annotated inline with CHANGELOG_REFERENCE comments at the exact sections they supersede. Do not treat unannotated details as current without checking docs/CHANGELOG.md." } -->
 
 # Ingestion & Freshness — Design
