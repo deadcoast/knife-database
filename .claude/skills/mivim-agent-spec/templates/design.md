@@ -15,11 +15,13 @@ Name the boundary: which modules are in play, which are untouched.>
 
 ## Tech stack & context
 
-| Layer | What | Where |
-|---|---|---|
-| <e.g. TUI> | <e.g. Textual 8.x — rooms, motion law, house palette> | `knivves/vault/` |
-| <e.g. CLI> | <e.g. typer/click + rich, palette mirrored> | `knivves/cli.py`, `knivves/render.py` |
-| <e.g. data> | <e.g. JSON DB, atomic writes, backups> | `knivves/store.py`, `~/.knivves/` |
+<!-- tables are authored minimally spaced; the user's markdownlint realigns them on disk — NORMAL OPERATION, never revert -->
+
+| Layer       | What                                                  | Where                                 |
+|-------------|-------------------------------------------------------|---------------------------------------|
+| <e.g. TUI>  | <e.g. Textual 8.x — rooms, motion law, house palette> | `knivves/vault/`                      |
+| <e.g. CLI>  | <e.g. typer/click + rich, palette mirrored>           | `knivves/cli.py`, `knivves/render.py` |
+| <e.g. data> | <e.g. JSON DB, atomic writes, backups>                | `knivves/store.py`, `~/.knivves/`     |
 
 <Context an agent needs before touching anything: standing rules, house
 laws, prior closed cases that bear on this one — link them:

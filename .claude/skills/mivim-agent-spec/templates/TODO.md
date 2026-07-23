@@ -38,6 +38,15 @@ Case: `<YYYY-MM-DD>-<slug>` · Design: [design.md](design.md) · Hub: [requireme
   - **Done when**: …
   - **Proof**: …
 
+## THINK-ABOUT harvest
+
+<Improvements identified during edits (THINK-ABOUT subworkflow) are noted
+here as TODOs the moment they are seen. They never block the checkpoint;
+they are triaged when it fires — promoted to the next case, or recorded
+and closed with this one.>
+
+- [ ] TA-1 — <improvement · seen while working <task/module>>
+
 ---
 
 <!-- checkpointTriggerFooter -->

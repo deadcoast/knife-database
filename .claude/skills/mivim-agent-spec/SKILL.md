@@ -52,6 +52,36 @@ One REQ = one testable capability bound to named code. If a REQ can't
 name the module it binds or the test that proves it, it is not a
 requirement yet — it is scope, and belongs in design.md prose.
 
+## SUBWORKFLOWS — the contextual angles
+
+Part of the agent-spec, steered from BUS-A. Frame all development and
+processing through these lenses at every stage:
+
+- **J-SPACE** (source: `MIVIM-spec.yaml`, `j_space_thoughts`): at every
+  stage of development, consider what would genuinely impress the
+  developers of Textual. If what you are creating would not impress
+  them, it is not ambitious, refined, or valuable enough — raise the
+  bar before moving on.
+- **THINK-ABOUT**: during your edits, always think about different ways
+  improvements can be identified. When you identify things, **note them
+  as TODO** — into the open case's DS-3 `## THINK-ABOUT harvest`
+  section. Harvest items never block the checkpoint; they are triaged
+  when it fires: promoted into the next case's design, or recorded and
+  closed with this one.
+
+## LINTER COEXISTENCE (tables & formats)
+
+The user's `.markdownlint.json` is worked **with**, never against:
+
+- **Author tables minimally spaced** (saves tokens). The user's linter
+  realigns column spacing on disk afterward — that is **NORMAL
+  OPERATION**, not drift: never revert or "fix" linter realignment, and
+  expect files to read differently than you wrote them.
+- Template placeholder syntax (`<...>`) may flag preference rules like
+  `no-inline-html` — acceptable flags, not violations. They resolve
+  naturally when instantiation replaces the placeholders with real
+  content.
+
 ## HOW TO OPERATE
 
 ### Opening a case
@@ -88,8 +118,10 @@ bottom of TODO.md fires. Execute its protocol exactly:
    source code changes, ensure docs/CHANGELOG.md is up to date, and close
    out the design and requirements docs that accompany this TODO.
 4. Execute that objective: review the diff, complete the CHANGELOG entry,
-   close out DS-1 and DS-2 against it, `git mv` the whole case folder to
-   `docs/closed/<case>/`, and add its row to `docs/closed/INDEX.md`.
+   triage the `THINK-ABOUT harvest` (promote items to the next case or
+   close them with this one), close out DS-1 and DS-2 against it,
+   `git mv` the whole case folder to `docs/closed/<case>/`, and add its
+   row to `docs/closed/INDEX.md`.
 
 A checkpoint is the ONLY sanctioned end of a case. Abandoning a case
 without closing it is an open case with unaccounted drift — flag it.
