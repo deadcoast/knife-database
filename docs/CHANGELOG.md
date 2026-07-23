@@ -77,6 +77,18 @@ steered by `revisions.md`.
   working column's ▲ marker landing inside the rail legend — markers
   and legend never share cells now; the legend stands down while a
   marker is up.
+- **Every page opens** — one hero per page, all through `laws.Reveal`:
+  the hall's plaques surface one by one as the door parts; the library's
+  rack cascades in behind the door (four fast batches, the count
+  climbing, sort and cursor seating last — any hand on the room lands
+  it instantly, keeping the cursor's place); the intake line lights
+  station by station in work order; the compare instrument warms while
+  plates keep their own arrival choreography; the market's price scale
+  draws itself left to right with the avg needle, endpoints, and the
+  $150 cut landing last. Nothing else moves on open — the balance law.
+  The compositor law grew a clause the hard way: **every segment
+  carries a style** — Textual's opacity filter dies on unstyled
+  segments, so every drawn instrument now styles its pads and blanks.
 - The capture pipeline is `tests/capture_pages.py` (exhibits export as
   `page-<name>.svg`, the hall included); the shell suite is
   `tests/test_tui_shell.py` with the boot-lands-in-the-hall flow and

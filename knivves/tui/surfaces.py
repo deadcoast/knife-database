@@ -151,12 +151,12 @@ class Engraving(Widget):
             text = self.spaced[:width]
             return Strip(
                 [Segment(text, Style(color=laws.STEEL_MID, bold=True))]
-            ).adjust_cell_length(width)
+            ).adjust_cell_length(width, Style())
         if y == 1:
             lit = min(len(self.spaced) + 1, width)
             segments = [
                 Segment("╾" + "─" * max(lit - 1, 0), Style(color=laws.EDGE_BRIGHT)),
                 Segment("─" * max(width - lit - 1, 0) + ("╼" if width > lit else ""), Style(color=laws.EDGE)),
             ]
-            return Strip(segments).adjust_cell_length(width)
+            return Strip(segments).adjust_cell_length(width, Style())
         return Strip([])

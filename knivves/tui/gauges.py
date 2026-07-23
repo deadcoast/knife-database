@@ -77,7 +77,7 @@ class GradientBars(Widget):
         segments.append(
             Segment(f" {count:>3}", Style(color=laws.ACCENT if biggest else laws.STEEL_DIM))
         )
-        return Strip(segments).adjust_cell_length(width)
+        return Strip(segments).adjust_cell_length(width, Style())
 
 
 class PriceScale(Widget):
@@ -95,10 +95,26 @@ class PriceScale(Widget):
         super().__init__(**kwargs)
         self._prices: list[float] = []
         self._threshold = 150.0
+        self._reveal_f: float | None = None
 
     def update_scale(self, prices: list[float], threshold: float) -> None:
         self._prices = sorted(prices)
         self._threshold = threshold
+        self.refresh()
+
+    # REVEAL — the scale draws itself left to right; the needle, the
+    # labels, and the $150 cut land only when the drawing is done.
+
+    def begin_reveal(self) -> None:
+        self._reveal_f = 0.0
+        self.refresh()
+
+    def reveal_step(self, fraction: float) -> None:
+        self._reveal_f = min(fraction, 1.0)
+        self.refresh()
+
+    def end_reveal(self) -> None:
+        self._reveal_f = None
         self.refresh()
 
     # ------------------------------------------------------------- helpers
@@ -120,6 +136,12 @@ class PriceScale(Widget):
         avg = sum(self._prices) / len(self._prices)
         x_avg = self._x_of(avg, width)
         x_line = self._x_of(self._threshold, width)
+        drawing = self._reveal_f is not None
+        drawn = width if not drawing else int(width * (self._reveal_f or 0.0))
+
+        if drawing and y in (0, 3):
+            # needle, labels, and the mark land when the drawing is done
+            return Strip([]).adjust_cell_length(width, Style())
 
         if y == 0:
             label = f"avg ${avg:,.0f}"
@@ -135,19 +157,21 @@ class PriceScale(Widget):
                 elif ch != " ":
                     segments.append(Segment(ch, Style(color=laws.STEEL_MID)))
                 else:
-                    segments.append(Segment(" "))
-            return Strip(segments).adjust_cell_length(width)
+                    segments.append(Segment(" ", Style()))
+            return Strip(segments).adjust_cell_length(width, Style())
 
         if y == 1:
             segments = []
             for x in range(width):
-                if x == x_line:
+                if drawing and x >= drawn:
+                    segments.append(Segment(" ", Style()))
+                elif x == x_line and not drawing:
                     segments.append(Segment(" ", Style(bgcolor=laws.ACCENT)))
-                elif x == x_avg:
+                elif x == x_avg and not drawing:
                     segments.append(Segment(" ", Style(bgcolor=laws.STEEL_BRIGHT)))
                 else:
                     segments.append(Segment(" ", Style(bgcolor=_lerp(0.08 + 0.10 * (x / width)))))
-            return Strip(segments).adjust_cell_length(width)
+            return Strip(segments).adjust_cell_length(width, Style())
 
         if y == 2:
             cells = [" "] * width
@@ -155,11 +179,13 @@ class PriceScale(Widget):
                 cells[self._x_of(self._ceiling() * quarter / 4, width)] = "╹"
             segments = []
             for x, ch in enumerate(cells):
-                if x == x_line and ch == " ":
+                if drawing and x >= drawn:
+                    segments.append(Segment(" ", Style()))
+                elif x == x_line and ch == " " and not drawing:
                     segments.append(Segment("╹", Style(color=laws.ACCENT)))
                 else:
                     segments.append(Segment(ch, Style(color=laws.STEEL_DIM)))
-            return Strip(segments).adjust_cell_length(width)
+            return Strip(segments).adjust_cell_length(width, Style())
 
         if y == 3:
             left = "$0"
@@ -176,6 +202,6 @@ class PriceScale(Widget):
             for x, ch in enumerate(row[:width]):
                 in_mark = mark_start <= x < mark_start + len(mark)
                 segments.append(Segment(ch, Style(color=laws.ACCENT if in_mark else laws.STEEL_DIM)))
-            return Strip(segments).adjust_cell_length(width)
+            return Strip(segments).adjust_cell_length(width, Style())
 
         return Strip([])

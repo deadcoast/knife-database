@@ -46,7 +46,7 @@ names (`rack.py`, `forge.py`, `bench.py`, `ledger.py`, `desk.py`).
 | REQ-RES-2 | idle after settle | [§](design.md#req-res-2--idle-after-settle) | [T4](TODO.md#t4--the-research-showcase) | `pages/research.py::UnknownsMap` | `test_tui_shell.py::test_idle_stands_down` | shipped |
 | REQ-RES-3 | the desk is one instrument | [§](design.md#req-res-3--the-desk-is-one-instrument) | [T4](TODO.md#t4--the-research-showcase) | `pages/research.py::CardFile`+`UnknownsMap` | `test_tui_shell.py::test_card_lights_column` + eyes-on | shipped |
 | REQ-TRM-1 | the teletype | [§](design.md#req-trm-1--the-teletype) | [T5](TODO.md#t5--the-teletype) | `surfaces.py::Teletype` | `test_tui_shell.py::test_teletype_paces_and_truncates` | shipped |
-| REQ-REV-1 | one hero per page | [§](design.md#req-rev-1--one-hero-per-page) | [T6](TODO.md#t6--every-page-opens) | all page modules' reveal hooks | `test_tui_shell.py::test_one_hero_per_page` + eyes-on | open |
+| REQ-REV-1 | one hero per page | [§](design.md#req-rev-1--one-hero-per-page) | [T6](TODO.md#t6--every-page-opens) | all page modules' reveal hooks | `test_tui_shell.py::test_one_hero_per_page` + eyes-on | shipped |
 
 ## Tag map
 

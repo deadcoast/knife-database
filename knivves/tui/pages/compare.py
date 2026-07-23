@@ -16,6 +16,7 @@ from __future__ import annotations
 import asyncio
 import re
 from dataclasses import dataclass, field
+from functools import partial
 from typing import TYPE_CHECKING, cast
 
 from rich.segment import Segment
@@ -180,7 +181,7 @@ class Calipers(Widget):
         if width <= 0:
             return Strip([])
         strip = self._render_row(y, width)
-        return strip.adjust_cell_length(width)
+        return strip.adjust_cell_length(width, Style())
 
     def _render_row(self, y: int, width: int) -> Strip:
         beam_rows = len(self.beams) * 3
@@ -224,7 +225,7 @@ class Calipers(Widget):
         if beam.missing:
             note = f"incomparable — missing {beam.label}"
             return Strip([
-                Segment(" " * self.LABEL_W),
+                Segment(" " * self.LABEL_W, Style()),
                 Segment(note, Style(color=laws.STEEL_DIM)),
             ])
         if progress < 1.0:
@@ -250,11 +251,11 @@ class Calipers(Widget):
         pad_l = max(gap // 2, 1)
         pad_r = max(gap - pad_l, 1)
         return Strip([
-            Segment(" " * self.LABEL_W),
+            Segment(" " * self.LABEL_W, Style()),
             Segment(text_a, style_a),
-            Segment(" " * pad_l),
+            Segment(" " * pad_l, Style()),
             Segment(delta, Style(color=laws.ACCENT, bold=True)),
-            Segment(" " * pad_r),
+            Segment(" " * pad_r, Style()),
             Segment(text_b, style_b),
         ])
 
@@ -324,11 +325,27 @@ class CompareScreen(TipsMixin, Screen):
     def knivves(self) -> "KnivvesApp":
         return cast("KnivvesApp", self.app)
 
+    def on_mount(self) -> None:
+        self._reveal = laws.Reveal(self)
+
     def on_screen_resume(self, event: ScreenResume) -> None:
         self.query_one(Masthead).update_stats(self.knivves.knives)
         self.show_room_tip()
         self._drain_queue()
+        self._power_on()
         self.run_worker(self._choreograph(), exclusive=True)
+
+    def on_screen_suspend(self, event) -> None:
+        self._reveal.arm()
+
+    def _power_on(self) -> None:
+        """REVEAL — the instrument warms first; the plates make their own
+        entrances through the arrival choreography."""
+        calipers = self.query_one("#calipers")
+        self._reveal.play([
+            (0.0, partial(calipers.add_class, "cold")),
+            (0.3, partial(calipers.remove_class, "cold")),
+        ])
 
     # ------------------------------------------------------------- intake
 

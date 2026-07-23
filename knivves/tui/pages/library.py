@@ -7,7 +7,8 @@ the record arrives as an object, per the motion law.
 """
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, cast
+from functools import partial
+from typing import TYPE_CHECKING, Callable, cast
 
 from rich.text import Text
 from textual.app import ComposeResult
@@ -126,6 +127,7 @@ class LibraryScreen(TipsMixin, Screen):
         yield Footer()
 
     def on_mount(self) -> None:
+        self._reveal = laws.Reveal(self)
         self.query_one(Masthead).update_stats(self.knives)
         table = self.query_one(DataTable)
         table.cursor_type = "row"
@@ -139,8 +141,33 @@ class LibraryScreen(TipsMixin, Screen):
     def on_screen_resume(self, event: ScreenResume) -> None:
         """Coming back to the rack: reflect anything filed while away."""
         self.query_one(Masthead).update_stats(self.knives)
-        self._fill(self._visible())
+        if not self._reveal.played:
+            self._cascade(self._visible())
+        else:
+            self._fill(self._visible())
+            self._apply_sort()
+
+    def on_screen_suspend(self, event) -> None:
+        self._reveal.arm()
+
+    def _cascade(self, knives: list[KnifeView]) -> None:
+        """REVEAL — the rack surfaces in a fast cascade behind the parting
+        door; the sort re-applies and the cursor seats with the last batch.
+        Any hand on the room settles it instantly."""
+        batches = 4
+        size = max(1, -(-len(knives) // batches)) if knives else 1
+        chunks = [knives[i:i + size] for i in range(0, len(knives), size)] or [[]]
+        steps: list[tuple[float, Callable[[], None]]] = [(0.0, partial(self._fill, list(chunks[0])))]
+        shown = list(chunks[0])
+        for i, chunk in enumerate(chunks[1:], start=1):
+            shown = shown + chunk
+            steps.append((0.35 + i * 0.14, partial(self._fill, list(shown))))
+        steps.append((0.4 + len(chunks) * 0.14, self._seat))
+        self._reveal.play(steps)
+
+    def _seat(self) -> None:
         self._apply_sort()
+        self.query_one(DataTable).focus()
 
     # ------------------------------------------------------------- data
 
@@ -186,10 +213,12 @@ class LibraryScreen(TipsMixin, Screen):
     # ------------------------------------------------------------- events
 
     def on_input_changed(self, event: Input.Changed) -> None:
+        self._reveal.settle()
         self._fill(self._visible())
         self._apply_sort()
 
     def on_data_table_header_selected(self, event: DataTable.HeaderSelected) -> None:
+        self._reveal.settle()
         column = event.column_key.value or ""
         self.sort_reverse = not self.sort_reverse if column == self.sort_column else False
         previous, self.sort_column = self.sort_column, column
@@ -237,7 +266,16 @@ class LibraryScreen(TipsMixin, Screen):
             return None
         return table.coordinate_to_cell_key(Coordinate(table.cursor_row, 0)).row_key.value
 
+    def _settle_keeping_cursor(self) -> None:
+        """Land a mid-reveal cascade without losing the hand's place."""
+        table = self.query_one(DataTable)
+        cursor = table.cursor_row
+        self._reveal.settle()
+        if table.row_count:
+            table.move_cursor(row=min(max(cursor, 0), table.row_count - 1))
+
     def action_classify(self, classification: str) -> None:
+        self._settle_keeping_cursor()
         target = self._judgment_target()
         if target is None:
             return
@@ -261,6 +299,7 @@ class LibraryScreen(TipsMixin, Screen):
 
     def action_send_bench(self) -> None:
         """Send the highlighted knife's plate to the bench and follow it."""
+        self._settle_keeping_cursor()
         table = self.query_one(DataTable)
         if not table.row_count:
             return

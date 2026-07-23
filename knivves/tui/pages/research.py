@@ -222,16 +222,16 @@ class UnknownsMap(Widget):
         if width <= 0:
             return Strip([])
         if not self._columns:
-            return Strip([]).adjust_cell_length(width)
+            return Strip([]).adjust_cell_length(width, Style())
         if y == 0:
-            return self._gauge_line(width).adjust_cell_length(width)
+            return self._gauge_line(width).adjust_cell_length(width, Style())
         if y == 1:
-            return Strip([]).adjust_cell_length(width)
+            return Strip([]).adjust_cell_length(width, Style())
         if 2 <= y <= 8:
-            return self._field_line(width, y - 2).adjust_cell_length(width)
+            return self._field_line(width, y - 2).adjust_cell_length(width, Style())
         if y == 9:
-            return self._rail_line(width).adjust_cell_length(width)
-        return Strip([]).adjust_cell_length(width)
+            return self._rail_line(width).adjust_cell_length(width, Style())
+        return Strip([]).adjust_cell_length(width, Style())
 
     def _gauge_line(self, width: int) -> Strip:
         total = self.records
@@ -268,7 +268,7 @@ class UnknownsMap(Widget):
             knife_id, missing = self._columns[col]
             if col >= energized:
                 # not yet energized — the power-on draws the field in
-                segments.append(Segment(" "))
+                segments.append(Segment(" ", Style()))
                 continue
             spotlit = knife_id == self._spotlight
             if (knife_id, row) in self._wake:

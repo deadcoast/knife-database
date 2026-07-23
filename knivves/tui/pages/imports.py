@@ -15,7 +15,8 @@ from __future__ import annotations
 
 import asyncio
 from datetime import date
-from typing import TYPE_CHECKING, cast
+from functools import partial
+from typing import TYPE_CHECKING, Callable, cast
 
 from rich.segment import Segment
 from rich.style import Style
@@ -147,13 +148,13 @@ class GateBank(Widget):
         if width <= 0:
             return Strip([])
         if not self._rules:
-            return Strip([]).adjust_cell_length(width)
+            return Strip([]).adjust_cell_length(width, Style())
         if y == 0:
-            return self._status_line(width).adjust_cell_length(width)
+            return self._status_line(width).adjust_cell_length(width, Style())
         index = y - 1
         if index >= len(self._rules):
-            return Strip([]).adjust_cell_length(width)
-        return self._bolt_line(width, index).adjust_cell_length(width)
+            return Strip([]).adjust_cell_length(width, Style())
+        return self._bolt_line(width, index).adjust_cell_length(width, Style())
 
     def _status_line(self, width: int) -> Strip:
         if self._slammed is not None:
@@ -237,7 +238,7 @@ class TapeReader(Widget):
     # --------------------------------------------------------------- render
 
     def render_line(self, y: int) -> Strip:
-        return self._render_row(y).adjust_cell_length(max(self.size.width, 0))
+        return self._render_row(y).adjust_cell_length(max(self.size.width, 0), Style())
 
     def _render_row(self, y: int) -> Strip:
         width = self.size.width
@@ -353,12 +354,34 @@ class ImportsScreen(TipsMixin, Screen):
         return cast("KnivvesApp", self.app)
 
     def on_mount(self) -> None:
+        self._reveal = laws.Reveal(self)
         self.query_one(Masthead).update_stats(self.knivves.knives)
         self.query_one(GateBank).set_rules(self._rules())
         self.show_room_tip()
         self.run_worker(self.demo_transit(), exclusive=True)
 
+    def on_screen_resume(self, event) -> None:
+        self._power_on()
+
+    def on_screen_suspend(self, event) -> None:
+        self._reveal.arm()
+
+    def _power_on(self) -> None:
+        """REVEAL — the intake line lights station by station, in work order,
+        while the material makes its way to the first machine."""
+        stations = [self.query_one(f"#{sid}") for sid in ("st-extract", "st-legal", "st-vault")]
+
+        def cold() -> None:
+            for station in stations:
+                station.add_class("cold")
+
+        steps: list[tuple[float, Callable[[], None]]] = [(0.0, cold)]
+        for i, station in enumerate(stations):
+            steps.append((0.25 + i * laws.REVEAL_STAGGER * 3, partial(station.remove_class, "cold")))
+        self._reveal.play(steps)
+
     def action_replay(self) -> None:
+        self._reveal.settle()
         self.run_worker(self.demo_transit(), exclusive=True)
 
     def on_input_submitted(self, event: Input.Submitted) -> None:

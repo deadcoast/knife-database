@@ -69,7 +69,7 @@ Case: `2026-07-23-standards-realignment` · Design: [design.md](design.md) · Hu
 
 ### T6 — every page opens
 
-- [ ] **T6** Each remaining page performs its one named hero reveal
+- [x] **T6** Each remaining page performs its one named hero reveal
   through `laws.Reveal` — hall fixtures stagger, library rows cascade,
   import stations engrave in sequence, caliper rails draw, the price
   scale draws with the $150 line cut last — nothing else moves on open.
@@ -101,6 +101,12 @@ and closed with this one.>
 - [ ] TA-2 — the hall (REQ-ARC-2) and the CLI home page render the same
   vault state; consider one shared stats provider in the backend so the
   two front doors can never disagree · seen while designing REQ-ARC-2
+- [ ] TA-3 — the hall's door rows could be clickable (click = the key),
+  with a hover cue per row — the plaque already lifts as one surface ·
+  seen while building the hall's reveal (T6)
+- [ ] TA-4 — the imports page's record plate could adopt the research
+  page's "carrying" law (exists only while holding a record) — its
+  empty frame shows briefly before the demo begins · seen at T4
 
 ---
 

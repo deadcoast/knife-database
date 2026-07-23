@@ -23,3 +23,14 @@ CompareScreen {
     border: round $edge;
     padding: 1 2;
 }
+
+/* REVEAL — the instrument warms; plates arrive under the motion law */
+#calipers,
+#calipers * {
+    transition: opacity 350ms $cue-easing;
+}
+
+#calipers.cold,
+#calipers.cold * {
+    opacity: 0%;
+}

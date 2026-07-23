@@ -170,9 +170,18 @@ async def test_shell() -> None:
         await pilot.pause()
         assert not capsule.has_class("open"), "escape did not close capsule"
         # a tip with no extended content shows no ❯ mark
+        # the door lives ~0.8s and press() blocks until the reveal's
+        # transitions go idle — watch for the door concurrently
+        async def _see_door() -> bool:
+            for _ in range(24):
+                if app.screen.query(VaultDoor):
+                    return True
+                await asyncio.sleep(0.05)
+            return False
+
+        watcher = asyncio.ensure_future(_see_door())
         await pilot.press("2")
-        await pilot.pause()
-        assert app.screen.query(VaultDoor), "room door missing on arrival"
+        assert await watcher, "room door missing on arrival"
         await asyncio.sleep(1.1)
         await pilot.pause()
         forge_rail = app.screen.query_one(TipRail)
@@ -310,10 +319,18 @@ async def test_shell() -> None:
             assert filed_rec["user_tags"] == ["affordable"], "under-$150 auto tag missing"
             assert len(app.knives) == n + 1
 
-            # rack reflects the filing on return
+            # rack reflects the filing on return (cascade settles first)
             await pilot.press("1")
+            await asyncio.sleep(1.1)
             await pilot.pause()
-            assert app.screen.query_one(DataTable).row_count == n + 1
+            rows_now = app.screen.query_one(DataTable).row_count
+            for _ in range(20):  # the cascade's last batch may still be landing
+                if rows_now == n + 1:
+                    break
+                await asyncio.sleep(0.1)
+                await pilot.pause()
+                rows_now = app.screen.query_one(DataTable).row_count
+            assert rows_now == n + 1, f"rows {rows_now} vs {n + 1}"
 
             # duplicate URL is refused without refetching
             await pilot.press("2")
@@ -936,6 +953,34 @@ async def test_teletype_paces_and_truncates() -> None:
     print("PASS: teletype — paced print · cursor on the head · honest truncation")
 
 
+async def test_one_hero_per_page() -> None:
+    """REQ-REV-1: every page implements exactly one hero reveal through
+    laws.Reveal — it plays on entrance and re-arms when the page is left."""
+    from knivves.tui import laws
+
+    tmp_db = Path(tempfile.mkdtemp()) / "knives.json"
+    shutil.copyfile(REPO / "knivves" / "data" / "knives.json", tmp_db)
+    app = KnivvesApp(db_path=tmp_db)
+    async with app.run_test(size=(170, 45)) as pilot:
+        await asyncio.sleep(2.3)
+        await pilot.pause()
+        assert isinstance(app.screen._reveal, laws.Reveal), "the hall has no reveal"
+        assert app.screen._reveal.played, "the hall did not perform on boot"
+        for key in ("1", "2", "3", "4", "5"):
+            await pilot.press(key)
+            await asyncio.sleep(1.4)
+            await pilot.pause()
+            reveal = getattr(app.screen, "_reveal", None)
+            assert isinstance(reveal, laws.Reveal), f"page {key} has no reveal"
+            assert reveal.played, f"page {key} did not perform on entrance"
+        # leaving a page re-arms its performance
+        research = app.screen
+        await pilot.press("0")
+        await pilot.pause()
+        assert not research._reveal.played, "suspend did not re-arm the reveal"
+    print("PASS: one hero per page — every door opens with its single performance")
+
+
 if __name__ == "__main__":
     test_pages_map_to_doors()
     test_pages_own_stylesheets()
@@ -947,6 +992,7 @@ if __name__ == "__main__":
     asyncio.run(test_idle_stands_down())
     asyncio.run(test_card_lights_column())
     asyncio.run(test_teletype_paces_and_truncates())
+    asyncio.run(test_one_hero_per_page())
     asyncio.run(test_shell())
     asyncio.run(test_freshness_and_reserve())
     asyncio.run(test_file_import_transit())

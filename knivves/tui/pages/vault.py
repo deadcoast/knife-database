@@ -8,7 +8,8 @@ derived from the same backend reads.
 """
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, cast
+from functools import partial
+from typing import TYPE_CHECKING, Callable, cast
 
 from rich.text import Text
 from textual.app import ComposeResult
@@ -90,12 +91,30 @@ class VaultScreen(TipsMixin, Screen):
         yield Footer()
 
     def on_mount(self) -> None:
+        self._reveal = laws.Reveal(self)
         self._surface()
         self.show_room_tip()
 
     def on_screen_resume(self, event: ScreenResume) -> None:
         """Back in the hall: reflect anything filed or judged while away."""
         self._surface()
+        self._power_on()
+
+    def on_screen_suspend(self, event) -> None:
+        self._reveal.arm()
+
+    def _power_on(self) -> None:
+        """REVEAL — the hall's plaques surface one by one as the door parts."""
+        fixtures = list(self.query(".hall-fixture"))
+
+        def cold() -> None:
+            for fixture in fixtures:
+                fixture.add_class("cold")
+
+        steps: list[tuple[float, Callable[[], None]]] = [(0.0, cold)]
+        for i, fixture in enumerate(fixtures):
+            steps.append((0.25 + i * laws.REVEAL_STAGGER * 3, partial(fixture.remove_class, "cold")))
+        self._reveal.play(steps)
 
     def action_dismiss_tip(self) -> None:
         self.dismiss_capsule()

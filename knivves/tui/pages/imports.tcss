@@ -29,6 +29,17 @@ ImportsScreen {
     padding: 1 2;
 }
 
+/* REVEAL — the line lights station by station */
+ImportsScreen .station,
+ImportsScreen .station * {
+    transition: opacity 350ms $cue-easing;
+}
+
+ImportsScreen .station.cold,
+ImportsScreen .station.cold * {
+    opacity: 0%;
+}
+
 #forge-plate {
     layer: plate;
     offset: 4 26;

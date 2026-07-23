@@ -11,7 +11,8 @@ from __future__ import annotations
 
 import asyncio
 from datetime import date
-from typing import TYPE_CHECKING, cast
+from functools import partial
+from typing import TYPE_CHECKING, Callable, cast
 
 from rich.text import Text
 from textual.app import ComposeResult
@@ -92,6 +93,9 @@ class MarketScreen(TipsMixin, Screen):
     def knivves(self) -> "KnivvesApp":
         return cast("KnivvesApp", self.app)
 
+    def on_mount(self) -> None:
+        self._reveal = laws.Reveal(self)
+
     def on_screen_resume(self, event: ScreenResume) -> None:
         self.query_one(Masthead).update_stats(self.knivves.knives)
         self.show_room_tip()
@@ -100,6 +104,21 @@ class MarketScreen(TipsMixin, Screen):
         if not self._surveying:
             self._idle_movers()
             self.query_one(Masthead).set_context(self._survey_status())
+        self._power_on()
+
+    def on_screen_suspend(self, event) -> None:
+        self._reveal.arm()
+
+    def _power_on(self) -> None:
+        """REVEAL — the price scale draws itself left to right; the avg
+        needle, the endpoints, and the $150 line cut in last."""
+        scale = self.query_one(PriceScale)
+        steps: list[tuple[float, Callable[[], None]]] = [(0.0, scale.begin_reveal)]
+        n = 10
+        for i in range(1, n + 1):
+            steps.append((0.25 + 0.55 * (i / n) ** 0.5, partial(scale.reveal_step, i / n)))
+        steps.append((laws.REVEAL_SETTLE, scale.end_reveal))
+        self._reveal.play(steps)
 
     def _survey_status(self) -> str:
         """Idle readout: when the market was last read, if ever."""
@@ -170,6 +189,7 @@ class MarketScreen(TipsMixin, Screen):
 
     def action_survey(self) -> None:
         if not self._surveying:
+            self._reveal.settle()
             self.run_worker(self.survey(), exclusive=True)
 
     def action_cancel_survey(self) -> None:
