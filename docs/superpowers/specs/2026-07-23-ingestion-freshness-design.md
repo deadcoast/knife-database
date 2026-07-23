@@ -1,3 +1,7 @@
+<!-- { "CHANGELOG_REFERENCE": { "file": "docs/CHANGELOG.md", "entries": ["004 — v0.8.0 (2026-07-23) — THE INTAKE DOCK", "005 — v0.9.0 (2026-07-23) — PLAIN WORDS ON THE DOORS"] },
+     "STATUS": "ARCHIVED SPEC — shipped in v0.8.0, then amended in place through v0.9.0",
+     "NOTE": "The canon below is the design AS AUTHORED. Post-authoring changes are annotated inline with CHANGELOG_REFERENCE comments at the exact sections they supersede. Do not treat unannotated details as current without checking docs/CHANGELOG.md." } -->
+
 # Ingestion & Freshness — Design
 
 Date: 2026-07-23 · Target release: v0.8.0 · Source of requirements: `TODO.md` (user-authored spec)
@@ -17,6 +21,9 @@ priority display on the vault and list pages.
 | **SLI** | Section Line Indicator — a line of exactly 31 `-` characters. |
 | **SectionID** | The application's formal word for a knife's group identifiers (filters, grouping). Replaces `tag` in UI language; `tag` remains a quality-of-life alias. Storage stays in the existing `user_tags` field for full backward compatibility. |
 | **NEW** | Freshness state. A knife is NEW while `generation - added_generation < keep_generations`. |
+<!-- { "CHANGELOG_REFERENCE": { "file": "docs/CHANGELOG.md", "entry": "005 — v0.9.0", "bullet": "Freshness ages by batches" },
+     "CHANGES": ["SUPERSEDED RULE: is_new is now `0 <= generation - added_generation <= keep_generations` — the batch SURVIVES the update that seals it (the original `<` rule aged out the very batch the first update tagged; fixed in commit 57441fb).",
+                 "An update that files nothing HOLDS the generation line (advance returns None); `knivves update --force` ages the window deliberately (commit 31aec84)."] } -->
 | **Generation** | A counter advanced by `knivves update`. Additions stamp the open generation. |
 | **BuyList** | Ordered acquisition priority list, sourced from a BuyList section in an ingestion file. |
 
@@ -53,6 +60,8 @@ Grammar rules (each violation is a *diagnostic warning*, never a parse abort):
 - A `//` line *inside* a section body (not SLI-fenced) is an **inline
   annotation**: it names a source and/or attaches `*Tag*` markers to the
   entries that follow it, until the section ends.
+<!-- { "CHANGELOG_REFERENCE": { "file": "docs/CHANGELOG.md", "entry": "004 — v0.8.0", "bullet": "knivves add <file.md> — markdown ingestion" },
+     "CHANGES": ["ADDED AFTER AUTHORING: bullet-form annotations `- // Name *Tag*` are also recognized, and scope ONLY to their indented child entries (a sibling at the same or shallower indent closes the annotation). Bare `//` annotations keep the rest-of-section scope described above. Added in commit f4940f8 for the user's evolved ledger format."] } -->
 - Fenced code blocks (```` ``` ````) are example material and are skipped
   entirely (with a note).
 
@@ -104,6 +113,9 @@ apply_plan(plan, db)  -> IngestReport(counts, repairs, diagnostics)
 
 `knivves add file.md --dry-run` runs parse+plan and renders the report
 without writing.
+<!-- { "CHANGELOG_REFERENCE": { "file": "docs/CHANGELOG.md", "entries": ["005 — v0.9.0 (Import Knives takes ingestion files)", "005 — v0.9.0 (One palette everywhere)"] },
+     "CHANGES": ["ADDED AFTER AUTHORING: the Vault's Import Knives room (formerly The Forge Line) also runs ingestion .md paths through its station line — sections at EXTRACT, plan at LEGAL SCREEN, batch files at VAULT (forge.file_transit).",
+                 "The CLI report described here was later redesigned: rule header + SectionID tree + proportional outcome meter + ★ filed result panel (commit 6c9d8fa)."] } -->
 
 ## 2. Freshness: `update`, `new`, three-generation cache
 
@@ -124,6 +136,10 @@ DB top-level block:
 - `knivves list -new/--new` filters NEW. NEW renders as an accent chip in CLI
   tables, the interactive browser, and the Vault rack; the masthead and
   summary cards count it.
+<!-- { "CHANGELOG_REFERENCE": { "file": "docs/CHANGELOG.md", "entries": ["005 — v0.9.0 (Freshness ages by batches)", "005 — v0.9.0 (--survey → --prices)", "005 — v0.9.0 (One palette everywhere)"] },
+     "CHANGES": ["SUPERSEDED: the is_new rule is `0 <= gen - added <= keep` — the sealed batch survives its own update; empty updates hold the line; `update --force` ages the window.",
+                 "SUPERSEDED: the `--survey` flag is now `--prices` / `-prices`; progress reads 'reading market prices'; the read is concurrent (6 workers) with a live progress bar; first prices are counted in the summary, never streamed; observations go through ledger.observe (price_history) and retag_affordable — parity with the Market Prices room.",
+                 "SUPERSEDED: NEW renders as ★new in the FRESH mint color (laws.FRESH #5fd3bc), not the amber accent — placed at the END of Brand (new maker, via models.new_brands) and the START of Model (new blade), aligned in the gutter."] } -->
 
 ## 3. SectionID command surface
 
@@ -150,6 +166,8 @@ DB top-level block:
 - `knivves list` shows a compact BuyList window above the table when the
   list is non-empty; the Vault rack gains **The Reserve** — a panel toggled
   with `y`, styled by the house laws, listing priorities with NEW chips.
+<!-- { "CHANGELOG_REFERENCE": { "file": "docs/CHANGELOG.md", "entry": "005 — v0.9.0", "bullet": "Rooms renamed" },
+     "CHANGES": ["RENAMED AFTER AUTHORING: the room is now 'Library' (The Rack), alongside 'Import Knives' (The Forge Line), 'Compare Models' (The Bench), 'Market Prices' (The Ledger). The Reserve keeps its name and its `y` toggle; screen ids and modules (rack.py etc.) are unchanged."] } -->
 
 ## 5. Error handling
 
@@ -177,3 +195,6 @@ Plain-python runners (repo convention, no pytest):
 
 The real additions file (`additions/2026-07-23-knife-additions.md`) is
 ingested only after all features pass — it is the acceptance test.
+<!-- { "CHANGELOG_REFERENCE": { "file": "docs/CHANGELOG.md", "entry": "004/005 context — see also memory: knivves-ingestion-semantics" },
+     "CHANGES": ["SUPERSEDED / CORRECTED INTENT: the agent-side 'acceptance ingestion' described here was WRONG and was reverted (both DB copies reset to the pre-ingestion 166; commit f21a3cf). The knives were reserved so the USER runs the true first ingestion with their own file — which they did, successfully, with their ledger (now `import-knivves.md`). The `additions/*.md` files remain in the repo as format documentation and fixtures only.",
+                 "STANDING RULE: ingestion .md files are one-shot intake batches, never 'master ledgers' or sync sources; the JSON database is the source of truth after intake. Data a user reserves for testing must never be pre-consumed by an agent."] } -->
