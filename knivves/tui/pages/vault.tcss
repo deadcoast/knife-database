@@ -22,13 +22,23 @@ VaultScreen {
 }
 
 /* REVEAL — the plaques surface one by one behind the parting door */
-.hall-fixture > * {
+.hall-fixture * {
     transition: opacity 350ms $cue-easing;
 }
 
 .hall-fixture.cold,
-.hall-fixture.cold > * {
+.hall-fixture.cold * {
     opacity: 0%;
+}
+
+/* CUE — a door under the hand lifts; the click is the key */
+.door-row {
+    height: auto;
+    transition: background $cue-duration $cue-easing, opacity 350ms $cue-easing;
+}
+
+.door-row:hover {
+    background: $surface-high;
 }
 
 /* CUE — the plaque under the hand lifts, its edge catches the light;

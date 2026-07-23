@@ -314,9 +314,9 @@ def main(ctx: typer.Context) -> None:
 
 def home() -> None:
     """The welcome page: vault state, next acquisitions, and every door."""
-    db = load_database()
-    knives = knife_views(db)
-    console.print(home_page(db, knives, buylist_mod.buylist_views(db), generations.meta(db)))
+    from .state import vault_state
+
+    console.print(home_page(vault_state(load_database())))
 
 
 @app.command()

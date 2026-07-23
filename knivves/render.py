@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import json
 from collections import Counter, defaultdict
-from typing import Any, Iterable
+from typing import TYPE_CHECKING, Any, Iterable
 
 from rich import box
 from rich.console import Console, Group
@@ -13,6 +13,9 @@ from rich.table import Table
 from rich.text import Text
 
 from .models import KnifeView
+
+if TYPE_CHECKING:
+    from .state import VaultState
 
 console = Console()
 
@@ -637,11 +640,13 @@ def new_status_panel(meta_block: dict[str, Any], new_total: int) -> Panel:
     return Panel("\n".join(lines), title="NEW cache", border_style="#d7a455", box=box.ROUNDED)
 
 
-def home_page(db: dict[str, Any], knives: list[KnifeView], buylist: list[tuple[int, Any]], meta_block: dict[str, Any]) -> Group:
+def home_page(state: "VaultState") -> Group:
     """The welcome page — what bare `knivves` opens onto.
 
     One glance answers: what's in the vault, what's fresh, what's next to
-    buy, and where every door is.
+    buy, and where every door is. Every number is spoken, not derived:
+    the ``VaultState`` provider is the single reading both front doors
+    share (the TUI entry hall renders the same one).
     """
     from rich.rule import Rule
 
@@ -649,40 +654,37 @@ def home_page(db: dict[str, Any], knives: list[KnifeView], buylist: list[tuple[i
     brand.append("  KNIVVES", style=f"bold {STEEL_BRIGHT}")
     brand.append("  ╱╱  ", style=STEEL_DIM)
     brand.append("VAULT", style=f"bold {STEEL_BRIGHT}")
-    brand.append(f"   v{escape(str(db.get('version') or '?'))}", style=STEEL_DIM)
+    brand.append(f"   v{escape(state.version)}", style=STEEL_DIM)
     brand.append("\n  folding knife research · Canadian retail · local JSON", style=STEEL_DIM)
 
-    fresh = sum(1 for k in knives if k.is_new)
-    approved = sum(1 for k in knives if k.classification == "approved")
-    prices = [k.price for k in knives if k.price is not None]
-    avg = sum(prices) / len(prices) if prices else 0.0
     stats = Text("  ")
-    stats.append(f"{len(knives)}", style=f"bold {STEEL_BRIGHT}")
+    stats.append(f"{state.blades}", style=f"bold {STEEL_BRIGHT}")
     stats.append(" knives", style=STEEL_MID)
     stats.append("   ·   ", style=STEEL_DIM)
-    stats.append(f"{fresh} ★new", style=f"bold {FRESH}" if fresh else STEEL_DIM)
+    stats.append(f"{state.fresh} ★new", style=f"bold {FRESH}" if state.fresh else STEEL_DIM)
     stats.append("   ·   ", style=STEEL_DIM)
-    stats.append(f"{approved} approved", style=PASS)
+    stats.append(f"{state.approved} approved", style=PASS)
     stats.append("   ·   ", style=STEEL_DIM)
-    from .research import audit_database
-
-    unresearched = audit_database(db).with_gaps
-    stats.append(f"{unresearched} unresearched", style=f"bold {ACCENT}" if unresearched else STEEL_DIM)
+    stats.append(
+        f"{state.unresearched} unresearched",
+        style=f"bold {ACCENT}" if state.unresearched else STEEL_DIM,
+    )
     stats.append("   ·   ", style=STEEL_DIM)
-    stats.append(f"avg ${avg:,.0f} CAD", style=ACCENT)
-    gen = meta_block.get("generation")
-    keep = meta_block.get("keep_generations")
-    stats.append(f"   ·   generation {gen} · keeps {keep}", style=STEEL_DIM)
+    stats.append(f"avg ${state.average_cad:,.0f} CAD", style=ACCENT)
+    stats.append(
+        f"   ·   generation {state.generation} · keeps {state.keep_generations}",
+        style=STEEL_DIM,
+    )
 
     blocks: list[Any] = [Text(), brand, Text(), stats, Text()]
 
-    if buylist:
+    if state.ladder:
         ladder = Text("  next acquisitions\n", style=f"bold {ACCENT}")
-        for priority, knife in buylist[:3]:
+        for priority, knife in state.ladder[:3]:
             ladder.append(f"  {priority:>2}. ", style=f"bold {ACCENT}")
             ladder.append(f"{knife.display_name[:52]:<53}", style=STEEL_BRIGHT)
             ladder.append(f"{knife.price_label:>12}\n", style=STEEL_DIM)
-        more = len(buylist) - 3
+        more = len(state.ladder) - 3
         if more > 0:
             ladder.append(f"      +{more} deeper — knivves buylist", style=STEEL_DIM)
         blocks.extend([ladder, Text()])

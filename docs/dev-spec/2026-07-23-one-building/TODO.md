@@ -16,7 +16,7 @@ Case: `2026-07-23-one-building` · Design: [design.md](design.md) · Hub: [requi
 
 ### T1 — the provider
 
-- [ ] **T1** One reading of the vault's state: `knivves/state.py` with
+- [x] **T1** One reading of the vault's state: `knivves/state.py` with
   the frozen `VaultState` and `vault_state(db)`; the CLI welcome page
   and the TUI hall both render from it, text unchanged.
   - **Satisfies**: [REQ-STA-1](design.md#req-sta-1--the-vault-state-provider)
@@ -26,7 +26,7 @@ Case: `2026-07-23-one-building` · Design: [design.md](design.md) · Hub: [requi
 
 ### T2 — the doors under the hand
 
-- [ ] **T2** The hall's doors become `DoorRow` fixtures: click opens the
+- [x] **T2** The hall's doors become `DoorRow` fixtures: click opens the
   page (the click is the key), hover lifts the row through the cue law;
   the plaque's cold-fade covers the rows.
   - **Satisfies**: [REQ-HAL-1](design.md#req-hal-1--door-rows-as-hardware)
@@ -36,7 +36,7 @@ Case: `2026-07-23-one-building` · Design: [design.md](design.md) · Hub: [requi
 
 ### T3 — the carrying law + the proof pass
 
-- [ ] **T3** The imports plate obeys the carrying law (hidden until a
+- [x] **T3** The imports plate obeys the carrying law (hidden until a
   transit's first `begin`), and the case is proven: full suites green,
   exhibits refreshed and reviewed eyes-on, CHANGELOG entry 008,
   version 0.12.0.

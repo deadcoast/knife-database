@@ -28,9 +28,9 @@ file first.**
 
 | REQ | Capability | Design | Tasks | Binds | Proof | Status |
 |---|---|---|---|---|---|---|
-| REQ-STA-1 | one vault-state provider | [§](design.md#req-sta-1--the-vault-state-provider) | [T1](TODO.md#t1--the-provider) | `state.py::vault_state` · `render.py::home_page` · `pages/vault.py` | `test_state.py` + `test_tui_shell.py::test_two_front_doors_agree` | open |
-| REQ-HAL-1 | door rows as hardware | [§](design.md#req-hal-1--door-rows-as-hardware) | [T2](TODO.md#t2--the-doors-under-the-hand) | `pages/vault.py::DoorRow` · `vault.tcss` | `test_tui_shell.py::test_hall_doors_answer_the_hand` + eyes-on | open |
-| REQ-IMP-1 | the plate carries or vanishes | [§](design.md#req-imp-1--the-plate-carries-or-vanishes) | [T3](TODO.md#t3--the-carrying-law--the-proof-pass) | `pages/imports.py` transits · `imports.tcss` | `test_tui_shell.py::test_imports_plate_carries` + eyes-on | open |
+| REQ-STA-1 | one vault-state provider | [§](design.md#req-sta-1--the-vault-state-provider) | [T1](TODO.md#t1--the-provider) | `state.py::vault_state` · `render.py::home_page` · `pages/vault.py` | `test_state.py` + `test_tui_shell.py::test_two_front_doors_agree` | shipped |
+| REQ-HAL-1 | door rows as hardware | [§](design.md#req-hal-1--door-rows-as-hardware) | [T2](TODO.md#t2--the-doors-under-the-hand) | `pages/vault.py::DoorRow` · `vault.tcss` | `test_tui_shell.py::test_hall_doors_answer_the_hand` + eyes-on | shipped |
+| REQ-IMP-1 | the plate carries or vanishes | [§](design.md#req-imp-1--the-plate-carries-or-vanishes) | [T3](TODO.md#t3--the-carrying-law--the-proof-pass) | `pages/imports.py` transits · `imports.tcss` | `test_tui_shell.py::test_imports_plate_carries` + eyes-on | shipped |
 
 ## Tag map
 

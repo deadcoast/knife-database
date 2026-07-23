@@ -43,4 +43,10 @@ ImportsScreen .station.cold * {
 #forge-plate {
     layer: plate;
     offset: 4 26;
+    /* an empty plate is not hardware — it appears when it carries a record */
+    display: none;
+}
+
+#forge-plate.carrying {
+    display: block;
 }

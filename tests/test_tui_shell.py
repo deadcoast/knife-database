@@ -78,6 +78,11 @@ async def test_shell() -> None:
         await asyncio.sleep(1.1)
         await pilot.pause()
         assert isinstance(app.screen, LibraryScreen), f"screen: {app.screen}"
+        for _ in range(30):  # the cascade lands late under load, never less
+            if app.screen._reveal.settled:
+                break
+            await asyncio.sleep(0.1)
+            await pilot.pause()
         table = app.screen.query_one(DataTable)
         n = len(app.knives)
         assert table.row_count == n > 0, f"{table.row_count} vs {n}"
@@ -785,7 +790,7 @@ async def test_entry_hall_doors() -> None:
         state = str(app.screen.query_one("#hall-state-body", Static).render())
         assert "BLADES" in state and "AVG" in state, f"state plaque: {state[:80]}"
         assert "unresearched" in state, f"gaps line missing: {state[:120]}"
-        doors = str(app.screen.query_one("#hall-doors-body", Static).render())
+        doors = " ".join(str(row.render()) for row in app.screen.query(".door-row"))
         for name in ("LIBRARY", "IMPORT KNIVES", "COMPARE MODELS", "MARKET PRICES", "RESEARCH"):
             assert name in doors, f"door missing from the hall: {name}"
         reserve = str(app.screen.query_one("#hall-reserve-body", Static).render())
@@ -953,6 +958,92 @@ async def test_teletype_paces_and_truncates() -> None:
     print("PASS: teletype — paced print · cursor on the head · honest truncation")
 
 
+async def test_two_front_doors_agree() -> None:
+    """REQ-STA-1 (one-building): the hall's plaques and the CLI welcome
+    page speak the same VaultState — one reading, two doors."""
+    from rich.console import Console
+
+    from knivves.render import home_page
+    from knivves.state import vault_state
+
+    tmp_db = Path(tempfile.mkdtemp()) / "knives.json"
+    shutil.copyfile(REPO / "knivves" / "data" / "knives.json", tmp_db)
+    app = KnivvesApp(db_path=tmp_db)
+    async with app.run_test(size=(170, 45)) as pilot:
+        await asyncio.sleep(2.3)
+        await pilot.pause()
+        state = vault_state(app.db, app.knives)
+        plaque = str(app.screen.query_one("#hall-state-body", Static).render())
+        assert str(state.blades) in plaque, f"blades missing: {plaque[:80]}"
+        assert f"{state.unresearched} unresearched" in plaque, plaque[:120]
+        assert f"${state.average_cad:,.0f} CAD" in plaque, plaque[:120]
+        assert f"gen {state.generation}" in plaque, plaque[:120]
+    import io
+
+    console = Console(width=140, record=True, file=io.StringIO())
+    console.print(home_page(state))
+    cli_door = console.export_text()
+    assert f"{state.blades}" in cli_door and "knives" in cli_door
+    assert f"{state.unresearched} unresearched" in cli_door
+    assert f"avg ${state.average_cad:,.0f} CAD" in cli_door
+    print("PASS: two front doors, one reading — hall and welcome page agree")
+
+
+async def test_hall_doors_answer_the_hand() -> None:
+    """REQ-HAL-1 (one-building): a door row is hardware — the click is
+    the key, and the hover cue lives in the page's own stylesheet."""
+    from knivves.tui.pages.market import MarketScreen
+    from knivves.tui.pages.vault import DoorRow, VaultScreen
+
+    tmp_db = Path(tempfile.mkdtemp()) / "knives.json"
+    shutil.copyfile(REPO / "knivves" / "data" / "knives.json", tmp_db)
+    app = KnivvesApp(db_path=tmp_db)
+    async with app.run_test(size=(170, 45)) as pilot:
+        await asyncio.sleep(2.3)
+        await pilot.pause()
+        rows = list(app.screen.query(DoorRow))
+        assert len(rows) == 6, f"door rows: {len(rows)}"
+        await pilot.click("#door-market")
+        await asyncio.sleep(1.1)
+        await pilot.pause()
+        assert isinstance(app.screen, MarketScreen), f"click did not open: {app.screen}"
+        await pilot.press("0")
+        await asyncio.sleep(1.1)
+        await pilot.pause()
+        assert isinstance(app.screen, VaultScreen)
+    css = (REPO / "knivves" / "tui" / "pages" / "vault.tcss").read_text(encoding="utf-8")
+    assert ".door-row:hover" in css, "no hover cue on the door rows"
+    print("PASS: the doors answer the hand — click opens, hover cue declared")
+
+
+async def test_imports_plate_carries() -> None:
+    """REQ-IMP-1 (one-building): on the intake line a record plate
+    exists only while it carries a record — the same law the research
+    desk obeys."""
+    from knivves.tui.pages.imports import ImportsScreen
+
+    tmp_db = Path(tempfile.mkdtemp()) / "knives.json"
+    shutil.copyfile(REPO / "knivves" / "data" / "knives.json", tmp_db)
+    app = KnivvesApp(db_path=tmp_db)
+    async with app.run_test(size=(170, 45)) as pilot:
+        await asyncio.sleep(2.3)
+        await pilot.pause()
+        await pilot.press("2")
+        await asyncio.sleep(10.0)  # the demo transit runs and settles
+        await pilot.pause()
+        assert isinstance(app.screen, ImportsScreen), f"screen: {app.screen}"
+        plate = app.screen.query_one("#forge-plate")
+        assert plate.has_class("carrying") and plate.display, "the demo's record never showed"
+        # the law itself: no carry, no plate — the CSS binding, not a habit
+        plate.remove_class("carrying")
+        await pilot.pause()
+        assert not plate.display, "an empty plate still displayed — the law does not hold"
+        plate.add_class("carrying")
+        await pilot.pause()
+        assert plate.display
+    print("PASS: the intake plate carries or vanishes — the law holds in every room")
+
+
 async def test_one_hero_per_page() -> None:
     """REQ-REV-1: every page implements exactly one hero reveal through
     laws.Reveal — it plays on entrance and re-arms when the page is left."""
@@ -992,6 +1083,9 @@ if __name__ == "__main__":
     asyncio.run(test_idle_stands_down())
     asyncio.run(test_card_lights_column())
     asyncio.run(test_teletype_paces_and_truncates())
+    asyncio.run(test_two_front_doors_agree())
+    asyncio.run(test_hall_doors_answer_the_hand())
+    asyncio.run(test_imports_plate_carries())
     asyncio.run(test_one_hero_per_page())
     asyncio.run(test_shell())
     asyncio.run(test_freshness_and_reserve())

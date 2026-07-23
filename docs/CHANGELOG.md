@@ -1,5 +1,32 @@
 # CHANGELOG
 
+## 008 — v0.12.0 (2026-07-23) — ONE BUILDING
+
+The fixtures agree with each other. Case:
+`docs/dev-spec/2026-07-23-one-building`, opened from the re-alignment's
+triaged harvest (TA-2/3/4).
+
+- **One reading of the vault's state** — `knivves/state.py`: the frozen
+  `VaultState` and `vault_state(db)` are now the single derivation of
+  blades / ★new / approved / unresearched / avg CAD / generation window
+  / the acquisition ladder. The CLI welcome page (`render.home_page`
+  now takes the state, text unchanged) and the TUI entry hall both
+  speak it; neither computes. The two front doors cannot disagree —
+  proven by `test_two_front_doors_agree`, which reads the hall's
+  plaques and the rendered welcome page against the same reading.
+- **The doors answer the hand** — each hall door is a `DoorRow`
+  fixture: click it and its page opens (the click fires the same
+  `action_room` the number key does), hover it and the row lifts
+  through the cue law in `vault.tcss`. The plaque's reveal fade covers
+  the rows.
+- **The carrying law reaches the intake line** — `#forge-plate` is
+  hidden until a transit's first `begin`; all three transits (live,
+  file, demo) carry. A record plate now exists in every room only
+  while it holds a record — the law the research desk set in 007.
+- Suite grows to eighteen proofs (`test_state.py` new; agree/doors/
+  carrying added to the shell suite); exhibits refreshed and reviewed
+  eyes-on; version stamps bumped to 0.12.0 (pyproject, bundled DB).
+
 ## 007 — v0.11.0 (2026-07-23) — THE STANDARDS RE-ALIGNMENT
 
 The source stops lying about the building. Case:

@@ -19,10 +19,8 @@ from textual.events import ScreenResume
 from textual.screen import Screen
 from textual.widgets import Footer, Static
 
-from ... import buylist as buylist_mod
-from ... import generations
 from ...models import KnifeView
-from ...research import audit_database
+from ...state import VaultState, vault_state
 
 if TYPE_CHECKING:
     from ..app import KnivvesApp
@@ -31,13 +29,28 @@ from ..masthead import Masthead
 from ..tips import ROOM_KEY, Tip, TipCapsule, TipRail, TipsMixin
 
 DOORS = [
-    ("0", "VAULT", "the entry hall — you are here"),
-    ("1", "LIBRARY", "browse, sort, classify, send"),
-    ("2", "IMPORT KNIVES", "intake a listing URL or an ingestion .md"),
-    ("3", "COMPARE MODELS", "two blades measured on the bench"),
-    ("4", "MARKET PRICES", "valuation, the $150 line, price reads"),
-    ("5", "RESEARCH", "fill the unknowns from their listings"),
+    ("0", "vault", "VAULT", "the entry hall — you are here"),
+    ("1", "library", "LIBRARY", "browse, sort, classify, send"),
+    ("2", "imports", "IMPORT KNIVES", "intake a listing URL or an ingestion .md"),
+    ("3", "compare", "COMPARE MODELS", "two blades measured on the bench"),
+    ("4", "market", "MARKET PRICES", "valuation, the $150 line, price reads"),
+    ("5", "research", "RESEARCH", "fill the unknowns from their listings"),
 ]
+
+
+class DoorRow(Static):
+    """One door of the building, as hardware: the click IS the key —
+    it fires the same ``action_room`` the number binding does — and the
+    row lifts under the hand through the cue law in vault.tcss."""
+
+    def __init__(self, page: str, **kwargs) -> None:
+        super().__init__(**kwargs)
+        self.page = page
+
+    def on_click(self, event) -> None:
+        opener = getattr(self.app, "action_room", None)
+        if callable(opener):
+            opener(self.page)
 
 
 class VaultScreen(TipsMixin, Screen):
@@ -82,7 +95,11 @@ class VaultScreen(TipsMixin, Screen):
                 yield Static("", classes="hall-fixture-body", id="hall-state-body")
             with Vertical(id="hall-doors", classes="hall-fixture"):
                 yield Static("THE DOORS", classes="hall-fixture-name")
-                yield Static("", classes="hall-fixture-body", id="hall-doors-body")
+                with Vertical(id="hall-doors-body", classes="hall-fixture-body"):
+                    for key, page, name, describes in DOORS:
+                        row = DoorRow(page, id=f"door-{page}", classes="door-row")
+                        row.update(self._door_text(key, name, describes))
+                        yield row
             with Vertical(id="hall-reserve", classes="hall-fixture"):
                 yield Static("NEXT ACQUISITIONS", classes="hall-fixture-name")
                 yield Static("", classes="hall-fixture-body", id="hall-reserve-body")
@@ -122,59 +139,51 @@ class VaultScreen(TipsMixin, Screen):
     # ------------------------------------------------------------- plaques
 
     def _surface(self) -> None:
+        state = vault_state(self.knivves.db, self.knives)
         self.query_one(Masthead).update_stats(self.knives)
-        self.query_one("#hall-state-body", Static).update(self._state_text())
-        self.query_one("#hall-doors-body", Static).update(self._doors_text())
-        self.query_one("#hall-reserve-body", Static).update(self._reserve_text())
+        self.query_one("#hall-state-body", Static).update(self._state_text(state))
+        self.query_one("#hall-reserve-body", Static).update(self._reserve_text(state))
 
-    def _state_text(self) -> Text:
-        knives = self.knives
-        db = self.knivves.db
-        fresh = sum(1 for k in knives if k.is_new)
-        approved = sum(1 for k in knives if k.classification == "approved")
-        prices = [k.price for k in knives if k.price is not None]
-        avg = sum(prices) / len(prices) if prices else 0.0
-        unresearched = audit_database(db).with_gaps
-        meta = generations.meta(db)
+    def _state_text(self, state: VaultState) -> Text:
+        # every number is spoken, not derived — the provider is the
+        # single reading both front doors share
         text = Text()
-        text.append_text(laws.field("blades", str(len(knives))))
+        text.append_text(laws.field("blades", str(state.blades)))
         text.append("\n")
-        text.append_text(laws.field("★new", str(fresh), laws.FRESH if fresh else laws.STEEL_DIM))
+        text.append_text(laws.field("★new", str(state.fresh), laws.FRESH if state.fresh else laws.STEEL_DIM))
         text.append("\n")
-        text.append_text(laws.field("approved", str(approved), laws.CLASS_COLORS["approved"]))
+        text.append_text(laws.field("approved", str(state.approved), laws.CLASS_COLORS["approved"]))
         text.append("\n")
         text.append_text(
             laws.field(
                 "gaps",
-                f"{unresearched} unresearched",
-                laws.ACCENT if unresearched else laws.STEEL_DIM,
+                f"{state.unresearched} unresearched",
+                laws.ACCENT if state.unresearched else laws.STEEL_DIM,
             )
         )
         text.append("\n")
-        text.append_text(laws.field("avg", f"${avg:,.0f} CAD", laws.ACCENT))
+        text.append_text(laws.field("avg", f"${state.average_cad:,.0f} CAD", laws.ACCENT))
         text.append("\n")
         text.append_text(
             laws.field(
                 "window",
-                f"gen {meta.get('generation')} · keeps {meta.get('keep_generations')}",
+                f"gen {state.generation} · keeps {state.keep_generations}",
                 laws.STEEL_DIM,
             )
         )
         return text
 
-    def _doors_text(self) -> Text:
+    def _door_text(self, key: str, name: str, describes: str) -> Text:
         text = Text()
-        for key, name, describes in DOORS:
-            text.append(f" {key} ", style=f"bold {laws.ACCENT}")
-            text.append("▸ ", style=laws.STEEL_DIM)
-            text.append(f"{name:<15}", style=f"bold {laws.STEEL_BRIGHT}")
-            text.append(f"{describes}\n", style=laws.STEEL_MID)
+        text.append(f" {key} ", style=f"bold {laws.ACCENT}")
+        text.append("▸ ", style=laws.STEEL_DIM)
+        text.append(f"{name:<15}", style=f"bold {laws.STEEL_BRIGHT}")
+        text.append(describes, style=laws.STEEL_MID)
         return text
 
-    def _reserve_text(self) -> Text:
-        db = self.knivves.db
-        views = buylist_mod.buylist_views(db)
-        totals = buylist_mod.cumulative(views)
+    def _reserve_text(self, state: VaultState) -> Text:
+        views = state.ladder
+        totals = state.ladder_totals
         text = Text()
         if not views:
             text.append("the reserve is empty\n\n", style=laws.STEEL_MID)

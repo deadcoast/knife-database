@@ -518,6 +518,7 @@ class ImportsScreen(TipsMixin, Screen):
         plate, extract_log, gates, filed = self._stations()
         self._reset_line(plate)
         self._line_state("line: extract ▸")
+        plate.add_class("carrying")
         plate.begin("INCOMING", url.split("//")[-1][:42])
 
         duplicate = self._already_filed(url)
@@ -585,6 +586,7 @@ class ImportsScreen(TipsMixin, Screen):
         self._reset_line(plate)
         self._line_state("line: reading ledger ▸")
         path = _Path(raw_path).expanduser()
+        plate.add_class("carrying")
         plate.begin("INGESTION LEDGER", path.name[:42])
 
         if not path.exists():
@@ -677,6 +679,7 @@ class ImportsScreen(TipsMixin, Screen):
         plate, extract_log, gates, filed = self._stations()
         self._reset_line(plate)
         self._line_state("line: demo ▸")
+        plate.add_class("carrying")
         plate.begin("INCOMING", "")
         extract_log.update(Text("reading listing…", style=laws.STEEL_DIM))
         await asyncio.sleep(0.6)
