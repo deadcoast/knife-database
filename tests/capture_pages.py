@@ -108,7 +108,7 @@ async def capture_market() -> None:
         await asyncio.sleep(BOOT_DOOR)
         await pilot.pause()
         await pilot.press("4")
-        await asyncio.sleep(1.2)
+        await asyncio.sleep(2.0)  # the scale's reveal settles at ~1.1s — never export mid-draw
         await pilot.pause()
         _save(app, "market")
 
