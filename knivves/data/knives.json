@@ -5937,7 +5937,7 @@
       "added_generation": 1,
       "date_added": "2026-07-23",
       "new": true,
-      "buy_priority": 27
+      "buy_priority": 28
     },
     {
       "id": "vosteed-psyop-button-lock-flipper-folding-knife-a2204",
@@ -8248,6 +8248,1461 @@
       "added_generation": 1,
       "date_added": "2026-07-23",
       "new": true
+    },
+    {
+      "id": "kansept-wasp-front-flipper-button-lock-knife-t2144f3",
+      "brand": "Kansept",
+      "model": "Wasp Front Flipper Button Lock Knife (T2144F3)",
+      "user_classification": null,
+      "user_tags": [
+        "buy_list"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "154CM",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Kansept-Knives/Kansept-Wasp-Front-Flipper-Button-Lock-Knife-154CM-Rose-Gold-G10-Black-T2144F3",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[Kansept Wasp Front Flipper Button Lock Knife, 154CM Rose Gold, G10 Black, T2144F3](https://www.bladescanada.com/Kansept-Knives/Kansept-Wasp-Front-Flipper-Button-Lock-Knife-154CM-Rose-Gold-G10-Black-T2144F3)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true,
+      "buy_priority": 27
+    },
+    {
+      "id": "kansept-korvid-v-crossbar-lock-folding-knife-d2-rose-gold-g10-black-te2030v1",
+      "brand": "Kansept",
+      "model": "Korvid V Crossbar Lock Folding Knife D2 Rose Gold G10 Black (TE2030V1)",
+      "user_classification": null,
+      "user_tags": [
+        "buy_list"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "D2",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Kansept-Knives/Kansept-Korvid-V-Crossbar-Lock-Folding-Knife-D2-Rose-Gold-G10-Black-TE2030V1",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[TODO:GET-KNIFE-DATA](https://www.bladescanada.com/Kansept-Knives/Kansept-Korvid-V-Crossbar-Lock-Folding-Knife-D2-Rose-Gold-G10-Black-TE2030V1)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true,
+      "buy_priority": 29
+    },
+    {
+      "id": "kansept-mini-korvid-flipper-frame-lock-knife-k3030h1",
+      "brand": "Kansept",
+      "model": "Mini Korvid Flipper Frame Lock Knife (K3030H1)",
+      "user_classification": null,
+      "user_tags": [
+        "buy_list"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "Damascus",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Kansept-Knives/Kansept-Mini-Korvid-Flipper-Frame-Lock-Knife-Damascus-Titanium-Black-K3030H1",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[Kansept Mini Korvid Flipper Frame Lock Knife, Damascus, Titanium Black, K3030H1](https://www.bladescanada.com/Kansept-Knives/Kansept-Mini-Korvid-Flipper-Frame-Lock-Knife-Damascus-Titanium-Black-K3030H1)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true,
+      "buy_priority": 30
+    },
+    {
+      "id": "kansept-fenrir-fixed-blade-knife-g3034a5",
+      "brand": "Kansept",
+      "model": "Fenrir Fixed Blade Knife (G3034A5)",
+      "user_classification": null,
+      "user_tags": [
+        "fixed_blades"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "D2",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Kansept-Knives/Kansept-Fenrir-Fixed-Blade-Knife-D2-Rose-Gold-Micarta-Purple-Kydex-Sheath-G3034A5",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[Kansept Fenrir Fixed Blade Knife, D2 Rose Gold, Micarta Purple, Kydex Sheath, G3034A5](https://www.bladescanada.com/Kansept-Knives/Kansept-Fenrir-Fixed-Blade-Knife-D2-Rose-Gold-Micarta-Purple-Kydex-Sheath-G3034A5)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "kansept-fenrir-frame-lock-folding-knife-k1034c1",
+      "brand": "Kansept",
+      "model": "Fenrir Frame Lock Folding Knife (K1034C1)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "S35VN",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Kansept-Knives/Kansept-Fenrir-Frame-Lock-Folding-Knife-S35VN-Satin-Beadblasted-Titanium-Milled-Water-Ripple-K1034C1",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[Kansept Fenrir Frame Lock Folding Knife, S35VN Satin, Beadblasted Titanium Milled Water Ripple, K1034C1](https://www.bladescanada.com/Kansept-Knives/Kansept-Fenrir-Frame-Lock-Folding-Knife-S35VN-Satin-Beadblasted-Titanium-Milled-Water-Ripple-K1034C1)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "kansept-nahual-crossbar-lock-folding-knife-k2125v5",
+      "brand": "Kansept",
+      "model": "Nahual Crossbar Lock Folding Knife (K2125V5)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "Magnacut",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Kansept-Knives/Kansept-Nahual-Crossbar-Lock-Folding-Knife-Magnacut-SW-Titanium-CF-Shred-K2125V5",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[Kansept Nahual Crossbar Lock Folding Knife, Magnacut SW, Titanium/CF Shred, K2125V5](https://www.bladescanada.com/Kansept-Knives/Kansept-Nahual-Crossbar-Lock-Folding-Knife-Magnacut-SW-Titanium-CF-Shred-K2125V5)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "kansept-nettle-front-flipper-folding-knife-t1103a3",
+      "brand": "Kansept",
+      "model": "Nettle Front Flipper Folding Knife (T1103A3)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "154CM",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Kansept-Knives/Kansept-Nettle-Front-Flipper-Folding-Knife-154CM-Rose-Gold-Aluminum-White-T1103A3",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[Kansept Nettle Front Flipper Folding Knife, 154CM Rose Gold, Aluminum White, T1103A3](https://www.bladescanada.com/Kansept-Knives/Kansept-Nettle-Front-Flipper-Folding-Knife-154CM-Rose-Gold-Aluminum-White-T1103A3)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "kansept-orion-flipper-frame-lock-knife-k1089a4",
+      "brand": "Kansept",
+      "model": "Orion Flipper Frame Lock Knife (K1089A4)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "S35VN",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Kansept-Knives/Kansept-Orion-Flipper-Frame-Lock-Knife-S35VN-Blackwash-Titanium-Black-K1089A4",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[Kansept Orion Flipper Frame Lock Knife, S35VN Blackwash, Titanium Black, K1089A4](https://www.bladescanada.com/Kansept-Knives/Kansept-Orion-Flipper-Frame-Lock-Knife-S35VN-Blackwash-Titanium-Black-K1089A4)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "kansept-orion-flipper-frame-lock-knife-k1089a5",
+      "brand": "Kansept",
+      "model": "Orion Flipper Frame Lock Knife (K1089A5)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "S35VN",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Kansept-Knives/Kansept-Orion-Flipper-Frame-Lock-Knife-S35VN-Blackwash-Titanium-Bronze-Anodized-K1089A5",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[Kansept Orion Flipper Frame Lock Knife, S35VN Blackwash, Titanium Bronze Anodized, K1089A5](https://www.bladescanada.com/Kansept-Knives/Kansept-Orion-Flipper-Frame-Lock-Knife-S35VN-Blackwash-Titanium-Bronze-Anodized-K1089A5)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "kansept-pretatout-flipper-framelock-knife-k1032a1",
+      "brand": "Kansept",
+      "model": "Pretatout Flipper Framelock Knife (K1032A1)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "S35VN",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Kansept-Knives/Kansept-Pretatout-Flipper-Framelock-Knife-CPM-S35VN-Black-Clip-Point-Titanium-Black-K1032A1",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[Kansept Pretatout Flipper Framelock Knife, CPM S35VN Black Clip Point, Titanium Black, K1032A1](https://www.bladescanada.com/Kansept-Knives/Kansept-Pretatout-Flipper-Framelock-Knife-CPM-S35VN-Black-Clip-Point-Titanium-Black-K1032A1)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "kansept-gilgamesh-flipper-frame-lock-knife-s35vn-stonewash-carbon-fiber-titanium-k1128a1",
+      "brand": "Kansept",
+      "model": "Gilgamesh Flipper Frame Lock Knife S35VN Stonewash Carbon Fiber Titanium (K1128A1)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "S35VN",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Kansept-Knives/Kansept-Gilgamesh-Flipper-Frame-Lock-Knife-S35VN-Stonewash-Carbon-Fiber-Titanium-K1128A1",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[TODO:GET-KNIFE-DATA](https://www.bladescanada.com/Kansept-Knives/Kansept-Gilgamesh-Flipper-Frame-Lock-Knife-S35VN-Stonewash-Carbon-Fiber-Titanium-K1128A1)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "kansept-hazard-bali-lock-folding-knife-s35vn-stonewash-titanium-stonewash-k1104h1",
+      "brand": "Kansept",
+      "model": "Hazard Bali Lock Folding Knife S35VN Stonewash Titanium Stonewash (K1104H1)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "S35VN",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Kansept-Knives/Kansept-Hazard-Bali-Lock-Folding-Knife-S35VN-Stonewash-Titanium-Stonewash-K1104H1",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[TODO:GET-KNIFE-DATA](https://www.bladescanada.com/Kansept-Knives/Kansept-Hazard-Bali-Lock-Folding-Knife-S35VN-Stonewash-Titanium-Stonewash-K1104H1)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "kansept-hellx-flipper-folding-knife-d2-steel-copper-handle-t1008c1",
+      "brand": "Kansept",
+      "model": "Hellx Flipper Folding Knife D2 Steel Copper Handle (T1008C1)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "D2",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Kansept-Knives/Kansept-Hellx-Flipper-Folding-Knife-D2-Steel-Copper-Handle-T1008C1",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[TODO:GET-KNIFE-DATA](https://www.bladescanada.com/Kansept-Knives/Kansept-Hellx-Flipper-Folding-Knife-D2-Steel-Copper-Handle-T1008C1)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "kansept-main-street-folding-knife-cpm-154cm-copper-handle-t1015b5",
+      "brand": "Kansept",
+      "model": "Main Street Folding Knife Cpm 154CM Copper Handle (T1015B5)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "154CM",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Kansept-Knives/Kansept-Main-Street-Folding-Knife-CPM-154CM-Copper-Handle-T1015B5",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[TODO:GET-KNIFE-DATA](https://www.bladescanada.com/Kansept-Knives/Kansept-Main-Street-Folding-Knife-CPM-154CM-Copper-Handle-T1015B5)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "kansept-mini-korvid-flipper-folding-knife-154cm-black-micarta-red-t3030m2",
+      "brand": "Kansept",
+      "model": "Mini Korvid Flipper Folding Knife 154CM Black Micarta Red (T3030M2)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "154CM",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Kansept-Knives/Kansept-Mini-Korvid-Flipper-Folding-Knife-154CM-Black-Micarta-Red-T3030M2",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[TODO:GET-KNIFE-DATA](https://www.bladescanada.com/Kansept-Knives/Kansept-Mini-Korvid-Flipper-Folding-Knife-154CM-Black-Micarta-Red-T3030M2)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "kansept-shard-flipper-framelock-knife-cpm-s35vn-titanium-textured-k1006-treelines",
+      "brand": "Kansept",
+      "model": "Shard Flipper Framelock Knife Cpm S35VN Titanium Textured K1006 Treelines",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "S35VN",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Kansept-Knives/Kansept-Shard-Flipper-Framelock-Knife-CPM-S35VN-Titanium-Textured-K1006-Treelines",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[TODO:GET-KNIFE-DATA](https://www.bladescanada.com/Kansept-Knives/Kansept-Shard-Flipper-Framelock-Knife-CPM-S35VN-Titanium-Textured-K1006-Treelines)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "kansept-shard-flipper-framelock-knife-cpm-s35vn-titanium-bronze-woodgrain-k1006-verticle",
+      "brand": "Kansept",
+      "model": "Shard Flipper Framelock Knife Cpm S35VN Titanium Bronze Woodgrain K1006 Verticle",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "S35VN",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Kansept-Knives/Kansept-Shard-Flipper-Framelock-Knife-CPM-S35VN-Titanium-Bronze-Woodgrain-K1006-Verticle",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[TODO:GET-KNIFE-DATA](https://www.bladescanada.com/Kansept-Knives/Kansept-Shard-Flipper-Framelock-Knife-CPM-S35VN-Titanium-Bronze-Woodgrain-K1006-Verticle)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "kansept-caveman-frame-lock-folding-knife-cpm20cv-blackwash-titanium-black-k1110a2",
+      "brand": "Kansept",
+      "model": "Caveman Frame Lock Folding Knife CPM20CV Blackwash Titanium Black (K1110A2)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": null,
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Kansept-Knives/Kansept-Caveman-Frame-Lock-Folding-Knife-CPM20CV-Blackwash-Titanium-Black-K1110A2",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[TODO:GET-KNIFE-DATA](https://www.bladescanada.com/Kansept-Knives/Kansept-Caveman-Frame-Lock-Folding-Knife-CPM20CV-Blackwash-Titanium-Black-K1110A2)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "kansept-little-main-street-folding-knife-stonewash-154cm-micarta-brown-t2015a5",
+      "brand": "Kansept",
+      "model": "Little Main Street Folding Knife Stonewash 154CM Micarta Brown (T2015A5)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "154CM",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Kansept-Knives/Kansept-Little-Main-Street-Folding-Knife-Stonewash-154CM-Micarta-Brown-T2015A5",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[TODO:GET-KNIFE-DATA](https://www.bladescanada.com/Kansept-Knives/Kansept-Little-Main-Street-Folding-Knife-Stonewash-154CM-Micarta-Brown-T2015A5)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "kansept-chimera-frame-lock-folding-knife-s35vn-stonewashed-titanium-stonewashed-k1096a2",
+      "brand": "Kansept",
+      "model": "Chimera Frame Lock Folding Knife S35VN Stonewashed Titanium Stonewashed (K1096A2)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "S35VN",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Kansept-Knives/Kansept-Chimera-Frame-Lock-Folding-Knife-S35VN-Stonewashed-Titanium-Stonewashed-K1096A2",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[TODO:GET-KNIFE-DATA](https://www.bladescanada.com/Kansept-Knives/Kansept-Chimera-Frame-Lock-Folding-Knife-S35VN-Stonewashed-Titanium-Stonewashed-K1096A2)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "kansept-dreadnaught-frame-lock-folding-knife-s35vn-stonewash-titanium-stonewash-k1082a1",
+      "brand": "Kansept",
+      "model": "Dreadnaught Frame Lock Folding Knife S35VN Stonewash Titanium Stonewash (K1082A1)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "S35VN",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Kansept-Knives/Kansept-Dreadnaught-Frame-Lock-Folding-Knife-S35VN-Stonewash-Titanium-Stonewash-K1082A1",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[TODO:GET-KNIFE-DATA](https://www.bladescanada.com/Kansept-Knives/Kansept-Dreadnaught-Frame-Lock-Folding-Knife-S35VN-Stonewash-Titanium-Stonewash-K1082A1)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "kansept-front-flipper-folding-knife-154cm-g10-black-t1012t1",
+      "brand": "Kansept",
+      "model": "Front Flipper Folding Knife 154CM G10 Black (T1012T1)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "154CM",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Kansept-Knives/Kansept-Front-Flipper-Folding-Knife-154CM-G10-Black-T1012T1",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[TODO:GET-KNIFE-DATA](https://www.bladescanada.com/Kansept-Knives/Kansept-Front-Flipper-Folding-Knife-154CM-G10-Black-T1012T1)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "kansept-hazard-bali-lock-folding-knife-s35vn-blackwash-titanium-black-k1104h3",
+      "brand": "Kansept",
+      "model": "Hazard Bali Lock Folding Knife S35VN Blackwash Titanium Black (K1104H3)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "S35VN",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Kansept-Knives/Kansept-Hazard-Bali-Lock-Folding-Knife-S35VN-Blackwash-Titanium-Black-K1104H3",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[TODO:GET-KNIFE-DATA](https://www.bladescanada.com/Kansept-Knives/Kansept-Hazard-Bali-Lock-Folding-Knife-S35VN-Blackwash-Titanium-Black-K1104H3)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "kansept-hira-flipper-frame-lock-folding-knife-s35vn-gray-titanium-gray-k1090a4",
+      "brand": "Kansept",
+      "model": "Hira Flipper Frame Lock Folding Knife S35VN Gray Titanium Gray (K1090A4)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "S35VN",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Kansept-Knives/Kansept-Hira-Flipper-Frame-Lock-Folding-Knife-S35VN-Gray-Titanium-Gray-K1090A4",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[TODO:GET-KNIFE-DATA](https://www.bladescanada.com/Kansept-Knives/Kansept-Hira-Flipper-Frame-Lock-Folding-Knife-S35VN-Gray-Titanium-Gray-K1090A4)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "kansept-hira-flipper-frame-lock-folding-knife-s35vn-satin-titanium-gray-k1090a3",
+      "brand": "Kansept",
+      "model": "Hira Flipper Frame Lock Folding Knife S35VN Satin Titanium Gray (K1090A3)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "S35VN",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Kansept-Knives/Kansept-Hira-Flipper-Frame-Lock-Folding-Knife-S35VN-Satin-Titanium-Gray-K1090A3",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[TODO:GET-KNIFE-DATA](https://www.bladescanada.com/Kansept-Knives/Kansept-Hira-Flipper-Frame-Lock-Folding-Knife-S35VN-Satin-Titanium-Gray-K1090A3)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "kansept-loki-frame-lock-folding-knife-s35vn-blackwash-titanium-bronze-k1058b4",
+      "brand": "Kansept",
+      "model": "Loki Frame Lock Folding Knife S35VN Blackwash Titanium Bronze (K1058B4)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "S35VN",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Kansept-Knives/Kansept-Loki-Frame-Lock-Folding-Knife-S35VN-Blackwash-Titanium-Bronze-K1058B4",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[TODO:GET-KNIFE-DATA](https://www.bladescanada.com/Kansept-Knives/Kansept-Loki-Frame-Lock-Folding-Knife-S35VN-Blackwash-Titanium-Bronze-K1058B4)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "kansept-loki-frame-lock-folding-knife-damascus-titanium-bronze-k1058b5",
+      "brand": "Kansept",
+      "model": "Loki Frame Lock Folding Knife Damascus Titanium Bronze (K1058B5)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "Damascus",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Kansept-Knives/Kansept-Loki-Frame-Lock-Folding-Knife-Damascus-Titanium-Bronze-K1058B5",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[TODO:GET-KNIFE-DATA](https://www.bladescanada.com/Kansept-Knives/Kansept-Loki-Frame-Lock-Folding-Knife-Damascus-Titanium-Bronze-K1058B5)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "kansept-odd-21-frame-lock-folding-knife-cpm20cv-mirror-titanium-black-k1077a6",
+      "brand": "Kansept",
+      "model": "Odd 21 Frame Lock Folding Knife CPM20CV Mirror Titanium Black (K1077A6)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": null,
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Kansept-Knives/Kansept-ODD-21-Frame-Lock-Folding-Knife-CPM20CV-Mirror-Titanium-Black-K1077A6",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[TODO:GET-KNIFE-DATA](https://www.bladescanada.com/Kansept-Knives/Kansept-ODD-21-Frame-Lock-Folding-Knife-CPM20CV-Mirror-Titanium-Black-K1077A6)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "kansept-odd-21-flipper-frame-lock-folding-knife-cpm20cv-mirror-titanium-grey-k1077a7",
+      "brand": "Kansept",
+      "model": "Odd 21 Flipper Frame Lock Folding Knife CPM20CV Mirror Titanium Grey (K1077A7)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": null,
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Kansept-Knives/Kansept-ODD-21-Flipper-Frame-Lock-Folding-Knife-CPM20CV-Mirror-Titanium-Grey-K1077A7",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[TODO:GET-KNIFE-DATA](https://www.bladescanada.com/Kansept-Knives/Kansept-ODD-21-Flipper-Frame-Lock-Folding-Knife-CPM20CV-Mirror-Titanium-Grey-K1077A7)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "kansept-orlok-flipper-folding-knife-s35vn-stonewashed-titanium-stonewashed-k2111a2",
+      "brand": "Kansept",
+      "model": "Orlok Flipper Folding Knife S35VN Stonewashed Titanium Stonewashed (K2111A2)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "S35VN",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Kansept-Knives/Kansept-Orlok-Flipper-Folding-Knife-S35VN-Stonewashed-Titanium-Stonewashed-K2111A2",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[TODO:GET-KNIFE-DATA](https://www.bladescanada.com/Kansept-Knives/Kansept-Orlok-Flipper-Folding-Knife-S35VN-Stonewashed-Titanium-Stonewashed-K2111A2)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "kansept-quasar-crossbar-lock-folding-knife-cpm20cv-stonewash-titanium-black-k1099v2",
+      "brand": "Kansept",
+      "model": "Quasar Crossbar Lock Folding Knife CPM20CV Stonewash Titanium Black (K1099V2)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": null,
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Kansept-Knives/Kansept-Quasar-Crossbar-Lock-Folding-Knife-CPM20CV-Stonewash-Titanium-Black-K1099V2",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[TODO:GET-KNIFE-DATA](https://www.bladescanada.com/Kansept-Knives/Kansept-Quasar-Crossbar-Lock-Folding-Knife-CPM20CV-Stonewash-Titanium-Black-K1099V2)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "kansept-ktc-3-flipper-framelock-knife-cpm-s35vn-titanium-blue-ano-k1031a3",
+      "brand": "Kansept",
+      "model": "Ktc 3 Flipper Framelock Knife Cpm S35VN Titanium Blue Ano (K1031A3)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "S35VN",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Kansept-Knives/Kansept-KTC-3-Flipper-Framelock-Knife-CPM-S35VN-Titanium-Blue-Ano-K1031A3",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[TODO:GET-KNIFE-DATA](https://www.bladescanada.com/Kansept-Knives/Kansept-KTC-3-Flipper-Framelock-Knife-CPM-S35VN-Titanium-Blue-Ano-K1031A3)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "kansept-convict-framelock-folding-knife-cpm-s35vn-titanium-grey-k1023a1",
+      "brand": "Kansept",
+      "model": "Convict Framelock Folding Knife Cpm S35VN Titanium Grey (K1023A1)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "S35VN",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Kansept-Knives/Kansept-Convict-Framelock-Folding-Knife-CPM-S35VN-Titanium-Grey-K1023A1",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[TODO:GET-KNIFE-DATA](https://www.bladescanada.com/Kansept-Knives/Kansept-Convict-Framelock-Folding-Knife-CPM-S35VN-Titanium-Grey-K1023A1)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "kansept-genesis-framelock-folding-knife-cpm-s35vn-wharncliffe-titanium-grey-k1010a1",
+      "brand": "Kansept",
+      "model": "Genesis Framelock Folding Knife Cpm S35VN Wharncliffe Titanium Grey (K1010A1)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "S35VN",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Kansept-Knives/Kansept-Genesis-Framelock-Folding-Knife-CPM-S35VN-Wharncliffe-Titanium-Grey-K1010A1",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[TODO:GET-KNIFE-DATA](https://www.bladescanada.com/Kansept-Knives/Kansept-Genesis-Framelock-Folding-Knife-CPM-S35VN-Wharncliffe-Titanium-Grey-K1010A1)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "kansept-bulldozer-flipper-framelock-knife-cpm-20cv-black-sw-titanium-tiger-stripe-k1028a6",
+      "brand": "Kansept",
+      "model": "Bulldozer Flipper Framelock Knife Cpm 20CV Black SW Titanium Tiger Stripe (K1028A6)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "20CV",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Kansept-Knives/Kansept-Bulldozer-Flipper-Framelock-Knife-CPM-20CV-Black-SW-Titanium-Tiger-Stripe-K1028A6",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[TODO:GET-KNIFE-DATA](https://www.bladescanada.com/Kansept-Knives/Kansept-Bulldozer-Flipper-Framelock-Knife-CPM-20CV-Black-SW-Titanium-Tiger-Stripe-K1028A6)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "kansept-bullldozer-flipper-framelock-knife-cpm-20cv-satin-titanium-bronze-ano-k1028a4",
+      "brand": "Kansept",
+      "model": "Bullldozer Flipper Framelock Knife Cpm 20CV Satin Titanium Bronze Ano (K1028A4)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "20CV",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Kansept-Knives/Kansept-Bullldozer-Flipper-Framelock-Knife-CPM-20CV-Satin-Titanium-Bronze-Ano-K1028A4",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[TODO:GET-KNIFE-DATA](https://www.bladescanada.com/Kansept-Knives/Kansept-Bullldozer-Flipper-Framelock-Knife-CPM-20CV-Satin-Titanium-Bronze-Ano-K1028A4)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "kansept-echis-flipper-framelock-knife-cpm-s35vn-satin-titanium-k1071a1",
+      "brand": "Kansept",
+      "model": "Echis Flipper Framelock Knife Cpm S35VN Satin Titanium (K1071A1)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "S35VN",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Kansept-Knives/Kansept-Echis-Flipper-Framelock-Knife-CPM-S35VN-Satin-Titanium-K1071A1",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[TODO:GET-KNIFE-DATA](https://www.bladescanada.com/Kansept-Knives/Kansept-Echis-Flipper-Framelock-Knife-CPM-S35VN-Satin-Titanium-K1071A1)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "kansept-kryo-flipper-framelock-knife-cpm-s35vn-satin-titanium-grey-k1001a7",
+      "brand": "Kansept",
+      "model": "Kryo Flipper Framelock Knife Cpm S35VN Satin Titanium Grey (K1001A7)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "S35VN",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Kansept-Knives/Kansept-Kryo-Flipper-Framelock-Knife-CPM-S35VN-Satin-Titanium-Grey-K1001A7",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[TODO:GET-KNIFE-DATA](https://www.bladescanada.com/Kansept-Knives/Kansept-Kryo-Flipper-Framelock-Knife-CPM-S35VN-Satin-Titanium-Grey-K1001A7)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "kansept-mini-korvid-flipper-framelock-knife-cpm-s35vn-titanium-tiger-stripe-k3030a9",
+      "brand": "Kansept",
+      "model": "Mini Korvid Flipper Framelock Knife Cpm S35VN Titanium Tiger Stripe (K3030A9)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "S35VN",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Kansept-Knives/Kansept-Mini-Korvid-Flipper-Framelock-Knife-CPM-S35VN-Titanium-Tiger-Stripe-K3030A9",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[TODO:GET-KNIFE-DATA](https://www.bladescanada.com/Kansept-Knives/Kansept-Mini-Korvid-Flipper-Framelock-Knife-CPM-S35VN-Titanium-Tiger-Stripe-K3030A9)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "kansept-odd-21-flipper-framelock-knife-damascus-titanium-grey-w-bronze-ano-k1077a2",
+      "brand": "Kansept",
+      "model": "Odd 21 Flipper Framelock Knife Damascus Titanium Grey W Bronze Ano (K1077A2)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "Damascus",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Kansept-Knives/Kansept-ODD-21-Flipper-Framelock-Knife-Damascus-Titanium-Grey-w-Bronze-Ano-K1077A2",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[TODO:GET-KNIFE-DATA](https://www.bladescanada.com/Kansept-Knives/Kansept-ODD-21-Flipper-Framelock-Knife-Damascus-Titanium-Grey-w-Bronze-Ano-K1077A2)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "kansept-xl-korvid-flipper-folding-knife-cpm-s35vn-black-titanium-lightning-strike-k1030a11",
+      "brand": "Kansept",
+      "model": "Xl Korvid Flipper Folding Knife Cpm S35VN Black Titanium Lightning Strike (K1030A11)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "S35VN",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Kansept-Knives/Kansept-XL-Korvid-Flipper-Folding-Knife-CPM-S35VN-Black-Titanium-Lightning-Strike-K1030A11",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[TODO:GET-KNIFE-DATA](https://www.bladescanada.com/Kansept-Knives/Kansept-XL-Korvid-Flipper-Folding-Knife-CPM-S35VN-Black-Titanium-Lightning-Strike-K1030A11)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "kansept-anomaly-flipper-folding-knife-cpm-s35vn-satin-g10-ivory-k2038t5",
+      "brand": "Kansept",
+      "model": "Anomaly Flipper Folding Knife Cpm S35VN Satin G10 Ivory (K2038T5)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "S35VN",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Kansept-Knives/Kansept-Anomaly-Flipper-Folding-Knife-CPM-S35VN-Satin-G10-Ivory-K2038T5",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[TODO:GET-KNIFE-DATA](https://www.bladescanada.com/Kansept-Knives/Kansept-Anomaly-Flipper-Folding-Knife-CPM-S35VN-Satin-G10-Ivory-K2038T5)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "kansept-anomaly-flipper-folding-knife-damascus-carbon-fiber-k2038a6",
+      "brand": "Kansept",
+      "model": "Anomaly Flipper Folding Knife Damascus Carbon Fiber (K2038A6)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "Damascus",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Kansept-Knives/Kansept-Anomaly-Flipper-Folding-Knife-Damascus-Carbon-Fiber-K2038A6",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[TODO:GET-KNIFE-DATA](https://www.bladescanada.com/Kansept-Knives/Kansept-Anomaly-Flipper-Folding-Knife-Damascus-Carbon-Fiber-K2038A6)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
+    },
+    {
+      "id": "kansept-cybin-framelock-folding-knife-cpm-s35vn-sw-titanium-bead-blasted-k1080a3",
+      "brand": "Kansept",
+      "model": "Cybin Framelock Folding Knife Cpm S35VN SW Titanium Bead Blasted (K1080A3)",
+      "user_classification": null,
+      "user_tags": [
+        "unsorted"
+      ],
+      "research_status": "canadian_retailer_verified",
+      "acquisition_status": "pending_research",
+      "mechanism": {
+        "opening_method": null,
+        "lock_type": null,
+        "assist_type": "unknown",
+        "blade_length": null,
+        "blade_steel": "S35VN",
+        "clear_prohibited_mechanism_found": null
+      },
+      "canadian_online_retailers": [
+        {
+          "retailer": "Blades Canada / Warriors and Wonders",
+          "url": "https://www.bladescanada.com/Kansept-Knives/Kansept-Cybin-Framelock-Folding-Knife-CPM-S35VN-SW-Titanium-Bead-Blasted-K1080A3",
+          "listed_price_cad": null,
+          "availability": "unknown",
+          "source_date": "2026-07-23"
+        }
+      ],
+      "notes": "",
+      "source_input": "[TODO:GET-KNIFE-DATA](https://www.bladescanada.com/Kansept-Knives/Kansept-Cybin-Framelock-Folding-Knife-CPM-S35VN-SW-Titanium-Bead-Blasted-K1080A3)",
+      "added_generation": 1,
+      "date_added": "2026-07-23",
+      "new": true
     }
   ],
   "updates": {
@@ -8393,8 +9848,20 @@
         "priority": 26
       },
       {
-        "id": "kershaw-skyline-folding-knife-175-2469-8",
+        "id": "kansept-wasp-front-flipper-button-lock-knife-t2144f3",
         "priority": 27
+      },
+      {
+        "id": "kershaw-skyline-folding-knife-175-2469-8",
+        "priority": 28
+      },
+      {
+        "id": "kansept-korvid-v-crossbar-lock-folding-knife-d2-rose-gold-g10-black-te2030v1",
+        "priority": 29
+      },
+      {
+        "id": "kansept-mini-korvid-flipper-frame-lock-knife-k3030h1",
+        "priority": 30
       }
     ]
   }

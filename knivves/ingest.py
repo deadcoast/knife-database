@@ -53,7 +53,7 @@ RETAILERS = {
 # learns every brand already filed, so this list only has to seed the shape.
 KNOWN_BRANDS = (
     "Bestechman", "Bestech", "DreamTech", "Vosteed", "Microtech", "CIVIVI",
-    "SENCUT", "Trivisa", "WE Knife", "Kizer", "Kunwu", "Hogue", "Gerber",
+    "SENCUT", "Trivisa", "WE Knife", "Kizer", "Kunwu", "Kansept", "Hogue", "Gerber",
     "Kershaw", "Spyderco", "Cold Steel", "Honey Badger", "Petrified Fish",
     "Rike Knife", "OKC", "Knafs", "SRM Knives", "Molsect", "Vixino Knives",
     "SOG", "QSP", "CJRB", "Benchmade", "CRKT", "Zero Tolerance", "Demko",
@@ -85,8 +85,9 @@ _STEELS = re.compile(
 
 class Token(NamedTuple):
     line: int
-    kind: str  # SLI H1 SECTION ENTRY BLANK PROSE
+    kind: str  # SLI H1 SECTION ANNOTATION ENTRY BLANK PROSE
     text: str
+    indent: int = 0
 
 
 @dataclass
@@ -106,6 +107,7 @@ def lex(text: str, diagnostics: list[Diagnostic] | None = None) -> list[Token]:
     for line_no, raw in enumerate(text.lstrip("﻿").splitlines(), start=1):
         line = raw.rstrip()
         stripped = line.strip()
+        indent = len(line) - len(line.lstrip())
         if stripped.startswith("```"):
             if not in_fence:
                 sink.append(Diagnostic(line_no, "note", "fenced block skipped as example material"))
@@ -125,9 +127,14 @@ def lex(text: str, diagnostics: list[Diagnostic] | None = None) -> list[Token]:
             sink.append(Diagnostic(line_no, "warning", "unexpected markdown heading — only the file title uses '#'; headings are '// SectionID'"))
             tokens.append(Token(line_no, "PROSE", stripped))
         elif stripped.startswith("//"):
-            tokens.append(Token(line_no, "SECTION", stripped[2:].strip()))
+            tokens.append(Token(line_no, "SECTION", stripped[2:].strip(), indent))
+        elif re.match(r"[-*]\s+//", stripped):
+            # `- // Name *Tag*` — bullet-form annotation scoped to its
+            # indented children, unlike a bare `//` which annotates the
+            # rest of the section
+            tokens.append(Token(line_no, "ANNOTATION", re.sub(r"^[-*]\s+//\s*", "", stripped), indent))
         elif re.match(r"[-*]\s+\S", stripped):
-            tokens.append(Token(line_no, "ENTRY", re.sub(r"^[-*]\s+", "", stripped)))
+            tokens.append(Token(line_no, "ENTRY", re.sub(r"^[-*]\s+", "", stripped), indent))
         else:
             tokens.append(Token(line_no, "PROSE", stripped))
     if in_fence:
@@ -438,6 +445,7 @@ def parse_document(text: str) -> Document:
     current: Section | None = None
     annotation_name: str | None = None
     annotation_tags: list[str] = []
+    annotation_indent: int | None = None  # set for bullet-form annotations only
 
     i = 0
     while i < len(tokens):
@@ -458,9 +466,11 @@ def parse_document(text: str) -> Document:
             fenced_above = previous is not None and previous.kind == "SLI"
             if not fenced_above and current is not None:
                 # a ``//`` line inside a section body: inline annotation
+                # for the rest of the section
                 name, tags = _extract_star_tags(token.text)
                 annotation_name = name or None
                 annotation_tags = tags
+                annotation_indent = None
                 i += 1
                 continue
             if not fenced_above:
@@ -478,10 +488,27 @@ def parse_document(text: str) -> Document:
             sections.append(current)
             annotation_name = None
             annotation_tags = []
+            annotation_indent = None
+            i += 1
+            continue
+
+        if token.kind == "ANNOTATION":
+            if current is None:
+                diagnostics.append(Diagnostic(token.line, "warning", "annotation before any SectionID — ignored"))
+            else:
+                name, tags = _extract_star_tags(token.text)
+                annotation_name = name or None
+                annotation_tags = tags
+                annotation_indent = token.indent
             i += 1
             continue
 
         if token.kind == "ENTRY":
+            if annotation_indent is not None and token.indent <= annotation_indent:
+                # a sibling (or shallower) entry closes a bullet-form annotation
+                annotation_name = None
+                annotation_tags = []
+                annotation_indent = None
             raw = token.text
             consumed = 0
             while _unbalanced(raw) and consumed < 3:

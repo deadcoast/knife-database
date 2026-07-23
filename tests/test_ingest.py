@@ -47,6 +47,31 @@ def test_lex_section_entry_blank_prose() -> None:
     assert [t.kind for t in tokens] == ["SECTION", "BLANK", "ENTRY", "PROSE"]
 
 
+def test_lex_list_item_annotation_form() -> None:
+    # the ledger also writes inline annotations as `- // Name *Tag*` items
+    tokens = ingest.lex("- // Canadian Tire *NewSource*\n  - [K, X123](https://a.b/x)\n")
+    assert [t.kind for t in tokens] == ["ANNOTATION", "ENTRY"]
+    assert tokens[0].text == "Canadian Tire *NewSource*"
+    assert tokens[1].indent == 2
+
+
+def test_bullet_annotation_scopes_to_indented_children() -> None:
+    text = (
+        "-------------------------------\n"
+        "// S\n\n"
+        "-------------------------------\n\n"
+        "- [Alpha Knife, X111](https://a.b/1)\n"
+        "- // Src *T*\n"
+        "  - [Bravo Knife, X222](https://a.b/2)\n"
+        "- [Charlie Knife, X333](https://a.b/3)\n"
+    )
+    section = ingest.parse_document(text).sections[0]
+    alpha, bravo, charlie = section.entries
+    assert alpha.source_name is None and alpha.tags == []
+    assert bravo.source_name == "Src" and bravo.tags == ["t"]
+    assert charlie.source_name is None and charlie.tags == []
+
+
 def test_lex_skips_fenced_blocks() -> None:
     tokens = ingest.lex("```markdown\n- [x](https://a.b)\n```\n- [y](https://c.d)\n")
     kinds = [t.kind for t in tokens]
