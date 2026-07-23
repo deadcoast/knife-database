@@ -163,8 +163,10 @@ reads **★NEW** everywhere — tables, the interactive browser, the Rack,
 the masthead. `knivves update` is the line that decides what counts as
 NEW: it seals the current batch as the newest NEW generation. A knife
 stays NEW from the moment it's filed, *through* the update that seals
-it — with the default `-oneg` cache it ages out on the second update,
-and `-twog`/`-threeg` stretch survival to two or three updates.
+it. Freshness ages by **batches of arrivals**, not by update count — an
+update that files nothing holds the line (`--force` ages the window
+anyway), and with the default `-oneg` cache a batch ages out when the
+next real batch seals; `-twog`/`-threeg` keep two or three batches.
 `knivves new` lists what's fresh; `knivves new --status` shows the cache
 state; `knivves update --survey` also re-reads every supported live
 listing concurrently — a progress bar carries count/elapsed/ETA, movers

@@ -38,9 +38,10 @@ def test_fresh_add_is_new_immediately() -> None:
     assert KnifeView(record).is_new
 
 
-def test_keep_one_survives_first_update_dies_on_second() -> None:
+def test_keep_one_survives_first_update_dies_when_next_batch_seals() -> None:
     # the update SEALS the batch as the newest NEW generation — it must
-    # not kill the very knives it just tagged
+    # not kill the very knives it just tagged; aging happens when the
+    # NEXT batch of arrivals is sealed
     db = make_db()
     record = {"id": "test-knife"}
     add_knife(db, record)
@@ -48,19 +49,40 @@ def test_keep_one_survives_first_update_dies_on_second() -> None:
     assert entry["generation"] == 2
     assert record["new"] is True
     assert "test-knife" not in entry["aged_out"]
+    later = {"id": "later-arrival"}
+    add_knife(db, later)
     entry = gen.advance(db)
     assert record["new"] is False
     assert "test-knife" in entry["aged_out"]
+    assert later["new"] is True
 
 
-def test_keep_three_survives_three_updates_dies_on_fourth() -> None:
+def test_empty_update_holds_the_line() -> None:
+    # an update that files nothing must not erase the freshness the
+    # previous update tagged (regression: back-to-back updates)
+    db = make_db()
+    record = {"id": "fresh"}
+    add_knife(db, record)
+    assert gen.advance(db) is not None
+    assert record["new"] is True
+    assert gen.advance(db) is None  # nothing filed — line holds
+    assert gen.meta(db)["generation"] == 2
+    assert record["new"] is True
+    entry = gen.advance(db, force=True)  # deliberate aging
+    assert entry is not None
+    assert record["new"] is False
+
+
+def test_keep_three_survives_three_batches_dies_on_fourth() -> None:
     db = make_db()
     record = {"id": "survivor"}
     add_knife(db, record)
     gen.set_keep(db, 3)
-    for _ in range(3):
+    for i in range(3):
+        add_knife(db, {"id": f"filler-{i}"})
         gen.advance(db)
         assert record["new"] is True
+    add_knife(db, {"id": "filler-final"})
     entry = gen.advance(db)
     assert record["new"] is False
     assert "survivor" in entry["aged_out"]
@@ -71,7 +93,7 @@ def test_unstamped_legacy_record_never_new() -> None:
     gen.retag(db)
     assert db["knives"][0]["new"] is False
     gen.set_keep(db, 3)
-    gen.advance(db)
+    gen.advance(db, force=True)
     assert db["knives"][0]["new"] is False
     assert not KnifeView(db["knives"][0]).is_new
 
@@ -89,7 +111,7 @@ def test_set_keep_retags_immediately() -> None:
     record = {"id": "aging"}
     add_knife(db, record)
     gen.advance(db)
-    gen.advance(db)
+    gen.advance(db, force=True)
     assert record["new"] is False
     gen.set_keep(db, 3)
     assert record["new"] is True

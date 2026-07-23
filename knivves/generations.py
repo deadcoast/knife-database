@@ -107,14 +107,20 @@ def added_in_open_generation(db: dict[str, Any]) -> list[str]:
     ]
 
 
-def advance(db: dict[str, Any], note: str = "") -> dict[str, Any]:
+def advance(db: dict[str, Any], note: str = "", *, force: bool = False) -> dict[str, Any] | None:
     """``knivves update``'s core: seal the open generation, move the line.
 
-    Advances the generation counter, retags every record, and appends a
-    history entry recording what the update decided.
+    Freshness ages by *batches of arrivals*, not by update count: an
+    update that filed nothing holds the line and returns ``None`` —
+    otherwise running ``update`` twice in a row would erase the very
+    freshness the first run tagged. Pass ``force=True`` to age the window
+    deliberately. On a real seal: advances the generation counter, retags
+    every record, and appends a history entry recording the decision.
     """
     block = meta(db)
     added = added_in_open_generation(db)
+    if not added and not force:
+        return None
     block["generation"] = int(block["generation"]) + 1
     now_new, aged_out = retag(db)
     entry = {

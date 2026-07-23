@@ -85,10 +85,11 @@ def test_add_markdown_ingests_and_orders_buylist() -> None:
     assert not any("XX999" in json.dumps(k) for k in db["knives"])
 
 
-def test_update_seals_batch_as_new_then_ages_on_second() -> None:
+def test_update_seals_batch_as_new_and_empty_updates_hold() -> None:
     # `knivves update` is the line that TAGS the fresh batch as NEW —
-    # the batch survives the update that seals it (regression: the first
-    # update must not age out the knives it just filed)
+    # the batch survives the update that seals it, and an update that
+    # files nothing HOLDS the line (regression: back-to-back updates
+    # must not erase freshness)
     use_tmp()
     invoke("add", str(FIXTURE), "--yes")
     invoke("update", "--note", "test refresh")
@@ -97,7 +98,13 @@ def test_update_seals_batch_as_new_then_ages_on_second() -> None:
     assert db["updates"]["history"][-1]["note"] == "test refresh"
     added = [k for k in db["knives"] if k["id"] != "legacy-knife"]
     assert all(k.get("new") is True for k in added), "first update killed its own batch"
-    invoke("update")
+    result = invoke("update")  # nothing filed since — the line holds
+    assert "holds" in result.output
+    db = load()
+    assert db["updates"]["generation"] == 2, "empty update moved the line"
+    added = [k for k in db["knives"] if k["id"] != "legacy-knife"]
+    assert all(k.get("new") is True for k in added), "empty update erased freshness"
+    invoke("update", "--force")  # deliberate aging
     added = [k for k in load()["knives"] if k["id"] != "legacy-knife"]
     assert all(k.get("new") is False for k in added)
 
@@ -106,7 +113,7 @@ def test_new_threeg_extends_cache() -> None:
     use_tmp()
     invoke("add", str(FIXTURE), "--yes")
     invoke("update")
-    invoke("update")
+    invoke("update", "--force")
     added = [k for k in load()["knives"] if k["id"] != "legacy-knife"]
     assert all(k.get("new") is False for k in added)
     invoke("new", "-threeg")

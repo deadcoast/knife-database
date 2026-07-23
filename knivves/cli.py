@@ -39,6 +39,7 @@ from .render import (
     summary_cards,
     survey_summary_panel,
     title,
+    update_hold_panel,
     update_report_panel,
     validation_table,
 )
@@ -804,8 +805,9 @@ def update(
     gens: Annotated[Optional[int], typer.Option("--gens", help="Set the NEW cache depth (1–3) before advancing.")] = None,
     note: Annotated[str, typer.Option("--note", help="Note recorded in the update history.")] = "",
     survey: Annotated[bool, typer.Option("--survey", help="Also re-read live retailer listings (concurrent, with live progress) and record price/stock moves.")] = False,
+    force: Annotated[bool, typer.Option("--force", help="Advance the line even if nothing was filed since the last update (ages the NEW window).")] = False,
 ) -> None:
-    """Refresh the database: advance the generation line and retag what counts as [bold #d7a455]NEW[/]."""
+    """Refresh the database: seal the fresh batch as [bold #d7a455]NEW[/] and move the generation line."""
     db = load_database()
     if gens is not None:
         generations.set_keep(db, gens)
@@ -817,12 +819,15 @@ def update(
             console.print("\n[yellow]Survey interrupted — nothing written; the generation line did not move.[/]")
             raise typer.Exit(code=130)
     backup = backup_database("before-update")
-    entry = generations.advance(db, note)
+    entry = generations.advance(db, note, force=force)
     save_database(db)
     if summary is not None:
         console.print(survey_summary_panel(summary))
     meta = generations.meta(db)
-    console.print(update_report_panel(entry, meta["keep_generations"], generations.new_views_count(db)))
+    if entry is None:
+        console.print(update_hold_panel(meta, generations.new_views_count(db)))
+    else:
+        console.print(update_report_panel(entry, meta["keep_generations"], generations.new_views_count(db)))
     console.print(f"[dim]Backup: {backup}[/]")
 
 

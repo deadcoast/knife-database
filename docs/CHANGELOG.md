@@ -14,8 +14,12 @@ markdown link ledgers whole and knows what's fresh.
   repair and grammar diagnostic. `--dry-run` previews the full plan.
   Entries dedupe in-file (SKU → URL → label) and merge into existing
   records instead of duplicating them.
-- **`knivves update`** — advances the NEW generation line, retags the
-  vault, records history; `--survey` re-reads live listings on the way.
+- **`knivves update`** — seals the fresh batch as the newest NEW
+  generation and records history. Freshness ages by batches of arrivals,
+  not update count: an empty update holds the line (`--force` overrides).
+  `--survey` re-reads every supported live listing concurrently with a
+  live progress bar; observations land in `price_history` and the $150
+  affordable rule re-tags, exactly like the Ledger room.
 - **`knivves new`** — the three-generation cache: `-oneg`/`-twog`/`-threeg`
   set how many updates a knife survives as ★NEW; `--status` shows the
   cache; plain `new` lists what's fresh. NEW reads everywhere: CLI tables,

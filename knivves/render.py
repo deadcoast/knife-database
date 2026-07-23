@@ -463,6 +463,16 @@ def survey_summary_panel(summary: dict[str, Any]) -> Panel:
     return Panel("\n".join(lines), title="market survey", border_style="#d7a455", box=box.HEAVY)
 
 
+def update_hold_panel(meta_block: dict[str, Any], new_total: int) -> Panel:
+    lines = [
+        "[bold]The generation line holds[/] — nothing filed since the last update.",
+        f"[#d7a455]{new_total} still NEW[/] · open generation {meta_block.get('generation')} · "
+        f"cache keeps {meta_block.get('keep_generations')} generation(s)",
+        "[dim]freshness ages when new arrivals push it out · knivves update --force ages the window anyway[/]",
+    ]
+    return Panel("\n".join(lines), title="knivves update", border_style="#d7a455", box=box.HEAVY)
+
+
 def update_report_panel(entry: dict[str, Any], keep: int, new_total: int) -> Panel:
     lines = [
         f"[bold]Generation line advanced to {entry['generation']}[/] · cache keeps [bold]{keep}[/] generation(s)",
