@@ -36,6 +36,7 @@ def _clean_listing(url: str, timeout: float = 30.0) -> scrape_mod.Listing:
         availability="in stock",
         blade_steel="14C28N",
         lock_type="Liner Lock",
+        opening_method="Thumb Stud, Flipper",
         blade_length="3.00 in",
         assisted=False,
     )
@@ -477,7 +478,118 @@ async def test_file_import_transit() -> None:
     print(f"PASS: import knives file intake · {len(on_disk['knives']) - before} filed from the ledger")
 
 
+async def test_desk_demo_transit() -> None:
+    """Door 5 — Research: the demo transit stamps learned fields without
+    writing; `s` works the docket for real; the Library plate carries the
+    UNRESEARCHED chip (case 2026-07-23-research-desk, REQ-RES-5/6)."""
+    tmp_db = Path(tempfile.mkdtemp()) / "knives.json"
+    db = {
+        "database_name": "desk-test",
+        "version": "0.0",
+        "workflow_rules": {
+            "canadian_online_retailer_rule": {
+                "only_reject_or_fail_if_clear_prohibited_mechanism": ["balisong", "butterfly knife"],
+            },
+        },
+        "knives": [
+            {
+                # complete — the demo transit's sample subject
+                "id": "complete-knife", "brand": "Spyderco", "model": "Manix 2 (C101)",
+                "user_classification": None, "user_tags": [],
+                "mechanism": {
+                    "opening_method": "Thumb Hole", "lock_type": "Ball Bearing Lock",
+                    "assist_type": "manual", "blade_length": "3.37 in",
+                    "blade_steel": "S30V", "clear_prohibited_mechanism_found": False,
+                },
+                "canadian_online_retailers": [{
+                    "retailer": "Blades Canada / Warriors and Wonders",
+                    "url": "https://www.bladescanada.com/Spyderco-Knives/Manix",
+                    "listed_price_cad": 219.99, "availability": "in stock",
+                    "source_date": "2026-07-01",
+                }],
+                "listing_title": "Spyderco Manix 2, S30V", "notes": "", "source_input": "",
+            },
+            {
+                # gapped, supported URL — the live pass researches this one
+                "id": "research-target", "brand": "Kubey", "model": "Vagabond (KU2101)",
+                "user_classification": None, "user_tags": [],
+                "mechanism": {
+                    "opening_method": None, "lock_type": None, "assist_type": "unknown",
+                    "blade_length": None, "blade_steel": None,
+                    "clear_prohibited_mechanism_found": False,
+                },
+                "canadian_online_retailers": [{
+                    "retailer": "Blades Canada / Warriors and Wonders",
+                    "url": "https://www.bladescanada.com/Kubey-Knives/Kubey-Vagabond-KU2101",
+                    "listed_price_cad": None, "availability": "unknown",
+                    "source_date": "2026-07-01",
+                }],
+                "listing_title": "", "notes": "", "source_input": "",
+            },
+        ],
+    }
+    tmp_db.write_text(json.dumps(db), encoding="utf-8")
+    before_bytes = tmp_db.read_bytes()
+
+    from knivves.vault.desk import DeskScreen
+
+    real_fetch = scrape_mod.fetch_listing
+    scrape_mod.fetch_listing = _clean_listing
+    try:
+        app = KnivvesVault(db_path=tmp_db)
+        async with app.run_test(size=(170, 45)) as pilot:
+            await asyncio.sleep(2.3)
+            await pilot.pause()
+
+            # the Library plate carries the record's incompleteness (REQ-RES-6)
+            await pilot.click("#rack-search")
+            await pilot.press(*"research-target")
+            await pilot.pause()
+            await pilot.click(DataTable, offset=(4, 1))
+            await asyncio.sleep(0.6)
+            await pilot.pause()
+            plate_body = str(app.screen.query_one(".plate--body", Static).render())
+            assert "unresearched" in plate_body, f"plate chip missing: {plate_body[:120]}"
+            await pilot.press("escape")
+            await asyncio.sleep(0.6)
+
+            # door 5 — the demo transit runs on arrival, writes nothing
+            await pilot.press("5")
+            await asyncio.sleep(1.0)
+            await pilot.pause()
+            assert isinstance(app.screen, DeskScreen), f"screen: {app.screen}"
+            await asyncio.sleep(4.5)
+            await pilot.pause()
+            docket_text = str(app.screen.query_one("#docket", Static).render())
+            assert "research-target" in docket_text, f"docket: {docket_text[:160]}"
+            stamped_text = str(app.screen.query_one("#stamped", Static).render())
+            assert "nothing was written" in stamped_text, f"stamped: {stamped_text[:120]}"
+            assert tmp_db.read_bytes() == before_bytes, "demo transit wrote the database"
+            plate = app.screen.query_one(Plate)
+            stamp_x = app.screen.query_one("#st-stamp").region.x
+            assert plate.region.x >= stamp_x, f"plate at {plate.region.x}, stamp at {stamp_x}"
+
+            # s — the live pass fills the target through the stubbed listing
+            await pilot.press("s")
+            await asyncio.sleep(6.0)
+            await pilot.pause()
+            on_disk = json.loads(tmp_db.read_text(encoding="utf-8"))
+            record = next(k for k in on_disk["knives"] if k["id"] == "research-target")
+            assert record["mechanism"]["blade_steel"] == "14C28N", "steel not filled"
+            assert record["canadian_online_retailers"][0]["listed_price_cad"] == 99.99
+            assert record["research"]["filled"]["steel"] == "bladescanada.com"
+            assert record["price_history"], "first price must seed history"
+            docket_after = str(app.screen.query_one("#docket", Static).render())
+            assert "research-target" not in docket_after, "worked record still on the docket"
+            assert "fully researched" in docket_after, f"docket after: {docket_after[:160]}"
+    finally:
+        scrape_mod.fetch_listing = real_fetch
+
+    print("PASS: research desk · library chip · demo transit writes nothing · s fills the docket")
+
+
 if __name__ == "__main__":
     asyncio.run(test_shell())
     asyncio.run(test_freshness_and_reserve())
     asyncio.run(test_file_import_transit())
+    asyncio.run(test_desk_demo_transit())

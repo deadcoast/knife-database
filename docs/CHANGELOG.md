@@ -32,6 +32,20 @@ The vault researches its own unknowns. Case:
   its stats line and lists the `knivves research` door;
   `knivves list --gaps` filters to records with open gaps
   (`--no-gaps` inverts to only complete ones).
+- **Door 5 — Research** — the desk as a room: the docket ranked with
+  ⬖buy-rank and ★new marks, the unreachable shelf with every reason
+  said, and a drawn **completeness meter** (gradient-lit, eighth-block
+  tip — the gauges vocabulary) riding above the line. `s` works the
+  docket for real: each record's plate is PULLED from the docket, its
+  listing is READ, and only its empty fields STAMP on — the
+  fill-only-empty law executing visibly, field by field, while the
+  meter rises. `r` replays a deterministic no-network demo. A fault
+  reads on the plate in FAIL and the pass moves on; the database is
+  backed up and saved once at the end, only if something filled.
+- **The plate carries its incompleteness** — a record with open gaps
+  shows `gaps  N unresearched` in accent on its plate, in every room
+  it travels to (Library, Compare Models): the object knows what it
+  doesn't know, and door 5 is where it gets filled.
 
 ## 005 — v0.9.0 (2026-07-23) — PLAIN WORDS ON THE DOORS
 

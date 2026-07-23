@@ -54,7 +54,7 @@ Case: `2026-07-23-research-desk` · Design: [design.md](design.md) · Hub: [requ
 
 ### T3 — the Research room
 
-- [ ] **T3** Build `knivves/vault/desk.py::DeskScreen` — docket rack
+- [x] **T3** Build `knivves/vault/desk.py::DeskScreen` — docket rack
   with gap chips, PULL → READ → STAMP stations, traveling worked plate,
   amber field-stamp flashes, masthead readout (docket depth · pass
   state · meter), unreachable shelf, `s` live pass, `r` no-network demo

@@ -690,7 +690,7 @@ def home_page(db: dict[str, Any], knives: list[KnifeView], buylist: list[tuple[i
     doors = Table.grid(padding=(0, 3))
     doors.add_column(style=f"bold {STEEL_BRIGHT}", no_wrap=True)
     doors.add_column(style=STEEL_MID)
-    doors.add_row("knivves vault", f"the visual application — [{ACCENT}]1[/] Library · [{ACCENT}]2[/] Import Knives · [{ACCENT}]3[/] Compare Models · [{ACCENT}]4[/] Market Prices")
+    doors.add_row("knivves vault", f"the visual application — [{ACCENT}]1[/] Library · [{ACCENT}]2[/] Import Knives · [{ACCENT}]3[/] Compare Models · [{ACCENT}]4[/] Market Prices · [{ACCENT}]5[/] Research")
     doors.add_row("knivves add <file.md>", "ingest a markdown ledger — new knives file ★new")
     doors.add_row("knivves update", f"seal the fresh batch · [{ACCENT}]--prices[/] re-reads the market")
     doors.add_row("knivves research", f"fill the vault's unknowns from their own listings · [{ACCENT}]--dry-run[/] previews the docket")

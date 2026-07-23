@@ -198,3 +198,23 @@ ForgeScreen {
     margin-top: 1;
     color: #8b96a0;
 }
+
+/* ---------------------------------------------------- the research desk */
+
+DeskScreen {
+    layers: base plate capsule door;
+}
+
+#desk-meter {
+    margin: 1 4 0 4;
+}
+
+#desk-line {
+    height: 1fr;
+    padding: 1 2;
+}
+
+#desk-plate {
+    layer: plate;
+    offset: 4 26;
+}

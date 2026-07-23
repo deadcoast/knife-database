@@ -18,6 +18,7 @@ from textual.containers import Vertical
 from textual.widgets import Static
 
 from ..models import KnifeView
+from ..research import audit_record
 from . import laws
 
 
@@ -76,6 +77,11 @@ class Plate(Vertical):
             rows.append(("stock", str(best.get("availability") or "—"), laws.STEEL_BRIGHT))
         if knife.tags:
             rows.append(("tags", ", ".join(knife.tags), laws.STEEL_MID))
+        gaps = audit_record(knife.raw)
+        if gaps:
+            # the object carries its incompleteness into every room —
+            # the Research desk (door 5) is where it gets filled
+            rows.append(("gaps", f"{len(gaps)} unresearched", laws.ACCENT))
         for label, value, style in rows:
             body.append_text(laws.field(label, value, style))
             body.append("\n")

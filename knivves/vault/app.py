@@ -15,6 +15,7 @@ from textual.screen import Screen
 from ..models import KnifeView, knife_views
 from ..store import add_knife, load_database, save_database
 from .bench import BenchScreen
+from .desk import DeskScreen
 from .door import BOOT_HOLD, open_door
 from .forge import ForgeScreen
 from .ledger import LedgerScreen
@@ -29,12 +30,14 @@ class KnivvesVault(App):
         "forge": ForgeScreen,
         "bench": BenchScreen,
         "ledger": LedgerScreen,
+        "desk": DeskScreen,
     }
     BINDINGS = [
         ("1", "room('rack')", "Library"),
         ("2", "room('forge')", "Import Knives"),
         ("3", "room('bench')", "Compare Models"),
         ("4", "room('ledger')", "Market Prices"),
+        ("5", "room('desk')", "Research"),
         ("q", "quit", "Quit"),
     ]
 
@@ -74,6 +77,7 @@ class KnivvesVault(App):
         yield SystemCommand("Import Knives", "Intake a listing URL or an ingestion .md", lambda: self.action_room("forge"))
         yield SystemCommand("Compare Models", "Two blades, measured", lambda: self.action_room("bench"))
         yield SystemCommand("Market Prices", "Valuation, the $150 line, price reads", lambda: self.action_room("ledger"))
+        yield SystemCommand("Research", "The docket of unknowns — fill empty fields from their own listings", lambda: self.action_room("desk"))
         yield SystemCommand(
             "Update market prices",
             "Re-read every live listing and record what moved",
