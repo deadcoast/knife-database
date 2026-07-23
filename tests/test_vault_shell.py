@@ -569,6 +569,15 @@ async def test_desk_demo_transit() -> None:
             stamp_x = app.screen.query_one("#st-stamp").region.x
             assert plate.region.x >= stamp_x, f"plate at {plate.region.x}, stamp at {stamp_x}"
 
+            # the unknowns map draws every record as a column; the target's
+            # column carries its missing-field sockets
+            from knivves.vault.desk import UnknownsMap
+
+            unknowns = app.screen.query_one(UnknownsMap)
+            assert unknowns.records == 2, f"map columns: {unknowns.records}"
+            assert unknowns.complete == 1, f"map complete: {unknowns.complete}"
+            assert unknowns.wake == 0, "demo must not leave a wake on the map"
+
             # s — the live pass fills the target through the stubbed listing
             await pilot.press("s")
             await asyncio.sleep(6.0)
@@ -582,6 +591,10 @@ async def test_desk_demo_transit() -> None:
             docket_after = str(app.screen.query_one("#docket", Static).render())
             assert "research-target" not in docket_after, "worked record still on the docket"
             assert "fully researched" in docket_after, f"docket after: {docket_after[:160]}"
+            # the live pass leaves its amber wake on the map: the cells it
+            # filled burn accent, and the vault reads complete
+            assert unknowns.complete == 2, f"map complete after pass: {unknowns.complete}"
+            assert unknowns.wake >= 5, f"wake cells: {unknowns.wake}"
     finally:
         scrape_mod.fetch_listing = real_fetch
 

@@ -32,16 +32,25 @@ The vault researches its own unknowns. Case:
   its stats line and lists the `knivves research` door;
   `knivves list --gaps` filters to records with open gaps
   (`--no-gaps` inverts to only complete ones).
-- **Door 5 — Research** — the desk as a room: the docket ranked with
-  ⬖buy-rank and ★new marks, the unreachable shelf with every reason
-  said, and a drawn **completeness meter** (gradient-lit, eighth-block
-  tip — the gauges vocabulary) riding above the line. `s` works the
-  docket for real: each record's plate is PULLED from the docket, its
-  listing is READ, and only its empty fields STAMP on — the
-  fill-only-empty law executing visibly, field by field, while the
-  meter rises. `r` replays a deterministic no-network demo. A fault
-  reads on the plate in FAIL and the pass moves on; the database is
-  backed up and saved once at the end, only if something filled.
+- **Door 5 — Research** — the desk as a room, built around the
+  **UNKNOWNS MAP**: the entire database drawn as a dot-matrix field,
+  one column per knife, one row per fact (STEEL / LOCK / OPEN / LEN /
+  PRICE / STOCK / TITLE). Lit dot = the vault knows; dark socket = a
+  hole in a record — the collection's ignorance visible in one glance,
+  with the machined completeness gauge riding on top and a scale rail
+  underneath. During a live pass the map fills **live**: each learned
+  fact burns an **amber wake**, the working column carries a ▲ marker,
+  so the screen shows exactly what this pass discovered versus what
+  was already known. The docket is a **card file** — each incomplete
+  record a tab carrying its own punch-row (its map column in
+  miniature), the active card marked with an amber edge bar — over the
+  unreachable shelf with every reason said. `s` works the file for
+  real: PULL, READ (the listing learned fact by fact), STAMP (only
+  empty fields land), the map lighting as each fact does. `r` replays
+  a no-network demo; the map never lies during it — nothing written,
+  nothing lights. A fault reads on the plate in FAIL and the pass
+  moves on; the database is backed up and saved once at the end, only
+  if something filled.
 - **The plate carries its incompleteness** — a record with open gaps
   shows `gaps  N unresearched` in accent on its plate, in every room
   it travels to (Library, Compare Models): the object knows what it

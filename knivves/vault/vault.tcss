@@ -205,10 +205,6 @@ DeskScreen {
     layers: base plate capsule door;
 }
 
-#desk-meter {
-    margin: 1 4 0 4;
-}
-
 #desk-line {
     height: 1fr;
     padding: 1 2;
