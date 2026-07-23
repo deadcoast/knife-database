@@ -68,6 +68,16 @@ Footer {
     display: block;
 }
 
+#rack-reserve {
+    dock: right;
+    height: 100%;
+    display: none;
+}
+
+#rack-reserve.open {
+    display: block;
+}
+
 #rack-table {
     background: #14171a;
     color: #c2cdd6;

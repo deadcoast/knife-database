@@ -374,5 +374,67 @@ async def test_shell() -> None:
         )
 
 
+async def test_freshness_and_reserve() -> None:
+    """NEW chips on the rack, the masthead new-count, and The Reserve panel."""
+    from textual.coordinate import Coordinate
+
+    from knivves.vault.reserve import Reserve
+
+    tmp_db = Path(tempfile.mkdtemp()) / "knives.json"
+    db = json.loads((REPO / "knivves" / "data" / "knives.json").read_text(encoding="utf-8"))
+    # stamp the first two records as freshly filed, and rank them in the reserve
+    first, second = db["knives"][0], db["knives"][1]
+    for record in (first, second):
+        record["new"] = True
+        record["added_generation"] = 1
+    first["buy_priority"], second["buy_priority"] = 1, 2
+    db["buy_list"] = {
+        "updated": "2026-07-23",
+        "items": [{"id": first["id"], "priority": 1}, {"id": second["id"], "priority": 2}],
+    }
+    db["updates"] = {"generation": 1, "keep_generations": 1, "history": []}
+    tmp_db.write_text(json.dumps(db), encoding="utf-8")
+
+    app = KnivvesVault(db_path=tmp_db)
+    async with app.run_test(size=(170, 45)) as pilot:
+        await asyncio.sleep(2.3)
+        await pilot.pause()
+        assert isinstance(app.screen, RackScreen)
+
+        # the sections cell carries the NEW chip and the reserve rank
+        table = app.screen.query_one(DataTable)
+        row = table.get_row_at(0)
+        sections_cell = str(row[5])
+        assert "new" in sections_cell, f"sections cell: {sections_cell!r}"
+        assert "⬖1" in sections_cell, f"priority mark missing: {sections_cell!r}"
+
+        # the masthead counts the fresh arrivals
+        from knivves.vault.masthead import Masthead
+
+        stats_text = "".join(text for text, _, _ in app.screen.query_one(Masthead)._stats)
+        assert "2 new" in stats_text, f"masthead stats: {stats_text}"
+
+        # y: the reserve travels in, carrying priorities and the running cost
+        reserve = app.screen.query_one(Reserve)
+        assert not reserve.has_class("open")
+        await pilot.press("y")
+        await asyncio.sleep(0.5)
+        await pilot.pause()
+        assert reserve.has_class("open"), "reserve did not open"
+        body = str(app.screen.query_one(".reserve--body", Static).render())
+        footer = str(app.screen.query_one(".reserve--footer", Static).render())
+        assert "1 " in body and "2 " in body, f"reserve body: {body[:120]}"
+        assert "2 priorities" in footer, f"reserve footer: {footer[:120]}"
+
+        # escape retires the reserve before touching plate or search
+        await pilot.press("escape")
+        await asyncio.sleep(0.6)
+        await pilot.pause()
+        assert not reserve.has_class("open"), "escape did not retire the reserve"
+
+    print("PASS: rack NEW chips · masthead new-count · reserve travels in and out")
+
+
 if __name__ == "__main__":
     asyncio.run(test_shell())
+    asyncio.run(test_freshness_and_reserve())

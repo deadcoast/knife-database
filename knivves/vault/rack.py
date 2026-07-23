@@ -22,9 +22,11 @@ from ..models import KnifeView
 
 if TYPE_CHECKING:
     from .app import KnivvesVault
+from .. import buylist as buylist_mod
 from . import laws
 from .masthead import Masthead
 from .plate import Plate
+from .reserve import Reserve
 from .tips import ROOM_KEY, Tip, TipCapsule, TipRail, TipsMixin
 
 COLUMNS = [
@@ -39,6 +41,7 @@ COLUMNS = [
 ARROW_UP = " ▲"
 ARROW_DOWN = " ▼"
 PLATE_HIDDEN_X = 50
+RESERVE_HIDDEN_X = 56
 
 
 def cell_sort_key(column: str):
@@ -59,6 +62,7 @@ class RackScreen(TipsMixin, Screen):
         ("slash", "focus_search", "Search"),
         ("escape", "close_plate", "Close plate"),
         ("b", "send_bench", "Send to bench"),
+        ("y", "toggle_reserve", "The Reserve"),
         ("a", "classify('approved')", "Approve"),
         ("x", "classify('rejected')", "Reject"),
         Binding("u", "classify('clear')", "Unreview", show=False),
@@ -83,6 +87,12 @@ class RackScreen(TipsMixin, Screen):
             "approved green · rejected red ·\nunreviewed steel\n\n"
             "this same plate is stamped on the\nforge line and sits on the bench —\none object, every room",
         ),
+        "rack-reserve": Tip(
+            "the reserve — buy list priorities",
+            "y opens and closes it\n\npriority 1 is the next acquisition\n"
+            "Σ is the running cost of the ladder\n\n"
+            "the ledger file's BuyList section\nis the source of truth:\nknivves add <file.md>",
+        ),
     }
 
     def __init__(self, **kwargs) -> None:
@@ -100,8 +110,9 @@ class RackScreen(TipsMixin, Screen):
 
     def compose(self) -> ComposeResult:
         yield Masthead("THE RACK")
-        yield Input(placeholder="/ searches the vault — brand, steel, lock, tag …", id="rack-search")
+        yield Input(placeholder="/ searches the vault — brand, steel, lock, section …", id="rack-search")
         yield Plate(id="rack-plate")
+        yield Reserve(id="rack-reserve")
         with Horizontal(id="rack-body"):
             yield DataTable(id="rack-table")
             yield Static(
@@ -140,13 +151,19 @@ class RackScreen(TipsMixin, Screen):
         table.display = bool(knives)
         for k in knives:
             cls = k.classification
+            sections_cell = Text()
+            if k.is_new:
+                sections_cell.append("★new ", style=f"bold {laws.ACCENT}")
+            if k.buy_priority:
+                sections_cell.append(f"⬖{k.buy_priority} ", style=laws.ACCENT)
+            sections_cell.append(", ".join(k.tags) or ("—" if not sections_cell.plain else ""), style=laws.STEEL_DIM)
             table.add_row(
                 Text(k.brand, style=laws.STEEL_BRIGHT),
                 Text(k.model, style=laws.STEEL_MID),
                 Text(cls, style=laws.CLASS_COLORS.get(cls, laws.STEEL_MID)),
                 Text(k.blade_steel if k.blade_steel != "Unknown" else "—", style=laws.STEEL_MID),
                 Text(k.price_label, style=laws.ACCENT if k.price else laws.STEEL_DIM, justify="right"),
-                Text(", ".join(k.tags) or "—", style=laws.STEEL_DIM),
+                sections_cell,
                 key=k.id,
             )
 
@@ -244,8 +261,37 @@ class RackScreen(TipsMixin, Screen):
         if knife:
             self.vault.send_to_bench(knife)
 
+    def action_toggle_reserve(self) -> None:
+        """The buy list ledger travels in beside the rack (and back out)."""
+        reserve = self.query_one(Reserve)
+        if reserve.has_class("open"):
+            self._retire_reserve(reserve)
+            return
+        plate = self.query_one(Plate)
+        if plate.has_class("open"):
+            laws.travel(plate, PLATE_HIDDEN_X, 0, duration=0.35)
+            self.set_timer(0.4, lambda: plate.remove_class("open"))
+        db = self.vault.db
+        views = buylist_mod.buylist_views(db)
+        reserve.set_reserve(views, buylist_mod.cumulative(views))
+        reserve.add_class("open")
+        reserve.styles.offset = (RESERVE_HIDDEN_X, 0)
+        laws.travel(reserve, 0, 0, duration=0.35)
+        laws.travel(self.query_one("#rack-body"), -2, 0, duration=0.35)
+        self._rail().show(self.TIPS["rack-reserve"])
+
+    def _retire_reserve(self, reserve: Reserve) -> None:
+        laws.travel(reserve, RESERVE_HIDDEN_X, 0, duration=0.35)
+        self.set_timer(0.4, lambda: reserve.remove_class("open"))
+        laws.travel(self.query_one("#rack-body"), 0, 0, duration=0.35)
+
     def action_close_plate(self) -> None:
         if self.dismiss_capsule():
+            return
+        reserve = self.query_one(Reserve)
+        if reserve.has_class("open"):
+            self._retire_reserve(reserve)
+            self.query_one(DataTable).focus()
             return
         plate = self.query_one(Plate)
         if plate.has_class("open"):

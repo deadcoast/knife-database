@@ -48,6 +48,7 @@ class Masthead(Widget):
         prices = [k.price for k in knives if k.price is not None]
         avg = sum(prices) / len(prices) if prices else 0
         approved = sum(1 for k in knives if k.classification == "approved")
+        fresh = sum(1 for k in knives if k.is_new)
         dot: Run = ("  ·  ", laws.STEEL_DIM, False)
         self._stats = [
             (f"{len(knives)} blades", laws.STEEL_MID, False),
@@ -56,6 +57,8 @@ class Masthead(Widget):
             dot,
             (f"avg ${avg:,.0f} CAD", laws.STEEL_MID, False),
         ]
+        if fresh:
+            self._stats.extend([dot, (f"{fresh} new", laws.ACCENT, True)])
         self.refresh()
 
     # --------------------------------------------------------------- render
