@@ -29,13 +29,12 @@
 - [Bestech Noctar Bar Lock Folding Knife, 14C28N Satin, G10 Khaki, BG66C](https://www.bladescanada.com/Bestech-Knives/Bestech-Noctar-Bar-Lock-Folding-Knife-14C28N-Satin-G10-Khaki-BG66C)
 - [Bestech Noctar Bar Lock Folding Knife, 14C28N Satin, G10 Black, BG66A](https://www.bladescanada.com/Bestech-Knives/Bestech-Noctar-Bar-Lock-Folding-Knife-14C28N-Satin-G10-Black-BG66A)
 - [Bestech Noctar Bar Lock Folding Knife, 14C28N Black SW, G10 Black, BG66H](https://www.bladescanada.com/Bestech-Knives/Bestech-Noctar-Bar-Lock-Folding-Knife-14C28N-Black-SW-G10-Black-BG66H)
-- [https://www.bladescanada.com/Bestech-Knives/Bestech-Duoz-Flipper-Folding-Knife-14C28N-Gold-PVD-G10-OD-Green-BG65F](Bestech Duoz Flipper Folding Knife, 14C28N Gold PVD, G10 OD Green, BG65F)
+- [Bestech Duoz Flipper Folding Knife, 14C28N Gold PVD, G10 OD Green, BG65F](https://www.bladescanada.com/Bestech-Knives/Bestech-Duoz-Flipper-Folding-Knife-14C28N-Gold-PVD-G10-OD-Green-BG65F)
 - [DreamTech Flipper Button Lock Knife, 14C28N Bead Blast, G10 Black, D4052GB](https://www.bladescanada.com/DreamTech/DreamTech-Flipper-Button-Lock-Knife-14C28N-Bead-Blast-G10-Black-D4052GB)
 - [Molsect Croc Flipper Button Lock Folding Knife, 14C28N Satin, G10 Black Textured, M1216B](https://www.bladescanada.com/Molsect-Knives/Molsect-Croc-Flipper-Button-Lock-Folding-Knife-14C28N-Satin-G10-Black-Textured-M1216B)
 - [Honey Badger Large Flipper Folding Knife, D2 Satin, Nylon Textured Tan, HB1010](https://www.bladescanada.com/Honey-Badger-Knives/Honey-Badger-Large-Flipper-Folding-Knife-D2-Satin-Nylon-Textured-Tan-HB1010)
 - [Kansept Wasp Front Flipper Button Lock Knife, 154CM Rose Gold, G10 Black, T2144F3](https://www.bladescanada.com/Kansept-Knives/Kansept-Wasp-Front-Flipper-Button-Lock-Knife-154CM-Rose-Gold-G10-Black-T2144F3)
-- // Canadian Tire *NewSource*, *AffordableSource*
-  - [Kershaw Skyline Folding Knife#175-2469-8](https://www.canadiantire.ca/en/pdp/kershaw-skyline-folding-knife-1752469p.html)
+- [Kershaw Skyline Folding Knife#175-2469-8](https://www.canadiantire.ca/en/pdp/kershaw-skyline-folding-knife-1752469p.html)
 - [TODO:GET-KNIFE-DATA](https://www.bladescanada.com/Kansept-Knives/Kansept-Korvid-V-Crossbar-Lock-Folding-Knife-D2-Rose-Gold-G10-Black-TE2030V1)
 - [Kansept Mini Korvid Flipper Frame Lock Knife, Damascus, Titanium Black, K3030H1](https://www.bladescanada.com/Kansept-Knives/Kansept-Mini-Korvid-Flipper-Frame-Lock-Knife-Damascus-Titanium-Black-K3030H1)
 
