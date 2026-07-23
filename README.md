@@ -86,7 +86,7 @@ room it travels.
 ## Why it looks the way it does
 
 The design is governed by house laws that are code, not convention
-([knivves/vault/laws.py](knivves/vault/laws.py)):
+([knivves/tui/laws.py](knivves/tui/laws.py)):
 
 1. **One palette.** Machined darks, steel text, classification colors,
    a single amber accent. No room introduces a color.
@@ -253,7 +253,7 @@ ledgers.
 ## Development notes
 
 - **Tested by driving, not by mocking the UI**: a headless
-  [Pilot suite](tests/test_vault_shell.py) boots the app against a
+  [Pilot suite](tests/test_tui_shell.py) boots the app against a
   throwaway database copy and drives real clicks, keys, and hovers
   through every capability — including layout laws (the traveling plate
   can never clip off-screen; the tip rail must sit beside the data's

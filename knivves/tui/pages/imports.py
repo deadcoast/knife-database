@@ -28,18 +28,18 @@ from textual.strip import Strip
 from textual.widget import Widget
 from textual.widgets import Footer, Input, Static
 
-from .. import ingest, scrape
-from ..models import knife_views
-from ..research import RULE_KEYWORDS
-from ..store import backup_database, make_knife_id, save_database
-from . import laws
-from .masthead import Masthead
-from .surfaces import Engraving
-from .plate import Plate
-from .tips import ROOM_KEY, Tip, TipCapsule, TipRail, TipsMixin
+from ... import ingest, scrape
+from ...models import knife_views
+from ...research import RULE_KEYWORDS
+from ...store import backup_database, make_knife_id, save_database
+from .. import laws
+from ..masthead import Masthead
+from ..surfaces import Engraving
+from ..plate import Plate
+from ..tips import ROOM_KEY, Tip, TipCapsule, TipRail, TipsMixin
 
 if TYPE_CHECKING:
-    from .app import KnivvesVault
+    from .app import KnivvesApp
 
 # Gate labels: the rulebook's legal prose, machined down to stamps.
 # Full wording remains in the database and the legal-screen tip capsule.
@@ -289,7 +289,7 @@ def _find_span(tape: str, value: str) -> tuple[int, int] | None:
     return None
 
 
-class ForgeScreen(TipsMixin, Screen):
+class ImportsScreen(TipsMixin, Screen):
     AUTO_FOCUS = ""  # the intake slot is entered by click, not by default
     BINDINGS = [
         ("r", "replay", "Replay demo transit"),
@@ -347,11 +347,11 @@ class ForgeScreen(TipsMixin, Screen):
         yield Footer()
 
     @property
-    def vault(self) -> "KnivvesVault":
-        return cast("KnivvesVault", self.app)
+    def knivves(self) -> "KnivvesApp":
+        return cast("KnivvesApp", self.app)
 
     def on_mount(self) -> None:
-        self.query_one(Masthead).update_stats(self.vault.knives)
+        self.query_one(Masthead).update_stats(self.knivves.knives)
         self.query_one(GateBank).set_rules(self._rules())
         self.show_room_tip()
         self.run_worker(self.demo_transit(), exclusive=True)
@@ -405,7 +405,7 @@ class ForgeScreen(TipsMixin, Screen):
             self.call_after_refresh(self._settle)
 
     def _rules(self) -> list[str]:
-        rule = self.vault.db.get("workflow_rules", {}).get("canadian_online_retailer_rule", {})
+        rule = self.knivves.db.get("workflow_rules", {}).get("canadian_online_retailer_rule", {})
         return list(rule.get("only_reject_or_fail_if_clear_prohibited_mechanism", []))
 
     def _line_state(self, text: str) -> None:
@@ -444,7 +444,7 @@ class ForgeScreen(TipsMixin, Screen):
     # ---------------------------------------------------------- live intake
 
     def _already_filed(self, url: str) -> str | None:
-        for knife in self.vault.knives:
+        for knife in self.knivves.knives:
             if knife.source_input == url:
                 return knife.id
             for retailer in knife.retailers:
@@ -540,14 +540,14 @@ class ForgeScreen(TipsMixin, Screen):
 
         self._line_state("line: vault ▸")
         await self._travel_to("st-vault", plate)
-        view = self.vault.file_record(self._record_from(listing))
+        view = self.knivves.file_record(self._record_from(listing))
         landed = Text()
         landed.append(f"{view.display_name}\n", style=laws.STEEL_BRIGHT)
         landed.append(f"filed · {view.id}\n", style=laws.STEEL_DIM)
         landed.append("now in the rack · awaiting review", style=laws.STEEL_DIM)
         filed.update(landed)
         self._line_state("line: filed ✓")
-        self.query_one(Masthead).update_stats(self.vault.knives)
+        self.query_one(Masthead).update_stats(self.knivves.knives)
 
     # ---------------------------------------------------------- file intake
 
@@ -601,7 +601,7 @@ class ForgeScreen(TipsMixin, Screen):
 
         self._line_state("line: the plan screens ▸")
         await self._travel_to("st-legal", plate)
-        plan = ingest.build_plan(doc, self.vault.db)
+        plan = ingest.build_plan(doc, self.knivves.db)
         screen = Text()
         screen.append("THE PLAN\n\n", style=laws.PASS if plan.new_records else laws.STEEL_DIM)
         for label, count, style in (
@@ -625,10 +625,10 @@ class ForgeScreen(TipsMixin, Screen):
             filed.update(Text("nothing new — every entry already lives in the vault", style=laws.STEEL_DIM))
             self._line_state("line idle · url, .md, or r")
             return
-        backup_database("before-ingest", self.vault.db_path)
-        report = ingest.apply_plan(plan, self.vault.db)
-        save_database(self.vault.db, self.vault.db_path)
-        self.vault.knives = knife_views(self.vault.db)
+        backup_database("before-ingest", self.knivves.db_path)
+        report = ingest.apply_plan(plan, self.knivves.db)
+        save_database(self.knivves.db, self.knivves.db_path)
+        self.knivves.knives = knife_views(self.knivves.db)
         landed = Text()
         landed.append(f"{report.added} filed ★new", style=f"bold {laws.FRESH}")
         landed.append(f" · {report.merged} merged\n", style=laws.STEEL_MID)
@@ -639,12 +639,12 @@ class ForgeScreen(TipsMixin, Screen):
         landed.append("\nnow in the library · knivves update seals the batch", style=laws.STEEL_DIM)
         filed.update(landed)
         self._line_state(f"line: filed {report.added} ✓")
-        self.query_one(Masthead).update_stats(self.vault.knives)
+        self.query_one(Masthead).update_stats(self.knivves.knives)
 
     # ---------------------------------------------------------- demo transit
 
     def _sample(self):
-        knives = self.vault.knives
+        knives = self.knivves.knives
         return next((k for k in knives if k.price and k.blade_steel != "Unknown"), knives[0])
 
     async def demo_transit(self) -> None:

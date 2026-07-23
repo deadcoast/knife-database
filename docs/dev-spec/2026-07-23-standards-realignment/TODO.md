@@ -16,7 +16,7 @@ Case: `2026-07-23-standards-realignment` · Design: [design.md](design.md) · Hu
 
 ### T1 — the restructure
 
-- [ ] **T1** `knivves/vault/` becomes `knivves/tui/` with a `pages/`
+- [x] **T1** `knivves/vault/` becomes `knivves/tui/` with a `pages/`
   package — one module per door named as the door reads — and the vault
   becomes page 0, the entry hall the app opens on.
   - **Satisfies**: [REQ-ARC-1](design.md#req-arc-1--pages-own-their-modules), [REQ-ARC-2](design.md#req-arc-2--the-vault-is-a-page-the-entry-hall)

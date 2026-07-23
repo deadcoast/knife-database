@@ -34,18 +34,18 @@ from textual.strip import Strip
 from textual.widget import Widget
 from textual.widgets import Footer, Static
 
-from .. import research, scrape
-from ..models import KnifeView, knife_views
-from ..store import backup_database, save_database
-from . import laws
-from .gauges import EIGHTHS, _lerp
-from .masthead import Masthead
-from .plate import Plate
-from .surfaces import Engraving
-from .tips import ROOM_KEY, Tip, TipCapsule, TipRail, TipsMixin
+from ... import research, scrape
+from ...models import KnifeView, knife_views
+from ...store import backup_database, save_database
+from .. import laws
+from ..gauges import EIGHTHS, _lerp
+from ..masthead import Masthead
+from ..plate import Plate
+from ..surfaces import Engraving
+from ..tips import ROOM_KEY, Tip, TipCapsule, TipRail, TipsMixin
 
 if TYPE_CHECKING:
-    from .app import KnivvesVault
+    from .app import KnivvesApp
 
 FETCH_TIMEOUT = 12.0
 
@@ -229,7 +229,7 @@ class UnknownsMap(Widget):
         return Strip([Segment(ch, style) for ch, style in zip(cells, styles)])
 
 
-class DeskScreen(TipsMixin, Screen):
+class ResearchScreen(TipsMixin, Screen):
     BINDINGS = [
         ("s", "start_pass", "Research the docket"),
         ("r", "replay", "Replay demo"),
@@ -280,11 +280,11 @@ class DeskScreen(TipsMixin, Screen):
         yield Footer()
 
     @property
-    def vault(self) -> "KnivvesVault":
-        return cast("KnivvesVault", self.app)
+    def knivves(self) -> "KnivvesApp":
+        return cast("KnivvesApp", self.app)
 
     def on_mount(self) -> None:
-        self.query_one(Masthead).update_stats(self.vault.knives)
+        self.query_one(Masthead).update_stats(self.knivves.knives)
         self.show_room_tip()
         self._refresh_desk()
         self.run_worker(self.demo_transit(), exclusive=True)
@@ -327,7 +327,7 @@ class DeskScreen(TipsMixin, Screen):
 
     def _refresh_desk(self, active: str | None = None) -> None:
         """Docket, shelf, map, and masthead — all from one audit."""
-        db = self.vault.db
+        db = self.knivves.db
         plan = research.run_research(db, dry_run=True)
         audit = research.audit_database(db)
         columns: list[tuple[str, set[str]]] = []
@@ -335,7 +335,7 @@ class DeskScreen(TipsMixin, Screen):
         for entry in list(plan.planned) + list(plan.unreachable):
             columns.append((entry.knife_id, {g.field for g in entry.gaps}))
             seen.add(entry.knife_id)
-        for knife in self.vault.knives:
+        for knife in self.knivves.knives:
             if knife.id not in seen:
                 columns.append((knife.id, {g.field for g in audit.gaps_by_id.get(knife.id, [])}))
         self.query_one("#desk-map", UnknownsMap).set_state(columns)
@@ -382,7 +382,7 @@ class DeskScreen(TipsMixin, Screen):
     # ------------------------------------------------------------ live pass
 
     async def live_pass(self) -> None:
-        db = self.vault.db
+        db = self.knivves.db
         plan = research.run_research(db, dry_run=True)
         if not plan.planned:
             self._refresh_desk()
@@ -408,9 +408,9 @@ class DeskScreen(TipsMixin, Screen):
             hits.extend((report.knife_id, rule) for rule, _ in report.rulebook_hits)
         unknowns.mark_working(None)
         if filled_total:
-            backup_database("before-research", self.vault.db_path)
-            save_database(db, self.vault.db_path)
-            self.vault.knives = knife_views(db)
+            backup_database("before-research", self.knivves.db_path)
+            save_database(db, self.knivves.db_path)
+            self.knivves.knives = knife_views(db)
         stamped = self.query_one("#stamped", Static)
         summary = Text()
         summary.append(f"{worked} records researched\n", style=laws.STEEL_BRIGHT)
@@ -420,7 +420,7 @@ class DeskScreen(TipsMixin, Screen):
             summary.append("  reported only · the flag stays yours\n", style=laws.STEEL_DIM)
         summary.append("\nthe database holds the fills", style=laws.STEEL_DIM)
         stamped.update(summary)
-        self.query_one(Masthead).update_stats(self.vault.knives)
+        self.query_one(Masthead).update_stats(self.knivves.knives)
         self._refresh_desk()
         self._line_state(f"desk: {filled_total} fills filed ✓ · s again · r demo")
 
@@ -478,7 +478,7 @@ class DeskScreen(TipsMixin, Screen):
     # ---------------------------------------------------------- demo transit
 
     def _sample(self) -> KnifeView:
-        knives = self.vault.knives
+        knives = self.knivves.knives
         return next((k for k in knives if k.price and k.blade_steel != "Unknown"), knives[0])
 
     async def demo_transit(self) -> None:

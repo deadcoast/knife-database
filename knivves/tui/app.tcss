@@ -1,7 +1,9 @@
-/* KNIVVES VAULT — screen-level styles.
-   Widget identities (Plate, Masthead) live in their own DEFAULT_CSS;
-   this file lays out the rooms. Palette values mirror laws.py — the
-   single source of truth for color decisions. */
+/* KNIVVES — the building's chrome, App-level.
+   Only what every page shares lives here: the Screen base, the Footer,
+   the shared station/plate frames. Each page's own layout rides beside
+   its module as <page>.tcss (Screen.CSS_PATH). Palette values mirror
+   laws.py until the knivves theme lands (T2), when every literal here
+   becomes a $variable. */
 
 Screen {
     background: #14171a;
@@ -9,7 +11,7 @@ Screen {
     overflow: hidden hidden;
 }
 
-RackScreen, BenchScreen, LedgerScreen {
+LibraryScreen, CompareScreen, MarketScreen {
     layers: base capsule door;
 }
 
@@ -152,7 +154,7 @@ Footer {
 
 /* -------------------------------------------------------- the forge line */
 
-ForgeScreen {
+ImportsScreen {
     layers: base plate capsule door;
 }
 
@@ -201,7 +203,7 @@ ForgeScreen {
 
 /* ---------------------------------------------------- the research desk */
 
-DeskScreen {
+ResearchScreen {
     layers: base plate capsule door;
 }
 

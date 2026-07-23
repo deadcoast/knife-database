@@ -18,16 +18,16 @@ from textual.events import ScreenResume
 from textual.screen import Screen
 from textual.widgets import DataTable, Footer, Input, Static
 
-from ..models import KnifeView, new_brands
+from ...models import KnifeView, new_brands
 
 if TYPE_CHECKING:
-    from .app import KnivvesVault
-from .. import buylist as buylist_mod
-from . import laws
-from .masthead import Masthead
-from .plate import Plate
-from .reserve import Reserve
-from .tips import ROOM_KEY, Tip, TipCapsule, TipRail, TipsMixin
+    from .app import KnivvesApp
+from ... import buylist as buylist_mod
+from .. import laws
+from ..masthead import Masthead
+from ..plate import Plate
+from ..reserve import Reserve
+from ..tips import ROOM_KEY, Tip, TipCapsule, TipRail, TipsMixin
 
 COLUMNS = [
     ("brand", "Brand", 16),
@@ -57,7 +57,7 @@ def cell_sort_key(column: str):
     return key
 
 
-class RackScreen(TipsMixin, Screen):
+class LibraryScreen(TipsMixin, Screen):
     BINDINGS = [
         ("slash", "focus_search", "Search"),
         ("escape", "close_plate", "Close plate"),
@@ -101,12 +101,12 @@ class RackScreen(TipsMixin, Screen):
         self.sort_reverse = False
 
     @property
-    def vault(self) -> "KnivvesVault":
-        return cast("KnivvesVault", self.app)
+    def knivves(self) -> "KnivvesApp":
+        return cast("KnivvesApp", self.app)
 
     @property
     def knives(self) -> list[KnifeView]:
-        return self.vault.knives
+        return self.knivves.knives
 
     def compose(self) -> ComposeResult:
         yield Masthead("LIBRARY")
@@ -240,7 +240,7 @@ class RackScreen(TipsMixin, Screen):
         if target is None:
             return
         verdict = None if classification == "clear" else classification
-        view = self.vault.classify(target, verdict)
+        view = self.knivves.classify(target, verdict)
         if view is None:
             return
         table = self.query_one(DataTable)
@@ -267,7 +267,7 @@ class RackScreen(TipsMixin, Screen):
         ).row_key
         knife = next((k for k in self.knives if k.id == row_key.value), None)
         if knife:
-            self.vault.send_to_bench(knife)
+            self.knivves.send_to_compare(knife)
 
     def action_toggle_reserve(self) -> None:
         """The buy list ledger travels in beside the rack (and back out)."""
@@ -279,7 +279,7 @@ class RackScreen(TipsMixin, Screen):
         if plate.has_class("open"):
             laws.travel(plate, PLATE_HIDDEN_X, 0, duration=0.35)
             self.set_timer(0.4, lambda: plate.remove_class("open"))
-        db = self.vault.db
+        db = self.knivves.db
         views = buylist_mod.buylist_views(db)
         reserve.set_reserve(views, buylist_mod.cumulative(views))
         reserve.add_class("open")

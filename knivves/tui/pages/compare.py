@@ -30,15 +30,15 @@ from textual.strip import Strip
 from textual.widget import Widget
 from textual.widgets import Footer, Static
 
-from ..models import KnifeView
+from ...models import KnifeView
 
 if TYPE_CHECKING:
-    from .app import KnivvesVault
-from . import laws
-from .masthead import Masthead
-from .surfaces import Engraving
-from .plate import Plate
-from .tips import ROOM_KEY, Tip, TipCapsule, TipRail, TipsMixin
+    from .app import KnivvesApp
+from .. import laws
+from ..masthead import Masthead
+from ..surfaces import Engraving
+from ..plate import Plate
+from ..tips import ROOM_KEY, Tip, TipCapsule, TipRail, TipsMixin
 
 IN_TO_MM = 25.4
 
@@ -281,7 +281,7 @@ class Calipers(Widget):
         ])
 
 
-class BenchScreen(TipsMixin, Screen):
+class CompareScreen(TipsMixin, Screen):
     BINDINGS = [
         ("escape", "clear_bench", "Clear bench"),
         Binding("t", "expand_tip", "tip detail", show=False),
@@ -319,11 +319,11 @@ class BenchScreen(TipsMixin, Screen):
         yield Footer()
 
     @property
-    def vault(self) -> "KnivvesVault":
-        return cast("KnivvesVault", self.app)
+    def knivves(self) -> "KnivvesApp":
+        return cast("KnivvesApp", self.app)
 
     def on_screen_resume(self, event: ScreenResume) -> None:
-        self.query_one(Masthead).update_stats(self.vault.knives)
+        self.query_one(Masthead).update_stats(self.knivves.knives)
         self.show_room_tip()
         self._drain_queue()
         self.run_worker(self._choreograph(), exclusive=True)
@@ -331,7 +331,7 @@ class BenchScreen(TipsMixin, Screen):
     # ------------------------------------------------------------- intake
 
     def _drain_queue(self) -> None:
-        queue = self.vault.bench_queue
+        queue = self.knivves.compare_queue
         while queue:
             knife = queue.pop(0)
             if any(k.id == knife.id for k in self.slots):

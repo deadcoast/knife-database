@@ -1,6 +1,6 @@
-"""Headless tests for the Vault shell.
+"""Headless tests for the application shell.
 
-Plain-python runner (no pytest dependency):  python tests/test_vault_shell.py
+Plain-python runner (no pytest dependency):  python tests/test_tui_shell.py
 Uses Textual's Pilot to drive real input against the composed app.
 """
 from __future__ import annotations
@@ -18,11 +18,11 @@ sys.path.insert(0, str(REPO))
 from textual.widgets import DataTable, Input, Static  # noqa: E402
 
 import knivves.scrape as scrape_mod  # noqa: E402
-from knivves.vault.app import KnivvesVault  # noqa: E402
-from knivves.vault.bench import BenchScreen  # noqa: E402
-from knivves.vault.plate import Plate  # noqa: E402
-from knivves.vault.rack import RackScreen  # noqa: E402
-from knivves.vault.forge import ForgeScreen, GateBank, TapeReader  # noqa: E402
+from knivves.tui.app import KnivvesApp  # noqa: E402
+from knivves.tui.pages.compare import CompareScreen  # noqa: E402
+from knivves.tui.plate import Plate  # noqa: E402
+from knivves.tui.pages.library import LibraryScreen  # noqa: E402
+from knivves.tui.pages.imports import ImportsScreen, GateBank, TapeReader  # noqa: E402
 
 
 def _clean_listing(url: str, timeout: float = 30.0) -> scrape_mod.Listing:
@@ -57,20 +57,27 @@ async def test_shell() -> None:
     # intake writes to the database: run the whole suite on a throwaway copy
     tmp_db = Path(tempfile.mkdtemp()) / "knives.json"
     shutil.copyfile(REPO / "knivves" / "data" / "knives.json", tmp_db)
-    app = KnivvesVault(db_path=tmp_db)
+    app = KnivvesApp(db_path=tmp_db)
     async with app.run_test(size=(170, 45)) as pilot:
         await pilot.pause()
 
-        # cold boot: the vault door holds the brand, then opens into the rack
-        from knivves.vault.door import VaultDoor
+        # cold boot: the vault door holds the brand, then opens into the hall
+        from knivves.tui.door import VaultDoor
+        from knivves.tui.pages.vault import VaultScreen
 
         assert app.screen.query(VaultDoor), "boot door missing"
         await asyncio.sleep(2.3)
         await pilot.pause()
         assert not app.screen.query(VaultDoor), "boot door failed to open"
 
-        # boots into the rack with the full collection
-        assert isinstance(app.screen, RackScreen), f"boot screen: {app.screen}"
+        # boot lands in the entry hall — the vault is a page
+        assert isinstance(app.screen, VaultScreen), f"boot screen: {app.screen}"
+
+        # door 1: the library with the full collection
+        await pilot.press("1")
+        await asyncio.sleep(1.1)
+        await pilot.pause()
+        assert isinstance(app.screen, LibraryScreen), f"screen: {app.screen}"
         table = app.screen.query_one(DataTable)
         n = len(app.knives)
         assert table.row_count == n > 0, f"{table.row_count} vs {n}"
@@ -113,7 +120,7 @@ async def test_shell() -> None:
         search = app.screen.query_one("#rack-search", Input)
         assert str(search.border_subtitle).endswith(f"/ {n}"), f"subtitle: {search.border_subtitle}"
         # sort readout on the masthead
-        from knivves.vault.masthead import Masthead
+        from knivves.tui.masthead import Masthead
         context = app.screen.query_one(Masthead).context
         assert "sorted by brand" in context, f"context: {context}"
         # slash reaches the search from the table
@@ -137,7 +144,7 @@ async def test_shell() -> None:
             assert expected in commands, f"palette missing: {expected}"
 
         # ---- tip system: rail on hover, capsule on demand ----
-        from knivves.vault.tips import TipCapsule, TipRail
+        from knivves.tui.tips import TipCapsule, TipRail
 
         rail = app.screen.query_one(TipRail)
         # the rail sits directly beside the data's last column, never at the
@@ -183,7 +190,7 @@ async def test_shell() -> None:
         # room switch: 2 -> forge line, transit completes on real rules
         await pilot.press("2")
         await pilot.pause()
-        assert isinstance(app.screen, ForgeScreen), f"screen: {app.screen}"
+        assert isinstance(app.screen, ImportsScreen), f"screen: {app.screen}"
         await asyncio.sleep(10.5)
         await pilot.pause()
         gates_text = str(app.screen.query_one("#gates", Static).render())
@@ -198,11 +205,11 @@ async def test_shell() -> None:
         # the tape reader lights the substrings the parse actually used
         tape = app.screen.query_one(TapeReader)
         assert tape.lit_count >= 1, "demo tape lights nothing"
-        from knivves.vault.masthead import Masthead as MastheadWidget
+        from knivves.tui.masthead import Masthead as MastheadWidget
         forge_context = app.screen.query_one(MastheadWidget).context
         assert "line idle" in forge_context, f"context: {forge_context}"
         # the traveling plate never clips off screen, whatever its height
-        from knivves.vault.plate import Plate as PlateWidget
+        from knivves.tui.plate import Plate as PlateWidget
         forge_plate = app.screen.query_one(PlateWidget)
         plate_bottom = forge_plate.region.y + forge_plate.region.height
         assert plate_bottom <= app.size.height, f"plate clips: bottom {plate_bottom} vs screen {app.size.height}"
@@ -210,12 +217,12 @@ async def test_shell() -> None:
         # room switch back: 1 -> the rack, state intact
         await pilot.press("1")
         await pilot.pause()
-        assert isinstance(app.screen, RackScreen)
+        assert isinstance(app.screen, LibraryScreen)
 
         # send-to-bench: `b` carries the highlighted knife's plate to the bench
         await pilot.press("b")
         await pilot.pause()
-        assert isinstance(app.screen, BenchScreen), f"screen: {app.screen}"
+        assert isinstance(app.screen, CompareScreen), f"screen: {app.screen}"
         assert len(app.screen.slots) == 1, f"slots: {len(app.screen.slots)}"
         first_id = app.screen.slots[0].id
 
@@ -230,14 +237,14 @@ async def test_shell() -> None:
         await pilot.pause()
         # the calipers are an instrument now: beams with jaws on a shared
         # scale for the numeric facts, linkages for the categorical ones
-        from knivves.vault.bench import Calipers
+        from knivves.tui.pages.compare import Calipers
 
         cal = app.screen.query_one(Calipers)
         assert cal.measured == tuple(k.id for k in app.screen.slots), "calipers did not read the pair"
         assert len(cal.beams) == 2 and len(cal.links) == 3, "instrument rows missing"
         assert all(b.delta is not None or b.missing for b in cal.beams), "a beam is neither read nor honest"
         assert app.screen._seated == [k.id for k in app.screen.slots], "seating not tracked"
-        from knivves.vault.masthead import Masthead as MH
+        from knivves.tui.masthead import Masthead as MH
         bench_ctx = app.screen.query_one(MH).context
         assert " vs " in bench_ctx, f"bench state: {bench_ctx}"
         await pilot.press("1")
@@ -335,9 +342,9 @@ async def test_shell() -> None:
             on_disk = json.loads(tmp_db.read_text(encoding="utf-8"))
             assert len(on_disk["knives"]) == n + 1, "prohibited record was written"
             # ---- the ledger: survey with a stubbed market ----
-            from knivves.vault.ledger import LedgerScreen
+            from knivves.tui.pages.market import MarketScreen
 
-            LedgerScreen.SURVEY_DELAY = 0
+            MarketScreen.SURVEY_DELAY = 0
             baseline: dict[str, float] = {
                 k.id: k.price for k in app.knives if k.price is not None
             }
@@ -356,10 +363,10 @@ async def test_shell() -> None:
             scrape_mod.fetch_listing = falling_market
             await pilot.press("4")
             await pilot.pause()
-            assert isinstance(app.screen, LedgerScreen), f"screen: {app.screen}"
+            assert isinstance(app.screen, MarketScreen), f"screen: {app.screen}"
             valuation = str(app.screen.query_one("#valuation-read", Static).render())
             assert "value" in valuation.lower(), f"valuation: {valuation[:80]}"
-            from knivves.vault.gauges import GradientBars, PriceScale
+            from knivves.tui.gauges import GradientBars, PriceScale
             assert app.screen.query_one(PriceScale)._prices, "price scale empty"
             assert sum(c for _, c in app.screen.query_one(GradientBars)._buckets) > 0, "bars empty"
             await pilot.press("s")
@@ -397,7 +404,7 @@ async def test_freshness_and_reserve() -> None:
     """NEW chips on the rack, the masthead new-count, and The Reserve panel."""
     from textual.coordinate import Coordinate
 
-    from knivves.vault.reserve import Reserve
+    from knivves.tui.reserve import Reserve
 
     tmp_db = Path(tempfile.mkdtemp()) / "knives.json"
     db = json.loads((REPO / "knivves" / "data" / "knives.json").read_text(encoding="utf-8"))
@@ -420,11 +427,14 @@ async def test_freshness_and_reserve() -> None:
     db["updates"] = {"generation": 1, "keep_generations": 1, "history": []}
     tmp_db.write_text(json.dumps(db), encoding="utf-8")
 
-    app = KnivvesVault(db_path=tmp_db)
+    app = KnivvesApp(db_path=tmp_db)
     async with app.run_test(size=(170, 45)) as pilot:
         await asyncio.sleep(2.3)
         await pilot.pause()
-        assert isinstance(app.screen, RackScreen)
+        await pilot.press("1")
+        await asyncio.sleep(1.1)
+        await pilot.pause()
+        assert isinstance(app.screen, LibraryScreen)
 
         # ★new aligns in the gutter — start of the Model cell; the sections
         # cell keeps only the reserve rank
@@ -437,7 +447,7 @@ async def test_freshness_and_reserve() -> None:
         assert "⬖1" in sections_cell, f"priority mark missing: {sections_cell!r}"
 
         # the masthead counts the fresh arrivals
-        from knivves.vault.masthead import Masthead
+        from knivves.tui.masthead import Masthead
 
         stats_text = "".join(text for text, _, _ in app.screen.query_one(Masthead)._stats)
         assert "2 new" in stats_text, f"masthead stats: {stats_text}"
@@ -470,14 +480,14 @@ async def test_file_import_transit() -> None:
     before = len(json.loads(tmp_db.read_text(encoding="utf-8"))["knives"])
     ledger_path = REPO / "tests" / "fixtures" / "knife-additions.md"
 
-    app = KnivvesVault(db_path=tmp_db)
+    app = KnivvesApp(db_path=tmp_db)
     async with app.run_test(size=(170, 45)) as pilot:
         await asyncio.sleep(2.3)
         await pilot.pause()
         await pilot.press("2")
         await asyncio.sleep(1.2)
         await pilot.pause()
-        assert isinstance(app.screen, ForgeScreen)
+        assert isinstance(app.screen, ImportsScreen)
         intake = app.screen.query_one("#forge-intake", Input)
         intake.focus()
         intake.value = str(ledger_path)
@@ -550,14 +560,17 @@ async def test_desk_demo_transit() -> None:
     tmp_db.write_text(json.dumps(db), encoding="utf-8")
     before_bytes = tmp_db.read_bytes()
 
-    from knivves.vault.desk import DeskScreen
+    from knivves.tui.pages.research import ResearchScreen
 
     real_fetch = scrape_mod.fetch_listing
     scrape_mod.fetch_listing = _clean_listing
     try:
-        app = KnivvesVault(db_path=tmp_db)
+        app = KnivvesApp(db_path=tmp_db)
         async with app.run_test(size=(170, 45)) as pilot:
             await asyncio.sleep(2.3)
+            await pilot.pause()
+            await pilot.press("1")
+            await asyncio.sleep(1.1)
             await pilot.pause()
 
             # the Library plate carries the record's incompleteness (REQ-RES-6)
@@ -576,7 +589,7 @@ async def test_desk_demo_transit() -> None:
             await pilot.press("5")
             await asyncio.sleep(1.0)
             await pilot.pause()
-            assert isinstance(app.screen, DeskScreen), f"screen: {app.screen}"
+            assert isinstance(app.screen, ResearchScreen), f"screen: {app.screen}"
             await asyncio.sleep(4.5)
             await pilot.pause()
             docket_text = str(app.screen.query_one("#docket", Static).render())
@@ -590,7 +603,7 @@ async def test_desk_demo_transit() -> None:
 
             # the unknowns map draws every record as a column; the target's
             # column carries its missing-field sockets
-            from knivves.vault.desk import UnknownsMap
+            from knivves.tui.pages.research import UnknownsMap
 
             unknowns = app.screen.query_one(UnknownsMap)
             assert unknowns.records == 2, f"map columns: {unknowns.records}"
@@ -620,7 +633,63 @@ async def test_desk_demo_transit() -> None:
     print("PASS: research desk · library chip · demo transit writes nothing · s fills the docket")
 
 
+def test_pages_map_to_doors() -> None:
+    """The source organization matches the doors (REQ-ARC-1): every screen
+    lives in ``pages/<key>.py`` as ``<Key>Screen``; every number key opens
+    a registered page."""
+    for key, screen_cls in KnivvesApp.SCREENS.items():
+        expected_module = f"knivves.tui.pages.{key}"
+        assert screen_cls.__module__ == expected_module, (
+            f"{screen_cls.__name__} lives in {screen_cls.__module__}, not {expected_module}"
+        )
+        assert screen_cls.__name__ == f"{key.capitalize()}Screen", screen_cls.__name__
+    door_bindings = [b for b in KnivvesApp.BINDINGS if isinstance(b, tuple) and b[1].startswith("room(")]
+    assert len(door_bindings) == len(KnivvesApp.SCREENS), "a page has no door key"
+    for _key, action, _label in door_bindings:
+        target = action.split("'")[1]
+        assert target in KnivvesApp.SCREENS, f"door key opens unregistered page: {target}"
+    labels = {label for _, _, label in door_bindings}
+    for expected in ("Vault", "Library", "Import Knives", "Compare Models", "Market Prices", "Research"):
+        assert expected in labels, f"door label missing: {expected}"
+    print("PASS: pages map to doors — modules, screen classes, keys, labels agree")
+
+
+async def test_entry_hall_doors() -> None:
+    """Page 0 — the vault (REQ-ARC-2): boot lands in the hall, the plaques
+    read live state, number keys leave, 0 returns."""
+    from knivves.tui.pages.market import MarketScreen
+    from knivves.tui.pages.vault import VaultScreen
+
+    tmp_db = Path(tempfile.mkdtemp()) / "knives.json"
+    shutil.copyfile(REPO / "knivves" / "data" / "knives.json", tmp_db)
+    app = KnivvesApp(db_path=tmp_db)
+    async with app.run_test(size=(170, 45)) as pilot:
+        await asyncio.sleep(2.3)
+        await pilot.pause()
+        assert isinstance(app.screen, VaultScreen), f"boot screen: {app.screen}"
+        state = str(app.screen.query_one("#hall-state-body", Static).render())
+        assert "BLADES" in state and "AVG" in state, f"state plaque: {state[:80]}"
+        assert "unresearched" in state, f"gaps line missing: {state[:120]}"
+        doors = str(app.screen.query_one("#hall-doors-body", Static).render())
+        for name in ("LIBRARY", "IMPORT KNIVES", "COMPARE MODELS", "MARKET PRICES", "RESEARCH"):
+            assert name in doors, f"door missing from the hall: {name}"
+        reserve = str(app.screen.query_one("#hall-reserve-body", Static).render())
+        assert reserve.strip(), "acquisitions plaque empty"
+        # a number key leaves the hall; 0 always returns
+        await pilot.press("4")
+        await asyncio.sleep(1.1)
+        await pilot.pause()
+        assert isinstance(app.screen, MarketScreen), f"screen: {app.screen}"
+        await pilot.press("0")
+        await asyncio.sleep(1.1)
+        await pilot.pause()
+        assert isinstance(app.screen, VaultScreen), f"0 did not return home: {app.screen}"
+    print("PASS: the vault is a page — boot hall · plaques live · keys out · 0 home")
+
+
 if __name__ == "__main__":
+    test_pages_map_to_doors()
+    asyncio.run(test_entry_hall_doors())
     asyncio.run(test_shell())
     asyncio.run(test_freshness_and_reserve())
     asyncio.run(test_file_import_transit())

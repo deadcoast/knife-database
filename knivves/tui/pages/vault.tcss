@@ -1,0 +1,37 @@
+/* THE VAULT — page 0, the entry hall's own stylesheet (Screen.CSS_PATH).
+   The first page to carry its design beside its module; palette values
+   mirror laws.py until the knivves theme lands (T2 of the standards
+   re-alignment case), when every literal here becomes a $variable. */
+
+VaultScreen {
+    layers: base capsule door;
+}
+
+#hall {
+    height: 1fr;
+    padding: 1 2;
+}
+
+.hall-fixture {
+    width: 1fr;
+    height: 100%;
+    margin: 0 1;
+    border: round #31363c;
+    padding: 1 2;
+    overflow: hidden hidden;
+}
+
+#hall-doors {
+    width: 2fr;
+}
+
+.hall-fixture-name {
+    color: #8b96a0;
+    text-style: bold;
+    border-bottom: solid #31363c;
+    padding-bottom: 1;
+}
+
+.hall-fixture-body {
+    margin-top: 1;
+}

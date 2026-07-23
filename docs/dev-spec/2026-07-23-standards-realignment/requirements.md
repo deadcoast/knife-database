@@ -36,8 +36,8 @@ names (`rack.py`, `forge.py`, `bench.py`, `ledger.py`, `desk.py`).
 
 | REQ | Capability | Design | Tasks | Binds | Proof | Status |
 |---|---|---|---|---|---|---|
-| REQ-ARC-1 | pages own their modules | [§](design.md#req-arc-1--pages-own-their-modules) | [T1](TODO.md#t1--the-restructure) | `knivves/tui/pages/*` · `pyproject.toml` | `test_tui_shell.py::test_pages_map_to_doors` | open |
-| REQ-ARC-2 | the vault is a page: the entry hall | [§](design.md#req-arc-2--the-vault-is-a-page-the-entry-hall) | [T1](TODO.md#t1--the-restructure) | `pages/vault.py::VaultScreen` | `test_tui_shell.py::test_entry_hall_doors` | open |
+| REQ-ARC-1 | pages own their modules | [§](design.md#req-arc-1--pages-own-their-modules) | [T1](TODO.md#t1--the-restructure) | `knivves/tui/pages/*` · `pyproject.toml` | `test_tui_shell.py::test_pages_map_to_doors` | shipped |
+| REQ-ARC-2 | the vault is a page: the entry hall | [§](design.md#req-arc-2--the-vault-is-a-page-the-entry-hall) | [T1](TODO.md#t1--the-restructure) | `pages/vault.py::VaultScreen` | `test_tui_shell.py::test_entry_hall_doors` | shipped |
 | REQ-CSS-1 | the KNIVVES theme | [§](design.md#req-css-1--the-knivves-theme) | [T2](TODO.md#t2--one-theme-six-stylesheets) | `laws.py::KNIVVES_THEME` · all `.tcss` | `test_tui_shell.py::test_theme_is_the_only_palette` | open |
 | REQ-CSS-2 | per-page stylesheets | [§](design.md#req-css-2--per-page-stylesheets) | [T2](TODO.md#t2--one-theme-six-stylesheets) | `pages/<page>.py::CSS_PATH` · `app.tcss` | `test_tui_shell.py::test_pages_own_stylesheets` | open |
 | REQ-MOT-1 | three motion tiers in the laws | [§](design.md#req-mot-1--three-tiers-in-the-laws) | [T3](TODO.md#t3--the-motion-tiers) | `laws.py::Reveal` + tier constants | `test_tui_shell.py::test_reveal_runs_once_per_open` | open |

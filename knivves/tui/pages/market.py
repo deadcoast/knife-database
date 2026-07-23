@@ -21,23 +21,23 @@ from textual.events import ScreenResume
 from textual.screen import Screen
 from textual.widgets import Footer, Static
 
-from .. import ledger, scrape
-from ..models import KnifeView, knife_views
-from ..store import save_database
-from . import laws
-from .gauges import GradientBars, PriceScale
-from .masthead import Masthead
-from .surfaces import Engraving
-from .tips import ROOM_KEY, Tip, TipCapsule, TipRail, TipsMixin
+from ... import ledger, scrape
+from ...models import KnifeView, knife_views
+from ...store import save_database
+from .. import laws
+from ..gauges import GradientBars, PriceScale
+from ..masthead import Masthead
+from ..surfaces import Engraving
+from ..tips import ROOM_KEY, Tip, TipCapsule, TipRail, TipsMixin
 
 if TYPE_CHECKING:
-    from .app import KnivvesVault
+    from .app import KnivvesApp
 
 BAR_WIDTH = 22
 SUPPORTED = scrape.SUPPORTED_HOSTS
 
 
-class LedgerScreen(TipsMixin, Screen):
+class MarketScreen(TipsMixin, Screen):
     BINDINGS = [
         ("s", "survey", "Update prices"),
         ("escape", "cancel_survey", "Cancel price read"),
@@ -87,11 +87,11 @@ class LedgerScreen(TipsMixin, Screen):
         yield Footer()
 
     @property
-    def vault(self) -> "KnivvesVault":
-        return cast("KnivvesVault", self.app)
+    def knivves(self) -> "KnivvesApp":
+        return cast("KnivvesApp", self.app)
 
     def on_screen_resume(self, event: ScreenResume) -> None:
-        self.query_one(Masthead).update_stats(self.vault.knives)
+        self.query_one(Masthead).update_stats(self.knivves.knives)
         self.show_room_tip()
         self._read_valuation()
         self._read_line()
@@ -103,7 +103,7 @@ class LedgerScreen(TipsMixin, Screen):
         """Idle readout: when the market was last read, if ever."""
         dates = [
             str(r.get("source_date"))
-            for k in self.vault.knives
+            for k in self.knivves.knives
             if len(k.raw.get("price_history") or []) > 1
             for r in k.retailers
             if r.get("source_date")
@@ -113,7 +113,7 @@ class LedgerScreen(TipsMixin, Screen):
     # ------------------------------------------------------------- panels
 
     def _read_valuation(self) -> None:
-        knives = self.vault.knives
+        knives = self.knivves.knives
         v = ledger.vault_valuation(knives)
         text = Text()
         for label, value, style in (
@@ -130,7 +130,7 @@ class LedgerScreen(TipsMixin, Screen):
         self.query_one(GradientBars).update_bars(ledger.price_buckets(knives))
 
     def _read_line(self) -> None:
-        near = ledger.near_the_line(self.vault.knives)
+        near = ledger.near_the_line(self.knivves.knives)
         text = Text()
         text.append(
             f"the rule re-tags at ${ledger.AFFORDABLE_THRESHOLD_CAD:,.0f} —\n"
@@ -152,7 +152,7 @@ class LedgerScreen(TipsMixin, Screen):
         self.query_one("#line-read", Static).update(text)
 
     def _idle_movers(self) -> None:
-        surveyed = any(len(k.raw.get("price_history") or []) > 1 for k in self.vault.knives)
+        surveyed = any(len(k.raw.get("price_history") or []) > 1 for k in self.knivves.knives)
         text = Text()
         if surveyed:
             text.append("survey on record — press s to run a fresh one\n", style=laws.STEEL_DIM)
@@ -178,7 +178,7 @@ class LedgerScreen(TipsMixin, Screen):
 
     def _targets(self) -> list[KnifeView]:
         out = []
-        for knife in self.vault.knives:
+        for knife in self.knivves.knives:
             retailers = knife.retailers
             url = retailers[0].get("url") if retailers else None
             if url and any(host in url for host in SUPPORTED):
@@ -192,7 +192,7 @@ class LedgerScreen(TipsMixin, Screen):
         targets = self._targets()
         movers: list[tuple[KnifeView, float]] = []
         unchanged = unreachable = 0
-        raw_by_id = {k.get("id"): k for k in self.vault.db.get("knives", []) if isinstance(k, dict)}
+        raw_by_id = {k.get("id"): k for k in self.knivves.db.get("knives", []) if isinstance(k, dict)}
         cancelled = False
         try:
             for i, knife in enumerate(targets, start=1):
@@ -220,10 +220,10 @@ class LedgerScreen(TipsMixin, Screen):
             raise
         finally:
             # keep whatever was observed, even on cancel
-            save_database(self.vault.db, self.vault.db_path)
-            self.vault.knives = knife_views(self.vault.db)
+            save_database(self.knivves.db, self.knivves.db_path)
+            self.knivves.knives = knife_views(self.knivves.db)
             self._surveying = False
-            self.query_one(Masthead).update_stats(self.vault.knives)
+            self.query_one(Masthead).update_stats(self.knivves.knives)
             self._read_valuation()
             self._read_line()
             movers_read.update(self._survey_result(len(targets), movers, unchanged, unreachable))

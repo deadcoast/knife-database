@@ -1,5 +1,34 @@
 # CHANGELOG
 
+## 007 — v0.11.0 (in development) — THE STANDARDS RE-ALIGNMENT
+
+The source stops lying about the building. Case:
+`docs/dev-spec/2026-07-23-standards-realignment` (in development),
+steered by `revisions.md`.
+
+- **Pages own their modules** — `knivves/vault/` is now `knivves/tui/`
+  with a `pages/` package: one module per door, named as the door reads
+  (`library`, `imports`, `compare`, `market`, `research`), screen
+  classes and registry keys renamed to match (`KnivvesVault` →
+  `KnivvesApp`). The two-ledger shadow (`vault/ledger.py` over
+  `knivves/ledger.py`) is gone. Mechanics untouched; the Pilot suite
+  drives every capability unchanged.
+- **The vault is a page** — page 0, the entry hall: the machined door
+  now parts onto the hall — vault state (blades / ★new / approved /
+  unresearched gaps / avg CAD / generation window), the six doors with
+  their keys, the acquisition ladder's top rungs — derived from the
+  same backend reads as the CLI home page, so the two front doors
+  cannot disagree. `0` returns home from any page. The hall carries the
+  first per-page stylesheet (`pages/vault.tcss` via `Screen.CSS_PATH`)
+  — the mechanism the rest of the re-alignment rides.
+- The capture pipeline is `tests/capture_pages.py` (exhibits export as
+  `page-<name>.svg`, the hall included); the shell suite is
+  `tests/test_tui_shell.py` with the boot-lands-in-the-hall flow and
+  two new proofs: the source↔door mapping and the hall's doors. Eyes-on
+  review of the hall frame caught and fixed what no test flagged: a
+  wrapped door description, an orphaned generation-window line, and the
+  masthead reading VAULT twice.
+
 ## 006 — v0.10.0 (2026-07-23) — THE RESEARCH DESK
 
 The vault researches its own unknowns. Case:

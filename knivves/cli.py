@@ -393,9 +393,9 @@ def search(
 @app.command()
 def vault() -> None:
     """Launch KNIVVES VAULT, the visual application (Textual)."""
-    from .vault.app import KnivvesVault
+    from .tui.app import KnivvesApp
 
-    KnivvesVault().run()
+    KnivvesApp().run()
 
 
 @app.command()

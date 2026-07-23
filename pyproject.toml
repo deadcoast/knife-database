@@ -22,4 +22,4 @@ knivves = "knivves.cli:app"
 include = ["knivves*"]
 
 [tool.setuptools.package-data]
-knivves = ["data/*.json", "vault/*.tcss"]
+knivves = ["data/*.json", "tui/*.tcss", "tui/pages/*.tcss"]
