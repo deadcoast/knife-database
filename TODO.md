@@ -111,8 +111,18 @@
 - [DreamTech Flipper Button Lock Knife, 14C28N Bead Blast, G10 Black, D4052GB](https://www.bladescanada.com/DreamTech/DreamTech-Flipper-Button-Lock-Knife-14C28N-Bead-Blast-G10-Black-D4052GB)
 - [Molsect Croc Flipper Button Lock Folding Knife, 14C28N Satin, G10 Black Textured, M1216B](https://www.bladescanada.com/Molsect-Knives/Molsect-Croc-Flipper-Button-Lock-Folding-Knife-14C28N-Satin-G10-Black-Textured-M1216B)
 - [Honey Badger Large Flipper Folding Knife, D2 Satin, Nylon Textured Tan, HB1010](https://www.bladescanada.com/Honey-Badger-Knives/Honey-Badger-Large-Flipper-Folding-Knife-D2-Satin-Nylon-Textured-Tan-HB1010)
-// Canadian Tire *NewSource*, *AffordableSource*
-- [Kershaw Skyline Folding Knife#175-2469-8](https://www.canadiantire.ca/en/pdp/kershaw-skyline-folding-knife-1752469p.html)
+- [Kansept Wasp Front Flipper Button Lock Knife, 154CM Rose Gold, G10 Black, T2144F3](https://www.bladescanada.com/Kansept-Knives/Kansept-Wasp-Front-Flipper-Button-Lock-Knife-154CM-Rose-Gold-G10-Black-T2144F3)
+- // Canadian Tire *NewSource*, *AffordableSource*
+  - [Kershaw Skyline Folding Knife#175-2469-8](https://www.canadiantire.ca/en/pdp/kershaw-skyline-folding-knife-1752469p.html)
+- [TODO:GET-KNIFE-DATA](https://www.bladescanada.com/Kansept-Knives/Kansept-Korvid-V-Crossbar-Lock-Folding-Knife-D2-Rose-Gold-G10-Black-TE2030V1)
+- [Kansept Mini Korvid Flipper Frame Lock Knife, Damascus, Titanium Black, K3030H1](https://www.bladescanada.com/Kansept-Knives/Kansept-Mini-Korvid-Flipper-Frame-Lock-Knife-Damascus-Titanium-Black-K3030H1)
+
+-------------------------------
+// FIXED BLADES
+
+-------------------------------
+
+- [Kansept Fenrir Fixed Blade Knife, D2 Rose Gold, Micarta Purple, Kydex Sheath, G3034A5](https://www.bladescanada.com/Kansept-Knives/Kansept-Fenrir-Fixed-Blade-Knife-D2-Rose-Gold-Micarta-Purple-Kydex-Sheath-G3034A5)
 
 -------------------------------
 // MAIN SOURCES
@@ -137,8 +147,8 @@
 
 -------------------------------
 
-- [Vosteed Psyop Button Lock Flipper Folding Knife, Elmax Satin, Titanium Grey Curved, A2204](<https://www.bladescanada.c>
-om/Vosteed-Knives/Vosteed-Psyop-Button-Lock-Flipper-Folding-Knife-Elmax-Satin-Titanium-Grey-Curved-A2204)
+- [Kansept Fenrir Frame Lock Folding Knife, S35VN Satin, Beadblasted Titanium Milled Water Ripple, K1034C1](https://www.bladescanada.com/Kansept-Knives/Kansept-Fenrir-Frame-Lock-Folding-Knife-S35VN-Satin-Beadblasted-Titanium-Milled-Water-Ripple-K1034C1)
+- [Vosteed Psyop Button Lock Flipper Folding Knife, Elmax Satin, Titanium Grey Curved, A2204](https://www.bladescanada.com/Vosteed-Knives/Vosteed-Psyop-Button-Lock-Flipper-Folding-Knife-Elmax-Satin-Titanium-Grey-Curved-A2204)
 - [Kunwu Gringo Verta Titanium Honeydew (B712T-R2-1)](https://houseofknives.ca/kunwu-gringo-verta-titanium-honeydew-b712t-r2-1/?srsltid=AfmBOoo72H_0fG5M6TChLD1obmB1HUzFAsm8OsWTE8trPFhIHBO2XSaL)
 - [Microtech M-Stitch Ram-Lok Folding Knife, M390 SW, Aluminum Tan Frag, 169MRL-10FRTA](https://www.bladescanada.com/Microtech-Knives/Microtech-M-Stitch-Ram-Lok-Folding-Knife-M390-SW-Aluminum-Tan-Frag-169MRL-10FRTA)
 - [Microtech MSI Mini Ram-Lok Folding Knife, M390MK Two-Tone, Aluminum Grey Fluted, 210M-1FLNC](https://www.bladescanada.com/index.php?main_page=knife_fold_info&cPath=118&products_id=54388)
@@ -147,7 +157,7 @@ om/Vosteed-Knives/Vosteed-Psyop-Button-Lock-Flipper-Folding-Knife-Elmax-Satin-Ti
 - [CIVIVI Buster FG Superlock Folding Knife, Nitro-V Black SW, Micarta Green, C24052-3](https://www.bladescanada.com/CIVIVI-Knives/Civivi-Buster-FG-Superlock-Folding-Knife-Nitro-V-Black-SW-Micarta-Green-C24052-3)
 - [Trivisa Batwing Crossbar Lock Folding Knife, 14C28N Rose Gold, G10 Black/Carbon Fiber, JM10L-CG-14](https://www.bladescanada.com/Trivisa-Knives/Trivisa-Batwing-Crossbar-Lock-Folding-Knife-14C28N-Rose-Gold-G10-Black-Carbon-Fiber-JM10L-CG-14)
 - [Trivisa Batwing Crossbar Lock Folding Knife, 14C28N Black, Micarta Black, JM10S-BM-14](https://www.bladescanada.com/Trivisa-Knives/Trivisa-Batwing-Crossbar-Lock-Folding-Knife-14C28N-Black-Micarta-Black-JM10S-BM-14)
-- [Trivisa Batwing Crossbar Lock Folding Knife, 14C28N SW, G10 Black, JM10S-BG-14]<https://www.bladescanada.com/Trivisa-Knives/Trivisa-Batwing-Crossbar-Lock-Folding-Knife-14C28N-SW-G10-Black-JM10S-BG-14()>
+- [Trivisa Batwing Crossbar Lock Folding Knife, 14C28N SW, G10 Black, JM10S-BG-14](https://www.bladescanada.com/Trivisa-Knives/Trivisa-Batwing-Crossbar-Lock-Folding-Knife-14C28N-SW-G10-Black-JM10S-BG-14)
 - [Trivisa Batwing Crossbar Lock Folding Knife, 14C28N SW, Micarta Black, JM10L-BM-14](https://www.bladescanada.com/Trivisa-Knives/Trivisa-Batwing-Crossbar-Lock-Folding-Knife-14C28N-SW-Micarta-Black-JM10L-BM-14)
 - [WE Knife Flight Line Flipper Folding Knife, Limited Edition, M390 Black SW, Titanium Bronze, WE23089-2](https://www.bladescanada.com/index.php?main_page=knife_fold_info&cPath=428&products_id=54277)
 - [WE Knife Flight Line Flipper Folding Knife, Limited Edition, M390 Satin, Titanium Bead Blasted, WE23089-3](https://www.bladescanada.com/WE-Knife-Co.-Knives/WE-Knife-Flight-Line-Flipper-Folding-Knife-Limited-Edition-M390-Satin-Titanium-Bead-Blasted-WE23089-3)
@@ -214,6 +224,11 @@ om/Vosteed-Knives/Vosteed-Psyop-Button-Lock-Flipper-Folding-Knife-Elmax-Satin-Ti
 - [Vosteed Zander Flipper Vanchor Lock Folding Knife, S35VN Copper Dune, Aluminum Olive Green, A4604](https://www.bladescanada.com/Vosteed-Knives/Vosteed-Zander-Flipper-Vanchor-Lock-Folding-Knife-S35VN-Copper-Dune-Aluminum-Olive-Green-A4604)
 - [Vosteed Zander Flipper Vanchor Lock Folding Knife, S35VN Stonewash, Aluminum Olive Green, A4602](https://www.bladescanada.com/Vosteed-Knives/Vosteed-Zander-Flipper-Vanchor-Lock-Folding-Knife-S35VN-Stonewash-Aluminum-Olive-Green-A4602)
 - [Vosteed Zander Flipper Vanchor Lock Folding Knife, S35VN Copper Dune, Aluminum Black, A4601](https://www.bladescanada.com/Vosteed-Knives/Vosteed-Zander-Flipper-Vanchor-Lock-Folding-Knife-S35VN-Copper-Dune-Aluminum-Black-A4601)
+- [Kansept Nahual Crossbar Lock Folding Knife, Magnacut SW, Titanium/CF Shred, K2125V5](https://www.bladescanada.com/Kansept-Knives/Kansept-Nahual-Crossbar-Lock-Folding-Knife-Magnacut-SW-Titanium-CF-Shred-K2125V5)
+- [Kansept Nettle Front Flipper Folding Knife, 154CM Rose Gold, Aluminum White, T1103A3](https://www.bladescanada.com/Kansept-Knives/Kansept-Nettle-Front-Flipper-Folding-Knife-154CM-Rose-Gold-Aluminum-White-T1103A3)
+- [Kansept Orion Flipper Frame Lock Knife, S35VN Blackwash, Titanium Black, K1089A4](https://www.bladescanada.com/Kansept-Knives/Kansept-Orion-Flipper-Frame-Lock-Knife-S35VN-Blackwash-Titanium-Black-K1089A4)
+- [Kansept Orion Flipper Frame Lock Knife, S35VN Blackwash, Titanium Bronze Anodized, K1089A5](https://www.bladescanada.com/Kansept-Knives/Kansept-Orion-Flipper-Frame-Lock-Knife-S35VN-Blackwash-Titanium-Bronze-Anodized-K1089A5)
+- [Kansept Pretatout Flipper Framelock Knife, CPM S35VN Black Clip Point, Titanium Black, K1032A1](https://www.bladescanada.com/Kansept-Knives/Kansept-Pretatout-Flipper-Framelock-Knife-CPM-S35VN-Black-Clip-Point-Titanium-Black-K1032A1)
 
 -------------------------------
 // UNSORTED
@@ -225,5 +240,39 @@ om/Vosteed-Knives/Vosteed-Psyop-Button-Lock-Flipper-Folding-Knife-Elmax-Satin-Ti
 - [TODO:GET-KNIFE-DATA](https://www.bladescanada.com/Bestech-Knives/Bestech-Wet-Nelly-Flipper-Button-Lock-Knife-MagnaCut-Grey-Titanium-Grey-Bronze-SW-BT2505D)
 - [TODO:GET-KNIFE-DATA](https://www.bladescanada.com/Bestech-Knives/Bestech-Taipan-Framelock-Folding-Knife-MagnaCut-Satin-Titanium-Grey-BT2503C)
 - [TODO:GET-KNIFE-DATA](https://www.bladescanada.com/Bestechman-Knives/Bestechman-Sprite-B-Lock-Folding-Knife-M390-SW-Saitn-Titanium-Crystallized-Blue-BMK21G)
+- [TODO:GET-KNIFE-DATA](https://www.bladescanada.com/Kansept-Knives/Kansept-Gilgamesh-Flipper-Frame-Lock-Knife-S35VN-Stonewash-Carbon-Fiber-Titanium-K1128A1)
+- [TODO:GET-KNIFE-DATA](https://www.bladescanada.com/Kansept-Knives/Kansept-Hazard-Bali-Lock-Folding-Knife-S35VN-Stonewash-Titanium-Stonewash-K1104H1)
+- [TODO:GET-KNIFE-DATA](https://www.bladescanada.com/Kansept-Knives/Kansept-Hellx-Flipper-Folding-Knife-D2-Steel-Copper-Handle-T1008C1)
+- [TODO:GET-KNIFE-DATA](https://www.bladescanada.com/Kansept-Knives/Kansept-Main-Street-Folding-Knife-CPM-154CM-Copper-Handle-T1015B5)
+- [TODO:GET-KNIFE-DATA](https://www.bladescanada.com/Kansept-Knives/Kansept-Mini-Korvid-Flipper-Folding-Knife-154CM-Black-Micarta-Red-T3030M2)
+- [TODO:GET-KNIFE-DATA](https://www.bladescanada.com/Kansept-Knives/Kansept-Shard-Flipper-Framelock-Knife-CPM-S35VN-Titanium-Textured-K1006-Treelines)
+- [TODO:GET-KNIFE-DATA](https://www.bladescanada.com/Kansept-Knives/Kansept-Shard-Flipper-Framelock-Knife-CPM-S35VN-Titanium-Bronze-Woodgrain-K1006-Verticle)
+- [TODO:GET-KNIFE-DATA](https://www.bladescanada.com/Kansept-Knives/Kansept-Caveman-Frame-Lock-Folding-Knife-CPM20CV-Blackwash-Titanium-Black-K1110A2)
+- [TODO:GET-KNIFE-DATA](https://www.bladescanada.com/Kansept-Knives/Kansept-Little-Main-Street-Folding-Knife-Stonewash-154CM-Micarta-Brown-T2015A5)
+- [TODO:GET-KNIFE-DATA](https://www.bladescanada.com/Kansept-Knives/Kansept-Chimera-Frame-Lock-Folding-Knife-S35VN-Stonewashed-Titanium-Stonewashed-K1096A2)
+- [TODO:GET-KNIFE-DATA](https://www.bladescanada.com/Kansept-Knives/Kansept-Dreadnaught-Frame-Lock-Folding-Knife-S35VN-Stonewash-Titanium-Stonewash-K1082A1)
+- [TODO:GET-KNIFE-DATA](https://www.bladescanada.com/Kansept-Knives/Kansept-Front-Flipper-Folding-Knife-154CM-G10-Black-T1012T1)
+- [TODO:GET-KNIFE-DATA](https://www.bladescanada.com/Kansept-Knives/Kansept-Hazard-Bali-Lock-Folding-Knife-S35VN-Blackwash-Titanium-Black-K1104H3)
+- [TODO:GET-KNIFE-DATA](https://www.bladescanada.com/Kansept-Knives/Kansept-Hira-Flipper-Frame-Lock-Folding-Knife-S35VN-Gray-Titanium-Gray-K1090A4)
+- [TODO:GET-KNIFE-DATA](https://www.bladescanada.com/Kansept-Knives/Kansept-Hira-Flipper-Frame-Lock-Folding-Knife-S35VN-Satin-Titanium-Gray-K1090A3)
+- [TODO:GET-KNIFE-DATA](https://www.bladescanada.com/Kansept-Knives/Kansept-Loki-Frame-Lock-Folding-Knife-S35VN-Blackwash-Titanium-Bronze-K1058B4)
+- [TODO:GET-KNIFE-DATA](https://www.bladescanada.com/Kansept-Knives/Kansept-Loki-Frame-Lock-Folding-Knife-Damascus-Titanium-Bronze-K1058B5)
+- [TODO:GET-KNIFE-DATA](https://www.bladescanada.com/Kansept-Knives/Kansept-ODD-21-Frame-Lock-Folding-Knife-CPM20CV-Mirror-Titanium-Black-K1077A6)
+- [TODO:GET-KNIFE-DATA](https://www.bladescanada.com/Kansept-Knives/Kansept-ODD-21-Flipper-Frame-Lock-Folding-Knife-CPM20CV-Mirror-Titanium-Grey-K1077A7)
+- [TODO:GET-KNIFE-DATA](https://www.bladescanada.com/Kansept-Knives/Kansept-Orlok-Flipper-Folding-Knife-S35VN-Stonewashed-Titanium-Stonewashed-K2111A2)
+- [TODO:GET-KNIFE-DATA](https://www.bladescanada.com/Kansept-Knives/Kansept-Quasar-Crossbar-Lock-Folding-Knife-CPM20CV-Stonewash-Titanium-Black-K1099V2)
+- [TODO:GET-KNIFE-DATA](https://www.bladescanada.com/Kansept-Knives/Kansept-KTC-3-Flipper-Framelock-Knife-CPM-S35VN-Titanium-Blue-Ano-K1031A3)
+- [TODO:GET-KNIFE-DATA](https://www.bladescanada.com/Kansept-Knives/Kansept-Convict-Framelock-Folding-Knife-CPM-S35VN-Titanium-Grey-K1023A1)
+- [TODO:GET-KNIFE-DATA](https://www.bladescanada.com/Kansept-Knives/Kansept-Genesis-Framelock-Folding-Knife-CPM-S35VN-Wharncliffe-Titanium-Grey-K1010A1)
+- [TODO:GET-KNIFE-DATA](https://www.bladescanada.com/Kansept-Knives/Kansept-Bulldozer-Flipper-Framelock-Knife-CPM-20CV-Black-SW-Titanium-Tiger-Stripe-K1028A6)
+- [TODO:GET-KNIFE-DATA](https://www.bladescanada.com/Kansept-Knives/Kansept-Bullldozer-Flipper-Framelock-Knife-CPM-20CV-Satin-Titanium-Bronze-Ano-K1028A4)
+- [TODO:GET-KNIFE-DATA](https://www.bladescanada.com/Kansept-Knives/Kansept-Echis-Flipper-Framelock-Knife-CPM-S35VN-Satin-Titanium-K1071A1)
+- [TODO:GET-KNIFE-DATA](https://www.bladescanada.com/Kansept-Knives/Kansept-Kryo-Flipper-Framelock-Knife-CPM-S35VN-Satin-Titanium-Grey-K1001A7)
+- [TODO:GET-KNIFE-DATA](https://www.bladescanada.com/Kansept-Knives/Kansept-Mini-Korvid-Flipper-Framelock-Knife-CPM-S35VN-Titanium-Tiger-Stripe-K3030A9)
+- [TODO:GET-KNIFE-DATA](https://www.bladescanada.com/Kansept-Knives/Kansept-ODD-21-Flipper-Framelock-Knife-Damascus-Titanium-Grey-w-Bronze-Ano-K1077A2)
+- [TODO:GET-KNIFE-DATA](https://www.bladescanada.com/Kansept-Knives/Kansept-XL-Korvid-Flipper-Folding-Knife-CPM-S35VN-Black-Titanium-Lightning-Strike-K1030A11)
+- [TODO:GET-KNIFE-DATA](https://www.bladescanada.com/Kansept-Knives/Kansept-Anomaly-Flipper-Folding-Knife-CPM-S35VN-Satin-G10-Ivory-K2038T5)
+- [TODO:GET-KNIFE-DATA](https://www.bladescanada.com/Kansept-Knives/Kansept-Anomaly-Flipper-Folding-Knife-Damascus-Carbon-Fiber-K2038A6)
+- [TODO:GET-KNIFE-DATA](https://www.bladescanada.com/Kansept-Knives/Kansept-Cybin-Framelock-Folding-Knife-CPM-S35VN-SW-Titanium-Bead-Blasted-K1080A3)
 
 -------------------------------
