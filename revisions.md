@@ -62,3 +62,11 @@
 [7]: "DESIGN_BALANCE":"referenced and researched assets mixed with a well planned, critically designed and layout placed cohesively are keys to the success of balancing the assets, where to make them noticeable and heavy, and where to make them minimal and accented. Thinking about why and understanding that context is key to overall design work; and when creating unique and impressive work, it is A REQUIREMENT to balance these assets as one ecosystem, or else the design falls apart.",
 
 ---
+
+❯ [1] You have skills and workflows for `mivim-agent-spec` and by its extension `closing-out-docs`, `superpowers`. USE them where relevant. [2] Review the
+  @docs/CHANGELOG.md for the latest up to date changes in the source code. [3] I have tried to STRESS that standards in design and feature impression are
+  ESSENTIAL. The next document is designed for RE-ADJUSTMENT in STANDARDS and RE-ALIGNMENT in goals.([4]) IT IS ESSENTIAL DEVELOPMENT IS CREATED WITH THESE
+  INTENTIONS. WE ARE TRYING TO PUSH THE BOUNDARIES. [4] SEE @revisions.md for the COMPREHENSIVE and DESIGN OPTIMISTICALLY DRIVEN re-alignment steps. STANDARDS.
+  MIVIM.
+
+---
