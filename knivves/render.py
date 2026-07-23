@@ -534,7 +534,7 @@ def update_hold_panel(meta_block: dict[str, Any], new_total: int) -> Panel:
         "[bold]The generation line holds[/] — nothing filed since the last update.",
         f"[{FRESH}]{new_total} still NEW[/] · open generation {meta_block.get('generation')} · "
         f"cache keeps {meta_block.get('keep_generations')} generation(s)",
-        "[dim]freshness ages when new arrivals push it out · knivves update --force ages the window anyway[/]",
+        "[dim]knivves update --force if using 2/3 *new* threshhold[/]",
     ]
     return Panel("\n".join(lines), title="knivves update", border_style="#d7a455", box=box.HEAVY)
 
