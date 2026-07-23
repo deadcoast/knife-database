@@ -13,10 +13,17 @@ LibraryScreen {
     color: $steel-body;
     padding: 0 1;
     border-subtitle-color: $steel-dim;
+    transition: background $cue-duration $cue-easing;
+}
+
+/* CUE — the search slot lights under the hand */
+#rack-search:hover {
+    background: $surface-low;
 }
 
 #rack-search:focus {
     border: tall $accent;
+    background: $surface-low;
 }
 
 #rack-body {

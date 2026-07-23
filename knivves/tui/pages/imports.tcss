@@ -11,10 +11,17 @@ ImportsScreen {
     border: tall $edge;
     color: $steel-body;
     padding: 0 1;
+    transition: background $cue-duration $cue-easing;
+}
+
+/* CUE — the intake slot lights under the hand */
+#forge-intake:hover {
+    background: $surface-low;
 }
 
 #forge-intake:focus {
     border: tall $accent;
+    background: $surface-low;
 }
 
 #forge-line {

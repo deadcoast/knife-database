@@ -1,20 +1,31 @@
-"""The house laws — design constants every room of the Vault obeys.
+"""The house laws — design constants every page of the building obeys.
 
-The Vault reads as one application because no room is allowed its own
+The application reads as one building because no page is allowed its own
 vocabulary. Three laws, enforced here as the only source of truth:
 
 1. One palette. Machined darks, steel text, classification colors, and a
-   single amber accent. No room introduces a color.
+   single amber accent. No page introduces a color. The palette is the
+   registered ``knivves`` Theme — every stylesheet speaks it as
+   ``$variables``; no ``.tcss`` may carry a raw color.
 2. One field grammar. Every labeled value everywhere renders through
    ``field()`` — the plate, the gates, the masthead, the bench.
-3. One motion law. Objects travel, they never teleport and never fade.
-   Every animation moves through ``travel()`` with the same easing.
+3. One motion law, in three tiers. Objects travel, they never teleport
+   and never fade. REVEAL: once, on page open, the page's one hero
+   instrument performs — through ``Reveal``. IDLE: after settle,
+   ambient and long-cadence — felt more than seen. CUE: the machine
+   answers the hand — hover/focus transitions declared in TCSS through
+   ``$cue-duration``. Every travel moves through ``travel()`` with the
+   same easing.
 """
 from __future__ import annotations
+
+from functools import partial
+from typing import Callable, Iterable
 
 from rich.text import Text
 from textual.css.scalar import ScalarOffset
 from textual.theme import Theme
+from textual.timer import Timer
 from textual.widget import Widget
 
 # -- law 1: the palette ------------------------------------------------------
@@ -43,9 +54,102 @@ CLASS_COLORS = {
     "unclassified": STEEL_DIM,
 }
 
-# The palette as the application's registered Theme: laws.py stays the
-# single Python source of truth, and every stylesheet speaks it as
-# $variables — no .tcss in the building may carry a raw color.
+# -- law 2: the field grammar ------------------------------------------------
+
+LABEL_WIDTH = 10
+
+
+def field(label: str, value: str, value_style: str = STEEL_BRIGHT) -> Text:
+    """One labeled value, in the grammar every page speaks."""
+    text = Text()
+    text.append(f"{label.upper():<{LABEL_WIDTH}}", style=STEEL_DIM)
+    text.append(value, style=value_style)
+    return text
+
+
+# -- law 3: the motion law ---------------------------------------------------
+
+EASING = "in_out_cubic"
+TRAVEL_DURATION = 0.55
+
+# the tiers
+REVEAL_SETTLE = 1.1     # the whole opening performance lands inside this
+REVEAL_STAGGER = 0.06   # per-element offset in a reveal cascade
+IDLE_CADENCE = 7.0      # seconds between ambient breaths, page-idle only
+IDLE_STEP = 1.6         # one ambient breath, edge to edge
+CUE_DURATION = 0.18     # response under the hand — TCSS speaks it as $cue-duration
+
+
+def travel(widget: Widget, x: int, y: int, duration: float = TRAVEL_DURATION) -> None:
+    """Move an object to (x, y). The only sanctioned way anything moves."""
+    target = ScalarOffset.from_offset((x, y))
+    widget.styles.animate("offset", value=target, duration=duration, easing=EASING)
+
+
+class Reveal:
+    """A page's one opening performance, run once per entrance.
+
+    The page hands ``play`` its steps — ``(delay_seconds, callable)``
+    pairs — when it resumes. Replays are refused until ``arm()`` is
+    called (do that when the page is left). ``settle()`` jumps to the
+    end: every remaining step lands immediately — a reveal never blocks
+    the hand, and it never runs during a live pass (the page guards
+    that; the runner guards the rest).
+    """
+
+    def __init__(self, screen: Widget) -> None:
+        self._screen = screen
+        self._played = False
+        self._timers: list[Timer] = []
+        self._pending: list[Callable[[], None]] = []
+
+    @property
+    def played(self) -> bool:
+        return self._played
+
+    @property
+    def settled(self) -> bool:
+        return self._played and not self._pending
+
+    def play(self, steps: Iterable[tuple[float, Callable[[], None]]]) -> bool:
+        """Run the performance if this entrance hasn't seen it yet."""
+        if self._played:
+            return False
+        self._played = True
+        self._timers = []
+        self._pending = []
+        for delay, step in steps:
+            if delay <= 0:
+                step()
+                continue
+            self._pending.append(step)
+            self._timers.append(self._screen.set_timer(delay, partial(self._fire, step)))
+        return True
+
+    def _fire(self, step: Callable[[], None]) -> None:
+        if step in self._pending:
+            self._pending.remove(step)
+            step()
+
+    def settle(self) -> None:
+        """Jump to settled: stop the clock, land every remaining step now."""
+        for timer in self._timers:
+            timer.stop()
+        self._timers = []
+        pending, self._pending = self._pending, []
+        for step in pending:
+            step()
+
+    def arm(self) -> None:
+        """Re-arm for the next entrance (call when the page is left)."""
+        self.settle()
+        self._played = False
+
+
+# -- the theme: the laws, registered -----------------------------------------
+# Built last because it speaks for everything above. laws.py stays the
+# single Python source of truth; the Theme carries it into every
+# stylesheet as $variables.
 
 THEME_VARIABLES = {
     "edge": EDGE,
@@ -60,6 +164,8 @@ THEME_VARIABLES = {
     "surface-low": SURFACE_LOW,
     "surface-high": SURFACE_HIGH,
     "surface-raised": SURFACE_RAISED,
+    "cue-duration": f"{int(CUE_DURATION * 1000)}ms",
+    "cue-easing": EASING,
 }
 
 KNIVVES_THEME = Theme(
@@ -76,27 +182,3 @@ KNIVVES_THEME = Theme(
     dark=True,
     variables=THEME_VARIABLES,
 )
-
-# -- law 2: the field grammar ------------------------------------------------
-
-LABEL_WIDTH = 10
-
-
-def field(label: str, value: str, value_style: str = STEEL_BRIGHT) -> Text:
-    """One labeled value, in the grammar every room speaks."""
-    text = Text()
-    text.append(f"{label.upper():<{LABEL_WIDTH}}", style=STEEL_DIM)
-    text.append(value, style=value_style)
-    return text
-
-
-# -- law 3: the motion law ---------------------------------------------------
-
-EASING = "in_out_cubic"
-TRAVEL_DURATION = 0.55
-
-
-def travel(widget: Widget, x: int, y: int, duration: float = TRAVEL_DURATION) -> None:
-    """Move an object to (x, y). The only sanctioned way anything moves."""
-    target = ScalarOffset.from_offset((x, y))
-    widget.styles.animate("offset", value=target, duration=duration, easing=EASING)

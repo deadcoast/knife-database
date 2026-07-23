@@ -700,6 +700,53 @@ async def test_theme_is_the_only_palette() -> None:
     print("PASS: one theme — knivves active, variables live, zero raw colors in any stylesheet")
 
 
+async def test_reveal_runs_once_per_open() -> None:
+    """REQ-MOT-1: the Reveal runner fires once per entrance, jumps to
+    settled on demand, and re-arms when the page is left."""
+    from knivves.tui import laws
+
+    tmp_db = Path(tempfile.mkdtemp()) / "knives.json"
+    shutil.copyfile(REPO / "knivves" / "data" / "knives.json", tmp_db)
+    app = KnivvesApp(db_path=tmp_db)
+    async with app.run_test(size=(170, 45)) as pilot:
+        await asyncio.sleep(2.3)
+        await pilot.pause()
+        hits: list[str] = []
+        reveal = laws.Reveal(app.screen)
+        played = reveal.play([
+            (0, lambda: hits.append("a")),
+            (0.05, lambda: hits.append("b")),
+            (30.0, lambda: hits.append("c")),
+        ])
+        assert played, "first play refused"
+        await asyncio.sleep(0.4)
+        await pilot.pause()
+        assert hits == ["a", "b"], f"cascade: {hits}"
+        assert not reveal.settled, "settled with a step outstanding"
+        reveal.settle()  # a keypress mid-reveal lands the tail instantly
+        assert hits == ["a", "b", "c"], f"settle: {hits}"
+        assert reveal.settled
+        assert not reveal.play([(0, lambda: hits.append("again"))]), "replayed without re-arm"
+        assert hits == ["a", "b", "c"]
+        reveal.arm()
+        assert reveal.play([(0, lambda: hits.append("return"))]), "re-arm did not re-enable"
+        assert hits[-1] == "return"
+    print("PASS: reveal — once per open · settle lands the tail · re-arms on re-entry")
+
+
+def test_cues_declared_in_css() -> None:
+    """REQ-MOT-2: pointer-facing pages declare their CUE transitions in
+    their own stylesheets through the laws' $cue variables. (Compare and
+    market are keyboard instruments — nothing there tracks the pointer.)"""
+    pages_dir = REPO / "knivves" / "tui" / "pages"
+    for page in ("vault", "library", "imports"):
+        css = (pages_dir / f"{page}.tcss").read_text(encoding="utf-8")
+        assert "transition:" in css, f"{page}.tcss declares no transition"
+        assert "$cue-duration" in css, f"{page}.tcss does not speak the cue law"
+        assert ":hover" in css or ":focus" in css, f"{page}.tcss has no pointer state"
+    print("PASS: cues in CSS — vault/library/imports answer the hand through the laws")
+
+
 async def test_entry_hall_doors() -> None:
     """Page 0 — the vault (REQ-ARC-2): boot lands in the hall, the plaques
     read live state, number keys leave, 0 returns."""
@@ -736,7 +783,9 @@ async def test_entry_hall_doors() -> None:
 if __name__ == "__main__":
     test_pages_map_to_doors()
     test_pages_own_stylesheets()
+    test_cues_declared_in_css()
     asyncio.run(test_theme_is_the_only_palette())
+    asyncio.run(test_reveal_runs_once_per_open())
     asyncio.run(test_entry_hall_doors())
     asyncio.run(test_shell())
     asyncio.run(test_freshness_and_reserve())

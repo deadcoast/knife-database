@@ -35,6 +35,18 @@ steered by `revisions.md`.
   (`SURFACE_LOW/HIGH/RAISED`) and the body-text steel (`STEEL_BODY`)
   are now laws. All six page frames captured and reviewed eyes-on —
   no drift under the theme.
+- **The motion law grows tiers** — REVEAL / IDLE / CUE codified in
+  `laws.py`: tier constants (settle, stagger, cadence, cue duration)
+  and the `Reveal` runner — a page's one opening performance, run once
+  per entrance, re-armed on exit, `settle()` landing every remaining
+  step instantly so a reveal never blocks the hand. CUE durations flow
+  into TCSS as `$cue-duration`/`$cue-easing`; the pointer-facing pages
+  answer the hand in their own stylesheets — hall plaques lift with an
+  edge-catch, the search and intake slots light under hover and focus
+  (`transition:` + pseudo-classes). Compare and market are keyboard
+  instruments and stay still, per the balance law. Eyes on the hover
+  frame caught a two-tone artifact (plaque lifted, its text rows
+  didn't) — fixed by lifting the children with the plaque.
 - The capture pipeline is `tests/capture_pages.py` (exhibits export as
   `page-<name>.svg`, the hall included); the shell suite is
   `tests/test_tui_shell.py` with the boot-lands-in-the-hall flow and

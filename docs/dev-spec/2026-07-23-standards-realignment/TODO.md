@@ -37,7 +37,7 @@ Case: `2026-07-23-standards-realignment` · Design: [design.md](design.md) · Hu
 
 ### T3 — the motion tiers
 
-- [ ] **T3** `laws.py` gains the REVEAL/IDLE/CUE vocabulary and the
+- [x] **T3** `laws.py` gains the REVEAL/IDLE/CUE vocabulary and the
   `Reveal` once-per-open runner; every interactive surface on every page
   declares its hover/focus states and `transition:`s in its page's
   stylesheet.
