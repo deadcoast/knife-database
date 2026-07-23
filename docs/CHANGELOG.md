@@ -1,5 +1,36 @@
 # CHANGELOG
 
+## 004 — v0.8.0 (2026-07-23) — THE INTAKE DOCK
+
+Ingestion, freshness, and the acquisition ladder. The database now eats
+markdown link ledgers whole and knows what's fresh.
+
+- **`knivves add <file.md>`** — markdown ingestion: SLI-fenced (31-dash)
+  `// SectionID` grammar, `*Tag*` markers, inline source annotations,
+  BuyList/Sources section kinds. A tolerant lexer/parser repairs real-world
+  damage — swapped `[url](label)` links, URLs split across lines,
+  `[label]<url()>` angle forms, `(REF)`/`#REF` normalization, tracking-query
+  stripping, `TODO:` titles derived from URL slugs — and reports every
+  repair and grammar diagnostic. `--dry-run` previews the full plan.
+  Entries dedupe in-file (SKU → URL → label) and merge into existing
+  records instead of duplicating them.
+- **`knivves update`** — advances the NEW generation line, retags the
+  vault, records history; `--survey` re-reads live listings on the way.
+- **`knivves new`** — the three-generation cache: `-oneg`/`-twog`/`-threeg`
+  set how many updates a knife survives as ★NEW; `--status` shows the
+  cache; plain `new` lists what's fresh. NEW reads everywhere: CLI tables,
+  summary cards, the interactive browser, the Rack, the masthead.
+- **SectionID** — the formal vocabulary for group identifiers:
+  `knivves section add/remove/list`, `knivves list -section X`,
+  `knivves sections`; `tag` stays as the quality-of-life alias.
+- **The Reserve** — the BuyList as a room fixture: `y` on the Rack slides
+  in the priority ladder with running Σ CAD; `knivves buylist` prints the
+  same ladder with cumulative cost; the list page shows a compact BuyList
+  window.
+- New pure backend modules (`ingest`, `generations`, `buylist`) with
+  plain-python test suites lifted from the production ledger's actual
+  malformed lines.
+
 ## 003 — v0.7.0 (2026-07-21) — KNIVVES VAULT
 
 The visual application. Built with Textual as one coherent machine —

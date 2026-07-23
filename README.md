@@ -100,14 +100,72 @@ database:
 ```bash
 knivves                          # classic interactive table
 knivves list -q bugout           # search
-knivves list -t affordable       # filter by tag
+knivves list -section affordable # filter by SectionID (-t/--tag is the alias)
+knivves list -new                # only knives currently tagged NEW
 knivves list --min-price 200 --max-price 600 --sort price
 knivves list --output csv > knives.csv
 knivves show <id>                # one record
 knivves approve <id>             # classification from the shell
-knivves add / tag / note / retailer …
+knivves add ledger.md            # ingest a markdown link ledger (see below)
+knivves update                   # advance the NEW generation line
+knivves new -threeg              # keep NEW across three updates
+knivves buylist                  # The Reserve: acquisition priorities + Σ CAD
+knivves add / section / note / retailer …
 knivves backup / restore / import / export / doctor
 ```
+
+## The ingestion ledger — `knivves add <file.md>`
+
+Knives arrive in batches, as links. The ledger is a markdown file built
+for dense lists with clear separation:
+
+```markdown
+-------------------------------
+# KNIFE ADDITIONS
+
+-------------------------------
+// BuyList
+
+-------------------------------
+
+> descending priority — the top entry is the next acquisition
+
+- [Brand Model, Steel, Handle, SKU](https://retailer.ca/product)
+// Canadian Tire *NewSource*, *AffordableSource*
+- [Another Knife - SKU](https://retailer.ca/other)
+
+-------------------------------
+```
+
+The grammar, exactly:
+
+- **SLI** (Section Line Indicator): a line of exactly **31 dashes**. SLIs
+  separate areas and make long lists ingestible.
+- The file title is the only `#` heading; every other heading is a
+  `// SectionID` line — SLI directly above it, an empty line after it,
+  then a closing SLI.
+- `*Tag*` markers on a SectionID attach that tag to the whole section; a
+  `//` line *inside* a section body annotates the entries after it with
+  a source name and tags.
+- A section named **BuyList** (any spelling that contains buy + list) is
+  the acquisition priority ladder — its order is the priority. Sections
+  containing **source** register retailer sources instead of knives.
+
+The parser is tolerant: swapped `[url](label)` links, URLs split across
+lines, `[label]<url()>` angle forms, `(REF)`/`#REF` reference numbers,
+tracking queries, and `TODO:` placeholders are all repaired and reported
+(`--dry-run` shows the full plan without writing).
+
+## NEW and the three-generation cache
+
+Every ingested or added knife is stamped into the open *generation* and
+reads **★NEW** everywhere — tables, the interactive browser, the Rack,
+the masthead. `knivves update` advances the generation line and decides
+what still counts as NEW: with the default `-oneg` cache a knife stays
+NEW until the first update after it arrived; `-twog`/`-threeg` let it
+survive up to three database updates. `knivves new` lists what's fresh;
+`knivves new --status` shows the cache state; `knivves update --survey`
+also re-reads every live listing while it's at it.
 
 ## Data model
 
@@ -146,6 +204,15 @@ A top-level `knives` array of records:
 
 The `affordable` tag is the only auto-assigned tag: any knife whose best
 price sits under $150 CAD carries it; surveys re-apply the rule.
+
+**SectionID** is the application's formal word for these group
+identifiers (`user_tags` remains the storage field; `tag` remains a
+command alias). Freshness state lives beside the records: each knife
+carries `added_generation` / `date_added` / `new`, the top-level
+`updates` block tracks the generation line and its history, `buy_list`
+holds the ordered acquisition ladder (materialized as `buy_priority` on
+members), and `sources` registers retailer sources from ingested
+ledgers.
 
 ## Development notes
 
