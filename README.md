@@ -7,7 +7,7 @@ Canada — built with [Textual](https://github.com/Textualize/textual), designed
 as one coherent machine: rooms behind a vault door, records as physical
 objects, your own acquisition rules executing visibly on screen.
 
-![The Forge Line](docs/media/room-forge.svg)
+![The Forge Line](docs/media/page-imports.svg)
 
 ## The building
 
@@ -22,7 +22,7 @@ Prices · 5 Research**.
 
 ### Library — browse (1)
 
-![Library](docs/media/room-rack.svg)
+![Library](docs/media/page-library.svg)
 
 The collection. Click a column header to sort (again reverses — the active
 sort reads on the masthead). `/` is a live filter across everything a
@@ -46,7 +46,7 @@ replays a deterministic no-network demo of the transit.
 
 ### Compare Models — measure (3)
 
-![Compare Models](docs/media/room-bench.svg)
+![Compare Models](docs/media/page-compare.svg)
 
 Send any knife from the Library with `b` — its plate follows you here.
 Between two plates, the calipers **take the measurement**: readings appear
@@ -56,7 +56,7 @@ delta in millimetres, spec match/differ — and hold. Gaps read
 
 ### Market Prices — the vault's money (4)
 
-![Market Prices](docs/media/room-ledger.svg)
+![Market Prices](docs/media/page-market.svg)
 
 Drawn instruments: the average price rides a machined scale with the
 $150 affordable rule cut into it in accent; the price distribution is
@@ -68,7 +68,7 @@ Cancel anytime; observations made are kept.
 
 ### Research — the vault fills its own unknowns (5)
 
-![Research](docs/media/room-desk.svg)
+![Research](docs/media/page-research.svg)
 
 The vault knows what it doesn't know. The **docket** ranks every
 incomplete record — BuyList priorities first, then ★new, then

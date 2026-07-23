@@ -267,12 +267,22 @@ class LibraryScreen(TipsMixin, Screen):
         return table.coordinate_to_cell_key(Coordinate(table.cursor_row, 0)).row_key.value
 
     def _settle_keeping_cursor(self) -> None:
-        """Land a mid-reveal cascade without losing the hand's place."""
+        """Land a mid-reveal cascade without losing the hand's place —
+        the knife under the cursor stays under the cursor, wherever the
+        settled sort seats it."""
         table = self.query_one(DataTable)
-        cursor = table.cursor_row
-        self._reveal.settle()
+        key = None
         if table.row_count:
-            table.move_cursor(row=min(max(cursor, 0), table.row_count - 1))
+            key = table.coordinate_to_cell_key(Coordinate(table.cursor_row, 0)).row_key.value
+        fallback = table.cursor_row
+        self._reveal.settle()
+        if not table.row_count:
+            return
+        try:
+            row = table.get_row_index(key) if key is not None else 0
+        except Exception:
+            row = min(max(fallback, 0), table.row_count - 1)
+        table.move_cursor(row=row)
 
     def action_classify(self, classification: str) -> None:
         self._settle_keeping_cursor()

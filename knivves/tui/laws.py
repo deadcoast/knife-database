@@ -19,13 +19,12 @@ vocabulary. Three laws, enforced here as the only source of truth:
 """
 from __future__ import annotations
 
-from functools import partial
+import asyncio
 from typing import Callable, Iterable
 
 from rich.text import Text
 from textual.css.scalar import ScalarOffset
 from textual.theme import Theme
-from textual.timer import Timer
 from textual.widget import Widget
 
 # -- law 1: the palette ------------------------------------------------------
@@ -96,13 +95,18 @@ class Reveal:
     end: every remaining step lands immediately — a reveal never blocks
     the hand, and it never runs during a live pass (the page guards
     that; the runner guards the rest).
+
+    The performance is one sequenced worker, not a bank of one-shot
+    timers: Textual timers skip a firing they missed (``skip=True``,
+    no override from ``set_timer``), so under load a timer-driven
+    cascade silently loses its tail. A sequence runs late, never less.
     """
 
     def __init__(self, screen: Widget) -> None:
         self._screen = screen
         self._played = False
-        self._timers: list[Timer] = []
         self._pending: list[Callable[[], None]] = []
+        self._worker = None
 
     @property
     def played(self) -> bool:
@@ -117,26 +121,34 @@ class Reveal:
         if self._played:
             return False
         self._played = True
-        self._timers = []
-        self._pending = []
-        for delay, step in steps:
+        ordered = sorted(steps, key=lambda pair: pair[0])
+        timed: list[tuple[float, Callable[[], None]]] = []
+        for delay, step in ordered:
             if delay <= 0:
                 step()
-                continue
-            self._pending.append(step)
-            self._timers.append(self._screen.set_timer(delay, partial(self._fire, step)))
+            else:
+                timed.append((delay, step))
+        self._pending = [step for _, step in timed]
+        if timed:
+            self._worker = self._screen.run_worker(
+                self._perform(timed), group="reveal", exclusive=True
+            )
         return True
 
-    def _fire(self, step: Callable[[], None]) -> None:
-        if step in self._pending:
-            self._pending.remove(step)
-            step()
+    async def _perform(self, timed: list[tuple[float, Callable[[], None]]]) -> None:
+        clock = 0.0
+        for delay, step in timed:
+            await asyncio.sleep(max(delay - clock, 0.0))
+            clock = delay
+            if step in self._pending:
+                self._pending.remove(step)
+                step()
 
     def settle(self) -> None:
         """Jump to settled: stop the clock, land every remaining step now."""
-        for timer in self._timers:
-            timer.stop()
-        self._timers = []
+        if self._worker is not None:
+            self._worker.cancel()
+            self._worker = None
         pending, self._pending = self._pending, []
         for step in pending:
             step()

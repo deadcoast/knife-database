@@ -80,7 +80,7 @@ Case: `2026-07-23-standards-realignment` · Design: [design.md](design.md) · Hu
 
 ### T7 — the proof pass
 
-- [ ] **T7** The whole re-alignment proven: full suite green, every
+- [x] **T7** The whole re-alignment proven: full suite green, every
   `docs/media/` exhibit re-captured from the restructured pages and
   reviewed eyes-on, CHANGELOG entry 007 written, version stamped 0.11.0.
   - **Satisfies**: closes the loop on every REQ above (proof-of-record)

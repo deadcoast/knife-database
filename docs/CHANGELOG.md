@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## 007 — v0.11.0 (in development) — THE STANDARDS RE-ALIGNMENT
+## 007 — v0.11.0 (2026-07-23) — THE STANDARDS RE-ALIGNMENT
 
 The source stops lying about the building. Case:
 `docs/dev-spec/2026-07-23-standards-realignment` (in development),
@@ -90,12 +90,24 @@ steered by `revisions.md`.
   carries a style** — Textual's opacity filter dies on unstyled
   segments, so every drawn instrument now styles its pads and blanks.
 - The capture pipeline is `tests/capture_pages.py` (exhibits export as
-  `page-<name>.svg`, the hall included); the shell suite is
-  `tests/test_tui_shell.py` with the boot-lands-in-the-hall flow and
-  two new proofs: the source↔door mapping and the hall's doors. Eyes-on
-  review of the hall frame caught and fixed what no test flagged: a
-  wrapped door description, an orphaned generation-window line, and the
-  masthead reading VAULT twice.
+  `page-<name>.svg`, all six pages, the hall included; the old
+  `room-*.svg` frames retired with the README repointed); the shell
+  suite is `tests/test_tui_shell.py` — fifteen proofs including the
+  source↔door mapping, the hall's doors, theme/stylesheet laws, the
+  Reveal contract, the map's power-on/idle/spotlight, the teletype,
+  and one-hero-per-page. Eyes-on review caught and fixed what no test
+  flagged: a wrapped door description, an orphaned generation-window
+  line, the masthead reading VAULT twice, a two-tone hover lift, a
+  naked plate over the card file, and the working marker colliding
+  with the rail legend.
+- **The Reveal runner is a sequence, not timers** — learned in the
+  proof pass: Textual one-shot timers skip a firing they missed
+  (`skip=True`, no override from `set_timer`), so under load a
+  timer-driven cascade silently lost its tail. The performance now
+  runs as one sequenced worker — late under load, never less — and a
+  cascade landed by the hand follows the knife under the cursor, not
+  the row number. Version stamps bumped to 0.11.0 (pyproject,
+  bundled DB).
 
 ## 006 — v0.10.0 (2026-07-23) — THE RESEARCH DESK
 
