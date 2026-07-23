@@ -26,7 +26,7 @@ Case: `2026-07-23-standards-realignment` · Design: [design.md](design.md) · Hu
 
 ### T2 — one theme, six stylesheets
 
-- [ ] **T2** The house palette becomes the registered `knivves` Theme
+- [x] **T2** The house palette becomes the registered `knivves` Theme
   built in `laws.py`; the monolith stylesheet dissolves into `app.tcss`
   (building chrome only) + one `.tcss` beside each page module, all
   speaking `$variables`, zero hex literals.

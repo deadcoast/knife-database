@@ -67,30 +67,30 @@ class SteelLeaf(Widget):
 
 
 class VaultDoor(Container):
-    DEFAULT_CSS = f"""
-    VaultDoor {{
+    DEFAULT_CSS = """
+    VaultDoor {
         layer: door;
         width: 100%;
         height: 100%;
         layers: leaves mechanism;
         overflow: hidden hidden;
         scrollbar-size: 0 0;
-    }}
-    VaultDoor > #door-bolts {{
+    }
+    VaultDoor > #door-bolts {
         layer: mechanism;
         position: absolute;
         width: 2;
         height: 100%;
-    }}
-    VaultDoor > #door-brand {{
+    }
+    VaultDoor > #door-brand {
         layer: mechanism;
         position: absolute;
         width: auto;
         height: 1;
         text-style: bold;
-        color: {laws.STEEL_BRIGHT};
+        color: $steel-bright;
         background: rgb(33,37,43);
-    }}
+    }
     """
 
     def __init__(self, brand: str | None = None, hold: float = CLOSED_HOLD) -> None:

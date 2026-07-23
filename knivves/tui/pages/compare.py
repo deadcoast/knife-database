@@ -282,6 +282,8 @@ class Calipers(Widget):
 
 
 class CompareScreen(TipsMixin, Screen):
+    CSS_PATH = "compare.tcss"
+
     BINDINGS = [
         ("escape", "clear_bench", "Clear bench"),
         Binding("t", "expand_tip", "tip detail", show=False),

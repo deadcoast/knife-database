@@ -20,11 +20,11 @@ Run = tuple[str, str, bool]  # text, color, bold
 
 
 class Masthead(Widget):
-    DEFAULT_CSS = f"""
-    Masthead {{
+    DEFAULT_CSS = """
+    Masthead {
         height: 3;
-        border-bottom: heavy {laws.EDGE};
-    }}
+        border-bottom: heavy $edge;
+    }
     """
 
     def __init__(self, room: str, **kwargs) -> None:

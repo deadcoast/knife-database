@@ -1,218 +1,40 @@
 /* KNIVVES — the building's chrome, App-level.
    Only what every page shares lives here: the Screen base, the Footer,
-   the shared station/plate frames. Each page's own layout rides beside
-   its module as <page>.tcss (Screen.CSS_PATH). Palette values mirror
-   laws.py until the knivves theme lands (T2), when every literal here
-   becomes a $variable. */
+   the engraved station frames. Each page's own layout rides beside its
+   module as pages/<page>.tcss (Screen.CSS_PATH). Every color is a
+   $variable of the `knivves` theme — laws.py is the single source of
+   truth and no stylesheet in the building may carry a raw color. */
 
 Screen {
-    background: #14171a;
-    color: #c2cdd6;
+    background: $background;
+    color: $steel-body;
     overflow: hidden hidden;
 }
 
-LibraryScreen, CompareScreen, MarketScreen {
-    layers: base capsule door;
-}
-
 Footer {
-    background: #1d2126;
-    color: #6b7680;
+    background: $surface;
+    color: $steel-dim;
 }
 
-/* ------------------------------------------------------------- the rack */
-
-#rack-search {
-    height: 3;
-    background: #14171a;
-    border: tall #31363c;
-    color: #c2cdd6;
-    padding: 0 1;
-}
-
-#rack-search:focus {
-    border: tall #d7a455;
-}
-
-#rack-search {
-    border-subtitle-color: #5c6670;
-}
-
-#rack-body {
-    height: 1fr;
-    /* reserve the nudge's travel room so the depth cue never clips data */
-    padding-left: 2;
-}
-
-/* The table hugs its columns so the tip rail sits directly beside the
-   data's last column — never pinned to the viewport edge. */
-#rack-table {
-    width: auto;
-    max-width: 1fr;
-}
-
-#rack-empty {
-    width: 1fr;
-    height: 100%;
-    content-align: center middle;
-    text-align: center;
-    color: #5c6670;
-    display: none;
-}
-
-#rack-plate {
-    dock: right;
-    height: 100%;
-    display: none;
-}
-
-#rack-plate.open {
-    display: block;
-}
-
-#rack-reserve {
-    dock: right;
-    height: 100%;
-    display: none;
-}
-
-#rack-reserve.open {
-    display: block;
-}
-
-#rack-table {
-    background: #14171a;
-    color: #c2cdd6;
-    scrollbar-color: #31363c;
-    scrollbar-background: #14171a;
-    &:focus {
-        background-tint: #14171a 0%;
-    }
-    & > .datatable--header {
-        background: #1d2126;
-        color: #8b96a0;
-        text-style: bold;
-    }
-    & > .datatable--header-hover {
-        background: #262b31;
-        color: #d7a455;
-    }
-    & > .datatable--odd-row {
-        background: #171a1e;
-    }
-    & > .datatable--even-row {
-        background: #14171a;
-    }
-    & > .datatable--cursor {
-        background: #2a3038;
-        color: #dde6ee;
-    }
-    & > .datatable--hover {
-        background: #1d2126;
-    }
-}
-
-/* ------------------------------------------------------------ the bench */
-
-#bench {
-    height: 1fr;
-    padding: 1 2;
-    align: center middle;
-}
-
-.bench-plate {
-    margin: 0 1;
-}
-
-#calipers {
-    width: 34;
-    height: auto;
-    min-height: 16;
-    margin: 0 1;
-    border: round #31363c;
-    padding: 1 2;
-}
-
-/* ------------------------------------------------------------ the ledger */
-
-#ledger {
-    height: 1fr;
-    padding: 1 2;
-}
-
-#ledger-valuation {
-    width: 5fr;
-}
-
-#ledger-line {
-    width: 5fr;
-}
-
-#ledger-movers {
-    width: 6fr;
-}
-
-/* -------------------------------------------------------- the forge line */
-
-ImportsScreen {
-    layers: base plate capsule door;
-}
-
-#forge-intake {
-    height: 3;
-    background: #14171a;
-    border: tall #31363c;
-    color: #c2cdd6;
-    padding: 0 1;
-}
-
-#forge-intake:focus {
-    border: tall #d7a455;
-}
-
-#forge-line {
-    height: 1fr;
-    padding: 1 2;
-}
-
-#forge-plate {
-    layer: plate;
-    offset: 4 26;
-}
+/* engraved station frames — shared by the intake line and the desk */
 
 .station {
     width: 1fr;
     height: 100%;
     margin: 0 1;
-    border: round #31363c;
+    border: round $edge;
     padding: 1 2;
     overflow: hidden hidden;
 }
 
 .station-name {
-    color: #8b96a0;
+    color: $steel-mid;
     text-style: bold;
-    border-bottom: solid #31363c;
+    border-bottom: solid $edge;
     padding-bottom: 1;
 }
 
 .station-body {
     margin-top: 1;
-    color: #8b96a0;
-}
-
-/* ---------------------------------------------------- the research desk */
-
-ResearchScreen {
-    layers: base plate capsule door;
-}
-
-#desk-line {
-    height: 1fr;
-    padding: 1 2;
-}
-
-#desk-plate {
-    layer: plate;
-    offset: 4 26;
+    color: $steel-mid;
 }

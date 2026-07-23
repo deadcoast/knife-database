@@ -1,0 +1,28 @@
+/* IMPORT KNIVES — door 2's own stylesheet (Screen.CSS_PATH).
+   The intake line: paste a URL or an ingestion .md, the stations run. */
+
+ImportsScreen {
+    layers: base plate capsule door;
+}
+
+#forge-intake {
+    height: 3;
+    background: $background;
+    border: tall $edge;
+    color: $steel-body;
+    padding: 0 1;
+}
+
+#forge-intake:focus {
+    border: tall $accent;
+}
+
+#forge-line {
+    height: 1fr;
+    padding: 1 2;
+}
+
+#forge-plate {
+    layer: plate;
+    offset: 4 26;
+}

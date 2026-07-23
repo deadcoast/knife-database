@@ -290,6 +290,8 @@ def _find_span(tape: str, value: str) -> tuple[int, int] | None:
 
 
 class ImportsScreen(TipsMixin, Screen):
+    CSS_PATH = "imports.tcss"
+
     AUTO_FOCUS = ""  # the intake slot is entered by click, not by default
     BINDINGS = [
         ("r", "replay", "Replay demo transit"),

@@ -1,0 +1,16 @@
+/* RESEARCH — door 5's own stylesheet (Screen.CSS_PATH).
+   The desk under the unknowns map: docket, READ, STAMP. */
+
+ResearchScreen {
+    layers: base plate capsule door;
+}
+
+#desk-line {
+    height: 1fr;
+    padding: 1 2;
+}
+
+#desk-plate {
+    layer: plate;
+    offset: 4 26;
+}

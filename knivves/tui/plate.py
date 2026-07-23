@@ -23,26 +23,26 @@ from . import laws
 
 
 class Plate(Vertical):
-    DEFAULT_CSS = f"""
-    Plate {{
+    DEFAULT_CSS = """
+    Plate {
         width: 46;
         height: auto;
         max-height: 100%;
-        background: {laws.SURFACE};
-        border: heavy {laws.EDGE_BRIGHT};
+        background: $surface;
+        border: heavy $edge-bright;
         padding: 1 2;
-    }}
-    Plate > .plate--title {{
+    }
+    Plate > .plate--title {
         text-style: bold;
-        color: {laws.STEEL_BRIGHT};
-        border-bottom: solid {laws.EDGE};
-    }}
-    Plate > .plate--id {{
-        color: {laws.STEEL_DIM};
-    }}
-    Plate > .plate--body {{
+        color: $steel-bright;
+        border-bottom: solid $edge;
+    }
+    Plate > .plate--id {
+        color: $steel-dim;
+    }
+    Plate > .plate--body {
         margin-top: 1;
-    }}
+    }
     """
 
     def __init__(self, **kwargs) -> None:

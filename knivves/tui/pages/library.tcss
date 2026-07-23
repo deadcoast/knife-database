@@ -1,0 +1,94 @@
+/* LIBRARY — door 1's own stylesheet (Screen.CSS_PATH).
+   The collection as a sortable rack; the plate and the reserve dock
+   right and travel in under the motion law. */
+
+LibraryScreen {
+    layers: base capsule door;
+}
+
+#rack-search {
+    height: 3;
+    background: $background;
+    border: tall $edge;
+    color: $steel-body;
+    padding: 0 1;
+    border-subtitle-color: $steel-dim;
+}
+
+#rack-search:focus {
+    border: tall $accent;
+}
+
+#rack-body {
+    height: 1fr;
+    /* reserve the nudge's travel room so the depth cue never clips data */
+    padding-left: 2;
+}
+
+/* The table hugs its columns so the tip rail sits directly beside the
+   data's last column — never pinned to the viewport edge. */
+#rack-table {
+    width: auto;
+    max-width: 1fr;
+}
+
+#rack-empty {
+    width: 1fr;
+    height: 100%;
+    content-align: center middle;
+    text-align: center;
+    color: $steel-dim;
+    display: none;
+}
+
+#rack-plate {
+    dock: right;
+    height: 100%;
+    display: none;
+}
+
+#rack-plate.open {
+    display: block;
+}
+
+#rack-reserve {
+    dock: right;
+    height: 100%;
+    display: none;
+}
+
+#rack-reserve.open {
+    display: block;
+}
+
+#rack-table {
+    background: $background;
+    color: $steel-body;
+    scrollbar-color: $edge;
+    scrollbar-background: $background;
+    &:focus {
+        background-tint: $background 0%;
+    }
+    & > .datatable--header {
+        background: $surface;
+        color: $steel-mid;
+        text-style: bold;
+    }
+    & > .datatable--header-hover {
+        background: $surface-high;
+        color: $accent;
+    }
+    & > .datatable--odd-row {
+        background: $surface-low;
+    }
+    & > .datatable--even-row {
+        background: $background;
+    }
+    & > .datatable--cursor {
+        background: $surface-raised;
+        color: $steel-bright;
+    }
+    & > .datatable--hover {
+        background: $surface;
+    }
+}

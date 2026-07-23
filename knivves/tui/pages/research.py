@@ -230,6 +230,8 @@ class UnknownsMap(Widget):
 
 
 class ResearchScreen(TipsMixin, Screen):
+    CSS_PATH = "research.tcss"
+
     BINDINGS = [
         ("s", "start_pass", "Research the docket"),
         ("r", "replay", "Replay demo"),

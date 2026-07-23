@@ -14,16 +14,21 @@ from __future__ import annotations
 
 from rich.text import Text
 from textual.css.scalar import ScalarOffset
+from textual.theme import Theme
 from textual.widget import Widget
 
 # -- law 1: the palette ------------------------------------------------------
 
 BG = "#14171a"
 SURFACE = "#1d2126"
+SURFACE_LOW = "#171a1e"     # recessed machined tone — zebra rows
+SURFACE_HIGH = "#262b31"    # raised machined tone — a surface under the hand
+SURFACE_RAISED = "#2a3038"  # the seated cursor row
 EDGE = "#31363c"
 EDGE_BRIGHT = "#525a62"
 
 STEEL_BRIGHT = "#dde6ee"
+STEEL_BODY = "#c2cdd6"      # the body text everywhere — between bright and mid
 STEEL_MID = "#8b96a0"
 STEEL_DIM = "#5c6670"
 
@@ -37,6 +42,40 @@ CLASS_COLORS = {
     "rejected": FAIL,
     "unclassified": STEEL_DIM,
 }
+
+# The palette as the application's registered Theme: laws.py stays the
+# single Python source of truth, and every stylesheet speaks it as
+# $variables — no .tcss in the building may carry a raw color.
+
+THEME_VARIABLES = {
+    "edge": EDGE,
+    "edge-bright": EDGE_BRIGHT,
+    "steel-bright": STEEL_BRIGHT,
+    "steel-body": STEEL_BODY,
+    "steel-mid": STEEL_MID,
+    "steel-dim": STEEL_DIM,
+    "fresh": FRESH,
+    "pass": PASS,
+    "fail": FAIL,
+    "surface-low": SURFACE_LOW,
+    "surface-high": SURFACE_HIGH,
+    "surface-raised": SURFACE_RAISED,
+}
+
+KNIVVES_THEME = Theme(
+    name="knivves",
+    primary=ACCENT,
+    accent=ACCENT,
+    warning=ACCENT,
+    error=FAIL,
+    success=PASS,
+    foreground=STEEL_BODY,
+    background=BG,
+    surface=SURFACE,
+    panel=SURFACE,
+    dark=True,
+    variables=THEME_VARIABLES,
+)
 
 # -- law 2: the field grammar ------------------------------------------------
 

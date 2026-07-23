@@ -21,6 +21,20 @@ steered by `revisions.md`.
   cannot disagree. `0` returns home from any page. The hall carries the
   first per-page stylesheet (`pages/vault.tcss` via `Screen.CSS_PATH`)
   — the mechanism the rest of the re-alignment rides.
+- **One theme, six stylesheets** — the house palette is now the
+  registered `knivves` Theme, built in `laws.py` from the same constants
+  (single Python source of truth) with every house color flowing into
+  TCSS as `$variables`; `get_theme_variable_defaults` holds the palette
+  law even if the theme menu is used. The monolith stylesheet dissolved:
+  `app.tcss` keeps only building chrome (Screen base, Footer, station
+  frames); each page carries its own stylesheet beside its module via
+  `Screen.CSS_PATH` — `vault/library/imports/compare/market/research.tcss`.
+  Zero raw colors remain in any stylesheet; the fixture widgets'
+  `DEFAULT_CSS` (masthead, door, plate, reserve, tips) speak `$variables`
+  too. Three machined tones the CSS had been carrying alone
+  (`SURFACE_LOW/HIGH/RAISED`) and the body-text steel (`STEEL_BODY`)
+  are now laws. All six page frames captured and reviewed eyes-on —
+  no drift under the theme.
 - The capture pipeline is `tests/capture_pages.py` (exhibits export as
   `page-<name>.svg`, the hall included); the shell suite is
   `tests/test_tui_shell.py` with the boot-lands-in-the-hall flow and

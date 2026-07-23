@@ -39,29 +39,29 @@ class Tip:
 class TipRail(Vertical):
     """The reserved column. Shows the current tip; marks expandable ones."""
 
-    DEFAULT_CSS = f"""
-    TipRail {{
+    DEFAULT_CSS = """
+    TipRail {
         width: 26;
         height: auto;
         margin: 0 0 0 1;
         padding: 0 1;
-    }}
-    TipRail > .tiprail--label {{
-        color: {laws.STEEL_DIM};
-        border-bottom: solid {laws.EDGE};
-    }}
-    TipRail > .tiprail--body {{
+    }
+    TipRail > .tiprail--label {
+        color: $steel-dim;
+        border-bottom: solid $edge;
+    }
+    TipRail > .tiprail--body {
         margin-top: 1;
-        color: {laws.STEEL_DIM};
-    }}
-    TipRail > .tiprail--more {{
+        color: $steel-dim;
+    }
+    TipRail > .tiprail--more {
         margin-top: 1;
-        color: {laws.ACCENT};
+        color: $accent;
         display: none;
-    }}
-    TipRail.expandable > .tiprail--more {{
+    }
+    TipRail.expandable > .tiprail--more {
         display: block;
-    }}
+    }
     """
 
     current: Tip | None = None
@@ -86,34 +86,34 @@ class TipRail(Vertical):
 class TipCapsule(Vertical):
     """The dropped-out capsule for tips that need room. Hidden until needed."""
 
-    DEFAULT_CSS = f"""
-    TipCapsule {{
+    DEFAULT_CSS = """
+    TipCapsule {
         layer: capsule;
         dock: right;
         width: 44;
         height: auto;
         margin: 4 1 0 0;
-        background: {laws.SURFACE};
-        border: heavy {laws.EDGE_BRIGHT};
+        background: $surface;
+        border: heavy $edge-bright;
         padding: 1 2;
         display: none;
-    }}
-    TipCapsule.open {{
+    }
+    TipCapsule.open {
         display: block;
-    }}
-    TipCapsule > .capsule--title {{
-        color: {laws.STEEL_BRIGHT};
+    }
+    TipCapsule > .capsule--title {
+        color: $steel-bright;
         text-style: bold;
-        border-bottom: solid {laws.EDGE};
-    }}
-    TipCapsule > .capsule--body {{
+        border-bottom: solid $edge;
+    }
+    TipCapsule > .capsule--body {
         margin-top: 1;
-        color: {laws.STEEL_MID};
-    }}
-    TipCapsule > .capsule--hint {{
+        color: $steel-mid;
+    }
+    TipCapsule > .capsule--hint {
         margin-top: 1;
-        color: {laws.STEEL_DIM};
-    }}
+        color: $steel-dim;
+    }
     """
 
     def compose(self) -> ComposeResult:

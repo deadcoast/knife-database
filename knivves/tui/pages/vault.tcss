@@ -1,7 +1,6 @@
 /* THE VAULT — page 0, the entry hall's own stylesheet (Screen.CSS_PATH).
-   The first page to carry its design beside its module; palette values
-   mirror laws.py until the knivves theme lands (T2 of the standards
-   re-alignment case), when every literal here becomes a $variable. */
+   Three plaques under the masthead: state, doors, next acquisitions.
+   Every color is a $variable of the `knivves` theme (laws.py). */
 
 VaultScreen {
     layers: base capsule door;
@@ -16,7 +15,7 @@ VaultScreen {
     width: 1fr;
     height: 100%;
     margin: 0 1;
-    border: round #31363c;
+    border: round $edge;
     padding: 1 2;
     overflow: hidden hidden;
 }
@@ -26,9 +25,9 @@ VaultScreen {
 }
 
 .hall-fixture-name {
-    color: #8b96a0;
+    color: $steel-mid;
     text-style: bold;
-    border-bottom: solid #31363c;
+    border-bottom: solid $edge;
     padding-bottom: 1;
 }
 

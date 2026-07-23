@@ -58,6 +58,8 @@ def cell_sort_key(column: str):
 
 
 class LibraryScreen(TipsMixin, Screen):
+    CSS_PATH = "library.tcss"
+
     BINDINGS = [
         ("slash", "focus_search", "Search"),
         ("escape", "close_plate", "Close plate"),

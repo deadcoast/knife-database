@@ -1,0 +1,25 @@
+/* COMPARE MODELS — door 3's own stylesheet (Screen.CSS_PATH).
+   Two plates seated at the bench, the calipers between them. */
+
+CompareScreen {
+    layers: base capsule door;
+}
+
+#bench {
+    height: 1fr;
+    padding: 1 2;
+    align: center middle;
+}
+
+.bench-plate {
+    margin: 0 1;
+}
+
+#calipers {
+    width: 34;
+    height: auto;
+    min-height: 16;
+    margin: 0 1;
+    border: round $edge;
+    padding: 1 2;
+}

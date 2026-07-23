@@ -654,6 +654,52 @@ def test_pages_map_to_doors() -> None:
     print("PASS: pages map to doors — modules, screen classes, keys, labels agree")
 
 
+def test_pages_own_stylesheets() -> None:
+    """REQ-CSS-2: every page screen declares its sibling stylesheet; the
+    app-level sheet carries only building chrome."""
+    import inspect
+
+    for key, screen_cls in KnivvesApp.SCREENS.items():
+        assert screen_cls.CSS_PATH == f"{key}.tcss", f"{key}: {screen_cls.CSS_PATH}"
+        sheet = Path(inspect.getfile(screen_cls)).parent / f"{key}.tcss"
+        assert sheet.is_file(), f"missing stylesheet: {sheet}"
+    app_css = (REPO / "knivves" / "tui" / "app.tcss").read_text(encoding="utf-8")
+    page_markers = (
+        "#rack", "#bench", "#calipers", "#ledger", "#forge", "#desk", "#hall",
+        "LibraryScreen", "ImportsScreen", "CompareScreen", "MarketScreen",
+        "ResearchScreen", "VaultScreen",
+    )
+    for marker in page_markers:
+        assert marker not in app_css, f"page-specific selector in app.tcss: {marker}"
+    print("PASS: per-page stylesheets — six sheets beside their modules, chrome-only app.tcss")
+
+
+async def test_theme_is_the_only_palette() -> None:
+    """REQ-CSS-1: the knivves theme is registered and active, its variables
+    reach the stylesheets, and no .tcss in the building carries a raw color."""
+    import re
+
+    from knivves.tui import laws
+
+    tmp_db = Path(tempfile.mkdtemp()) / "knives.json"
+    shutil.copyfile(REPO / "knivves" / "data" / "knives.json", tmp_db)
+    app = KnivvesApp(db_path=tmp_db)
+    async with app.run_test(size=(170, 45)) as pilot:
+        await pilot.pause()
+        assert app.theme == "knivves", f"active theme: {app.theme}"
+        theme = app.get_theme("knivves")
+        assert theme is not None and theme.primary == laws.ACCENT
+        assert app.theme_variables.get("edge") == laws.EDGE
+        assert app.theme_variables.get("fresh") == laws.FRESH
+    hex_or_rgb = re.compile(r"#[0-9a-fA-F]{3,8}\b|rgb\(")
+    sheets = sorted((REPO / "knivves" / "tui").rglob("*.tcss"))
+    assert len(sheets) == 7, f"stylesheets: {[s.name for s in sheets]}"
+    for sheet in sheets:
+        found = hex_or_rgb.findall(sheet.read_text(encoding="utf-8"))
+        assert not found, f"{sheet.name} carries raw color(s): {found}"
+    print("PASS: one theme — knivves active, variables live, zero raw colors in any stylesheet")
+
+
 async def test_entry_hall_doors() -> None:
     """Page 0 — the vault (REQ-ARC-2): boot lands in the hall, the plaques
     read live state, number keys leave, 0 returns."""
@@ -689,6 +735,8 @@ async def test_entry_hall_doors() -> None:
 
 if __name__ == "__main__":
     test_pages_map_to_doors()
+    test_pages_own_stylesheets()
+    asyncio.run(test_theme_is_the_only_palette())
     asyncio.run(test_entry_hall_doors())
     asyncio.run(test_shell())
     asyncio.run(test_freshness_and_reserve())

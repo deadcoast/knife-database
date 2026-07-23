@@ -17,6 +17,7 @@ from textual.screen import Screen
 
 from ..models import KnifeView, knife_views
 from ..store import add_knife, load_database, save_database
+from . import laws
 from .door import BOOT_HOLD, open_door
 from .pages.compare import CompareScreen
 from .pages.imports import ImportsScreen
@@ -49,10 +50,17 @@ class KnivvesApp(App):
 
     def __init__(self, db_path: Path | None = None) -> None:
         super().__init__()
+        self.register_theme(laws.KNIVVES_THEME)
+        self.theme = "knivves"
         self.db_path = db_path
         self.db = load_database(db_path)
         self.knives = knife_views(self.db)
         self.compare_queue: list[KnifeView] = []
+
+    def get_theme_variable_defaults(self) -> dict[str, str]:
+        """The house variables hold whatever theme is active — the palette
+        law cannot be switched off from the palette menu."""
+        return laws.THEME_VARIABLES
 
     def send_to_compare(self, knife: KnifeView) -> None:
         """A record-object leaves its page for the bench; follow it there."""

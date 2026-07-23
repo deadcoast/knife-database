@@ -1,0 +1,23 @@
+/* MARKET PRICES — door 4's own stylesheet (Screen.CSS_PATH).
+   The drawn instruments over the real distribution. */
+
+MarketScreen {
+    layers: base capsule door;
+}
+
+#ledger {
+    height: 1fr;
+    padding: 1 2;
+}
+
+#ledger-valuation {
+    width: 5fr;
+}
+
+#ledger-line {
+    width: 5fr;
+}
+
+#ledger-movers {
+    width: 6fr;
+}

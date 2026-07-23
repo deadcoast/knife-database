@@ -38,6 +38,8 @@ SUPPORTED = scrape.SUPPORTED_HOSTS
 
 
 class MarketScreen(TipsMixin, Screen):
+    CSS_PATH = "market.tcss"
+
     BINDINGS = [
         ("s", "survey", "Update prices"),
         ("escape", "cancel_survey", "Cancel price read"),

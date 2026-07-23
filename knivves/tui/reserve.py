@@ -22,31 +22,31 @@ from . import laws
 
 
 class Reserve(Vertical):
-    DEFAULT_CSS = f"""
-    Reserve {{
+    DEFAULT_CSS = """
+    Reserve {
         width: 52;
         height: auto;
         max-height: 100%;
-        background: {laws.SURFACE};
-        border: heavy {laws.ACCENT};
+        background: $surface;
+        border: heavy $accent;
         padding: 1 2;
-    }}
-    Reserve > .reserve--title {{
+    }
+    Reserve > .reserve--title {
         text-style: bold;
-        color: {laws.STEEL_BRIGHT};
-        border-bottom: solid {laws.EDGE};
-    }}
-    Reserve > .reserve--subtitle {{
-        color: {laws.STEEL_DIM};
-    }}
-    Reserve > .reserve--body {{
+        color: $steel-bright;
+        border-bottom: solid $edge;
+    }
+    Reserve > .reserve--subtitle {
+        color: $steel-dim;
+    }
+    Reserve > .reserve--body {
         margin-top: 1;
-    }}
-    Reserve > .reserve--footer {{
+    }
+    Reserve > .reserve--footer {
         margin-top: 1;
-        border-top: solid {laws.EDGE};
-        color: {laws.STEEL_MID};
-    }}
+        border-top: solid $edge;
+        color: $steel-mid;
+    }
     """
 
     def compose(self) -> ComposeResult:
