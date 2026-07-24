@@ -94,7 +94,7 @@ class UnknownsMap(Widget):
 
     DEFAULT_CSS = """
     UnknownsMap {
-        height: 10;
+        height: 9;
         margin: 1 2 0 2;
     }
     """
@@ -225,11 +225,9 @@ class UnknownsMap(Widget):
             return Strip([]).adjust_cell_length(width, Style())
         if y == 0:
             return self._gauge_line(width).adjust_cell_length(width, Style())
-        if y == 1:
-            return Strip([]).adjust_cell_length(width, Style())
-        if 2 <= y <= 8:
-            return self._field_line(width, y - 2).adjust_cell_length(width, Style())
-        if y == 9:
+        if 1 <= y <= 7:
+            return self._field_line(width, y - 1).adjust_cell_length(width, Style())
+        if y == 8:
             return self._rail_line(width).adjust_cell_length(width, Style())
         return Strip([]).adjust_cell_length(width, Style())
 

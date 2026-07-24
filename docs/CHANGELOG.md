@@ -1,5 +1,26 @@
 # CHANGELOG
 
+## 013 — v0.17.0 (2026-07-24) — THE DUPLICATE DIES, SIZES GET CHECKED
+
+Owner's review of the real running app, not the fixed-size exhibits:
+the missing-data map was duplicated full-width on two pages (home's
+copy was never asked for), and layouts only ever got verified at one
+terminal size — so panes that looked composed in exhibits opened into
+black wells on a real screen.
+
+- **Home's map removed.** The missing-data map lives only on Research,
+  where it is the feature; it also lost its dead spacer row (one row
+  tighter). Home is now brand plate over three content-hugging panes
+  (COLLECTION / PAGES / BUY LIST) centered in the frame — no
+  full-width band, no boxed voids, composed at small and large sizes.
+- **Multi-size verification is now part of the pass** — frames are
+  captured and reviewed at more than one terminal size; the first such
+  check immediately caught the PAGES pane stretching into an empty
+  well at 190x52 (its inner container expanded) and the top-heavy
+  void below the hall — both fixed (inner containers hug; the hall
+  centers).
+- Eighteen shell proofs green; exhibits regenerated.
+
 ## 012 — v0.16.0 (2026-07-24) — TITLED PANES, THE GALLERY LANGUAGE
 
 Rebuilt against the owner's reference apps from Textual's gallery

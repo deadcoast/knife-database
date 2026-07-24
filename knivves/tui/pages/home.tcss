@@ -14,12 +14,13 @@ HomeScreen {
 #hall {
     height: 1fr;
     padding: 0 2;
+    align: center middle;
 }
 
 /* titled panes — the title rides the border, no bar behind it */
 .hall-fixture {
     width: 1fr;
-    height: 100%;
+    height: auto;
     margin: 0 1;
     background: $surface;
     border: round $edge-bright;
@@ -46,17 +47,9 @@ HomeScreen {
 
 .hall-fixture-body {
     margin-top: 1;
+    height: auto;
 }
 
-/* the whole collection, drawn across the floor as a titled pane */
-#hall-map {
-    height: 12;
-    margin: 0 2;
-    border: round $edge-bright;
-    border-title-color: $accent;
-    border-title-style: bold;
-    border-subtitle-color: $steel-dim;
-}
 
 /* REVEAL — the plaques surface one by one behind the parting door */
 .hall-fixture * {

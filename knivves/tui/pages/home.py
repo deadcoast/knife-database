@@ -3,10 +3,7 @@
 The machined door parts onto the building's showpiece: a brushed-steel
 brand plate stamped like the door itself; the vault's state as a bank
 of drawn meters, not a list; the doors as machined slabs with their
-keycaps (the click is the key); the acquisition ladder; and the whole
-collection drawn across the floor — the unknowns map, every blade a
-column, the vault's knowledge and ignorance in one glance before a
-single door is opened.
+keycaps (the click is the key); and the buy list's top rungs.
 """
 from __future__ import annotations
 
@@ -26,7 +23,6 @@ from textual.widget import Widget
 from textual.widgets import Footer, Static
 
 from ...models import KnifeView
-from ...research import audit_database
 from ...state import VaultState, vault_state
 
 if TYPE_CHECKING:
@@ -36,7 +32,6 @@ from ..gauges import MeterBar
 from ..masthead import Masthead
 from ..surfaces import grain_tone
 from ..tips import ROOM_KEY, Tip, TipCapsule, TipRail, TipsMixin
-from .research import UnknownsMap
 
 DOORS = [
     ("0", "home", "HOME", "overview — you are here"),
@@ -133,11 +128,6 @@ class HomeScreen(TipsMixin, Screen):
             "the buy list's top rungs with the\nrunning cost\n\n"
             "the full ladder rides the library —\n1 then y",
         ),
-        "hall-map": Tip(
-            "the collection, drawn",
-            "one column per knife,\none row per fact\n\n"
-            "▪ lit — the vault knows\n· socket — a hole\n\ndoor 5 fills the holes",
-        ),
     }
 
     @property
@@ -171,16 +161,12 @@ class HomeScreen(TipsMixin, Screen):
                 buylist_pane.border_title = "BUY LIST"
                 yield Static("", classes="hall-fixture-body", id="hall-reserve-body")
             yield TipRail()
-        hall_map = UnknownsMap(id="hall-map")
-        hall_map.border_title = "MISSING DATA"
-        yield hall_map
         yield TipCapsule()
         yield Footer()
 
     def on_mount(self) -> None:
         self._reveal = laws.Reveal(self)
         self._surface()
-        self.query_one("#hall-map", UnknownsMap).start_idle()
         self.show_room_tip()
 
     def on_screen_resume(self, event: ScreenResume) -> None:
@@ -192,29 +178,17 @@ class HomeScreen(TipsMixin, Screen):
         self._reveal.arm()
 
     def _power_on(self) -> None:
-        """REVEAL — one composed entrance: the plaques surface in a
-        stagger as the door parts, and the floor powers on beneath them
-        the way the research desk's instrument does."""
+        """REVEAL — the panes surface in a stagger as the door parts."""
         fixtures = list(self.query(".hall-fixture"))
-        unknowns = self.query_one("#hall-map", UnknownsMap)
 
         def cold() -> None:
             for fixture in fixtures:
                 fixture.add_class("cold")
 
-        steps: list[tuple[float, Callable[[], None]]] = [(0.0, cold), (0.0, unknowns.begin_reveal)]
+        steps: list[tuple[float, Callable[[], None]]] = [(0.0, cold)]
         for i, fixture in enumerate(fixtures):
             steps.append((0.25 + i * laws.REVEAL_STAGGER * 3, partial(fixture.remove_class, "cold")))
-        n = 10
-        span = laws.REVEAL_SETTLE - 0.25
-        for i in range(1, n + 1):
-            steps.append((0.15 + span * (i / n) ** 0.5, partial(unknowns.reveal_step, i / n)))
-        steps.append((laws.REVEAL_SETTLE, unknowns.end_reveal))
         self._reveal.play(steps)
-
-    def spotlight(self, knife_id: str | None) -> None:
-        """The floor answers the hand — same hook the research desk uses."""
-        self.query_one("#hall-map", UnknownsMap).spotlight(knife_id)
 
     def action_dismiss_tip(self) -> None:
         self.dismiss_capsule()
@@ -240,13 +214,6 @@ class HomeScreen(TipsMixin, Screen):
         )
         self.query_one("#hall-state-body", Static).update(self._state_text(state))
         self.query_one("#hall-reserve-body", Static).update(self._reserve_text(state))
-        audit = audit_database(self.knivves.db)
-        columns = [
-            (k.id, {g.field for g in audit.gaps_by_id.get(k.id, [])}) for k in self.knives
-        ]
-        hall_map = self.query_one("#hall-map", UnknownsMap)
-        hall_map.set_state(columns)
-        hall_map.border_subtitle = f"{audit.complete}/{audit.records} complete · page 5 fills the rest"
 
     def _state_text(self, state: VaultState) -> Text:
         # every number is spoken, not derived — the provider is the

@@ -8,7 +8,7 @@ ResearchScreen {
 /* the map is a titled pane: the title rides the border, the completeness
    count rides the subtitle edge; +2 rows for the border itself */
 #desk-map {
-    height: 12;
+    height: 11;
     border: round $edge-bright;
     border-title-color: $accent;
     border-title-style: bold;
