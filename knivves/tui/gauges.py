@@ -38,6 +38,7 @@ class GradientBars(Widget):
 
     DEFAULT_CSS = """
     GradientBars {
+        background: $surface;
         width: 100%;
         height: auto;
         margin-top: 1;
@@ -87,6 +88,7 @@ class SplitBand(Widget):
 
     DEFAULT_CSS = """
     SplitBand {
+        background: $surface;
         height: 2;
         margin-bottom: 1;
     }
@@ -139,6 +141,7 @@ class MeterBar(Widget):
 
     DEFAULT_CSS = """
     MeterBar {
+        background: $surface;
         height: 1;
         margin-bottom: 1;
     }
@@ -183,6 +186,7 @@ class PriceScale(Widget):
 
     DEFAULT_CSS = """
     PriceScale {
+        background: $surface;
         width: 100%;
         height: 4;
         margin-top: 1;

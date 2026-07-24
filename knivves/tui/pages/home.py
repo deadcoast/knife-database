@@ -84,15 +84,20 @@ class BrandPlate(Widget):
                 cells[x] = (ch, Style(color=color, bgcolor=self._raised(x, y), bold=bold))
 
         if y in (0, 6):
-            edge_ch, tone = ("▄", laws.BEVEL_LIGHT) if y == 0 else ("▀", laws.BEVEL_SHADOW)
-            for x in range(x0, x1 + 1):
-                cells[x] = (edge_ch, Style(color=tone, bgcolor=grain_tone(x, y)))
-            for x in (2, width - 3):
-                cells[x] = ("●", Style(color=laws.EDGE_BRIGHT, bgcolor=grain_tone(x, y)))
+            # a crisp machined rim, not a bar: heavy box frame, lit on
+            # top, shadowed on the bottom
+            tone = laws.BEVEL_LIGHT if y == 0 else laws.BEVEL_SHADOW
+            left, mid, right = ("┏", "━", "┓") if y == 0 else ("┗", "━", "┛")
+            cells[x0] = (left, Style(color=tone, bgcolor=grain_tone(x0, y)))
+            for x in range(x0 + 1, x1):
+                cells[x] = (mid, Style(color=tone, bgcolor=grain_tone(x, y)))
+            cells[x1] = (right, Style(color=tone, bgcolor=grain_tone(x1, y)))
             return Strip([Segment(ch, style) for ch, style in cells], width)
 
         for x in range(x0, x1 + 1):
             cells[x] = (" ", Style(bgcolor=self._raised(x, y)))
+        cells[x0] = ("┃", Style(color=laws.BEVEL_LIGHT, bgcolor=grain_tone(x0, y)))
+        cells[x1] = ("┃", Style(color=laws.BEVEL_SHADOW, bgcolor=grain_tone(x1, y)))
         if y in (1, 5):
             put(x0 + 2, "●", laws.EDGE_BRIGHT)
             put(x1 - 2, "●", laws.EDGE_BRIGHT)
@@ -102,13 +107,20 @@ class BrandPlate(Widget):
             for i, ch in enumerate(row):
                 if ch != " ":
                     put(bx + i, ch, laws.STEEL_BRIGHT, bold=True)
-            if y == 3:
+            if y == 4:
+                # the maker's mark rides the letter baseline
                 put(bx + brand_w + 2, "╱", laws.ACCENT, bold=True)
                 put(bx + brand_w + 3, "╱", laws.ACCENT, bold=True)
-                for x in range(6, x0 - 3):
-                    cells[x] = ("─", Style(color=laws.EDGE_BRIGHT, bgcolor=grain_tone(x, y)))
-                for x in range(x1 + 4, width - 6):
-                    cells[x] = ("─", Style(color=laws.EDGE_BRIGHT, bgcolor=grain_tone(x, y)))
+            if y == 3:
+                # flank rules run from an engraved tip INTO the frame
+                if x0 - 1 > 5:
+                    cells[4] = ("╾", Style(color=laws.STEEL_MID, bgcolor=grain_tone(4, y)))
+                    for x in range(5, x0):
+                        cells[x] = ("─", Style(color=laws.EDGE_BRIGHT, bgcolor=grain_tone(x, y)))
+                if x1 + 1 < width - 5:
+                    for x in range(x1 + 1, width - 4):
+                        cells[x] = ("─", Style(color=laws.EDGE_BRIGHT, bgcolor=grain_tone(x, y)))
+                    cells[width - 5] = ("╼", Style(color=laws.STEEL_MID, bgcolor=grain_tone(width - 5, y)))
         if y == 5:
             tx = x0 + max((plaque_w - len(self.TAGLINE)) // 2, 2)
             for i, ch in enumerate(self.TAGLINE[: plaque_w - 4]):
@@ -181,6 +193,8 @@ class HomeScreen(TipsMixin, Screen):
                 yield SplitBand(id="hall-classes")
                 yield Engraving("prices")
                 yield GradientBars(id="hall-prices")
+                yield Engraving("common steels", id="hall-steels-title")
+                yield Static("", id="hall-steels-body")
             with Vertical(id="hall-doors", classes="hall-fixture") as pages_pane:
                 pages_pane.border_title = "PAGES"
                 pages_pane.border_subtitle = "keys or clicks"
@@ -207,6 +221,8 @@ class HomeScreen(TipsMixin, Screen):
         """Back in the hall: reflect anything filed or judged while away."""
         self._surface()
         self._power_on()
+        # re-cut the lists once real pane heights exist
+        self.set_timer(0.15, self._surface)
 
     def on_screen_suspend(self, event) -> None:
         self._reveal.arm()
@@ -226,6 +242,10 @@ class HomeScreen(TipsMixin, Screen):
 
     def action_dismiss_tip(self) -> None:
         self.dismiss_capsule()
+
+    def on_resize(self, event) -> None:
+        """The hall re-cuts its lists to the room's real size."""
+        self._surface()
 
     # ------------------------------------------------------------- plaques
 
@@ -257,6 +277,12 @@ class HomeScreen(TipsMixin, Screen):
         self.query_one("#hall-prices", GradientBars).update_bars(
             ledger.price_buckets(self.knives)
         )
+        # the steels section exists only where the column has room for it
+        room = (self.query_one("#hall-state").size.height or 0) >= 35
+        self.query_one("#hall-steels-title").display = room
+        self.query_one("#hall-steels-body").display = room
+        if room:
+            self.query_one("#hall-steels-body", Static).update(self._steels_text())
         for key, page, name, describes in DOORS:
             row = self.query_one(f"#door-{page}", DoorRow)
             row.update(self._door_text(key, name, describes, self._door_reading(page, state)))
@@ -309,7 +335,7 @@ class HomeScreen(TipsMixin, Screen):
             return f"avg ${state.average_cad:,.0f}"
         if page == "research":
             return f"{state.unresearched} gaps open"
-        return ""
+        return "0 returns here from anywhere"
 
     def _door_text(self, key: str, name: str, describes: str, reading: str = "") -> Text:
         text = Text()
@@ -319,10 +345,8 @@ class HomeScreen(TipsMixin, Screen):
         text.append("\n     ")
         text.append(describes, style=laws.STEEL_DIM)
         text.append("\n     ")
-        if reading:
-            text.append(reading, style=laws.ACCENT)
-        else:
-            text.append("· · ·", style=laws.EDGE_BRIGHT)
+        reading_tone = laws.STEEL_DIM if key == "0" else laws.ACCENT
+        text.append(reading, style=reading_tone)
         return text
 
     def _reserve_text(self, state: VaultState) -> Text:
@@ -334,8 +358,9 @@ class HomeScreen(TipsMixin, Screen):
                 text.append(f"{rank:>2} ", style=laws.STEEL_DIM)
                 text.append("╌" * 18, style=laws.EDGE)
                 text.append("\n")
-            text.append("\nempty — a BuyList section\n", style=laws.STEEL_DIM)
-            text.append("fills it: knivves add <file.md>", style=laws.STEEL_DIM)
+            text.append("\nempty\n", style=laws.STEEL_DIM)
+            text.append("a BuyList section fills it\n", style=laws.STEEL_DIM)
+            text.append("knivves add <file.md>", style=laws.STEEL_MID)
             return text
         for (priority, knife), running in list(zip(views, totals))[:3]:
             text.append(f"{priority:>2} ", style=f"bold {laws.ACCENT}")
@@ -356,18 +381,36 @@ class HomeScreen(TipsMixin, Screen):
         fresh = [k for k in self.knives if k.is_new]
         text = Text()
         if not fresh:
-            text.append("none in this cache\n", style=laws.STEEL_DIM)
-            text.append(
-                f"gen {state.generation} · knivves update\nopens the next one",
-                style=laws.STEEL_DIM,
-            )
+            text.append(f"none in this cache (gen {state.generation})\n", style=laws.STEEL_DIM)
+            text.append(f"knivves update opens gen {state.generation + 1}", style=laws.STEEL_DIM)
             return text
-        for knife in fresh[:5]:
+        cap = max(4, (self.query_one("#hall-reserve").size.height or 30) - 22)
+        for knife in fresh[:cap]:
             text.append("★ ", style=laws.FRESH)
             text.append(f"{knife.display_name[:24]:<25}", style=laws.STEEL_BRIGHT)
             text.append(f"{knife.price_label}\n", style=laws.STEEL_MID)
-        if len(fresh) > 5:
-            text.append(f"  +{len(fresh) - 5} more ★new in the library", style=laws.STEEL_DIM)
+        if len(fresh) > cap:
+            text.append(f"  +{len(fresh) - cap} more ★new in the library", style=laws.STEEL_DIM)
+        return text
+
+    def _steels_text(self) -> Text:
+        """The collection's most common blade steels — counted, adaptive."""
+        counts: dict[str, int] = {}
+        for knife in self.knives:
+            steel = knife.blade_steel
+            if steel and steel != "Unknown":
+                counts[steel] = counts.get(steel, 0) + 1
+        ranked = sorted(counts.items(), key=lambda kv: -kv[1])
+        cap = max(2, (self.query_one("#hall-state").size.height or 35) - 33)
+        text = Text()
+        if not ranked:
+            text.append("no steels on record yet —\ndoor 5 fills them", style=laws.STEEL_DIM)
+            return text
+        top = ranked[0][1] or 1
+        for steel, count in ranked[:cap]:
+            text.append(f"{steel[:18]:<19}", style=laws.STEEL_BRIGHT)
+            text.append("▪" * max(1, round(count / top * 8)), style=laws.STEEL_MID)
+            text.append(f" {count}\n", style=laws.STEEL_DIM)
         return text
 
     def _commands_text(self) -> Text:

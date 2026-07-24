@@ -76,6 +76,7 @@ class GateBank(Widget):
 
     DEFAULT_CSS = """
     GateBank {
+        background: $surface;
         height: auto;
         margin-bottom: 1;
     }
@@ -206,6 +207,7 @@ class TapeReader(Widget):
 
     DEFAULT_CSS = """
     TapeReader {
+        background: $surface;
         height: 4;
         margin-bottom: 1;
     }
@@ -282,6 +284,7 @@ class ParseRegister(Widget):
 
     DEFAULT_CSS = """
     ParseRegister {
+        background: $surface;
         height: auto;
         margin-top: 1;
     }
@@ -379,10 +382,12 @@ class ImportsScreen(TipsMixin, Screen):
 
     def compose(self) -> ComposeResult:
         yield Masthead("IMPORT KNIVES")
-        yield Input(
+        intake = Input(
             placeholder="a retailer listing URL or a path to an ingestion .md — enter runs the line",
             id="forge-intake",
         )
+        intake.border_title = "INTAKE"
+        yield intake
         with Horizontal(id="forge-line"):
             with Vertical(classes="station", id="st-extract") as parse_pane:
                 parse_pane.border_title = "PARSE"

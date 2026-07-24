@@ -94,6 +94,7 @@ class UnknownsMap(Widget):
 
     DEFAULT_CSS = """
     UnknownsMap {
+        background: $surface;
         height: 9;
         margin: 1 2 0 2;
     }
@@ -412,6 +413,7 @@ class ResearchScreen(TipsMixin, Screen):
             tray.border_subtitle = "s researches · r replays the demo"
             yield TransitRail(
                 [("st-docket", "QUEUE"), ("st-read", "READ"), ("st-stamp", "SAVE")],
+                texture="grid",
                 id="desk-rail",
             )
         yield Plate(id="desk-plate")
@@ -441,6 +443,10 @@ class ResearchScreen(TipsMixin, Screen):
             return
         self._refresh_desk()
         self._power_on()
+        # re-cut the card file once real pane heights exist
+        self.set_timer(
+            0.15, lambda: None if self._pass_active else self._refresh_desk()
+        )
 
     def on_screen_suspend(self, event) -> None:
         self._reveal.arm()
@@ -499,6 +505,9 @@ class ResearchScreen(TipsMixin, Screen):
     def on_resize(self, event) -> None:
         if getattr(self, "_plate_x", None) is not None:
             self.call_after_refresh(self._settle)
+        # the desk re-cuts its lists to the room's real size
+        if not getattr(self, "_pass_active", False):
+            self._refresh_desk()
 
     async def _travel_to(self, station_id: str, plate: Plate) -> None:
         x = self.query_one(f"#{station_id}").region.x + 2
@@ -546,16 +555,21 @@ class ResearchScreen(TipsMixin, Screen):
         docket = self.query_one("#docket", Vertical)
         docket.remove_children()
         widgets: list[Widget] = []
+        # the card file grows with the room: every row the station really
+        # has carries a card — the shelf keeps its fixed foot. size is
+        # the CONTENT box (border+padding already gone).
+        station_h = self.query_one("#st-docket").size.height or 12
+        cap = max(4, station_h - 8)
         if plan.planned:
-            for rank, entry in enumerate(plan.planned[:4], start=1):
+            for rank, entry in enumerate(plan.planned[:cap], start=1):
                 working = entry.knife_id == active
                 card = DocketCard(entry.knife_id, id=f"card-{entry.knife_id}", classes="docket-card")
                 card.update(self._card_text(rank, entry, working))
                 card.set_class(working, "working")
                 widgets.append(card)
-            if len(plan.planned) > 4:
+            if len(plan.planned) > cap:
                 widgets.append(Static(
-                    Text(f"    +{len(plan.planned) - 4} more", style=laws.STEEL_DIM),
+                    Text(f"    +{len(plan.planned) - cap} more", style=laws.STEEL_DIM),
                     id="docket-overflow",
                 ))
         else:
@@ -573,7 +587,9 @@ class ResearchScreen(TipsMixin, Screen):
             await removal
             await docket.mount_all(widgets)
 
-        self.run_worker(_rebuild(), group="docket-rebuild", exclusive=True)
+        # pass the callable, not a coroutine: an exclusive replacement may
+        # drop the job before it starts, and an unstarted coroutine warns
+        self.run_worker(_rebuild, group="docket-rebuild", exclusive=True)
 
     def _card_text(self, rank: int, entry: research.DocketEntry, working: bool) -> Text:
         # rank · id · its punch-row (the map column in miniature)

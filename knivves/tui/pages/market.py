@@ -111,6 +111,14 @@ class MarketScreen(TipsMixin, Screen):
             self.query_one(Masthead).set_context(self._survey_status())
             self.query_one("#ledger-movers").border_subtitle = self._survey_status()
         self._power_on()
+        # panes measure short before first layout — re-cut the lists once
+        # real heights exist so they fill the room they actually have
+        def _recut() -> None:
+            self._read_line()
+            if not self._surveying:
+                self._idle_movers()
+
+        self.set_timer(0.15, _recut)
 
     def on_screen_suspend(self, event) -> None:
         self._reveal.arm()
@@ -191,17 +199,21 @@ class MarketScreen(TipsMixin, Screen):
         knives = self.knivves.knives
         over_count = sum(1 for k in knives if (k.price or 0) >= threshold and k.price is not None)
         under_count = sum(1 for k in knives if k.price is not None and k.price < threshold)
+        # the ladder grows with the room — rungs fill the pane's real
+        # CONTENT height (size excludes border and padding)
+        pane_h = self.query_one("#ledger-line").size.height or 14
+        per_side = max(4, (pane_h - 4) // 2)
         text = Text()
         text.append(f"the rule re-tags at ${threshold:,.0f}", style=laws.STEEL_DIM)
         text.append(f"   ▴ {over_count} priced over · ▾ {under_count} under\n\n", style=laws.STEEL_DIM)
         if not above:
             text.append("   nothing riding above the line\n", style=laws.STEEL_DIM)
-        for knife in above[:5]:
+        for knife in above[:per_side]:
             rung(text, knife, over=True)
         text.append("━━━━━━━ ", style=laws.ACCENT)
         text.append(f"${threshold:,.0f}", style=f"bold {laws.ACCENT}")
         text.append(" ━" + "━" * 28 + "\n", style=laws.ACCENT)
-        for knife in below[:5]:
+        for knife in below[:per_side]:
             rung(text, knife, over=False)
         if not below:
             text.append("   nothing hanging under the line\n", style=laws.STEEL_DIM)
@@ -216,9 +228,26 @@ class MarketScreen(TipsMixin, Screen):
         self.query_one("#meter-history", MeterBar).set_meter(deep / blades, f"{deep}/{len(knives)}")
         self.query_one("#meter-priced", MeterBar).set_meter(priced / blades, f"{priced}/{len(knives)}")
 
+    def _history_movers(self) -> list[tuple[KnifeView, float]]:
+        """The last survey's movement, read straight from the records —
+        the delta between each knife's final two history entries."""
+        movers: list[tuple[KnifeView, float]] = []
+        for knife in self.knivves.knives:
+            history = knife.raw.get("price_history") or []
+            if len(history) < 2:
+                continue
+            try:
+                prev, last = float(history[-2]["price_cad"]), float(history[-1]["price_cad"])
+            except (KeyError, TypeError, ValueError):
+                continue
+            if last != prev:
+                movers.append((knife, last - prev))
+        return sorted(movers, key=lambda m: -abs(m[1]))
+
     def _idle_movers(self) -> None:
         surveyed = any(len(k.raw.get("price_history") or []) > 1 for k in self.knivves.knives)
         targets = len(self._targets())
+        pane_h = self.query_one("#ledger-movers").size.height or 16
         text = Text()
         text.append_text(laws.field("last read", self._survey_status().replace("last survey ", ""), laws.STEEL_BRIGHT))
         text.append("\n")
@@ -228,13 +257,25 @@ class MarketScreen(TipsMixin, Screen):
         text.append("\n\n")
         text.append(" s ", style=f"bold {laws.BG} on {laws.ACCENT}")
         if surveyed:
-            text.append("  runs a fresh survey\n", style=laws.STEEL_MID)
+            text.append("  runs a fresh survey · esc cancels\n\n", style=laws.STEEL_MID)
+            movers = self._history_movers()
+            if movers:
+                text.append("what the last survey moved:\n", style=laws.STEEL_DIM)
+                text.append_text(self._movers_lines(movers, limit=max(6, pane_h - 9)))
+            else:
+                text.append("no price moved on the last survey\n", style=laws.STEEL_DIM)
         else:
-            text.append("  reads every live listing and\n    records what moved\n", style=laws.STEEL_MID)
-        text.append("\n")
-        text.append("each survey appends to every\nrecord's price history — movers\nland here, sorted by magnitude\n", style=laws.STEEL_DIM)
-        text.append("\nesc cancels · observations kept", style=laws.STEEL_DIM)
+            text.append("  reads every live listing and\n    records what moved\n\n", style=laws.STEEL_MID)
+            text.append("each survey appends to every\nrecord's price history — movers\nland here, sorted by magnitude\n", style=laws.STEEL_DIM)
+            text.append("\nesc cancels · observations kept", style=laws.STEEL_DIM)
         self.query_one("#movers-read", Static).update(text)
+
+    def on_resize(self, event) -> None:
+        """The instruments re-cut to the room's real size."""
+        if not self._surveying:
+            self._read_valuation()
+            self._read_line()
+            self._idle_movers()
 
     # ------------------------------------------------------------- survey
 
@@ -310,20 +351,22 @@ class MarketScreen(TipsMixin, Screen):
         self, i: int, total: int, knife: KnifeView,
         movers: list[tuple[KnifeView, float]], unchanged: int, unreachable: int,
     ) -> Text:
+        pane_h = self.query_one("#ledger-movers").size.height or 20
         text = Text()
         text.append(f"surveying {i}/{total}\n", style=laws.ACCENT)
         text.append(f"{knife.display_name[:28]}\n\n", style=laws.STEEL_MID)
-        text.append_text(self._movers_lines(movers, limit=8))
+        text.append_text(self._movers_lines(movers, limit=max(8, pane_h - 9)))
         text.append(f"\n{unchanged} unchanged · {unreachable} unreachable", style=laws.STEEL_DIM)
         return text
 
     def _survey_result(
         self, total: int, movers: list[tuple[KnifeView, float]], unchanged: int, unreachable: int,
     ) -> Text:
+        pane_h = self.query_one("#ledger-movers").size.height or 20
         text = Text()
         text.append(f"survey complete — {total} listings read\n\n", style=laws.PASS)
         if movers:
-            text.append_text(self._movers_lines(movers, limit=14))
+            text.append_text(self._movers_lines(movers, limit=max(10, pane_h - 8)))
         else:
             text.append("no price moved\n", style=laws.STEEL_DIM)
         text.append(f"\n{len(movers)} moved · {unchanged} unchanged · {unreachable} unreachable", style=laws.STEEL_DIM)

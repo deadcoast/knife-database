@@ -113,7 +113,9 @@ class LibraryScreen(TipsMixin, Screen):
 
     def compose(self) -> ComposeResult:
         yield Masthead("LIBRARY")
-        yield Input(placeholder="/ search — brand, steel, lock, tag …", id="rack-search")
+        search = Input(placeholder="/ search — brand, steel, lock, tag …", id="rack-search")
+        search.border_title = "SEARCH"
+        yield search
         yield Plate(id="rack-plate")
         yield Reserve(id="rack-reserve")
         with Horizontal(id="rack-body"):

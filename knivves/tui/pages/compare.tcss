@@ -31,6 +31,7 @@ CompareScreen {
     border-right: round $bevel-shadow;
     border-title-color: $accent;
     border-title-style: bold;
+    border-subtitle-color: $steel-dim;
     padding: 1 2;
 }
 
@@ -50,12 +51,13 @@ CompareScreen {
     align: center middle;
 }
 
-/* REVEAL — the instrument warms; plates arrive under the motion law */
+/* REVEAL — the instrument warms and rises; plates arrive under the
+   motion law */
 #calipers,
 #calipers *,
 #calipers-bed,
 #calipers-bed * {
-    transition: opacity 350ms $cue-easing;
+    transition: opacity 350ms $cue-easing, offset 350ms $cue-easing;
 }
 
 #calipers.cold,
@@ -63,4 +65,9 @@ CompareScreen {
 #calipers-bed.cold,
 #calipers-bed.cold * {
     opacity: 0%;
+}
+
+#calipers.cold,
+#calipers-bed.cold {
+    offset: 0 2;
 }

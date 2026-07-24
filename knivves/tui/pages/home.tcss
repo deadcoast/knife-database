@@ -32,7 +32,12 @@ HomeScreen {
     border-subtitle-color: $steel-dim;
     padding: 1 2;
     overflow: hidden hidden;
-    transition: background $cue-duration $cue-easing, opacity 350ms $cue-easing;
+    transition: background $cue-duration $cue-easing, opacity 350ms $cue-easing, offset 350ms $cue-easing;
+}
+
+/* REVEAL — the panes physically rise into place as they surface */
+.hall-fixture.cold {
+    offset: 0 2;
 }
 
 /* CUE — the pane under the hand lifts; children lift with it */
@@ -65,10 +70,16 @@ HomeScreen {
 
 /* CUE — a page slab under the hand lifts; the click is the key.
    Each slab is a recessed key seated in the panel, its own left spine. */
-/* slabs hug their content — fr heights ballooned at other terminal
-   sizes (the 013 lesson: inner containers hug, they never stretch) */
+/* the keypad fills its column: the BODY is height-defined (1fr of the
+   fixture), so fr slabs are safe — they share real space, never balloon
+   (the 013 trap only bites inside auto-height parents) */
+#hall-doors-body {
+    height: 1fr;
+}
+
 .door-row {
-    height: auto;
+    height: 1fr;
+    min-height: 3;
     padding: 0 2;
     margin-bottom: 1;
     background: $surface-low;

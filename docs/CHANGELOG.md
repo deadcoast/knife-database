@@ -45,6 +45,30 @@ to the standing bar: a still frame reads as machined hardware.
   still reach it). All shell proofs and backend suites green; every
   exhibit regenerated and reviewed.
 
+Owner's revision review of the real running app (chaotic / simplistic /
+a failure) named four mechanisms; all four fixed in the same release:
+
+- **The black boxes were a compositing bug.** Every custom-drawn
+  instrument (engravings, meters, bars, scales, the unknowns map, the
+  calipers, the rule bank, the tape, the register, the transit rail)
+  padded its rows with no background, so it painted the app floor
+  inside grey panes — the "big black boxes clashing with a grey
+  background". Every instrument now declares its surface.
+- **Giant boxes were hard-coded exhibit caps.** Lists now cut to the
+  pane's real height and re-cut on resize and after first layout: the
+  $150 ladder's rungs, the survey movers, the research card file, the
+  new-arrivals list, the page slabs (fr inside a height-defined body —
+  safe), and the tip rail hugs to a card instead of running an empty
+  channel to the floor. The collection column gained a COMMON STEELS
+  section; the survey station idles on what the last survey actually
+  moved, read from every record's price history.
+- **The duplicated transit tray** is differentiated by material: the
+  import line rides a ribbed conveyor bed, the research desk a dot
+  lattice — the unknowns map's own material carried down.
+- **Reveals now move.** Panes and stations physically rise into place
+  as they surface (offset + opacity under the house easing), not an
+  invisible fade.
+
 ## 013 — v0.17.0 (2026-07-24) — THE DUPLICATE DIES, SIZES GET CHECKED
 
 Owner's review of the real running app, not the fixed-size exhibits:

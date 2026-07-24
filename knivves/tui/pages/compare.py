@@ -109,6 +109,7 @@ class Calipers(Widget):
 
     DEFAULT_CSS = """
     Calipers {
+        background: $surface;
         height: auto;
         margin-bottom: 1;
     }
@@ -406,6 +407,7 @@ class CompareScreen(TipsMixin, Screen):
             yield Plate(id="bench-left", classes="bench-plate")
             with Vertical(id="calipers") as summary_pane:
                 summary_pane.border_title = "COMPARISON"
+                summary_pane.border_subtitle = "esc clears the bench"
                 yield Static("", id="calipers-read", classes="station-body")
             yield Plate(id="bench-right", classes="bench-plate")
             yield TipRail()

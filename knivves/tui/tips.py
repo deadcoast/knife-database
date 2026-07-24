@@ -42,7 +42,8 @@ class TipRail(Vertical):
     DEFAULT_CSS = """
     TipRail {
         width: 26;
-        height: 100%;
+        height: auto;
+        max-height: 100%;
         margin: 0 0 0 1;
         padding: 1 1 0 1;
         background: $surface-low;

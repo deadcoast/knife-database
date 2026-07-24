@@ -150,14 +150,16 @@ class TransitRail(Widget):
 
     DEFAULT_CSS = """
     TransitRail {
+        background: $surface-low;
         width: 100%;
         height: 100%;
     }
     """
 
-    def __init__(self, stops: list[tuple[str, str]], **kwargs) -> None:
+    def __init__(self, stops: list[tuple[str, str]], texture: str = "rollers", **kwargs) -> None:
         super().__init__(**kwargs)
         self._stops = stops  # (station widget id, engraved label)
+        self._texture = texture  # "rollers" (conveyor) | "grid" (desk blotter)
 
     def _stop_xs(self) -> list[tuple[int, str]]:
         out: list[tuple[int, str]] = []
@@ -190,7 +192,15 @@ class TransitRail(Widget):
                         cells[x + i] = (ch, Style(color=laws.STEEL_DIM))
             return Strip([Segment(ch, style) for ch, style in cells], width)
         if y >= 2 and y % 2 == 0:
-            # the ribbed bed the plate rides on — quiet machining marks
+            if self._texture == "grid":
+                # the desk blotter — a dot lattice, the unknowns map's
+                # own material carried down to the bed
+                cells = []
+                for x in range(width):
+                    ch = "·" if x % 3 == 1 else " "
+                    cells.append(Segment(ch, Style(color=laws.EDGE)))
+                return Strip(cells, width)
+            # the ribbed conveyor bed the plate rides on
             return Strip([Segment("─" * width, Style(color=laws.EDGE))], width)
         return Strip([]).adjust_cell_length(width, Style())
 
@@ -200,6 +210,7 @@ class Engraving(Widget):
 
     DEFAULT_CSS = """
     Engraving {
+        background: $surface;
         width: 100%;
         height: 2;
         margin-bottom: 1;

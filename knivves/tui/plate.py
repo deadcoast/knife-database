@@ -46,7 +46,25 @@ class Plate(Vertical):
     Plate > .plate--body {
         margin-top: 1;
     }
+    Plate > .plate--footer {
+        dock: bottom;
+        height: auto;
+        border-top: solid $edge;
+        padding-top: 0;
+    }
     """
+
+    # the seven facts the research map tracks, in the same order — the
+    # plate's footer speaks the identical completeness language
+    FIELD_GROUPS: list[tuple[str, frozenset]] = [
+        ("STEEL", frozenset({"steel"})),
+        ("LOCK", frozenset({"lock"})),
+        ("OPEN", frozenset({"opening"})),
+        ("LEN", frozenset({"length"})),
+        ("PRICE", frozenset({"price"})),
+        ("STOCK", frozenset({"availability"})),
+        ("TITLE", frozenset({"title", "brand", "model", "listing_title"})),
+    ]
 
     def __init__(self, **kwargs) -> None:
         super().__init__(**kwargs)
@@ -56,6 +74,7 @@ class Plate(Vertical):
         yield Static("", classes="plate--title")
         yield Static("", classes="plate--id")
         yield Static("", classes="plate--body")
+        yield Static("", classes="plate--footer")
 
     # ------------------------------------------------------------- full mode
 
@@ -96,9 +115,13 @@ class Plate(Vertical):
             body.append_text(laws.field(label, value, style))
             body.append("\n")
         if knife.notes:
+            # one engraved line — a tall bench plate must never clip a
+            # sentence mid-word against the footer
+            note = knife.notes if len(knife.notes) <= 38 else knife.notes[:37] + "…"
             body.append("\n")
-            body.append(knife.notes, style=laws.STEEL_DIM)
+            body.append(note, style=laws.STEEL_DIM)
         self._body(body)
+        self._footer(gaps)
 
     # ------------------------------------------------------ incremental mode
 
@@ -112,6 +135,7 @@ class Plate(Vertical):
             subtitle if len(subtitle) <= 40 else subtitle[:39] + "…",
         )
         self._body(Text())
+        self.query_one(".plate--footer", Static).update("")
 
     def stamp(self, label: str, value: str) -> None:
         """Stamp one field; the freshest stamp reads in accent."""
@@ -129,7 +153,23 @@ class Plate(Vertical):
 
     def _title(self, title: str, subtitle: str) -> None:
         self.query_one(".plate--title", Static).update(title)
-        self.query_one(".plate--id", Static).update(subtitle)
+        # the slug never wraps into an orphan line — one engraving, cut
+        self.query_one(".plate--id", Static).update(
+            subtitle if len(subtitle) <= 40 else subtitle[:39] + "…"
+        )
 
     def _body(self, body: Text) -> None:
         self.query_one(".plate--body", Static).update(body)
+
+    def _footer(self, gaps) -> None:
+        """The record's completeness, engraved at the plate's foot in the
+        research map's own language: a known fact reads steel, a hole
+        reads accent — the eye lands on what is missing."""
+        missing = {getattr(g, "field", str(g)) for g in gaps}
+        text = Text()
+        for i, (label, keys) in enumerate(self.FIELD_GROUPS):
+            hole = bool(keys & missing)
+            text.append(label, style=f"bold {laws.ACCENT}" if hole else laws.STEEL_DIM)
+            if i < len(self.FIELD_GROUPS) - 1:
+                text.append("·", style=laws.EDGE_BRIGHT)
+        self.query_one(".plate--footer", Static).update(text)

@@ -10,6 +10,8 @@ LibraryScreen {
     height: 3;
     background: $background;
     border: tall $edge;
+    border-title-color: $accent;
+    border-title-style: bold;
     color: $steel-body;
     padding: 0 1;
     border-subtitle-color: $steel-dim;
