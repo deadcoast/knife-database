@@ -172,12 +172,13 @@ class Calipers(Widget):
 
     IDLE_BEAMS = ("price", "length")
     IDLE_LINKS = ("steel", "lock", "class")
+    LEGEND = "▐▌ jaws on the value · ● linked = match · ╳ = differ · open jaw = missing data"
 
     def get_content_height(self, container, viewport, width: int) -> int:
         if not self.beams:
             # the instrument holds its shape at rest — open rails, parked jaws
-            return len(self.IDLE_BEAMS) * 3 + len(self.IDLE_LINKS)
-        return len(self.beams) * 3 + len(self.links)
+            return len(self.IDLE_BEAMS) * 4 + len(self.IDLE_LINKS) + 2
+        return len(self.beams) * 4 + len(self.links) + 2
 
     def render_line(self, y: int) -> Strip:
         width = self.size.width
@@ -189,30 +190,69 @@ class Calipers(Widget):
     def _render_row(self, y: int, width: int) -> Strip:
         if not self.beams:
             return self._idle_row(y, width)
-        beam_rows = len(self.beams) * 3
+        beam_rows = len(self.beams) * 4
         if y < beam_rows:
-            index, row = divmod(y, 3)
+            index, row = divmod(y, 4)
             if row == 0:
                 return self._rail_row(self.beams[index], self._progress[index], width)
             if row == 1:
                 return self._values_row(self.beams[index], self._progress[index], width)
+            if row == 2:
+                return self._scale_row(self.beams[index], width)
             return Strip([])
         link_index = y - beam_rows
         if link_index < self._links_shown:
             return self._link_row(self.links[link_index], width)
+        if y == beam_rows + len(self.links) + 1 and self._links_shown == len(self.links):
+            legend = self.LEGEND[: max(width - self.LABEL_W, 0)]
+            return Strip([
+                Segment(" " * self.LABEL_W, Style()),
+                Segment(legend, Style(color=laws.STEEL_DIM)),
+            ])
         return Strip([])
+
+    def _scale_row(self, beam: Beam, width: int) -> Strip:
+        """The engraved scale beneath a beam: the rail's real numbers."""
+        rail_w = max(width - self.LABEL_W, 8)
+        if beam.missing:
+            return Strip([])
+        ceiling = max(beam.va, beam.vb) * 1.06 or 1.0
+        cells = [" "] * rail_w
+        for quarter in range(5):
+            x = min(rail_w - 1, round(quarter / 4 * (rail_w - 1)))
+            cells[x] = "╹"
+        row = "".join(cells)
+        labels: list[tuple[int, str]] = []
+        for quarter in (0, 1, 2, 3, 4):
+            value = ceiling * quarter / 4
+            mark = f"${value:,.0f}" if beam.fmt == "money" else f"{value:.0f}"
+            x = min(rail_w - 1, round(quarter / 4 * (rail_w - 1)))
+            start = min(max(x + 1, 0), rail_w - len(mark) - 1) if quarter < 4 else rail_w - len(mark) - 1
+            labels.append((start, mark))
+        chars = list(row)
+        for start, mark in labels:
+            for i, ch in enumerate(mark):
+                if 0 <= start + i < rail_w and chars[start + i] == " ":
+                    chars[start + i] = ch
+        segments = [Segment(" " * self.LABEL_W, Style())]
+        for ch in chars:
+            if ch == "╹":
+                segments.append(Segment(ch, Style(color=laws.EDGE_BRIGHT)))
+            else:
+                segments.append(Segment(ch, Style(color=laws.STEEL_DIM)))
+        return Strip(segments)
 
     def _idle_row(self, y: int, width: int) -> Strip:
         """The instrument at rest: full rails with the jaws parked at the
         rest posts, the linkages disengaged — machined, waiting, honest
         about holding no work."""
-        beam_rows = len(self.IDLE_BEAMS) * 3
+        beam_rows = len(self.IDLE_BEAMS) * 4
         if y < beam_rows:
-            index, row = divmod(y, 3)
+            index, row = divmod(y, 4)
             rail_w = max(width - self.LABEL_W, 8)
             if row == 0:
                 segments = [Segment(f"{self.IDLE_BEAMS[index].upper():<{self.LABEL_W}}", Style(color=laws.STEEL_DIM))]
-                cells: list[tuple[str, Style]] = [("─", Style(color=laws.EDGE))] * rail_w
+                cells: list[tuple[str, Style]] = [("─", Style(color=laws.EDGE_BRIGHT))] * rail_w
                 for quarter in range(1, 4):
                     cells[rail_w * quarter // 4] = ("╹", Style(color=laws.EDGE_BRIGHT))
                 cells[0] = ("▐", Style(color=laws.STEEL_MID, bold=True))
@@ -233,9 +273,9 @@ class Calipers(Widget):
             side_w = (lane - 5) // 2
             return Strip([
                 Segment(f"{self.IDLE_LINKS[link_index].upper():<{self.LABEL_W}}", Style(color=laws.STEEL_DIM)),
-                Segment("╌" * side_w, Style(color=laws.EDGE)),
-                Segment("╴ ╶", Style(color=laws.EDGE_BRIGHT)),
-                Segment("╌" * side_w, Style(color=laws.EDGE)),
+                Segment("╌" * side_w, Style(color=laws.EDGE_BRIGHT)),
+                Segment("╴ ╶", Style(color=laws.STEEL_MID)),
+                Segment("╌" * (lane - side_w - 3), Style(color=laws.EDGE_BRIGHT)),
             ])
         return Strip([])
 
@@ -253,6 +293,8 @@ class Calipers(Widget):
         jaw_l = round(progress * left_target)
         jaw_r = (rail_w - 1) - round(progress * ((rail_w - 1) - right_target))
         cells: list[tuple[str, Style]] = [("─", Style(color=laws.EDGE_BRIGHT))] * rail_w
+        for quarter in range(1, 4):
+            cells[rail_w * quarter // 4] = ("┼", Style(color=laws.EDGE_BRIGHT))
         closed = progress >= 1.0
         if closed and jaw_r > jaw_l + 1:
             for x in range(jaw_l + 1, jaw_r):
@@ -302,25 +344,33 @@ class Calipers(Widget):
         ])
 
     def _link_row(self, link: Link, width: int) -> Strip:
-        lane = max(width - self.LABEL_W, 12)
-        side_w = (lane - 5) // 2
-
-        def fit(value: str) -> str:
-            return value if len(value) <= side_w else value[: side_w - 1] + "…"
-
-        va = fit(link.va).rjust(side_w)
-        vb = fit(link.vb).ljust(side_w)
+        """A linkage spanning the full bench: rails run from the housing
+        out to both rail ends, the values seated against the joint."""
+        lane = max(width - self.LABEL_W, 20)
         if link.same:
-            joint, joint_style = "──●──", Style(color=laws.PASS)
+            joint, joint_style = "─●─", Style(color=laws.PASS, bold=True)
             value_style = Style(color=laws.STEEL_DIM)
         else:
-            joint, joint_style = "─╴╳╶─", Style(color=laws.STEEL_BRIGHT, bold=True)
+            joint, joint_style = "╴╳╶", Style(color=laws.STEEL_BRIGHT, bold=True)
             value_style = Style(color=laws.STEEL_BRIGHT)
+        side_w = (lane - len(joint)) // 2
+        value_room = side_w - 4
+
+        def fit(value: str) -> str:
+            return value if len(value) <= value_room else value[: value_room - 1] + "…"
+
+        va, vb = fit(link.va), fit(link.vb)
+        rail_a = side_w - 1 - len(va) - 2
+        rail_b = lane - (1 + max(rail_a, 1) + len(va) + 2 + len(joint) + len(vb) + 2 + 1)
         return Strip([
             Segment(f"{link.label.upper():<{self.LABEL_W}}", Style(color=laws.STEEL_DIM)),
-            Segment(va, value_style),
+            Segment("▐", Style(color=laws.STEEL_MID, bold=True)),
+            Segment("─" * max(rail_a, 1), Style(color=laws.EDGE_BRIGHT)),
+            Segment(f" {va} ", value_style),
             Segment(joint, joint_style),
-            Segment(vb, value_style),
+            Segment(f" {vb} ", value_style),
+            Segment("─" * max(rail_b, 1), Style(color=laws.EDGE_BRIGHT)),
+            Segment("▌", Style(color=laws.STEEL_MID, bold=True)),
         ])
 
 
@@ -473,7 +523,11 @@ class CompareScreen(TipsMixin, Screen):
         if len(self.slots) == 1:
             self._measured = ()
             instrument.clear()
-            read.update(Text("one knife placed\n\nsend a second from the\nlibrary to compare", style=laws.STEEL_DIM))
+            placed = Text()
+            placed.append(f"{self.slots[0].brand}\n", style=f"bold {laws.STEEL_BRIGHT}")
+            placed.append(f"{self.slots[0].model[:32]}\n\n", style=laws.STEEL_MID)
+            placed.append("one knife placed\n\nsend a second from the\nlibrary to compare —\npress b on its row", style=laws.STEEL_DIM)
+            read.update(placed)
             return
 
         read.update("")
@@ -504,4 +558,21 @@ class CompareScreen(TipsMixin, Screen):
         text.append_text(
             laws.field("linked", f"{linked} of {len(instrument.links)} facts match", laws.STEEL_MID)
         )
+        text.append("\n\n")
+        price, length = instrument.beams[0], instrument.beams[1]
+        if price.delta is not None and price.delta > 0:
+            cheaper = a if price.va < price.vb else b
+            text.append("▼ ", style=laws.PASS)
+            text.append(f"{cheaper.brand} costs ${price.delta:,.0f} less\n", style=laws.STEEL_BRIGHT)
+        if length.delta is not None and length.delta >= 1:
+            longer = a if length.va > length.vb else b
+            text.append("▲ ", style=laws.STEEL_MID)
+            text.append(f"{longer.brand} runs {length.delta:.0f} mm longer\n", style=laws.STEEL_BRIGHT)
+        for link in instrument.links:
+            if link.same:
+                text.append("● ", style=laws.PASS)
+                text.append(f"same {link.label} — {link.va[:22]}\n", style=laws.STEEL_DIM)
+            else:
+                text.append("╳ ", style=laws.STEEL_BRIGHT)
+                text.append(f"{link.label} differs\n", style=laws.STEEL_MID)
         return text

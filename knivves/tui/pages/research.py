@@ -44,7 +44,7 @@ from .. import laws
 from ..gauges import EIGHTHS, MeterBar, _lerp
 from ..masthead import Masthead
 from ..plate import Plate
-from ..surfaces import Teletype
+from ..surfaces import Teletype, TransitRail
 from ..tips import ROOM_KEY, Tip, TipCapsule, TipRail, TipsMixin
 
 if TYPE_CHECKING:
@@ -407,6 +407,13 @@ class ResearchScreen(TipsMixin, Screen):
                 yield MeterBar("queue", id="meter-docket")
                 yield Static("", id="stamped", classes="station-body")
             yield TipRail()
+        with Vertical(id="desk-tray") as tray:
+            tray.border_title = "RECORD IN TRANSIT"
+            tray.border_subtitle = "s researches · r replays the demo"
+            yield TransitRail(
+                [("st-docket", "QUEUE"), ("st-read", "READ"), ("st-stamp", "SAVE")],
+                id="desk-rail",
+            )
         yield Plate(id="desk-plate")
         yield TipCapsule()
         yield Footer()
@@ -473,7 +480,11 @@ class ResearchScreen(TipsMixin, Screen):
     def _plate_y(self) -> int:
         plate = self.query_one(Plate)
         height = plate.outer_size.height or 10
-        return max(6, self.size.height - height - 2)
+        try:
+            base = self.query_one("#desk-tray").region.y + 1
+        except Exception:
+            base = self.size.height - height - 2
+        return max(4, min(base, self.size.height - height - 1))
 
     def _settle(self) -> None:
         plate = self.query_one(Plate)
@@ -491,6 +502,11 @@ class ResearchScreen(TipsMixin, Screen):
 
     async def _travel_to(self, station_id: str, plate: Plate) -> None:
         x = self.query_one(f"#{station_id}").region.x + 2
+        try:
+            tray = self.query_one("#desk-tray").region
+            x = min(x, tray.x + tray.width - (plate.outer_size.width or 46) - 2)
+        except Exception:
+            pass
         self._plate_x = x
         laws.travel(plate, x, self._plate_y())
         await asyncio.sleep(laws.TRAVEL_DURATION + 0.15)
@@ -531,15 +547,15 @@ class ResearchScreen(TipsMixin, Screen):
         docket.remove_children()
         widgets: list[Widget] = []
         if plan.planned:
-            for rank, entry in enumerate(plan.planned[:10], start=1):
+            for rank, entry in enumerate(plan.planned[:4], start=1):
                 working = entry.knife_id == active
                 card = DocketCard(entry.knife_id, id=f"card-{entry.knife_id}", classes="docket-card")
                 card.update(self._card_text(rank, entry, working))
                 card.set_class(working, "working")
                 widgets.append(card)
-            if len(plan.planned) > 10:
+            if len(plan.planned) > 4:
                 widgets.append(Static(
-                    Text(f"    +{len(plan.planned) - 10} more", style=laws.STEEL_DIM),
+                    Text(f"    +{len(plan.planned) - 4} more", style=laws.STEEL_DIM),
                     id="docket-overflow",
                 ))
         else:
@@ -579,15 +595,15 @@ class ResearchScreen(TipsMixin, Screen):
 
     def _shelf_text(self, plan: research.PassSummary) -> Text:
         text = Text()
-        text.append(f"\nUNREACHABLE  {len(plan.unreachable)}\n", style=f"bold {laws.STEEL_DIM}")
-        for entry in plan.unreachable[:4]:
+        text.append(f"UNREACHABLE  {len(plan.unreachable)}\n", style=f"bold {laws.STEEL_DIM}")
+        for entry in plan.unreachable[:1]:
             text.append(f" ✗ {entry.knife_id[:24]:<25}", style=laws.STEEL_MID)
             for punched in _punch_row({g.field for g in entry.gaps}):
                 text.append("○" if punched else "●", style=laws.EDGE_BRIGHT if punched else laws.STEEL_DIM)
             text.append("\n")
             text.append(f"    {entry.reason[:30]}\n", style=laws.STEEL_DIM)
-        if len(plan.unreachable) > 4:
-            text.append(f" +{len(plan.unreachable) - 4} more unreachable\n", style=laws.STEEL_DIM)
+        if len(plan.unreachable) > 1:
+            text.append(f" +{len(plan.unreachable) - 1} more unreachable\n", style=laws.STEEL_DIM)
         return text
 
     # ------------------------------------------------------------ live pass
@@ -667,7 +683,7 @@ class ResearchScreen(TipsMixin, Screen):
             listing = await asyncio.to_thread(scrape.fetch_listing, str(entry.url), FETCH_TIMEOUT)
         except scrape.ScrapeError as exc:
             read_log.update(Text(f"✗ {entry.knife_id[:24]}\n{exc}", style=laws.FAIL))
-            plate.styles.border = ("heavy", laws.FAIL)
+            plate.styles.border_left = ("thick", laws.FAIL)
             await asyncio.sleep(0.5)
             return None
         # the listing prints — the teletype dramatizes arrival, fact by fact
@@ -721,9 +737,12 @@ class ResearchScreen(TipsMixin, Screen):
         await read_log.type_lines(
             [
                 laws.field("steel", knife.blade_steel, laws.STEEL_BRIGHT),
+                laws.field("lock", knife.lock_type[:26], laws.STEEL_BRIGHT),
+                laws.field("open", knife.opening_method[:26], laws.STEEL_BRIGHT),
+                laws.field("length", knife.blade_length[:26], laws.STEEL_BRIGHT),
                 laws.field("price", knife.price_label, laws.STEEL_BRIGHT),
             ],
-            lead=Text("the record's own listing, replayed\n\n", style=laws.STEEL_DIM),
+            lead=Text("the record's own listing, replayed\n— only its 2 gaps will stamp\n\n", style=laws.STEEL_DIM),
             cadence=0.45,  # the demo prints deliberately — it is being watched
         )
 

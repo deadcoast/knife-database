@@ -28,6 +28,7 @@ from ...store import save_database
 from .. import laws
 from ..gauges import GradientBars, MeterBar, PriceScale
 from ..masthead import Masthead
+from ..surfaces import Engraving
 from ..tips import ROOM_KEY, Tip, TipCapsule, TipRail, TipsMixin
 
 if TYPE_CHECKING:
@@ -78,14 +79,17 @@ class MarketScreen(TipsMixin, Screen):
                 yield Static("", id="valuation-read", classes="station-body")
                 yield PriceScale(id="price-scale")
                 yield GradientBars(id="price-bars")
-            with Vertical(classes="station", id="ledger-line") as line_pane:
-                line_pane.border_title = "THE $150 LINE"
-                yield Static("", id="line-read", classes="station-body")
-            with Vertical(classes="station", id="ledger-movers") as survey_pane:
-                survey_pane.border_title = "MARKET SURVEY"
-                yield MeterBar("history", id="meter-history")
-                yield MeterBar("priced", id="meter-priced")
-                yield Static("", id="movers-read", classes="station-body")
+                yield Engraving("heaviest holdings")
+                yield Static("", id="valuation-top", classes="station-body")
+            with Vertical(id="ledger-right"):
+                with Vertical(classes="station", id="ledger-line") as line_pane:
+                    line_pane.border_title = "THE $150 LINE"
+                    yield Static("", id="line-read", classes="station-body")
+                with Vertical(classes="station", id="ledger-movers") as survey_pane:
+                    survey_pane.border_title = "MARKET SURVEY"
+                    yield MeterBar("history", id="meter-history")
+                    yield MeterBar("priced", id="meter-priced")
+                    yield Static("", id="movers-read", classes="station-body")
             yield TipRail()
         yield TipCapsule()
         yield Footer()
@@ -138,19 +142,32 @@ class MarketScreen(TipsMixin, Screen):
     def _read_valuation(self) -> None:
         knives = self.knivves.knives
         v = ledger.vault_valuation(knives)
+        prices = sorted(k.price for k in knives if k.price is not None)
+        median = prices[len(prices) // 2] if prices else 0.0
         text = Text()
         for label, value, style in (
             ("value", f"${v['total']:,.0f} CAD", laws.ACCENT),
             ("priced", f"{v['priced']} of {len(knives)}", laws.STEEL_BRIGHT),
             ("average", f"${v['average']:,.2f}", laws.STEEL_BRIGHT),
+            ("median", f"${median:,.2f}", laws.STEEL_BRIGHT),
             ("afford.", f"{v['affordable']} under the line", laws.PASS),
         ):
             text.append_text(laws.field(label, value, style))
             text.append("\n")
         self.query_one("#valuation-read", Static).update(text)
-        prices = [k.price for k in knives if k.price is not None]
         self.query_one(PriceScale).update_scale(prices, ledger.AFFORDABLE_THRESHOLD_CAD)
         self.query_one(GradientBars).update_bars(ledger.price_buckets(knives))
+        heaviest = sorted(
+            (k for k in knives if k.price is not None), key=lambda k: -k.price
+        )[:6]
+        top = Text()
+        for knife in heaviest:
+            name = knife.display_name
+            name = name[:21] + "…" if len(name) > 22 else name
+            top.append(f"{name:<23}", style=laws.STEEL_BRIGHT)
+            top.append(f"{'$' + format(knife.price, ',.0f'):>9}\n", style=laws.ACCENT)
+        self.query_one("#valuation-top", Static).update(top)
+        self.query_one("#ledger-valuation").border_subtitle = f"{v['priced']} priced"
 
     def _read_line(self) -> None:
         """The $150 line drawn as a two-sided ladder: blades over the line
@@ -165,30 +182,33 @@ class MarketScreen(TipsMixin, Screen):
             price = knife.price or 0
             distance = abs(price - threshold)
             name = knife.display_name
-            name = name[:15] + "…" if len(name) > 16 else name
+            name = name[:25] + "…" if len(name) > 26 else name
             text.append(" ▴ " if over else " ▾ ", style=laws.STEEL_MID if over else laws.PASS)
-            text.append(f"{name:<17}", style=laws.STEEL_BRIGHT)
+            text.append(f"{name:<27}", style=laws.STEEL_BRIGHT)
             text.append(f"{price:>5,.0f}", style=laws.ACCENT)
             text.append(f"  Δ${distance:,.0f}\n", style=laws.STEEL_DIM)
 
+        knives = self.knivves.knives
+        over_count = sum(1 for k in knives if (k.price or 0) >= threshold and k.price is not None)
+        under_count = sum(1 for k in knives if k.price is not None and k.price < threshold)
         text = Text()
-        text.append(f"the rule re-tags at ${threshold:,.0f}\n\n", style=laws.STEEL_DIM)
+        text.append(f"the rule re-tags at ${threshold:,.0f}", style=laws.STEEL_DIM)
+        text.append(f"   ▴ {over_count} priced over · ▾ {under_count} under\n\n", style=laws.STEEL_DIM)
         if not above:
             text.append("   nothing riding above the line\n", style=laws.STEEL_DIM)
-        for knife in above[:4]:
+        for knife in above[:5]:
             rung(text, knife, over=True)
         text.append("━━━━━━━ ", style=laws.ACCENT)
         text.append(f"${threshold:,.0f}", style=f"bold {laws.ACCENT}")
-        text.append(" ━━━━━━━━━━━━\n", style=laws.ACCENT)
-        for knife in below[:4]:
+        text.append(" ━" + "━" * 28 + "\n", style=laws.ACCENT)
+        for knife in below[:5]:
             rung(text, knife, over=False)
         if not below:
             text.append("   nothing hanging under the line\n", style=laws.STEEL_DIM)
-        text.append(
-            f"\n{len(near)} knives within ${ledger.NEAR_LINE_BAND_CAD:,.0f} of the line",
-            style=laws.STEEL_DIM,
-        )
         self.query_one("#line-read", Static).update(text)
+        self.query_one("#ledger-line").border_subtitle = (
+            f"{len(near)} knives within ${ledger.NEAR_LINE_BAND_CAD:,.0f} of the line"
+        )
         knives = self.knivves.knives
         blades = max(len(knives), 1)
         deep = sum(1 for k in knives if len(k.raw.get("price_history") or []) > 1)
@@ -198,15 +218,22 @@ class MarketScreen(TipsMixin, Screen):
 
     def _idle_movers(self) -> None:
         surveyed = any(len(k.raw.get("price_history") or []) > 1 for k in self.knivves.knives)
+        targets = len(self._targets())
         text = Text()
+        text.append_text(laws.field("last read", self._survey_status().replace("last survey ", ""), laws.STEEL_BRIGHT))
+        text.append("\n")
+        text.append_text(laws.field("reachable", f"{targets} live listings", laws.STEEL_BRIGHT))
+        text.append("\n")
+        text.append_text(laws.field("hosts", " · ".join(sorted(SUPPORTED))[:40], laws.STEEL_DIM))
+        text.append("\n\n")
+        text.append(" s ", style=f"bold {laws.BG} on {laws.ACCENT}")
         if surveyed:
-            text.append("survey on record — press s to run a fresh one\n", style=laws.STEEL_DIM)
+            text.append("  runs a fresh survey\n", style=laws.STEEL_MID)
         else:
-            text.append("no survey on record\n\n", style=laws.STEEL_DIM)
-            text.append(
-                "press s — re-reads every\nlive listing and records\nwhat moved",
-                style=laws.STEEL_DIM,
-            )
+            text.append("  reads every live listing and\n    records what moved\n", style=laws.STEEL_MID)
+        text.append("\n")
+        text.append("each survey appends to every\nrecord's price history — movers\nland here, sorted by magnitude\n", style=laws.STEEL_DIM)
+        text.append("\nesc cancels · observations kept", style=laws.STEEL_DIM)
         self.query_one("#movers-read", Static).update(text)
 
     # ------------------------------------------------------------- survey

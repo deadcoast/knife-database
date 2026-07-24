@@ -207,12 +207,13 @@ async def test_shell() -> None:
         assert isinstance(app.screen, ImportsScreen), f"screen: {app.screen}"
         await asyncio.sleep(10.5)
         await pilot.pause()
-        gates_text = str(app.screen.query_one("#gates", Static).render())
         filed_text = str(app.screen.query_one("#filed", Static).render())
-        assert "CLEAR TO PROCEED" in gates_text, f"gates: {gates_text[:80]}"
         assert "nothing was saved" in filed_text, f"filed: {filed_text[:80]}"
-        # the legal screen is a seven-bolt lock: the demo retracts every bolt
+        # the legal screen is a seven-bolt lock: the demo retracts every bolt,
+        # and the bank's own status line carries the verdict (no duplicate)
         bank = app.screen.query_one(GateBank)
+        bank_status = "".join(seg.text for seg in bank.render_line(0))
+        assert "CLEAR TO PROCEED" in bank_status, f"bank status: {bank_status[:80]}"
         assert bank.total == 7, f"bolts: {bank.total}"
         assert bank.open_count == 7, f"open bolts: {bank.open_count}"
         assert bank.slammed is None, "demo threw a bolt"

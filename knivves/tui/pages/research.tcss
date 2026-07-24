@@ -20,9 +20,25 @@ ResearchScreen {
     padding: 1 2;
 }
 
+/* the transit tray — a channel cut INTO the floor; the plate rides it */
+#desk-tray {
+    height: 13;
+    margin: 0 3 0 3;
+    background: $surface-low;
+    border-top: round $bevel-shadow;
+    border-left: round $bevel-shadow;
+    border-bottom: round $bevel-light;
+    border-right: round $bevel-light;
+    border-title-color: $steel-dim;
+    border-title-style: bold;
+    border-subtitle-color: $steel-dim;
+    padding: 0 1;
+}
+
 #desk-plate {
     layer: plate;
     offset: 4 26;
+    padding: 0 2;
     /* an empty plate is not hardware — it appears when it carries a record */
     display: none;
 }

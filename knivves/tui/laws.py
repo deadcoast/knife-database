@@ -30,12 +30,14 @@ from textual.widget import Widget
 # -- law 1: the palette ------------------------------------------------------
 
 BG = "#14171a"
-SURFACE = "#1d2126"
-SURFACE_LOW = "#171a1e"     # recessed machined tone — zebra rows
-SURFACE_HIGH = "#262b31"    # raised machined tone — a surface under the hand
-SURFACE_RAISED = "#2a3038"  # the seated cursor row
+SURFACE = "#20252b"
+SURFACE_LOW = "#171a1e"     # recessed machined tone — zebra rows, channels
+SURFACE_HIGH = "#2a3038"    # raised machined tone — a surface under the hand
+SURFACE_RAISED = "#313842"  # the seated cursor row
 EDGE = "#31363c"
 EDGE_BRIGHT = "#525a62"
+BEVEL_LIGHT = "#6b7681"     # the lit edge of a raised panel — top and left
+BEVEL_SHADOW = "#0b0d0f"    # the thrown shadow of a raised panel — bottom and right
 
 STEEL_BRIGHT = "#dde6ee"
 STEEL_BODY = "#c2cdd6"      # the body text everywhere — between bright and mid
@@ -167,6 +169,8 @@ class Reveal:
 THEME_VARIABLES = {
     "edge": EDGE,
     "edge-bright": EDGE_BRIGHT,
+    "bevel-light": BEVEL_LIGHT,
+    "bevel-shadow": BEVEL_SHADOW,
     "steel-bright": STEEL_BRIGHT,
     "steel-body": STEEL_BODY,
     "steel-mid": STEEL_MID,

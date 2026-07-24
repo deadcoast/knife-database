@@ -80,6 +80,57 @@ class GradientBars(Widget):
         return Strip(segments).adjust_cell_length(width, Style())
 
 
+class SplitBand(Widget):
+    """One machined band split into labeled segments — each segment's
+    width is its share of the whole, its count stamped into the fill.
+    The collection's classification split, read at a glance."""
+
+    DEFAULT_CSS = """
+    SplitBand {
+        height: 2;
+        margin-bottom: 1;
+    }
+    """
+
+    def __init__(self, **kwargs) -> None:
+        super().__init__(**kwargs)
+        self._segments: list[tuple[str, int, str]] = []  # label, count, color
+
+    def set_segments(self, segments: list[tuple[str, int, str]]) -> None:
+        self._segments = [s for s in segments]
+        self.refresh()
+
+    def render_line(self, y: int) -> Strip:
+        width = self.size.width
+        total = sum(count for _, count, _ in self._segments)
+        if width <= 0 or not total:
+            return Strip([]).adjust_cell_length(max(width, 0), Style())
+        spans: list[tuple[str, int, str]] = []
+        used = 0
+        for i, (label, count, color) in enumerate(self._segments):
+            span = round(count / total * width) if i < len(self._segments) - 1 else width - used
+            span = max(span, 1) if count else 0
+            spans.append((label, span, color))
+            used += span
+        segments = []
+        if y == 0:
+            for label, span, color in spans:
+                if not span:
+                    continue
+                mark = f" {label}"[:span]
+                mark = mark + " " * (span - len(mark))
+                segments.append(Segment(mark, Style(color=laws.BG, bgcolor=color, bold=True)))
+        else:
+            for label, span, color in spans:
+                if not span:
+                    continue
+                count = next(c for lab, c, col in self._segments if lab == label)
+                mark = f" {count}"[:span]
+                mark = mark + " " * (span - len(mark))
+                segments.append(Segment(mark, Style(color=color, bgcolor=laws.SURFACE_LOW)))
+        return Strip(segments).adjust_cell_length(width, Style())
+
+
 class MeterBar(Widget):
     """A machined meter row: engraved label on the left, a gradient fill
     riding a recessed channel, the reading stamped bright on the right.

@@ -42,9 +42,14 @@ class TipRail(Vertical):
     DEFAULT_CSS = """
     TipRail {
         width: 26;
-        height: auto;
+        height: 100%;
         margin: 0 0 0 1;
-        padding: 0 1;
+        padding: 1 1 0 1;
+        background: $surface-low;
+        border-top: round $bevel-shadow;
+        border-left: round $bevel-shadow;
+        border-bottom: round $bevel-light;
+        border-right: round $bevel-light;
     }
     TipRail > .tiprail--label {
         color: $steel-dim;
@@ -62,6 +67,12 @@ class TipRail(Vertical):
     TipRail.expandable > .tiprail--more {
         display: block;
     }
+    TipRail > .tiprail--keys {
+        height: auto;
+        color: $steel-dim;
+        border-top: solid $edge;
+        padding-top: 1;
+    }
     """
 
     current: Tip | None = None
@@ -70,12 +81,25 @@ class TipRail(Vertical):
         yield Static("◈ tip", classes="tiprail--label")
         yield Static("", classes="tiprail--body")
         yield Static("❯  t · expand", classes="tiprail--more")
+        yield Static("", classes="tiprail--keys")
 
     def show(self, tip: Tip | None) -> None:
         self.current = tip
         body = self.query_one(".tiprail--body", Static)
         body.update(Text(tip.short if tip else "", style=laws.STEEL_DIM))
         self.set_class(bool(tip and tip.extended), "expandable")
+
+    def set_keys(self, pairs: list[tuple[str, str]]) -> None:
+        """The room's key card, printed at the rail's foot."""
+        text = Text()
+        for key, does in pairs:
+            text.append(f"{key:>3} ", style=laws.STEEL_MID)
+            text.append(f"{does}\n", style=laws.STEEL_DIM)
+        keys = self.query_one(".tiprail--keys", Static)
+        # measured height, stated outright — auto-measure under a 1fr
+        # sibling has under-counted and let the card clip off the rail
+        keys.styles.height = len(pairs) + 2
+        keys.update(text)
 
     def on_click(self) -> None:
         expand = getattr(self.screen, "action_expand_tip", None)
@@ -93,8 +117,11 @@ class TipCapsule(Vertical):
         width: 44;
         height: auto;
         margin: 4 1 0 0;
-        background: $surface;
-        border: heavy $edge-bright;
+        background: $surface-high;
+        border-top: heavy $bevel-light;
+        border-left: heavy $bevel-light;
+        border-bottom: heavy $bevel-shadow;
+        border-right: heavy $bevel-shadow;
         padding: 1 2;
         display: none;
     }
@@ -146,7 +173,27 @@ class TipsMixin:
         return self.query_one(TipCapsule)  # type: ignore[attr-defined]
 
     def show_room_tip(self) -> None:
-        self._rail().show(self.TIPS.get(ROOM_KEY))
+        rail = self._rail()
+        rail.show(self.TIPS.get(ROOM_KEY))
+        rail.set_keys(self._key_pairs())
+
+    def _key_pairs(self) -> list[tuple[str, str]]:
+        """This room's own keys, read from its bindings — never invented."""
+        pairs: list[tuple[str, str]] = []
+        for binding in getattr(self, "BINDINGS", []):
+            if isinstance(binding, tuple):
+                parts = list(binding) + [""]
+                key, label = parts[0], parts[2]
+            else:
+                if not getattr(binding, "show", True):
+                    continue
+                key, label = binding.key, binding.description
+            if label:
+                key = "esc" if key == "escape" else key
+                short = str(label).lower()
+                pairs.append((key, short if len(short) <= 16 else short[:15] + "…"))
+        pairs.append(("t", "tip detail"))
+        return pairs
 
     def on_enter(self, event: events.Enter) -> None:
         node = event.node

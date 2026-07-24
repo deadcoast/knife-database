@@ -29,6 +29,22 @@ ImportsScreen {
     padding: 1 2;
 }
 
+/* the transit tray — a channel cut INTO the floor: shadow on the lit
+   edges, light where the cut catches the room. The plate rides it. */
+#forge-tray {
+    height: 14;
+    margin: 0 3 0 3;
+    background: $surface-low;
+    border-top: round $bevel-shadow;
+    border-left: round $bevel-shadow;
+    border-bottom: round $bevel-light;
+    border-right: round $bevel-light;
+    border-title-color: $steel-dim;
+    border-title-style: bold;
+    border-subtitle-color: $steel-dim;
+    padding: 0 1;
+}
+
 /* REVEAL — the line lights station by station */
 ImportsScreen .station,
 ImportsScreen .station * {
@@ -43,6 +59,7 @@ ImportsScreen .station.cold * {
 #forge-plate {
     layer: plate;
     offset: 4 26;
+    padding: 0 2;
     /* an empty plate is not hardware — it appears when it carries a record */
     display: none;
 }

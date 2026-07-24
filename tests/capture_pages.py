@@ -93,11 +93,16 @@ async def capture_compare() -> None:
         await asyncio.sleep(ROOM_DOOR)
         await pilot.pause()
         await pilot.press("b")
-        await asyncio.sleep(1.0)
+        await asyncio.sleep(2.2)  # the first arrival settles before leaving
         await pilot.pause()
         await pilot.press("1")
+        await asyncio.sleep(ROOM_DOOR)  # the room must be still before rows move
         await pilot.pause()
-        await pilot.press("down", "down", "b")
+        await pilot.press("down")
+        await pilot.pause()
+        await pilot.press("down")
+        await pilot.pause()
+        await pilot.press("b")
         await asyncio.sleep(4.0)  # arrival choreography + jaws closing per beam
         await pilot.pause()
         _save(app, "compare")

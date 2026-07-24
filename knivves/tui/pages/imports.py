@@ -36,7 +36,7 @@ from ...store import backup_database, make_knife_id, save_database
 from .. import laws
 from ..gauges import MeterBar
 from ..masthead import Masthead
-from ..surfaces import Teletype
+from ..surfaces import Teletype, TransitRail
 from ..plate import Plate
 from ..tips import ROOM_KEY, Tip, TipCapsule, TipRail, TipsMixin
 
@@ -393,14 +393,21 @@ class ImportsScreen(TipsMixin, Screen):
                 legal_pane.border_title = "LEGAL CHECK"
                 legal_pane.border_subtitle = "7 rules"
                 yield GateBank(id="gatebank")
-                yield Static("", id="gates", classes="station-body")
-                yield Teletype(id="legal-log", classes="station-body")
+                yield Static("", id="gates")
+                yield Teletype(id="legal-log")
             with Vertical(classes="station", id="st-vault") as save_pane:
                 save_pane.border_title = "SAVE"
                 yield Static("", id="filed", classes="station-body")
                 yield MeterBar("★new", id="meter-window")
                 yield Static("", id="vault-tally", classes="station-body")
             yield TipRail()
+        with Vertical(id="forge-tray") as tray:
+            tray.border_title = "RECORD IN TRANSIT"
+            tray.border_subtitle = "r replays the demo"
+            yield TransitRail(
+                [("st-extract", "PARSE"), ("st-legal", "LEGAL CHECK"), ("st-vault", "SAVE")],
+                id="forge-rail",
+            )
         yield Plate(id="forge-plate")
         yield TipCapsule()
         yield Footer()
@@ -507,10 +514,15 @@ class ImportsScreen(TipsMixin, Screen):
         )
 
     def _plate_y(self) -> int:
-        """Rest the plate against the bottom edge, whatever its grown height."""
+        """Seat the plate on the transit rail, whatever its grown height —
+        and never off the bottom of the screen."""
         plate = self.query_one(Plate)
         height = plate.outer_size.height or 10
-        return max(6, self.size.height - height - 2)
+        try:
+            base = self.query_one("#forge-tray").region.y + 1
+        except Exception:
+            base = self.size.height - height - 2
+        return max(4, min(base, self.size.height - height - 1))
 
     def _settle(self) -> None:
         """Re-seat the plate after content growth so it never clips."""
@@ -548,7 +560,7 @@ class ImportsScreen(TipsMixin, Screen):
         rules = self._rules()
         bank.set_rules(rules)
         low = title_text.lower()
-        checked = Text("the check, rule by rule:\n\n", style=laws.STEEL_DIM)
+        checked = Text("the check, rule by rule:\n", style=laws.STEEL_DIM)
         log.update(checked)
         for index, rule in enumerate(rules):
             bank.probe(index)
@@ -569,11 +581,17 @@ class ImportsScreen(TipsMixin, Screen):
             checked.append("no match\n", style=laws.STEEL_DIM)
             log.update(checked)
             await bank.retract(index)
-        gates.update(Text("all rules clear — CLEAR TO PROCEED", style=laws.PASS))
+        # the bank's own status line carries the verdict — no duplicate
+        gates.update("")
         return None
 
     async def _travel_to(self, station_id: str, plate: Plate) -> None:
         x = self.query_one(f"#{station_id}").region.x + 2
+        try:
+            tray = self.query_one("#forge-tray").region
+            x = min(x, tray.x + tray.width - (plate.outer_size.width or 46) - 2)
+        except Exception:
+            pass
         self._plate_x = x
         laws.travel(plate, x, self._plate_y())
         await asyncio.sleep(laws.TRAVEL_DURATION + 0.15)
@@ -647,7 +665,7 @@ class ImportsScreen(TipsMixin, Screen):
             listing = await asyncio.to_thread(scrape.fetch_listing, url)
         except scrape.ScrapeError as exc:
             extract_log.update(Text(str(exc), style=laws.FAIL))
-            plate.styles.border = ("heavy", laws.FAIL)
+            plate.styles.border_left = ("thick", laws.FAIL)
             self._line_state("fault ✗")
             return
 
@@ -672,7 +690,7 @@ class ImportsScreen(TipsMixin, Screen):
         thrown = await self._run_lock(listing.listing_title)
         if thrown is not None:
             rule, _hits = thrown
-            plate.styles.border = ("heavy", laws.FAIL)
+            plate.styles.border_left = ("thick", laws.FAIL)
             plate.stamp("verdict", f"REJECTED — {RULE_DISPLAY.get(rule, rule)}")
             self.call_after_refresh(self._settle)
             filed.update(Text("not filed — prohibited mechanism identified", style=laws.FAIL))
@@ -711,21 +729,21 @@ class ImportsScreen(TipsMixin, Screen):
 
         if not path.exists():
             extract_log.update(Text(f"no such file: {path}", style=laws.FAIL))
-            plate.styles.border = ("heavy", laws.FAIL)
+            plate.styles.border_left = ("thick", laws.FAIL)
             self._line_state("fault ✗")
             return
         try:
             text = path.read_text(encoding="utf-8-sig")
         except OSError as exc:
             extract_log.update(Text(str(exc), style=laws.FAIL))
-            plate.styles.border = ("heavy", laws.FAIL)
+            plate.styles.border_left = ("thick", laws.FAIL)
             self._line_state("fault ✗")
             return
 
         doc = ingest.parse_document(text)
         if not doc.sections:
             extract_log.update(Text("no SectionIDs found — not an ingestion ledger", style=laws.FAIL))
-            plate.styles.border = ("heavy", laws.FAIL)
+            plate.styles.border_left = ("thick", laws.FAIL)
             self._line_state("fault ✗")
             return
 

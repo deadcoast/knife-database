@@ -1,9 +1,11 @@
-"""The Vault — page 0, the entry hall.
+"""Home — page 0, the entry hall.
 
-The machined door parts onto the building's showpiece: a brushed-steel
-brand plate stamped like the door itself; the vault's state as a bank
-of drawn meters, not a list; the doors as machined slabs with their
-keycaps (the click is the key); and the buy list's top rungs.
+The machined door parts onto the building's showpiece: the brand stamped
+at nameplate size into a raised steel plaque; the collection as a full
+column of drawn instruments — meters, the classification split, the
+price distribution; the pages as six machined slabs each carrying a live
+reading; and the buy list beside the newest arrivals. The room is
+composed to the frame: every column runs masthead to footer.
 """
 from __future__ import annotations
 
@@ -22,75 +24,100 @@ from textual.strip import Strip
 from textual.widget import Widget
 from textual.widgets import Footer, Static
 
+from ... import ledger
 from ...models import KnifeView
 from ...state import VaultState, vault_state
 
 if TYPE_CHECKING:
     from ..app import KnivvesApp
 from .. import laws
-from ..gauges import MeterBar
+from ..gauges import GradientBars, MeterBar, SplitBand
 from ..masthead import Masthead
-from ..surfaces import grain_tone
+from ..surfaces import _BASE, _grain, Engraving, grain_tone, stamp_rows
 from ..tips import ROOM_KEY, Tip, TipCapsule, TipRail, TipsMixin
 
 DOORS = [
     ("0", "home", "HOME", "overview — you are here"),
     ("1", "library", "LIBRARY", "browse, sort, classify, send"),
-    ("2", "imports", "IMPORT KNIVES", "intake a listing URL or an ingestion .md"),
+    ("2", "imports", "IMPORT KNIVES", "intake a URL or an ingestion .md"),
     ("3", "compare", "COMPARE MODELS", "two blades measured on the bench"),
-    ("4", "market", "MARKET PRICES", "valuation, the $150 line, price reads"),
-    ("5", "research", "RESEARCH", "fill the unknowns from their listings"),
+    ("4", "market", "MARKET PRICES", "valuation and the $150 line"),
+    ("5", "research", "RESEARCH", "fill unknowns from their listings"),
 ]
 
 
 class BrandPlate(Widget):
-    """The building's nameplate: a band of brushed steel with the brand
-    stamped into it and a machined seam beneath — the same material and
-    discipline as the vault door's leaves."""
+    """The building's nameplate: the brand stamped three rows tall into a
+    raised plaque of brushed steel — lit top edge, thrown shadow, corner
+    bolts — with machined rules cut into the flanking band."""
 
     DEFAULT_CSS = """
     BrandPlate {
-        height: 5;
+        height: 7;
     }
     """
 
-    def _stamp(self, cells: list[tuple[str, Style]], x: int, text: str, color: str, bold: bool = False) -> int:
-        for i, ch in enumerate(text):
-            pos = x + i
-            if 0 <= pos < len(cells):
-                _, base = cells[pos]
-                cells[pos] = (ch, Style(color=color, bgcolor=base.bgcolor, bold=bold))
-        return x + len(text)
+    TAGLINE = "folding knife research · canadian retail · local json"
+
+    def __init__(self, **kwargs) -> None:
+        super().__init__(**kwargs)
+        self._rows = stamp_rows("KNIVVES")
+
+    def _raised(self, x: int, y: int) -> str:
+        delta = _grain(x, y) + 7
+        return f"rgb({_BASE[0] + delta},{_BASE[1] + delta},{_BASE[2] + delta})"
 
     def render_line(self, y: int) -> Strip:
         width = self.size.width
         if width <= 0:
             return Strip([])
-        if y == 4:
-            # the machined groove beneath the plate — a full-width channel
-            return Strip([Segment(" " * width, Style(bgcolor="rgb(21,23,27)"))], width)
+        brand_w = len(self._rows[0])
+        plaque_w = min(max(brand_w, len(self.TAGLINE)) + 10, max(width - 8, 20))
+        x0 = max(4, (width - plaque_w) // 2)
+        x1 = x0 + plaque_w - 1
         cells: list[tuple[str, Style]] = [
             (" ", Style(bgcolor=grain_tone(x, y))) for x in range(width)
         ]
-        if y == 0 or y == 3:
-            # bolt studs along the top and bottom edges of the plate
-            for x in range(4, width - 4, 24):
+
+        def put(x: int, ch: str, color: str, bold: bool = False) -> None:
+            if 0 <= x < width:
+                cells[x] = (ch, Style(color=color, bgcolor=self._raised(x, y), bold=bold))
+
+        if y in (0, 6):
+            edge_ch, tone = ("▄", laws.BEVEL_LIGHT) if y == 0 else ("▀", laws.BEVEL_SHADOW)
+            for x in range(x0, x1 + 1):
+                cells[x] = (edge_ch, Style(color=tone, bgcolor=grain_tone(x, y)))
+            for x in (2, width - 3):
                 cells[x] = ("●", Style(color=laws.EDGE_BRIGHT, bgcolor=grain_tone(x, y)))
-        if y == 1:
-            brand = "K N I V V E S"
-            mark = "╱╱"
-            x = max(4, (width - (len(brand) + len(mark) + 3)) // 2)
-            x = self._stamp(cells, x, brand, laws.STEEL_BRIGHT, bold=True)
-            self._stamp(cells, x + 3, mark, laws.ACCENT, bold=True)
-        if y == 2:
-            line = "folding knife research · canadian retail · local json"
-            x = max(4, (width - len(line)) // 2)
-            self._stamp(cells, x, line, laws.STEEL_DIM)
+            return Strip([Segment(ch, style) for ch, style in cells], width)
+
+        for x in range(x0, x1 + 1):
+            cells[x] = (" ", Style(bgcolor=self._raised(x, y)))
+        if y in (1, 5):
+            put(x0 + 2, "●", laws.EDGE_BRIGHT)
+            put(x1 - 2, "●", laws.EDGE_BRIGHT)
+        if 2 <= y <= 4:
+            row = self._rows[y - 2]
+            bx = x0 + (plaque_w - brand_w) // 2
+            for i, ch in enumerate(row):
+                if ch != " ":
+                    put(bx + i, ch, laws.STEEL_BRIGHT, bold=True)
+            if y == 3:
+                put(bx + brand_w + 2, "╱", laws.ACCENT, bold=True)
+                put(bx + brand_w + 3, "╱", laws.ACCENT, bold=True)
+                for x in range(6, x0 - 3):
+                    cells[x] = ("─", Style(color=laws.EDGE_BRIGHT, bgcolor=grain_tone(x, y)))
+                for x in range(x1 + 4, width - 6):
+                    cells[x] = ("─", Style(color=laws.EDGE_BRIGHT, bgcolor=grain_tone(x, y)))
+        if y == 5:
+            tx = x0 + max((plaque_w - len(self.TAGLINE)) // 2, 2)
+            for i, ch in enumerate(self.TAGLINE[: plaque_w - 4]):
+                put(tx + i, ch, laws.STEEL_DIM)
         return Strip([Segment(ch, style) for ch, style in cells], width)
 
 
 class DoorRow(Static):
-    """One door of the building, as hardware: a machined slab carrying
+    """One page of the building, as hardware: a machined slab carrying
     its keycap — the click IS the key, firing the same ``action_room``
     the number binding does — and the slab lifts under the hand."""
 
@@ -121,7 +148,8 @@ class HomeScreen(TipsMixin, Screen):
         ),
         "hall-doors": Tip(
             "the pages — keys or clicks open them",
-            "every page is one keypress from\nanywhere in the building\n\n0 always returns here",
+            "every page is one keypress from\nanywhere in the building\n\n0 always returns here\n\n"
+            "each slab carries a live reading\nfrom the database",
         ),
         "hall-reserve": Tip(
             "the buy list — next purchases",
@@ -149,17 +177,23 @@ class HomeScreen(TipsMixin, Screen):
                 yield MeterBar("priced", id="meter-priced")
                 yield MeterBar("under $150", id="meter-affordable")
                 yield Static("", classes="hall-fixture-body", id="hall-state-body")
+                yield Engraving("classes")
+                yield SplitBand(id="hall-classes")
+                yield Engraving("prices")
+                yield GradientBars(id="hall-prices")
             with Vertical(id="hall-doors", classes="hall-fixture") as pages_pane:
                 pages_pane.border_title = "PAGES"
                 pages_pane.border_subtitle = "keys or clicks"
                 with Vertical(id="hall-doors-body", classes="hall-fixture-body"):
                     for key, page, name, describes in DOORS:
-                        row = DoorRow(page, id=f"door-{page}", classes="door-row")
-                        row.update(self._door_text(key, name, describes))
-                        yield row
+                        yield DoorRow(page, id=f"door-{page}", classes="door-row")
             with Vertical(id="hall-reserve", classes="hall-fixture") as buylist_pane:
                 buylist_pane.border_title = "BUY LIST"
                 yield Static("", classes="hall-fixture-body", id="hall-reserve-body")
+                yield Engraving("new arrivals")
+                yield Static("", id="hall-fresh-body")
+                yield Engraving("commands")
+                yield Static("", id="hall-commands-body")
             yield TipRail()
         yield TipCapsule()
         yield Footer()
@@ -213,7 +247,23 @@ class HomeScreen(TipsMixin, Screen):
             state.affordable / blades, f"{state.affordable}", laws.ACCENT
         )
         self.query_one("#hall-state-body", Static).update(self._state_text(state))
+        rejected = sum(1 for k in self.knives if k.classification == "rejected")
+        unclassified = state.blades - state.approved - rejected
+        self.query_one("#hall-classes", SplitBand).set_segments([
+            ("approved", state.approved, laws.PASS),
+            ("open", unclassified, laws.STEEL_DIM),
+            ("rejected", rejected, laws.FAIL),
+        ])
+        self.query_one("#hall-prices", GradientBars).update_bars(
+            ledger.price_buckets(self.knives)
+        )
+        for key, page, name, describes in DOORS:
+            row = self.query_one(f"#door-{page}", DoorRow)
+            row.update(self._door_text(key, name, describes, self._door_reading(page, state)))
         self.query_one("#hall-reserve-body", Static).update(self._reserve_text(state))
+        self.query_one("#hall-fresh-body", Static).update(self._fresh_text(state))
+        self.query_one("#hall-commands-body", Static).update(self._commands_text())
+        self.query_one("#hall-state").border_subtitle = f"{state.blades} knives"
 
     def _state_text(self, state: VaultState) -> Text:
         # every number is spoken, not derived — the provider is the
@@ -242,14 +292,37 @@ class HomeScreen(TipsMixin, Screen):
         )
         return text
 
-    def _door_text(self, key: str, name: str, describes: str) -> Text:
+    def _door_reading(self, page: str, state: VaultState) -> str:
+        """The live number each slab carries — read from the database."""
+        if page == "library":
+            return f"{state.blades} records"
+        if page == "imports":
+            return f"{state.fresh} ★new" if state.fresh else f"gen {state.generation}"
+        if page == "compare":
+            seats = len(self.knivves.compare_queue)
+            try:
+                seats = max(seats, len(getattr(self.knivves.get_screen("compare"), "slots", [])))
+            except Exception:
+                pass
+            return f"{seats}/2 chosen" if seats else "nothing chosen"
+        if page == "market":
+            return f"avg ${state.average_cad:,.0f}"
+        if page == "research":
+            return f"{state.unresearched} gaps open"
+        return ""
+
+    def _door_text(self, key: str, name: str, describes: str, reading: str = "") -> Text:
         text = Text()
-        text.append(" ")
         text.append(f" {key} ", style=f"bold {laws.BG} on {laws.ACCENT}")
         text.append("  ")
         text.append(name, style=f"bold {laws.STEEL_BRIGHT}")
-        text.append("\n      ")
+        text.append("\n     ")
         text.append(describes, style=laws.STEEL_DIM)
+        text.append("\n     ")
+        if reading:
+            text.append(reading, style=laws.ACCENT)
+        else:
+            text.append("· · ·", style=laws.EDGE_BRIGHT)
         return text
 
     def _reserve_text(self, state: VaultState) -> Text:
@@ -257,12 +330,16 @@ class HomeScreen(TipsMixin, Screen):
         totals = state.ladder_totals
         text = Text()
         if not views:
-            text.append("buy list is empty\n\n", style=laws.STEEL_MID)
-            text.append("add one with a BuyList section:\nknivves add <file.md>", style=laws.STEEL_DIM)
+            for rank in (1, 2, 3):
+                text.append(f"{rank:>2} ", style=laws.STEEL_DIM)
+                text.append("╌" * 18, style=laws.EDGE)
+                text.append("\n")
+            text.append("\nempty — a BuyList section\n", style=laws.STEEL_DIM)
+            text.append("fills it: knivves add <file.md>", style=laws.STEEL_DIM)
             return text
         for (priority, knife), running in list(zip(views, totals))[:3]:
             text.append(f"{priority:>2} ", style=f"bold {laws.ACCENT}")
-            text.append(knife.display_name[:34], style=laws.STEEL_BRIGHT)
+            text.append(knife.display_name[:30], style=laws.STEEL_BRIGHT)
             if knife.is_new:
                 text.append("  ★new", style=laws.FRESH)
             text.append("\n   ")
@@ -271,5 +348,35 @@ class HomeScreen(TipsMixin, Screen):
             text.append("\n")
         deeper = len(views) - 3
         if deeper > 0:
-            text.append(f"\n   +{deeper} more — press 1 then y,\n   or: knivves buylist", style=laws.STEEL_DIM)
+            text.append(f"\n   +{deeper} more — press 1 then y", style=laws.STEEL_DIM)
+        return text
+
+    def _fresh_text(self, state: VaultState) -> Text:
+        """The newest records in the cache — ★new until the next update."""
+        fresh = [k for k in self.knives if k.is_new]
+        text = Text()
+        if not fresh:
+            text.append("none in this cache\n", style=laws.STEEL_DIM)
+            text.append(
+                f"gen {state.generation} · knivves update\nopens the next one",
+                style=laws.STEEL_DIM,
+            )
+            return text
+        for knife in fresh[:5]:
+            text.append("★ ", style=laws.FRESH)
+            text.append(f"{knife.display_name[:24]:<25}", style=laws.STEEL_BRIGHT)
+            text.append(f"{knife.price_label}\n", style=laws.STEEL_MID)
+        if len(fresh) > 5:
+            text.append(f"  +{len(fresh) - 5} more ★new in the library", style=laws.STEEL_DIM)
+        return text
+
+    def _commands_text(self) -> Text:
+        text = Text()
+        for command, does in (
+            ("knivves add <file.md>", "intake an ingestion file"),
+            ("knivves update", "seal the batch · next gen"),
+            ("knivves buylist", "the full ladder, printed"),
+        ):
+            text.append(f"{command}\n", style=laws.STEEL_MID)
+            text.append(f"  {does}\n", style=laws.STEEL_DIM)
         return text

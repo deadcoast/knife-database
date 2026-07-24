@@ -23,7 +23,25 @@ from textual.widgets import Static
 
 from . import laws
 
-_BASE = (29, 33, 38)
+_BASE = (32, 37, 43)
+
+# The stamp font — the brand cut into steel at nameplate size. Three rows
+# tall, drawn from half-blocks; only the letters the building needs.
+_STAMP_FONT: dict[str, tuple[str, str, str]] = {
+    "K": ("█ ▄▀", "██▀ ", "█ ▀▄"),
+    "N": ("█▚ █", "█ ▚█", "█  █"),
+    "I": ("▀█▀", " █ ", "▄█▄"),
+    "V": ("▌ ▐", "▐ ▌", " █ "),
+    "E": ("█▀▀", "█▀ ", "█▄▄"),
+    "S": ("▄▀▀", "▀▀▄", "▄▄▀"),
+    " ": (" ", " ", " "),
+}
+
+
+def stamp_rows(text: str) -> tuple[str, str, str]:
+    """``text`` rendered in the stamp font: three strings, one per row."""
+    glyphs = [_STAMP_FONT.get(ch, _STAMP_FONT[" "]) for ch in text.upper()]
+    return tuple(" ".join(g[row] for g in glyphs) for row in range(3))  # type: ignore[return-value]
 
 
 def _grain(x: int, y: int) -> int:
@@ -122,6 +140,59 @@ class Teletype(Static):
         self._printed = Text()
         self._printing = False
         self.update("")
+
+
+class TransitRail(Widget):
+    """The line a record rides between stations, drawn: a machined rail
+    across its tray with a stop post under each station above, labeled.
+    The traveling plate covers the stop it currently sits at — the rail
+    itself says where the work is."""
+
+    DEFAULT_CSS = """
+    TransitRail {
+        width: 100%;
+        height: 100%;
+    }
+    """
+
+    def __init__(self, stops: list[tuple[str, str]], **kwargs) -> None:
+        super().__init__(**kwargs)
+        self._stops = stops  # (station widget id, engraved label)
+
+    def _stop_xs(self) -> list[tuple[int, str]]:
+        out: list[tuple[int, str]] = []
+        for sid, label in self._stops:
+            try:
+                region = self.screen.query_one(f"#{sid}").region
+            except Exception:
+                continue
+            out.append((max(region.x - self.region.x + 2, 0), label))
+        return out
+
+    def render_line(self, y: int) -> Strip:
+        width = self.size.width
+        if width <= 0:
+            return Strip([])
+        stops = self._stop_xs()
+        if y == 0:
+            cells = [("─", Style(color=laws.EDGE_BRIGHT))] * width
+            cells[0] = ("╾", Style(color=laws.STEEL_MID))
+            cells[-1] = ("╼", Style(color=laws.STEEL_MID))
+            for x, _label in stops:
+                if 0 <= x < width:
+                    cells[x] = ("╥", Style(color=laws.STEEL_MID, bold=True))
+            return Strip([Segment(ch, style) for ch, style in cells], width)
+        if y == 1:
+            cells = [(" ", Style())] * width
+            for x, label in stops:
+                for i, ch in enumerate(label):
+                    if 0 <= x + i < width:
+                        cells[x + i] = (ch, Style(color=laws.STEEL_DIM))
+            return Strip([Segment(ch, style) for ch, style in cells], width)
+        if y >= 2 and y % 2 == 0:
+            # the ribbed bed the plate rides on — quiet machining marks
+            return Strip([Segment("─" * width, Style(color=laws.EDGE))], width)
+        return Strip([]).adjust_cell_length(width, Style())
 
 
 class Engraving(Widget):

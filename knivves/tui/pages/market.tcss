@@ -1,5 +1,7 @@
 /* MARKET PRICES — door 4's own stylesheet (Screen.CSS_PATH).
-   The drawn instruments over the real distribution. */
+   The drawn instruments over the real distribution: the valuation
+   column full height on the left, the $150 line stacked over the
+   survey station on the right. */
 
 MarketScreen {
     layers: base capsule door;
@@ -14,10 +16,17 @@ MarketScreen {
     width: 5fr;
 }
 
+#ledger-right {
+    width: 7fr;
+    height: 100%;
+}
+
 #ledger-line {
-    width: 5fr;
+    height: 1fr;
+    margin: 0 1 1 1;
 }
 
 #ledger-movers {
-    width: 6fr;
+    height: 1fr;
+    margin: 0 1;
 }

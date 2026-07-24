@@ -16,16 +16,20 @@ Footer {
     color: $steel-dim;
 }
 
-/* station panes — titled borders, the native Textual pane language:
-   the title rides IN the border line, no bar behind it, and the border
-   itself carries the structure. Counts ride the subtitle edge. */
+/* station panes — raised machined panels, not outlines on void: the
+   surface sits proud of the floor, its top and left edges catch the
+   light, its bottom and right edges throw shadow. The title rides IN
+   the top edge; counts ride the subtitle edge. */
 
 .station {
     width: 1fr;
     height: 100%;
     margin: 0 1;
     background: $surface;
-    border: round $edge-bright;
+    border-top: round $bevel-light;
+    border-left: round $bevel-light;
+    border-bottom: round $bevel-shadow;
+    border-right: round $bevel-shadow;
     border-title-color: $accent;
     border-title-style: bold;
     border-subtitle-color: $steel-dim;

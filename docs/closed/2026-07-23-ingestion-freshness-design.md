@@ -30,7 +30,6 @@ priority display on the vault and list pages.
 ## 1. Markdown ingestion format (the contract)
 
 ```markdown
--------------------------------
 # FILE TITLE
 
 -------------------------------

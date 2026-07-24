@@ -1,40 +1,48 @@
 /* COMPARE MODELS — door 3's own stylesheet (Screen.CSS_PATH).
    Two plates over the room's namesake: the caliper bed spans the full
-   width, beams riding rails the length of the bench. */
+   width, beams riding rails the length of the bench. The bench band is
+   one machined row — plates and panel cut to the same height. */
 
 CompareScreen {
     layers: base capsule door;
 }
 
 #bench {
-    height: auto;
-    padding: 1 2;
+    height: 1fr;
+    min-height: 16;
+    padding: 1 2 0 2;
     align-horizontal: center;
 }
 
 .bench-plate {
+    height: 100%;
     margin: 0 1;
 }
 
-/* the summary pane — a titled pane between the two knives */
+/* the summary pane — a raised panel between the two plates */
 #calipers {
     width: 40;
-    height: auto;
-    min-height: 14;
+    height: 100%;
     margin: 0 1;
     background: $surface;
-    border: round $edge-bright;
+    border-top: round $bevel-light;
+    border-left: round $bevel-light;
+    border-bottom: round $bevel-shadow;
+    border-right: round $bevel-shadow;
     border-title-color: $accent;
     border-title-style: bold;
     padding: 1 2;
 }
 
-/* the measurement pane — full width, beams seated at its center */
+/* the measurement bed — full width, the beams seated at its center */
 #calipers-bed {
-    height: 1fr;
-    margin: 0 3 1 3;
+    height: 17;
+    margin: 1 3 0 3;
     background: $surface;
-    border: round $edge-bright;
+    border-top: round $bevel-light;
+    border-left: round $bevel-light;
+    border-bottom: round $bevel-shadow;
+    border-right: round $bevel-shadow;
     border-title-color: $accent;
     border-title-style: bold;
     border-subtitle-color: $steel-dim;

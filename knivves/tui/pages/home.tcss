@@ -1,7 +1,8 @@
-/* THE VAULT — page 0, the entry hall's own stylesheet (Screen.CSS_PATH).
-   The showpiece: the brand plate in brushed steel, three machined
-   plaques over the collection drawn across the floor. Every color is a
-   $variable of the `knivves` theme (laws.py). */
+/* HOME — page 0, the entry hall's own stylesheet (Screen.CSS_PATH).
+   The showpiece: the brand plaque in brushed steel over three full-height
+   instrument columns. Every color is a $variable of the `knivves` theme
+   (laws.py). Panels are raised machined surfaces — lit top/left edge,
+   thrown bottom/right shadow — never outlines on void. */
 
 HomeScreen {
     layers: base capsule door;
@@ -14,16 +15,18 @@ HomeScreen {
 #hall {
     height: 1fr;
     padding: 0 2;
-    align: center middle;
 }
 
-/* titled panes — the title rides the border, no bar behind it */
+/* raised panels — the surface sits proud of the floor */
 .hall-fixture {
     width: 1fr;
-    height: auto;
+    height: 100%;
     margin: 0 1;
     background: $surface;
-    border: round $edge-bright;
+    border-top: round $bevel-light;
+    border-left: round $bevel-light;
+    border-bottom: round $bevel-shadow;
+    border-right: round $bevel-shadow;
     border-title-color: $accent;
     border-title-style: bold;
     border-subtitle-color: $steel-dim;
@@ -50,7 +53,6 @@ HomeScreen {
     height: auto;
 }
 
-
 /* REVEAL — the plaques surface one by one behind the parting door */
 .hall-fixture * {
     transition: opacity 350ms $cue-easing;
@@ -61,16 +63,20 @@ HomeScreen {
     opacity: 0%;
 }
 
-/* CUE — a door slab under the hand lifts; the click is the key */
+/* CUE — a page slab under the hand lifts; the click is the key.
+   Each slab is a recessed key seated in the panel, its own left spine. */
+/* slabs hug their content — fr heights ballooned at other terminal
+   sizes (the 013 lesson: inner containers hug, they never stretch) */
 .door-row {
     height: auto;
-    padding: 0 1;
+    padding: 0 2;
     margin-bottom: 1;
     background: $surface-low;
+    border-left: thick $edge;
     transition: background $cue-duration $cue-easing, opacity 350ms $cue-easing;
 }
 
 .door-row:hover {
     background: $surface-raised;
+    border-left: thick $accent;
 }
-

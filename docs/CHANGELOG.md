@@ -1,5 +1,50 @@
 # CHANGELOG
 
+## 014 — v0.18.0 (2026-07-24) — RAISED PANELS, THE NAMEPLATE, SEATED TRANSIT
+
+Owner's verdict on the previous pass: still surface-level — outlines on
+void, content stopping halfway down every pane, the record plate
+floating at an arbitrary offset. This pass rebuilds the visible layer
+to the standing bar: a still frame reads as machined hardware.
+
+- **Raised panels everywhere.** The pane language is no longer an
+  outline on void: every station and fixture is a raised surface — lit
+  top/left edge, thrown bottom/right shadow (`$bevel-light` /
+  `$bevel-shadow` in laws.py), surface tone lifted off the floor. The
+  tip rail is the inverse — a channel cut INTO the floor — and now
+  carries each room's key card, read from its real bindings.
+- **The nameplate.** Home's brand band is a drawn plaque: KNIVVES
+  stamped three rows tall in a half-block stamp font (surfaces.py),
+  corner bolts, flank rules, the tagline seated in the steel.
+- **Home composed to the frame.** Three full-height columns:
+  COLLECTION adds the classification split band and the price
+  distribution under its meters; PAGES slabs each carry a live reading
+  from the database (166 records / gen 1 / nothing chosen / avg $215 /
+  153 gaps open); BUY LIST shows drawn empty rungs, NEW ARRIVALS, and
+  the CLI command card. Slabs hug their content — fr heights ballooned
+  at other sizes (the 013 lesson, relearned and kept).
+- **Compare is one machined band over a full bed.** Plates and the
+  comparison panel cut to equal height; the panel gains verdict lines
+  ("Spyderco costs $310 less · runs 9 mm longer"). Each caliper beam
+  gains an engraved scale with real numbers; linkages span the full
+  bench between housings; a legend closes the bed. The plate's loud
+  class-colored frame is now a quiet class-colored spine inlay.
+- **Imports/Research: the record rides a real tray.** A full-width
+  recessed transit channel with a drawn rail, labeled stops under the
+  stations, and a ribbed bed; the plate seats IN it (x and y clamped),
+  in-transit plates engrave one line per fact. The legal check's
+  duplicate verdict line died so all 7 rules print; queue and shelf cut
+  to fit their pane exactly.
+- **Market re-gridded.** Valuation is a full instrument column
+  (readouts + scale + distribution + heaviest holdings); the $150 line
+  stacks over the survey station; the near-line count rides the
+  subtitle edge.
+- Verified by eye at 170×45 (exhibits), 190×52, and 132×38 — the small
+  size caught the fr balloon and two wrapping rungs before they
+  shipped; at ≤38 rows the sixth page slab clips (keys and footer
+  still reach it). All shell proofs and backend suites green; every
+  exhibit regenerated and reviewed.
+
 ## 013 — v0.17.0 (2026-07-24) — THE DUPLICATE DIES, SIZES GET CHECKED
 
 Owner's review of the real running app, not the fixed-size exhibits:
