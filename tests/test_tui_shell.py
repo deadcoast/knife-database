@@ -243,6 +243,11 @@ async def test_shell() -> None:
         # second knife -> choreographed arrival, then the calipers measure
         await pilot.press("1")
         await pilot.pause()
+        for _ in range(30):  # the cascade lands late under load, never less
+            if app.screen._reveal.settled:
+                break
+            await asyncio.sleep(0.1)
+            await pilot.pause()
         await pilot.press("down", "down", "b")
         await pilot.pause()
         assert len(app.screen.slots) == 2, f"slots: {len(app.screen.slots)}"

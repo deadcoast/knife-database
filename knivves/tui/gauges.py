@@ -80,6 +80,53 @@ class GradientBars(Widget):
         return Strip(segments).adjust_cell_length(width, Style())
 
 
+class MeterBar(Widget):
+    """A machined meter row: engraved label on the left, a gradient fill
+    riding a recessed channel, the reading stamped bright on the right.
+    One fact per meter — a bank of these reads as an instrument panel,
+    not a list."""
+
+    DEFAULT_CSS = """
+    MeterBar {
+        height: 1;
+        margin-bottom: 1;
+    }
+    """
+
+    LABEL_W = 11
+
+    def __init__(self, label: str, **kwargs) -> None:
+        super().__init__(**kwargs)
+        self._label = label.upper()
+        self._fraction = 0.0
+        self._reading = ""
+        self._tone: str | None = None
+
+    def set_meter(self, fraction: float, reading: str, tone: str | None = None) -> None:
+        """Fill to ``fraction`` (0..1); ``tone`` overrides the steel ramp."""
+        self._fraction = max(0.0, min(fraction, 1.0))
+        self._reading = reading
+        self._tone = tone
+        self.refresh()
+
+    def render_line(self, y: int) -> Strip:
+        width = self.size.width
+        if width <= 0 or y != 0:
+            return Strip([]).adjust_cell_length(max(width, 0), Style())
+        reading = f" {self._reading}"
+        rail_w = max(width - self.LABEL_W - len(reading), 6)
+        filled = int(self._fraction * rail_w)
+        segments = [Segment(f"{self._label:<{self.LABEL_W}}"[: self.LABEL_W], Style(color=laws.STEEL_DIM))]
+        for x in range(rail_w):
+            if x < filled:
+                tone = self._tone or _lerp(x / max(rail_w - 1, 1))
+                segments.append(Segment(" ", Style(bgcolor=tone)))
+            else:
+                segments.append(Segment(" ", Style(bgcolor=laws.SURFACE_LOW)))
+        segments.append(Segment(reading, Style(color=laws.STEEL_BRIGHT, bold=True)))
+        return Strip(segments).adjust_cell_length(width, Style())
+
+
 class PriceScale(Widget):
     """The collection's money on a machined scale: avg needle, $150 cut."""
 

@@ -16,13 +16,20 @@ Footer {
     color: $steel-dim;
 }
 
-/* engraved station frames — shared by the intake line and the desk */
+/* machined station panels — shared by the intake line and the desk.
+   A station is a raised plate, not an outline on void: surface metal
+   for the body, the top/left edges catching the light, the bottom/right
+   falling into shadow. */
 
 .station {
     width: 1fr;
     height: 100%;
     margin: 0 1;
-    border: round $edge;
+    background: $surface;
+    border-top: solid $edge-bright;
+    border-left: solid $edge-bright;
+    border-bottom: solid $background;
+    border-right: solid $background;
     padding: 1 2;
     overflow: hidden hidden;
 }

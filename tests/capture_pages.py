@@ -42,10 +42,12 @@ def _save(app: KnivvesApp, name: str) -> None:
 
 
 async def capture_vault() -> None:
-    """The entry hall: state, doors, next acquisitions — boot's first frame."""
+    """The entry hall: brand plate, meters, door slabs, the floor map."""
     app = _fresh_app()
     async with app.run_test(size=SIZE) as pilot:
         await asyncio.sleep(BOOT_DOOR)
+        await pilot.pause()
+        await asyncio.sleep(0.8)  # the hall's reveal and floor power-on settle
         await pilot.pause()
         _save(app, "vault")
 

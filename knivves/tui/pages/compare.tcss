@@ -1,36 +1,60 @@
 /* COMPARE MODELS — door 3's own stylesheet (Screen.CSS_PATH).
-   Two plates seated at the bench, the calipers between them. */
+   Two plates over the room's namesake: the caliper bed spans the full
+   width, beams riding rails the length of the bench. */
 
 CompareScreen {
     layers: base capsule door;
 }
 
 #bench {
-    height: 1fr;
+    height: auto;
     padding: 1 2;
-    align: center middle;
+    align-horizontal: center;
 }
 
 .bench-plate {
     margin: 0 1;
 }
 
+/* the center panel — a raised machined plaque between the plates */
 #calipers {
-    width: 34;
+    width: 40;
     height: auto;
-    min-height: 16;
+    min-height: 14;
     margin: 0 1;
-    border: round $edge;
+    background: $surface;
+    border-top: solid $edge-bright;
+    border-left: solid $edge-bright;
+    border-bottom: solid $background;
+    border-right: solid $background;
     padding: 1 2;
+}
+
+/* the caliper bed — the instrument's full-width mounting plate; it
+   takes the rest of the room, beams seated at its center */
+#calipers-bed {
+    height: 1fr;
+    margin: 0 3 1 3;
+    background: $surface;
+    border-top: solid $edge-bright;
+    border-left: solid $edge-bright;
+    border-bottom: solid $background;
+    border-right: solid $background;
+    padding: 1 3;
+    align: center middle;
 }
 
 /* REVEAL — the instrument warms; plates arrive under the motion law */
 #calipers,
-#calipers * {
+#calipers *,
+#calipers-bed,
+#calipers-bed * {
     transition: opacity 350ms $cue-easing;
 }
 
 #calipers.cold,
-#calipers.cold * {
+#calipers.cold *,
+#calipers-bed.cold,
+#calipers-bed.cold * {
     opacity: 0%;
 }

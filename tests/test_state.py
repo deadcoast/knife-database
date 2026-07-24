@@ -70,6 +70,7 @@ def test_one_reading() -> None:
     assert state.fresh == 1, state.fresh
     assert state.approved == 1, state.approved
     assert state.unresearched == 1, state.unresearched  # b-knife has open gaps
+    assert state.priced == 2 and state.affordable == 1, (state.priced, state.affordable)
     assert state.average_cad == 200.0, state.average_cad
     assert state.generation == 4 and state.keep_generations == 2
     assert state.version == "9.9.9"

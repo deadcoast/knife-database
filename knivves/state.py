@@ -11,6 +11,7 @@ from dataclasses import dataclass
 from typing import Any
 
 from . import buylist, generations
+from .ledger import AFFORDABLE_THRESHOLD_CAD
 from .models import KnifeView, knife_views
 from .research import audit_database
 
@@ -23,6 +24,8 @@ class VaultState:
     fresh: int
     approved: int
     unresearched: int
+    priced: int
+    affordable: int
     average_cad: float
     generation: Any
     keep_generations: Any
@@ -42,6 +45,8 @@ def vault_state(db: dict[str, Any], knives: list[KnifeView] | None = None) -> Va
         fresh=sum(1 for k in views if k.is_new),
         approved=sum(1 for k in views if k.classification == "approved"),
         unresearched=audit_database(db).with_gaps,
+        priced=len(prices),
+        affordable=sum(1 for p in prices if p < AFFORDABLE_THRESHOLD_CAD),
         average_cad=(sum(prices) / len(prices)) if prices else 0.0,
         generation=meta.get("generation"),
         keep_generations=meta.get("keep_generations"),

@@ -1,5 +1,40 @@
 # CHANGELOG
 
+## 009 — v0.13.0 (2026-07-23) — ROOM PRESENCE
+
+The rooms stop floating boxes on a void. Owner's verdict on the 008
+frames: sparse layouts read as lazy, and restraint was the wrong read
+of the design standard — a single frozen frame must look like machined
+hardware. This release is the correction.
+
+- **Material everywhere** — stations and plaques are raised machined
+  plates, not outlines: surface metal for the body, top/left edges
+  catching the light, bottom/right falling into shadow (per-edge border
+  bevel in the stylesheets). Applies to every station on imports,
+  research, and market, and to the hall's plaques.
+- **The hall rebuilt as the showpiece** — a `BrandPlate` band of
+  brushed steel with the brand stamped into it, bolt studs, and a
+  machined groove (the door's own material); the vault state as an
+  instrument bank — `MeterBar` gauges (approved in pass-green, 
+  researched, priced, under-$150 in amber) over the spoken numbers;
+  the doors as machined slabs with amber keycaps; and the entire
+  collection drawn across the floor — the unknowns map as the hall's
+  base band, powering on with the room and breathing on the idle
+  cadence. `VaultState` grew `priced`/`affordable` to feed the meters.
+- **Compare rebuilt around the full-width bed** — the calipers span
+  the room: beams ride rails the length of the bench (Δ engraved in
+  the amber span between distant jaws), and the instrument holds its
+  shape at rest — open rails, parked jaws, disengaged linkages, honest
+  about holding no work. The center panel carries the measurement
+  verdict once a pair reads. The bed fills everything below the
+  plates; no void survives an empty bench.
+- Eyes-on iterations during the build: the brand plate's seam first
+  rendered as a broken half-width bar (now a full channel groove); the
+  reserve engraving clipped mid-word (renamed THE RESERVE); compare's
+  empty state floated a small panel in black (the bed now takes the
+  room). Suite still eighteen proofs green plus six backend suites;
+  exhibits regenerated; version stamps 0.13.0.
+
 ## 008 — v0.12.0 (2026-07-23) — ONE BUILDING
 
 The fixtures agree with each other. Case:

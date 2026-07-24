@@ -1,7 +1,7 @@
 {
   "database_name": "folding_knife_research_database",
   "jurisdiction": "Canada",
-  "version": "0.12.0",
+  "version": "0.13.0",
   "definitions": {
     "approved": "A knife the user currently considers worthy of further research into acquisition. This is not a final purchase decision.",
     "rejected": "A knife the user considers banned, unworthy, or not worth further research into purchase.",

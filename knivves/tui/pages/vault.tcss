@@ -1,56 +1,47 @@
 /* THE VAULT — page 0, the entry hall's own stylesheet (Screen.CSS_PATH).
-   Three plaques under the masthead: state, doors, next acquisitions.
-   Every color is a $variable of the `knivves` theme (laws.py). */
+   The showpiece: the brand plate in brushed steel, three machined
+   plaques over the collection drawn across the floor. Every color is a
+   $variable of the `knivves` theme (laws.py). */
 
 VaultScreen {
     layers: base capsule door;
 }
 
-#hall {
-    height: 1fr;
-    padding: 1 2;
+#hall-brand {
+    margin: 0 0 1 0;
 }
 
+#hall {
+    height: 1fr;
+    padding: 0 2;
+}
+
+/* raised machined plaques — light on the top edges, shadow beneath */
 .hall-fixture {
     width: 1fr;
     height: 100%;
     margin: 0 1;
-    border: round $edge;
+    background: $surface;
+    border-top: solid $edge-bright;
+    border-left: solid $edge-bright;
+    border-bottom: solid $background;
+    border-right: solid $background;
     padding: 1 2;
     overflow: hidden hidden;
     transition: background $cue-duration $cue-easing, opacity 350ms $cue-easing;
 }
 
-/* REVEAL — the plaques surface one by one behind the parting door */
-.hall-fixture * {
-    transition: opacity 350ms $cue-easing;
-}
-
-.hall-fixture.cold,
-.hall-fixture.cold * {
-    opacity: 0%;
-}
-
-/* CUE — a door under the hand lifts; the click is the key */
-.door-row {
-    height: auto;
-    transition: background $cue-duration $cue-easing, opacity 350ms $cue-easing;
-}
-
-.door-row:hover {
-    background: $surface-high;
-}
-
 /* CUE — the plaque under the hand lifts, its edge catches the light;
    the children lift with it so the plaque reads as one surface */
 .hall-fixture:hover {
-    background: $surface-low;
-    border: round $edge-bright;
+    background: $surface-high;
+    border-top: solid $edge-bright;
+    border-left: solid $edge-bright;
 }
 
 .hall-fixture:hover > .hall-fixture-name,
 .hall-fixture:hover > .hall-fixture-body {
-    background: $surface-low;
+    background: $surface-high;
 }
 
 #hall-doors {
@@ -66,4 +57,32 @@ VaultScreen {
 
 .hall-fixture-body {
     margin-top: 1;
+}
+
+/* REVEAL — the plaques surface one by one behind the parting door */
+.hall-fixture * {
+    transition: opacity 350ms $cue-easing;
+}
+
+.hall-fixture.cold,
+.hall-fixture.cold * {
+    opacity: 0%;
+}
+
+/* CUE — a door slab under the hand lifts; the click is the key */
+.door-row {
+    height: auto;
+    padding: 0 1;
+    margin-bottom: 1;
+    background: $surface-low;
+    transition: background $cue-duration $cue-easing, opacity 350ms $cue-easing;
+}
+
+.door-row:hover {
+    background: $surface-raised;
+}
+
+/* the collection drawn across the hall's floor */
+#hall-map {
+    margin: 0 2;
 }

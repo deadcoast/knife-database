@@ -1672,7 +1672,7 @@ This is a well designed feature on an application. Not a well designed applicati
 [5]: "EXAMPLES_AND_IDEAS":"LOOSE IDEAS SUBJECT TO EXTEND OR CHANGE",
 [5.1]: "MINI_PSEUDO_TERMINAL_EFFECT":"some windows can act as terminals printing data instead once simulating a live print. be careful not to make it to fast, or slow. it should be per textual design docs specifications AND DESIGN_WORK_STANDARDS.",
 [5.2]: "ANIMATIONS":"[5.2.1], [5.2.2]",
-[5.2.1: "research-grid](C:\Users\ryanf\OneDrive\Pictures\Screenshots\Screenshot 2026-07-23 084600.png) with the bar have a LARGE POTENTIAL to be a design asset or a curse. This can easily be overdone or undermade and both are lazy and bad outcomes. To avoid overstimululation on busier pages with creative visual integrations; we will highlight the features on opening, visually bringing the users eyes to them. These animations should impress, and push the limits of capability in animations.",
+[5.2.1]: "[research-grid](C:\Users\ryanf\OneDrive\Pictures\Screenshots\Screenshot 2026-07-23 084600.png) with the bar have a LARGE POTENTIAL to be a design asset or a curse. This can easily be overdone or undermade and both are lazy and bad outcomes. To avoid overstimululation on busier pages with creative visual integrations; we will highlight the features on opening, visually bringing the users eyes to them. These animations should impress, and push the limits of capability in animations.",
 [5.2.2]: "RESEARCH_GRID_ANIMATION":"[5.2.2.1], [5.2.2.2], [5.2.2.3], [5.2.2.4], [5.2.2.5]",
 [5.2.2.1]:"In the [research-grid] the banner should animate once on page open / load.",
 [5.2.2.2]:once the initial animations settle, the page should continue on with comprehensive animation; but minimally executed.",
@@ -1683,3 +1683,23 @@ This is a well designed feature on an application. Not a well designed applicati
 [7]: "DESIGN_BALANCE":"referenced and researched assets mixed with a well planned, critically designed and layout placed cohesively are keys to the success of balancing the assets, where to make them noticeable and heavy, and where to make them minimal and accented. Thinking about why and understanding that context is key to overall design work; and when creating unique and impressive work, it is A REQUIREMENT to balance these assets as one ecosystem, or else the design falls apart.",
 
 ---
+
+You're right about the result, and I'll own it specifically rather than defend it. Looking at those six screenshots the way you look at them:
+
+- The hall — the front door of the app — is three thin boxes of plain text floating in ~65% empty black. No drawn steel, no engraving, no machined material at all in the one room that's supposed to sell the building. A third of it is an empty box apologizing that the reserve is empty.
+- Compare is two plates and a tiny 34-column box in an ocean of nothing. The room is named after the calipers and the calipers get 8 rows.
+- Imports and Research have the same disease below the fold: content in the top fifth of each station, void underneath.
+- Market has two real instruments in one column and then two mostly-empty columns of instruction text.
+- Library only looks alive because 166 rows of your data fill it.
+
+The root cause is on me: I read "minimal accents / don't overdo it" as license for sparse layouts, and I spent the craft on things that are invisible in a frame — package structure, theme plumbing, and animations tuned so subtdoc literally said it: "too little and it looks lazy." That'swhat these stills are. "Impressive" means a single frozen frame should look like machined hardware — dense, composed to the full frame, drawn material everywhere — and that's the standard these rooms fail.
+
+What fixing it actually means — a room-presence pass, not more pl
+
+1. Kill the voids. Every room composed to the frame: instruments sized to fill their stations, lower thirds carrying real readouts/gauges/logs, no region of dead black bigger than a plate.
+2. Material everywhere. The drawn-steel language that already exists (brushed grain, engraving, bevels — currently only on the masthead and door) applied to every station and plaque, so any still reads as hardware.
+3. The hall rebuilt as the showpiece: a large drawn brand engraving, the vault state as drawn gauges (miniature completeness bar, price scale), doors as machined fixtures with real visual weight — not six lines of text.
+4. Compare rebuilt around full-width caliper beams — the bench becomes the instrument, spanning the room.
+5. Keep what earned its place: the unknowns map, the seven-bolt lock, the tape reader, and the theme/per-page-tcss/motion foundation underneath.
+
+The structural work isn't wasted — it's the chassis this pass needs — but the visible layer is what you asked for and what I under-delivered. Before I burn   another run in a direction you hate: does that five-point pass ma or is the miss somewhere else — palette/mood, the metaphoritself, something specific per page? Say "go" or redirect me, and the rebuild starts with the hall and compare since they're the worst offenders.

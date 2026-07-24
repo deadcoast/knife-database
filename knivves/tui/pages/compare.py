@@ -171,9 +171,13 @@ class Calipers(Widget):
 
     # --------------------------------------------------------------- render
 
+    IDLE_BEAMS = ("price", "length")
+    IDLE_LINKS = ("steel", "lock", "class")
+
     def get_content_height(self, container, viewport, width: int) -> int:
         if not self.beams:
-            return 0
+            # the instrument holds its shape at rest — open rails, parked jaws
+            return len(self.IDLE_BEAMS) * 3 + len(self.IDLE_LINKS)
         return len(self.beams) * 3 + len(self.links)
 
     def render_line(self, y: int) -> Strip:
@@ -184,6 +188,8 @@ class Calipers(Widget):
         return strip.adjust_cell_length(width, Style())
 
     def _render_row(self, y: int, width: int) -> Strip:
+        if not self.beams:
+            return self._idle_row(y, width)
         beam_rows = len(self.beams) * 3
         if y < beam_rows:
             index, row = divmod(y, 3)
@@ -195,6 +201,43 @@ class Calipers(Widget):
         link_index = y - beam_rows
         if link_index < self._links_shown:
             return self._link_row(self.links[link_index], width)
+        return Strip([])
+
+    def _idle_row(self, y: int, width: int) -> Strip:
+        """The instrument at rest: full rails with the jaws parked at the
+        rest posts, the linkages disengaged — machined, waiting, honest
+        about holding no work."""
+        beam_rows = len(self.IDLE_BEAMS) * 3
+        if y < beam_rows:
+            index, row = divmod(y, 3)
+            rail_w = max(width - self.LABEL_W, 8)
+            if row == 0:
+                segments = [Segment(f"{self.IDLE_BEAMS[index].upper():<{self.LABEL_W}}", Style(color=laws.STEEL_DIM))]
+                cells: list[tuple[str, Style]] = [("─", Style(color=laws.EDGE))] * rail_w
+                for quarter in range(1, 4):
+                    cells[rail_w * quarter // 4] = ("╹", Style(color=laws.EDGE_BRIGHT))
+                cells[0] = ("▐", Style(color=laws.STEEL_MID, bold=True))
+                cells[-1] = ("▌", Style(color=laws.STEEL_MID, bold=True))
+                segments.extend(Segment(ch, style) for ch, style in cells)
+                return Strip(segments)
+            if row == 1 and index == 0:
+                note = "no work between the jaws — in the library, b sends a blade to the bench"
+                pad = max((rail_w - len(note)) // 2, 0)
+                return Strip([
+                    Segment(" " * (self.LABEL_W + pad), Style()),
+                    Segment(note, Style(color=laws.STEEL_DIM)),
+                ])
+            return Strip([])
+        link_index = y - beam_rows
+        if link_index < len(self.IDLE_LINKS):
+            lane = max(width - self.LABEL_W, 12)
+            side_w = (lane - 5) // 2
+            return Strip([
+                Segment(f"{self.IDLE_LINKS[link_index].upper():<{self.LABEL_W}}", Style(color=laws.STEEL_DIM)),
+                Segment("╌" * side_w, Style(color=laws.EDGE)),
+                Segment("╴ ╶", Style(color=laws.EDGE_BRIGHT)),
+                Segment("╌" * side_w, Style(color=laws.EDGE)),
+            ])
         return Strip([])
 
     def _rail_row(self, beam: Beam, progress: float, width: int) -> Strip:
@@ -314,10 +357,12 @@ class CompareScreen(TipsMixin, Screen):
             yield Plate(id="bench-left", classes="bench-plate")
             with Vertical(id="calipers"):
                 yield Engraving("calipers")
-                yield Calipers(id="calipers-instrument")
                 yield Static("", id="calipers-read", classes="station-body")
             yield Plate(id="bench-right", classes="bench-plate")
             yield TipRail()
+        # the room's namesake spans the room — the beams get the full rail
+        with Vertical(id="calipers-bed"):
+            yield Calipers(id="calipers-instrument")
         yield TipCapsule()
         yield Footer()
 
@@ -339,12 +384,20 @@ class CompareScreen(TipsMixin, Screen):
         self._reveal.arm()
 
     def _power_on(self) -> None:
-        """REVEAL — the instrument warms first; the plates make their own
-        entrances through the arrival choreography."""
-        calipers = self.query_one("#calipers")
+        """REVEAL — the instrument warms first (panel, then the bed the
+        beams ride); the plates make their own entrances through the
+        arrival choreography."""
+        panel = self.query_one("#calipers")
+        bed = self.query_one("#calipers-bed")
+
+        def cold() -> None:
+            panel.add_class("cold")
+            bed.add_class("cold")
+
         self._reveal.play([
-            (0.0, partial(calipers.add_class, "cold")),
-            (0.3, partial(calipers.remove_class, "cold")),
+            (0.0, cold),
+            (0.3, partial(panel.remove_class, "cold")),
+            (0.5, partial(bed.remove_class, "cold")),
         ])
 
     # ------------------------------------------------------------- intake
@@ -428,6 +481,27 @@ class CompareScreen(TipsMixin, Screen):
         instrument.set_pair(*self.slots)
         if pair == self._measured:
             instrument.settle()  # an already-read pair holds, no re-animation
+            read.update(self._read_out(instrument))
             return
         await instrument.take_measurement()
         self._measured = pair
+        read.update(self._read_out(instrument))
+
+    def _read_out(self, instrument: Calipers) -> Text:
+        """The measurement, stamped on the panel between the plates."""
+        a, b = self.slots
+        text = Text()
+        text.append(f"{a.brand}", style=f"bold {laws.STEEL_BRIGHT}")
+        text.append("  vs  ", style=laws.STEEL_DIM)
+        text.append(f"{b.brand}\n\n", style=f"bold {laws.STEEL_BRIGHT}")
+        for beam in instrument.beams:
+            if beam.delta is not None:
+                text.append_text(laws.field(beam.label, beam.delta_text, laws.ACCENT))
+            else:
+                text.append_text(laws.field(beam.label, "jaws open — a gap", laws.STEEL_DIM))
+            text.append("\n")
+        linked = sum(1 for link in instrument.links if link.same)
+        text.append_text(
+            laws.field("linked", f"{linked} of {len(instrument.links)} facts match", laws.STEEL_MID)
+        )
+        return text
