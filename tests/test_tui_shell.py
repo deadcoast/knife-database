@@ -63,7 +63,7 @@ async def test_shell() -> None:
 
         # cold boot: the vault door holds the brand, then opens into the hall
         from knivves.tui.door import VaultDoor
-        from knivves.tui.pages.vault import VaultScreen
+        from knivves.tui.pages.home import HomeScreen
 
         assert app.screen.query(VaultDoor), "boot door missing"
         await asyncio.sleep(2.3)
@@ -71,7 +71,7 @@ async def test_shell() -> None:
         assert not app.screen.query(VaultDoor), "boot door failed to open"
 
         # boot lands in the entry hall — the vault is a page
-        assert isinstance(app.screen, VaultScreen), f"boot screen: {app.screen}"
+        assert isinstance(app.screen, HomeScreen), f"boot screen: {app.screen}"
 
         # door 1: the library with the full collection
         await pilot.press("1")
@@ -210,7 +210,7 @@ async def test_shell() -> None:
         gates_text = str(app.screen.query_one("#gates", Static).render())
         filed_text = str(app.screen.query_one("#filed", Static).render())
         assert "CLEAR TO PROCEED" in gates_text, f"gates: {gates_text[:80]}"
-        assert "demo transit" in filed_text, f"filed: {filed_text[:80]}"
+        assert "nothing was saved" in filed_text, f"filed: {filed_text[:80]}"
         # the legal screen is a seven-bolt lock: the demo retracts every bolt
         bank = app.screen.query_one(GateBank)
         assert bank.total == 7, f"bolts: {bank.total}"
@@ -221,7 +221,7 @@ async def test_shell() -> None:
         assert tape.lit_count >= 1, "demo tape lights nothing"
         from knivves.tui.masthead import Masthead as MastheadWidget
         forge_context = app.screen.query_one(MastheadWidget).context
-        assert "line idle" in forge_context, f"context: {forge_context}"
+        assert "idle" in forge_context, f"context: {forge_context}"
         # the traveling plate never clips off screen, whatever its height
         from knivves.tui.plate import Plate as PlateWidget
         forge_plate = app.screen.query_one(PlateWidget)
@@ -352,7 +352,7 @@ async def test_shell() -> None:
             await asyncio.sleep(1.0)
             await pilot.pause()
             log_text = str(app.screen.query_one("#extract-log", Static).render())
-            assert "already in the vault" in log_text, f"log: {log_text[:80]}"
+            assert "already in the database" in log_text, f"log: {log_text[:80]}"
 
             # prohibited listing: gate slams, nothing filed
             scrape_mod.fetch_listing = _prohibited_listing
@@ -624,7 +624,7 @@ async def test_desk_demo_transit() -> None:
             )
             assert "research-target" in docket_text, f"docket: {docket_text[:160]}"
             stamped_text = str(app.screen.query_one("#stamped", Static).render())
-            assert "nothing was written" in stamped_text, f"stamped: {stamped_text[:120]}"
+            assert "nothing was saved" in stamped_text, f"stamped: {stamped_text[:120]}"
             assert tmp_db.read_bytes() == before_bytes, "demo transit wrote the database"
             plate = app.screen.query_one(Plate)
             stamp_x = app.screen.query_one("#st-stamp").region.x
@@ -681,7 +681,7 @@ def test_pages_map_to_doors() -> None:
         target = action.split("'")[1]
         assert target in KnivvesApp.SCREENS, f"door key opens unregistered page: {target}"
     labels = {label for _, _, label in door_bindings}
-    for expected in ("Vault", "Library", "Import Knives", "Compare Models", "Market Prices", "Research"):
+    for expected in ("Home", "Library", "Import Knives", "Compare Models", "Market Prices", "Research"):
         assert expected in labels, f"door label missing: {expected}"
     print("PASS: pages map to doors — modules, screen classes, keys, labels agree")
 
@@ -699,7 +699,7 @@ def test_pages_own_stylesheets() -> None:
     page_markers = (
         "#rack", "#bench", "#calipers", "#ledger", "#forge", "#desk", "#hall",
         "LibraryScreen", "ImportsScreen", "CompareScreen", "MarketScreen",
-        "ResearchScreen", "VaultScreen",
+        "ResearchScreen", "HomeScreen",
     )
     for marker in page_markers:
         assert marker not in app_css, f"page-specific selector in app.tcss: {marker}"
@@ -771,7 +771,7 @@ def test_cues_declared_in_css() -> None:
     their own stylesheets through the laws' $cue variables. (Compare and
     market are keyboard instruments — nothing there tracks the pointer.)"""
     pages_dir = REPO / "knivves" / "tui" / "pages"
-    for page in ("vault", "library", "imports"):
+    for page in ("home", "library", "imports"):
         css = (pages_dir / f"{page}.tcss").read_text(encoding="utf-8")
         assert "transition:" in css, f"{page}.tcss declares no transition"
         assert "$cue-duration" in css, f"{page}.tcss does not speak the cue law"
@@ -783,7 +783,7 @@ async def test_entry_hall_doors() -> None:
     """Page 0 — the vault (REQ-ARC-2): boot lands in the hall, the plaques
     read live state, number keys leave, 0 returns."""
     from knivves.tui.pages.market import MarketScreen
-    from knivves.tui.pages.vault import VaultScreen
+    from knivves.tui.pages.home import HomeScreen
 
     tmp_db = Path(tempfile.mkdtemp()) / "knives.json"
     shutil.copyfile(REPO / "knivves" / "data" / "knives.json", tmp_db)
@@ -791,9 +791,9 @@ async def test_entry_hall_doors() -> None:
     async with app.run_test(size=(170, 45)) as pilot:
         await asyncio.sleep(2.3)
         await pilot.pause()
-        assert isinstance(app.screen, VaultScreen), f"boot screen: {app.screen}"
+        assert isinstance(app.screen, HomeScreen), f"boot screen: {app.screen}"
         state = str(app.screen.query_one("#hall-state-body", Static).render())
-        assert "BLADES" in state and "AVG" in state, f"state plaque: {state[:80]}"
+        assert "KNIVES" in state and "AVG" in state, f"state plaque: {state[:80]}"
         assert "unresearched" in state, f"gaps line missing: {state[:120]}"
         doors = " ".join(str(row.render()) for row in app.screen.query(".door-row"))
         for name in ("LIBRARY", "IMPORT KNIVES", "COMPARE MODELS", "MARKET PRICES", "RESEARCH"):
@@ -808,7 +808,7 @@ async def test_entry_hall_doors() -> None:
         await pilot.press("0")
         await asyncio.sleep(1.1)
         await pilot.pause()
-        assert isinstance(app.screen, VaultScreen), f"0 did not return home: {app.screen}"
+        assert isinstance(app.screen, HomeScreen), f"0 did not return home: {app.screen}"
     print("PASS: the vault is a page — boot hall · plaques live · keys out · 0 home")
 
 
@@ -997,8 +997,8 @@ async def test_two_front_doors_agree() -> None:
 async def test_hall_doors_answer_the_hand() -> None:
     """REQ-HAL-1 (one-building): a door row is hardware — the click is
     the key, and the hover cue lives in the page's own stylesheet."""
+    from knivves.tui.pages.home import DoorRow, HomeScreen
     from knivves.tui.pages.market import MarketScreen
-    from knivves.tui.pages.vault import DoorRow, VaultScreen
 
     tmp_db = Path(tempfile.mkdtemp()) / "knives.json"
     shutil.copyfile(REPO / "knivves" / "data" / "knives.json", tmp_db)
@@ -1015,8 +1015,8 @@ async def test_hall_doors_answer_the_hand() -> None:
         await pilot.press("0")
         await asyncio.sleep(1.1)
         await pilot.pause()
-        assert isinstance(app.screen, VaultScreen)
-    css = (REPO / "knivves" / "tui" / "pages" / "vault.tcss").read_text(encoding="utf-8")
+        assert isinstance(app.screen, HomeScreen)
+    css = (REPO / "knivves" / "tui" / "pages" / "home.tcss").read_text(encoding="utf-8")
     assert ".door-row:hover" in css, "no hover cue on the door rows"
     print("PASS: the doors answer the hand — click opens, hover cue declared")
 

@@ -652,8 +652,7 @@ def home_page(state: "VaultState") -> Group:
 
     brand = Text()
     brand.append("  KNIVVES", style=f"bold {STEEL_BRIGHT}")
-    brand.append("  ╱╱  ", style=STEEL_DIM)
-    brand.append("VAULT", style=f"bold {STEEL_BRIGHT}")
+    brand.append("  ╱╱", style=STEEL_DIM)
     brand.append(f"   v{escape(state.version)}", style=STEEL_DIM)
     brand.append("\n  folding knife research · Canadian retail · local JSON", style=STEEL_DIM)
 
@@ -705,7 +704,7 @@ def home_page(state: "VaultState") -> Group:
     blocks.extend(
         [
             Rule(style=EDGE),
-            Panel(doors, title=f"[{STEEL_MID}]the doors[/]", border_style=EDGE, box=box.ROUNDED, padding=(1, 2)),
+            Panel(doors, title=f"[{STEEL_MID}]commands[/]", border_style=EDGE, box=box.ROUNDED, padding=(1, 2)),
         ]
     )
     return Group(*blocks)

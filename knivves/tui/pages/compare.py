@@ -221,7 +221,7 @@ class Calipers(Widget):
                 segments.extend(Segment(ch, style) for ch, style in cells)
                 return Strip(segments)
             if row == 1 and index == 0:
-                note = "no work between the jaws — in the library, b sends a blade to the bench"
+                note = "nothing to compare — in the library, press b on a knife"
                 pad = max((rail_w - len(note)) // 2, 0)
                 return Strip([
                     Segment(" " * (self.LABEL_W + pad), Style()),
@@ -329,12 +329,12 @@ class CompareScreen(TipsMixin, Screen):
     CSS_PATH = "compare.tcss"
 
     BINDINGS = [
-        ("escape", "clear_bench", "Clear bench"),
+        ("escape", "clear_bench", "Clear"),
         Binding("t", "expand_tip", "tip detail", show=False),
     ]
 
     TIPS = {
-        ROOM_KEY: Tip("compare models — two blades, measured"),
+        ROOM_KEY: Tip("compare models — two knives, measured"),
         "calipers": Tip(
             "the calipers take the measurement",
             "each beam holds both values\nbetween jaws on one scale —\nthe Δ is the span between\nthe jaw tips\n\n"
@@ -356,7 +356,7 @@ class CompareScreen(TipsMixin, Screen):
         with Horizontal(id="bench"):
             yield Plate(id="bench-left", classes="bench-plate")
             with Vertical(id="calipers"):
-                yield Engraving("calipers")
+                yield Engraving("comparison")
                 yield Static("", id="calipers-read", classes="station-body")
             yield Plate(id="bench-right", classes="bench-plate")
             yield TipRail()
@@ -454,9 +454,9 @@ class CompareScreen(TipsMixin, Screen):
             a, b = self.slots
             state = f"{a.brand} vs {b.brand}"
         elif len(self.slots) == 1:
-            state = "one blade placed"
+            state = "one knife placed"
         else:
-            state = "bench empty"
+            state = "nothing to compare"
         self.query_one(Masthead).set_context(state)
 
     # ------------------------------------------------------------ calipers
@@ -468,12 +468,12 @@ class CompareScreen(TipsMixin, Screen):
         if len(self.slots) == 0:
             self._measured = ()
             instrument.clear()
-            read.update(Text("empty bench\n\nin the rack, press b on a\nknife to send it here", style=laws.STEEL_DIM))
+            read.update(Text("nothing to compare\n\nin the library, press b on a\nknife to send it here", style=laws.STEEL_DIM))
             return
         if len(self.slots) == 1:
             self._measured = ()
             instrument.clear()
-            read.update(Text("one blade placed\n\nsend a second from the\nrack to compare", style=laws.STEEL_DIM))
+            read.update(Text("one knife placed\n\nsend a second from the\nlibrary to compare", style=laws.STEEL_DIM))
             return
 
         read.update("")
@@ -498,7 +498,7 @@ class CompareScreen(TipsMixin, Screen):
             if beam.delta is not None:
                 text.append_text(laws.field(beam.label, beam.delta_text, laws.ACCENT))
             else:
-                text.append_text(laws.field(beam.label, "jaws open — a gap", laws.STEEL_DIM))
+                text.append_text(laws.field(beam.label, "missing data", laws.STEEL_DIM))
             text.append("\n")
         linked = sum(1 for link in instrument.links if link.same)
         text.append_text(

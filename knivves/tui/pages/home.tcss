@@ -3,7 +3,7 @@
    plaques over the collection drawn across the floor. Every color is a
    $variable of the `knivves` theme (laws.py). */
 
-VaultScreen {
+HomeScreen {
     layers: base capsule door;
 }
 

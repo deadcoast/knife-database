@@ -64,8 +64,8 @@ class LibraryScreen(TipsMixin, Screen):
     BINDINGS = [
         ("slash", "focus_search", "Search"),
         ("escape", "close_plate", "Close plate"),
-        ("b", "send_bench", "Send to bench"),
-        ("y", "toggle_reserve", "The Reserve"),
+        ("b", "send_bench", "Compare"),
+        ("y", "toggle_reserve", "Buy list"),
         ("a", "classify('approved')", "Approve"),
         ("x", "classify('rejected')", "Reject"),
         Binding("u", "classify('clear')", "Unreview", show=False),
@@ -81,17 +81,17 @@ class LibraryScreen(TipsMixin, Screen):
         ),
         "rack-table": Tip(
             "click a header to sort · again reverses",
-            "enter or click a row — its plate\ntravels in\n\nb — send the row to the bench\n\n"
+            "enter or click a row — its card\ntravels in\n\nb — send the row to compare\n\n"
             "a approve · x reject · u clear —\nthe decision writes the database\nand the row recolors live\n\n"
             "the active sort reads on the\nmasthead beside the room name",
         ),
         "rack-plate": Tip(
-            "the record plate — class colors its edge",
+            "the record card — class colors its edge",
             "approved green · rejected red ·\nunreviewed steel\n\n"
-            "this same plate is stamped on the\nforge line and sits on the bench —\none object, every room",
+            "the same card follows the record\nonto every page",
         ),
         "rack-reserve": Tip(
-            "the reserve — buy list priorities",
+            "buy list priorities",
             "y opens and closes it\n\npriority 1 is the next acquisition\n"
             "Σ is the running cost of the ladder\n\n"
             "the ledger file's BuyList section\nis the source of truth:\nknivves add <file.md>",
@@ -113,13 +113,13 @@ class LibraryScreen(TipsMixin, Screen):
 
     def compose(self) -> ComposeResult:
         yield Masthead("LIBRARY")
-        yield Input(placeholder="/ searches the vault — brand, steel, lock, section …", id="rack-search")
+        yield Input(placeholder="/ search — brand, steel, lock, tag …", id="rack-search")
         yield Plate(id="rack-plate")
         yield Reserve(id="rack-reserve")
         with Horizontal(id="rack-body"):
             yield DataTable(id="rack-table")
             yield Static(
-                "no blades match your search\n\nesc clears the filter",
+                "no knives match your search\n\nesc clears the filter",
                 id="rack-empty",
             )
             yield TipRail()

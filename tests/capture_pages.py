@@ -41,7 +41,7 @@ def _save(app: KnivvesApp, name: str) -> None:
     print(f"captured  {out.relative_to(REPO)}")
 
 
-async def capture_vault() -> None:
+async def capture_home() -> None:
     """The entry hall: brand plate, meters, door slabs, the floor map."""
     app = _fresh_app()
     async with app.run_test(size=SIZE) as pilot:
@@ -49,7 +49,7 @@ async def capture_vault() -> None:
         await pilot.pause()
         await asyncio.sleep(0.8)  # the hall's reveal and floor power-on settle
         await pilot.pause()
-        _save(app, "vault")
+        _save(app, "home")
 
 
 async def capture_library() -> None:
@@ -130,7 +130,7 @@ async def capture_research() -> None:
 
 
 PAGES = {
-    "vault": capture_vault,
+    "home": capture_home,
     "library": capture_library,
     "imports": capture_imports,
     "compare": capture_compare,

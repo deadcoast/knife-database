@@ -51,7 +51,7 @@ class Masthead(Widget):
         fresh = sum(1 for k in knives if k.is_new)
         dot: Run = ("  ·  ", laws.STEEL_DIM, False)
         self._stats = [
-            (f"{len(knives)} blades", laws.STEEL_MID, False),
+            (f"{len(knives)} knives", laws.STEEL_MID, False),
             dot,
             (f"{approved} approved", laws.CLASS_COLORS["approved"], False),
             dot,
@@ -81,7 +81,7 @@ class Masthead(Widget):
         ]
         if y == 0:
             x = 2
-            x = self._stamp(cells, x, ("KNIVVES ╱╱ VAULT", laws.STEEL_BRIGHT, True), y)
+            x = self._stamp(cells, x, ("KNIVVES", laws.STEEL_BRIGHT, True), y)
             x = self._stamp(cells, x + 2, (f"· {self._room}", laws.ACCENT, False), y)
             if self._room_context:
                 self._stamp(cells, x + 2, (self._room_context, laws.STEEL_DIM, False), y)

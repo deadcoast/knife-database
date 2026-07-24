@@ -48,10 +48,10 @@ class MarketScreen(TipsMixin, Screen):
     ]
 
     TIPS = {
-        ROOM_KEY: Tip("market prices — the vault's money"),
+        ROOM_KEY: Tip("market prices — the collection's money"),
         "ledger-valuation": Tip(
             "the collection's financial shape",
-            "value sums each knife's best price ·\nthe histogram is the price\ndistribution across the vault",
+            "value sums each knife's best price ·\nthe histogram is the price\ndistribution across the collection",
         ),
         "ledger-line": Tip(
             "the $150 affordable rule, visualized",
@@ -185,7 +185,7 @@ class MarketScreen(TipsMixin, Screen):
         if not below:
             text.append("   nothing hanging under the line\n", style=laws.STEEL_DIM)
         text.append(
-            f"\n{len(near)} blade(s) ride the ±${ledger.NEAR_LINE_BAND_CAD:,.0f} band",
+            f"\n{len(near)} knives within ${ledger.NEAR_LINE_BAND_CAD:,.0f} of the line",
             style=laws.STEEL_DIM,
         )
         self.query_one("#line-read", Static).update(text)
@@ -204,7 +204,7 @@ class MarketScreen(TipsMixin, Screen):
         else:
             text.append("no survey on record\n\n", style=laws.STEEL_DIM)
             text.append(
-                "press s — the vault re-reads\nevery live listing and\nrecords what moved",
+                "press s — re-reads every\nlive listing and records\nwhat moved",
                 style=laws.STEEL_DIM,
             )
         self.query_one("#movers-read", Static).update(text)

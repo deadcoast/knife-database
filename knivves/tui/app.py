@@ -24,14 +24,14 @@ from .pages.imports import ImportsScreen
 from .pages.library import LibraryScreen
 from .pages.market import MarketScreen
 from .pages.research import ResearchScreen
-from .pages.vault import VaultScreen
+from .pages.home import HomeScreen
 
 
 class KnivvesApp(App):
-    TITLE = "KNIVVES VAULT"
+    TITLE = "KNIVVES"
     CSS_PATH = Path(__file__).resolve().parent / "app.tcss"
     SCREENS = {
-        "vault": VaultScreen,
+        "home": HomeScreen,
         "library": LibraryScreen,
         "imports": ImportsScreen,
         "compare": CompareScreen,
@@ -39,7 +39,7 @@ class KnivvesApp(App):
         "research": ResearchScreen,
     }
     BINDINGS = [
-        ("0", "room('vault')", "Vault"),
+        ("0", "room('home')", "Home"),
         ("1", "room('library')", "Library"),
         ("2", "room('imports')", "Import Knives"),
         ("3", "room('compare')", "Compare Models"),
@@ -87,7 +87,7 @@ class KnivvesApp(App):
     def get_system_commands(self, screen: Screen) -> Iterable[SystemCommand]:
         """The building's pages and operations, reachable from the palette."""
         yield from super().get_system_commands(screen)
-        yield SystemCommand("Vault", "The entry hall — state, doors, next acquisitions", lambda: self.action_room("vault"))
+        yield SystemCommand("Home", "Overview — collection, pages, buy list", lambda: self.action_room("home"))
         yield SystemCommand("Library", "Browse the collection", lambda: self.action_room("library"))
         yield SystemCommand("Import Knives", "Intake a listing URL or an ingestion .md", lambda: self.action_room("imports"))
         yield SystemCommand("Compare Models", "Two blades, measured", lambda: self.action_room("compare"))
@@ -110,8 +110,8 @@ class KnivvesApp(App):
             action()
 
     def on_mount(self) -> None:
-        self.push_screen("vault")
-        open_door(self.get_screen("vault"), brand="KNIVVES  ╱╱  VAULT", hold=BOOT_HOLD)
+        self.push_screen("home")
+        open_door(self.get_screen("home"), brand="KNIVVES", hold=BOOT_HOLD)
 
     def action_room(self, name: str) -> None:
         screen_type = self.SCREENS.get(name)

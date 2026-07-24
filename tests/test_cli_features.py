@@ -202,7 +202,7 @@ def test_bare_knivves_opens_the_home_page() -> None:
     use_tmp()
     result = invoke()
     assert "KNIVVES" in result.output
-    assert "the doors" in result.output
+    assert "commands" in result.output
     assert "Import Knives" in result.output  # the vault's rooms, normalized
 
 

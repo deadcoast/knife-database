@@ -50,7 +50,7 @@ class Reserve(Vertical):
     """
 
     def compose(self) -> ComposeResult:
-        yield Static("THE RESERVE", classes="reserve--title")
+        yield Static("BUY LIST", classes="reserve--title")
         yield Static("buy list · descending priority", classes="reserve--subtitle")
         yield Static("", classes="reserve--body")
         yield Static("", classes="reserve--footer")
@@ -58,8 +58,8 @@ class Reserve(Vertical):
     def set_reserve(self, views: list[tuple[int, KnifeView]], totals: list[float], *, limit: int = 12) -> None:
         body = Text()
         if not views:
-            body.append("the reserve is empty\n\n", style=laws.STEEL_MID)
-            body.append("ingest a ledger with a BuyList\nsection:  knivves add <file.md>", style=laws.STEEL_DIM)
+            body.append("buy list is empty\n\n", style=laws.STEEL_MID)
+            body.append("add one with a BuyList section:\nknivves add <file.md>", style=laws.STEEL_DIM)
             self.query_one(".reserve--body", Static).update(body)
             self.query_one(".reserve--footer", Static).update("")
             return
@@ -73,7 +73,7 @@ class Reserve(Vertical):
             body.append(f"Σ ${running:,.0f}", style=laws.STEEL_DIM)
             body.append("\n")
         if len(views) > limit:
-            body.append(f"\n   … {len(views) - limit} deeper in the reserve", style=laws.STEEL_DIM)
+            body.append(f"\n   … {len(views) - limit} more on the list", style=laws.STEEL_DIM)
         self.query_one(".reserve--body", Static).update(body)
 
         priced = sum(1 for _, k in views if k.price is not None)

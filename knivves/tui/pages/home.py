@@ -39,7 +39,7 @@ from ..tips import ROOM_KEY, Tip, TipCapsule, TipRail, TipsMixin
 from .research import UnknownsMap
 
 DOORS = [
-    ("0", "vault", "VAULT", "the entry hall — you are here"),
+    ("0", "home", "HOME", "overview — you are here"),
     ("1", "library", "LIBRARY", "browse, sort, classify, send"),
     ("2", "imports", "IMPORT KNIVES", "intake a listing URL or an ingestion .md"),
     ("3", "compare", "COMPARE MODELS", "two blades measured on the bench"),
@@ -84,11 +84,9 @@ class BrandPlate(Widget):
         if y == 1:
             brand = "K N I V V E S"
             mark = "╱╱"
-            hall = "V A U L T"
-            x = max(4, (width - (len(brand) + len(mark) + len(hall) + 6)) // 2)
+            x = max(4, (width - (len(brand) + len(mark) + 3)) // 2)
             x = self._stamp(cells, x, brand, laws.STEEL_BRIGHT, bold=True)
-            x = self._stamp(cells, x + 3, mark, laws.ACCENT, bold=True)
-            self._stamp(cells, x + 3, hall, laws.STEEL_BRIGHT, bold=True)
+            self._stamp(cells, x + 3, mark, laws.ACCENT, bold=True)
         if y == 2:
             line = "folding knife research · canadian retail · local json"
             x = max(4, (width - len(line)) // 2)
@@ -111,8 +109,8 @@ class DoorRow(Static):
             opener(self.page)
 
 
-class VaultScreen(TipsMixin, Screen):
-    CSS_PATH = "vault.tcss"
+class HomeScreen(TipsMixin, Screen):
+    CSS_PATH = "home.tcss"
 
     BINDINGS = [
         Binding("t", "expand_tip", "tip detail", show=False),
@@ -120,18 +118,18 @@ class VaultScreen(TipsMixin, Screen):
     ]
 
     TIPS = {
-        ROOM_KEY: Tip("the entry hall — every door in one glance"),
+        ROOM_KEY: Tip("home — the whole database in one glance"),
         "hall-state": Tip(
-            "the vault's state, live",
+            "the collection, live",
             "meters over the same reading the\nCLI home page derives —\none source of truth\n\n"
             "unresearched counts records with\nopen gaps — door 5 fills them",
         ),
         "hall-doors": Tip(
-            "the doors — keys or clicks open them",
+            "the pages — keys or clicks open them",
             "every page is one keypress from\nanywhere in the building\n\n0 always returns here",
         ),
         "hall-reserve": Tip(
-            "the next acquisitions",
+            "the buy list — next purchases",
             "the buy list's top rungs with the\nrunning cost\n\n"
             "the full ladder rides the library —\n1 then y",
         ),
@@ -151,25 +149,25 @@ class VaultScreen(TipsMixin, Screen):
         return self.knivves.knives
 
     def compose(self) -> ComposeResult:
-        yield Masthead("ENTRY HALL")
+        yield Masthead("HOME")
         yield BrandPlate(id="hall-brand")
         with Horizontal(id="hall"):
             with Vertical(id="hall-state", classes="hall-fixture"):
-                yield Engraving("vault state")
+                yield Engraving("collection")
                 yield MeterBar("approved", id="meter-approved")
                 yield MeterBar("researched", id="meter-researched")
                 yield MeterBar("priced", id="meter-priced")
                 yield MeterBar("under $150", id="meter-affordable")
                 yield Static("", classes="hall-fixture-body", id="hall-state-body")
             with Vertical(id="hall-doors", classes="hall-fixture"):
-                yield Engraving("the doors")
+                yield Engraving("pages")
                 with Vertical(id="hall-doors-body", classes="hall-fixture-body"):
                     for key, page, name, describes in DOORS:
                         row = DoorRow(page, id=f"door-{page}", classes="door-row")
                         row.update(self._door_text(key, name, describes))
                         yield row
             with Vertical(id="hall-reserve", classes="hall-fixture"):
-                yield Engraving("the reserve")
+                yield Engraving("buy list")
                 yield Static("", classes="hall-fixture-body", id="hall-reserve-body")
             yield TipRail()
         yield UnknownsMap(id="hall-map")
@@ -249,7 +247,7 @@ class VaultScreen(TipsMixin, Screen):
         # every number is spoken, not derived — the provider is the
         # single reading both front doors share
         text = Text()
-        text.append_text(laws.field("blades", str(state.blades)))
+        text.append_text(laws.field("knives", str(state.blades)))
         if state.fresh:
             text.append(f"  ·  {state.fresh} ★new", style=f"bold {laws.FRESH}")
         text.append("\n")
@@ -265,7 +263,7 @@ class VaultScreen(TipsMixin, Screen):
         text.append("\n")
         text.append_text(
             laws.field(
-                "window",
+                "new cache",
                 f"gen {state.generation} · keeps {state.keep_generations}",
                 laws.STEEL_DIM,
             )
@@ -287,8 +285,8 @@ class VaultScreen(TipsMixin, Screen):
         totals = state.ladder_totals
         text = Text()
         if not views:
-            text.append("the reserve is empty\n\n", style=laws.STEEL_MID)
-            text.append("ingest a ledger with a BuyList\nsection:  knivves add <file.md>", style=laws.STEEL_DIM)
+            text.append("buy list is empty\n\n", style=laws.STEEL_MID)
+            text.append("add one with a BuyList section:\nknivves add <file.md>", style=laws.STEEL_DIM)
             return text
         for (priority, knife), running in list(zip(views, totals))[:3]:
             text.append(f"{priority:>2} ", style=f"bold {laws.ACCENT}")
@@ -301,5 +299,5 @@ class VaultScreen(TipsMixin, Screen):
             text.append("\n")
         deeper = len(views) - 3
         if deeper > 0:
-            text.append(f"\n   +{deeper} deeper — the ladder rides\n   the library: 1 then y", style=laws.STEEL_DIM)
+            text.append(f"\n   +{deeper} more — press 1 then y,\n   or: knivves buylist", style=laws.STEEL_DIM)
         return text

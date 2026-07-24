@@ -160,13 +160,13 @@ class GateBank(Widget):
     def _status_line(self, width: int) -> Strip:
         if self._slammed is not None:
             hit = ", ".join(self._hits)
-            text, color = f"LOCK THROWN ✗ matched: {hit}", laws.FAIL
+            text, color = f"BLOCKED ✗ matched: {hit}", laws.FAIL
         elif self.open_count == self.total:
-            text, color = "LOCK OPEN — CLEAR TO PROCEED", laws.PASS
+            text, color = f"{self.total}/{self.total} RULES CLEAR — CLEAR TO PROCEED", laws.PASS
         elif self._probing is not None:
-            text, color = f"BOLT {self._probing + 1}/{self.total} UNDER TEST", laws.ACCENT
+            text, color = f"RULE {self._probing + 1}/{self.total} — CHECKING", laws.ACCENT
         else:
-            text, color = f"{self.total}-BOLT LOCK — thrown", laws.STEEL_DIM
+            text, color = f"{self.total} RULES — awaiting a listing", laws.STEEL_DIM
         return Strip([Segment(text[:width], Style(color=color, bold=True))])
 
     def _bolt_line(self, width: int, index: int) -> Strip:
@@ -264,9 +264,9 @@ class TapeReader(Widget):
             return Strip(segments)
         if y == 2:
             if not self._tape:
-                note = "tape empty — awaiting a listing"
+                note = "no listing loaded"
             else:
-                note = f"{len(self._spans)} span(s) lit from the tape"
+                note = f"{len(self._spans)} value(s) matched in the title"
             return Strip([Segment(note[:width], Style(color=laws.STEEL_DIM))])
         return Strip([])
 
@@ -346,7 +346,7 @@ class ImportsScreen(TipsMixin, Screen):
 
     AUTO_FOCUS = ""  # the intake slot is entered by click, not by default
     BINDINGS = [
-        ("r", "replay", "Replay demo transit"),
+        ("r", "replay", "Replay demo"),
         ("escape", "dismiss_tip", "", ),
         Binding("t", "expand_tip", "tip detail", show=False),
     ]
@@ -385,17 +385,17 @@ class ImportsScreen(TipsMixin, Screen):
         )
         with Horizontal(id="forge-line"):
             with Vertical(classes="station", id="st-extract"):
-                yield Engraving("extract")
+                yield Engraving("parse")
                 yield TapeReader(id="tape")
                 yield Static("", id="extract-log", classes="station-body")
                 yield ParseRegister(id="parse-register")
             with Vertical(classes="station", id="st-legal"):
-                yield Engraving("legal screen")
+                yield Engraving("legal check")
                 yield GateBank(id="gatebank")
                 yield Static("", id="gates", classes="station-body")
                 yield Teletype(id="legal-log", classes="station-body")
             with Vertical(classes="station", id="st-vault"):
-                yield Engraving("vault")
+                yield Engraving("save")
                 yield Static("", id="filed", classes="station-body")
                 yield MeterBar("★new", id="meter-window")
                 yield Static("", id="vault-tally", classes="station-body")
@@ -426,7 +426,7 @@ class ImportsScreen(TipsMixin, Screen):
                     )
                     for i, rule in enumerate(rules, start=1)
                 ],
-                lead=Text("the rulebook — one bolt per rule:\n\n", style=laws.STEEL_DIM),
+                lead=Text("the 7 prohibited-mechanism rules:\n\n", style=laws.STEEL_DIM),
                 cadence=0.2,
             ),
             group="legal-log",
@@ -444,7 +444,7 @@ class ImportsScreen(TipsMixin, Screen):
             fresh / blades, f"{fresh}/{len(knives)}", laws.FRESH if fresh else None
         )
         tally = Text()
-        tally.append_text(laws.field("in vault", str(len(knives))))
+        tally.append_text(laws.field("saved", str(len(knives))))
         tally.append("\n")
         tally.append_text(laws.field(
             "filed", f"{self._session_filed} this session",
@@ -454,7 +454,7 @@ class ImportsScreen(TipsMixin, Screen):
         tally.append_text(laws.field("refused", f"{self._session_refused} duplicate(s)", laws.STEEL_DIM))
         tally.append("\n")
         tally.append_text(laws.field(
-            "rejected", f"{self._session_rejected} by the lock",
+            "rejected", f"{self._session_rejected} by the rules",
             laws.FAIL if self._session_rejected else laws.STEEL_DIM,
         ))
         self.query_one("#vault-tally", Static).update(tally)
@@ -567,7 +567,7 @@ class ImportsScreen(TipsMixin, Screen):
             checked.append("no match\n", style=laws.STEEL_DIM)
             log.update(checked)
             await bank.retract(index)
-        gates.update(Text("the lock is open — CLEAR TO PROCEED", style=laws.PASS))
+        gates.update(Text("all rules clear — CLEAR TO PROCEED", style=laws.PASS))
         return None
 
     async def _travel_to(self, station_id: str, plate: Plate) -> None:
@@ -627,17 +627,17 @@ class ImportsScreen(TipsMixin, Screen):
     async def live_transit(self, url: str) -> None:
         plate, extract_log, gates, filed = self._stations()
         self._reset_line(plate)
-        self._line_state("line: extract ▸")
+        self._line_state("parsing ▸")
         plate.add_class("carrying")
         plate.begin("INCOMING", url.split("//")[-1][:42])
 
         duplicate = self._already_filed(url)
         if duplicate:
-            extract_log.update(Text(f"already in the vault: {duplicate}", style=laws.ACCENT))
+            extract_log.update(Text(f"already in the database: {duplicate}", style=laws.ACCENT))
             plate.begin("DUPLICATE", duplicate)
             self._session_refused += 1
             self._vault_readout()
-            self._line_state("line: duplicate — nothing to do")
+            self._line_state("duplicate — already saved")
             return
 
         extract_log.update(Text("fetching listing…", style=laws.STEEL_DIM))
@@ -646,7 +646,7 @@ class ImportsScreen(TipsMixin, Screen):
         except scrape.ScrapeError as exc:
             extract_log.update(Text(str(exc), style=laws.FAIL))
             plate.styles.border = ("heavy", laws.FAIL)
-            self._line_state("line: fault ✗")
+            self._line_state("fault ✗")
             return
 
         plate.begin(listing.listing_title[:42] or "UNTITLED LISTING", listing.url.split("//")[-1][:42])
@@ -662,9 +662,9 @@ class ImportsScreen(TipsMixin, Screen):
             plate.stamp(label, value)
             self.call_after_refresh(self._settle)
             await asyncio.sleep(0.35)
-        extract_log.update(Text(f"{len(stamps)} fields parsed · {tape.lit_count} from the tape", style=laws.PASS))
+        extract_log.update(Text(f"{len(stamps)} fields parsed · {tape.lit_count} matched in the title", style=laws.PASS))
 
-        self._line_state("line: legal screen ▸")
+        self._line_state("legal check ▸")
         await self._travel_to("st-legal", plate)
 
         thrown = await self._run_lock(listing.listing_title)
@@ -676,21 +676,21 @@ class ImportsScreen(TipsMixin, Screen):
             filed.update(Text("not filed — prohibited mechanism identified", style=laws.FAIL))
             self._session_rejected += 1
             self._vault_readout()
-            self._line_state("line: rejected ✗")
+            self._line_state("rejected ✗")
             return
         await asyncio.sleep(0.5)
 
-        self._line_state("line: vault ▸")
+        self._line_state("saving ▸")
         await self._travel_to("st-vault", plate)
         view = self.knivves.file_record(self._record_from(listing))
         landed = Text()
         landed.append(f"{view.display_name}\n", style=laws.STEEL_BRIGHT)
         landed.append(f"filed · {view.id}\n", style=laws.STEEL_DIM)
-        landed.append("now in the rack · awaiting review", style=laws.STEEL_DIM)
+        landed.append("saved · now in the library", style=laws.STEEL_DIM)
         filed.update(landed)
         self._session_filed += 1
         self._vault_readout()
-        self._line_state("line: filed ✓")
+        self._line_state("saved ✓")
         self.query_one(Masthead).update_stats(self.knivves.knives)
 
     # ---------------------------------------------------------- file intake
@@ -702,7 +702,7 @@ class ImportsScreen(TipsMixin, Screen):
 
         plate, extract_log, gates, filed = self._stations()
         self._reset_line(plate)
-        self._line_state("line: reading ledger ▸")
+        self._line_state("reading ledger ▸")
         path = _Path(raw_path).expanduser()
         plate.add_class("carrying")
         plate.begin("INGESTION LEDGER", path.name[:42])
@@ -710,21 +710,21 @@ class ImportsScreen(TipsMixin, Screen):
         if not path.exists():
             extract_log.update(Text(f"no such file: {path}", style=laws.FAIL))
             plate.styles.border = ("heavy", laws.FAIL)
-            self._line_state("line: fault ✗")
+            self._line_state("fault ✗")
             return
         try:
             text = path.read_text(encoding="utf-8-sig")
         except OSError as exc:
             extract_log.update(Text(str(exc), style=laws.FAIL))
             plate.styles.border = ("heavy", laws.FAIL)
-            self._line_state("line: fault ✗")
+            self._line_state("fault ✗")
             return
 
         doc = ingest.parse_document(text)
         if not doc.sections:
             extract_log.update(Text("no SectionIDs found — not an ingestion ledger", style=laws.FAIL))
             plate.styles.border = ("heavy", laws.FAIL)
-            self._line_state("line: fault ✗")
+            self._line_state("fault ✗")
             return
 
         plate.begin((doc.title or "UNTITLED LEDGER")[:42], path.name[:42])
@@ -744,7 +744,7 @@ class ImportsScreen(TipsMixin, Screen):
         log.append(f"\n{len(doc.sections)} sections · {total} entries read", style=laws.PASS)
         extract_log.update(log)
 
-        self._line_state("line: the plan screens ▸")
+        self._line_state("the plan ▸")
         await self._travel_to("st-legal", plate)
         plan = ingest.build_plan(doc, self.knivves.db)
         screen = Text()
@@ -764,11 +764,11 @@ class ImportsScreen(TipsMixin, Screen):
         gates.update(screen)
         await asyncio.sleep(0.7)
 
-        self._line_state("line: filing ▸")
+        self._line_state("saving batch ▸")
         await self._travel_to("st-vault", plate)
         if not plan.new_records and not plan.merges and not plan.sources:
             filed.update(Text("nothing new — every entry already lives in the vault", style=laws.STEEL_DIM))
-            self._line_state("line idle · url, .md, or r")
+            self._line_state("idle · url, .md, or r")
             return
         backup_database("before-ingest", self.knivves.db_path)
         report = ingest.apply_plan(plan, self.knivves.db)
@@ -785,7 +785,7 @@ class ImportsScreen(TipsMixin, Screen):
         filed.update(landed)
         self._session_filed += report.added
         self._vault_readout()
-        self._line_state(f"line: filed {report.added} ✓")
+        self._line_state(f"saved {report.added} ✓")
         self.query_one(Masthead).update_stats(self.knivves.knives)
 
     # ---------------------------------------------------------- demo transit
@@ -798,7 +798,7 @@ class ImportsScreen(TipsMixin, Screen):
         knife = self._sample()
         plate, extract_log, gates, filed = self._stations()
         self._reset_line(plate)
-        self._line_state("line: demo ▸")
+        self._line_state("demo ▸")
         plate.add_class("carrying")
         plate.begin("INCOMING", "")
         extract_log.update(Text("reading listing…", style=laws.STEEL_DIM))
@@ -825,7 +825,7 @@ class ImportsScreen(TipsMixin, Screen):
             plate.stamp(label, value)
             self.call_after_refresh(self._settle)
             await asyncio.sleep(0.45)
-        extract_log.update(Text(f"{len(stamps)} fields parsed · {tape.lit_count} from the tape", style=laws.PASS))
+        extract_log.update(Text(f"{len(stamps)} fields parsed · {tape.lit_count} matched in the title", style=laws.PASS))
 
         await self._travel_to("st-legal", plate)
         await self._run_lock(demo_tape)
@@ -834,10 +834,10 @@ class ImportsScreen(TipsMixin, Screen):
         await self._travel_to("st-vault", plate)
         landed = Text()
         landed.append(f"{knife.display_name}\n", style=laws.STEEL_BRIGHT)
-        landed.append("demo transit · nothing was written", style=laws.STEEL_DIM)
+        landed.append("demo · nothing was saved", style=laws.STEEL_DIM)
         filed.update(landed)
         invite = Text()
         invite.append(f"{len(stamps)} fields parsed\n", style=laws.PASS)
         invite.append("paste a url above for a real intake", style=laws.STEEL_DIM)
         extract_log.update(invite)
-        self._line_state("line idle · url, .md, or r")
+        self._line_state("idle · url, .md, or r")

@@ -1,5 +1,37 @@
 # CHANGELOG
 
+## 011 — v0.15.0 (2026-07-24) — PLAIN LANGUAGE, EVERYWHERE
+
+The owner's standing correction, applied for good this time: no
+invented vocabulary anywhere a user reads. The instruments and motion
+stay; every label now says what the thing is.
+
+- **Page 0 is HOME** — module `pages/home.py`, `HomeScreen`, key
+  `home`, footer key `0 Home`. Its plaques read COLLECTION / PAGES /
+  BUY LIST; the state lines read KNIVES / GAPS / AVG / NEW CACHE. The
+  brand is just KNIVVES — masthead, boot door, nameplate, CLI page.
+- **Import Knives** — stations read PARSE / LEGAL CHECK / SAVE. The
+  rule bank reads "7/7 RULES CLEAR — CLEAR TO PROCEED" / "BLOCKED ✗
+  matched: …"; the title strip reads "N value(s) matched in the
+  title"; the tally reads SAVED / FILED / REFUSED / REJECTED by the
+  rules; statuses read "parsing ▸ / legal check ▸ / saving ▸ /
+  saved ✓ / idle". "already in the database", "demo — nothing was
+  saved".
+- **Research** — stations read QUEUE / READ / SAVE; statuses count "N
+  in queue"; summaries read "N fields filled — shown in amber",
+  "saved to the database"; the map legend reads "dark = unknown ·
+  +N off screen".
+- **Compare / Library / Market** — "nothing to compare", "one knife
+  placed", "missing data"; search reads "/ search — brand, steel,
+  lock, tag …", "no knives match", buttons read Compare and Buy list;
+  the side panel and home plaque read BUY LIST; "N knives within $25
+  of the line"; every "blades"/"the vault" in stats and tips is now
+  "knives"/"the collection"/"the database". The CLI welcome panel
+  reads "commands".
+- Eighteen shell proofs and all backend suites green after the rename
+  (tests updated in lockstep); every exhibit regenerated; version
+  stamps 0.15.0.
+
 ## 010 — v0.14.0 (2026-07-24) — STATION INSTRUMENTS
 
 The lower halves stop being panels and become working hardware — every

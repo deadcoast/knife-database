@@ -303,7 +303,7 @@ class UnknownsMap(Widget):
         # the legend stands down while a marker is up — they never share cells
         marker_up = self._working is not None or self._spotlight is not None
         if self._reveal is None and not marker_up:
-            note = f"1 column = 1 knife · dark socket = unknown{f' · +{hidden} beyond the edge' if hidden > 0 else ''}"
+            note = f"1 column = 1 knife · dark = unknown{f' · +{hidden} off screen' if hidden > 0 else ''}"
             start = max(self.LABEL_W, width - len(note) - 1)
             for i, ch in enumerate(note):
                 x = start + i
@@ -361,21 +361,21 @@ class ResearchScreen(TipsMixin, Screen):
     ]
 
     TIPS = {
-        ROOM_KEY: Tip("research — the vault fills its own unknowns"),
+        ROOM_KEY: Tip("research — fills missing data from listings"),
         "desk-map": Tip(
-            "the unknowns map — every hole in the vault",
+            "the unknowns map — every missing fact",
             "one column per knife,\none row per fact\n\n"
             "▪ lit — the vault knows\n· socket — a hole\n▪ amber — learned by\n  the pass running now",
         ),
         "st-docket": Tip(
-            "the card file — who is next, and why",
+            "the queue — who is next, and why",
             "ordered by law:\n  buy-list rank first,\n  then ★new,\n  then most gaps\n\n"
             "each card's punch-row is\nits column on the map\n\n"
             "the unreachable shelf:\n  no supported listing —\n  kept and said,\n  never skipped silently",
         ),
         "st-read": Tip("read — the record's own listing, learned fact by fact"),
         "st-stamp": Tip(
-            "stamp — only empty fields land",
+            "save — only empty fields are written",
             "fill-only-empty law:\n  user data is never\n  overwritten\n\n"
             "rulebook hits are\nreported on the log —\nthe flag stays yours",
         ),
@@ -389,15 +389,15 @@ class ResearchScreen(TipsMixin, Screen):
         yield UnknownsMap(id="desk-map")
         with Horizontal(id="desk-line"):
             with Vertical(classes="station", id="st-docket"):
-                yield Engraving("the card file")
+                yield Engraving("queue")
                 yield Vertical(id="docket", classes="station-body")
             with Vertical(classes="station", id="st-read"):
                 yield Engraving("read")
                 yield Teletype(id="read-log", classes="station-body")
             with Vertical(classes="station", id="st-stamp"):
-                yield Engraving("stamp")
+                yield Engraving("save")
                 yield MeterBar("complete", id="meter-complete")
-                yield MeterBar("docket", id="meter-docket")
+                yield MeterBar("queue", id="meter-docket")
                 yield Static("", id="stamped", classes="station-body")
             yield TipRail()
         yield Plate(id="desk-plate")
@@ -510,7 +510,7 @@ class ResearchScreen(TipsMixin, Screen):
         self.query_one("#meter-docket", MeterBar).set_meter(
             len(plan.planned) / records, f"{len(plan.planned)} open", laws.ACCENT
         )
-        self._line_state(f"desk: {len(plan.planned)} on the docket · {audit.complete}/{audit.records} complete")
+        self._line_state(f"{len(plan.planned)} in queue · {audit.complete}/{audit.records} complete")
 
     def _refresh_docket(self, plan: research.PassSummary, active: str | None = None) -> None:
         # the card file rebuilt as hardware: one DocketCard per tab, each
@@ -528,7 +528,7 @@ class ResearchScreen(TipsMixin, Screen):
                 widgets.append(card)
             if len(plan.planned) > 10:
                 widgets.append(Static(
-                    Text(f"    +{len(plan.planned) - 10} deeper", style=laws.STEEL_DIM),
+                    Text(f"    +{len(plan.planned) - 10} more", style=laws.STEEL_DIM),
                     id="docket-overflow",
                 ))
         else:
@@ -576,7 +576,7 @@ class ResearchScreen(TipsMixin, Screen):
             text.append("\n")
             text.append(f"    {entry.reason[:30]}\n", style=laws.STEEL_DIM)
         if len(plan.unreachable) > 4:
-            text.append(f" +{len(plan.unreachable) - 4} more on the shelf\n", style=laws.STEEL_DIM)
+            text.append(f" +{len(plan.unreachable) - 4} more unreachable\n", style=laws.STEEL_DIM)
         return text
 
     # ------------------------------------------------------------ live pass
@@ -586,7 +586,7 @@ class ResearchScreen(TipsMixin, Screen):
         plan = research.run_research(db, dry_run=True)
         if not plan.planned:
             self._refresh_desk()
-            self._line_state("desk: nothing to research ✓")
+            self._line_state("nothing to research ✓")
             return
         self._pass_active = True
         rules = research.rulebook(db)
@@ -618,15 +618,15 @@ class ResearchScreen(TipsMixin, Screen):
         stamped = self.query_one("#stamped", Static)
         summary = Text()
         summary.append(f"{worked} records researched\n", style=laws.STEEL_BRIGHT)
-        summary.append(f"{filled_total} facts learned — the amber wake\n", style=laws.PASS if filled_total else laws.STEEL_DIM)
+        summary.append(f"{filled_total} fields filled — shown in amber\n", style=laws.PASS if filled_total else laws.STEEL_DIM)
         for rid, rule in hits:
             summary.append(f"⚑ {rid[:20]} — {rule}\n", style=laws.FAIL)
             summary.append("  reported only · the flag stays yours\n", style=laws.STEEL_DIM)
-        summary.append("\nthe database holds the fills", style=laws.STEEL_DIM)
+        summary.append("\nsaved to the database", style=laws.STEEL_DIM)
         stamped.update(summary)
         self.query_one(Masthead).update_stats(self.knivves.knives)
         self._refresh_desk()
-        self._line_state(f"desk: {filled_total} fills filed ✓ · s again · r demo")
+        self._line_state(f"{filled_total} fields saved ✓ · s again · r demo")
 
     async def _work_one(
         self,
@@ -649,7 +649,7 @@ class ResearchScreen(TipsMixin, Screen):
         self.call_after_refresh(self._settle)
         await asyncio.sleep(0.4)
 
-        self._line_state(f"desk: reading {entry.knife_id[:28]} ▸")
+        self._line_state(f"reading {entry.knife_id[:28]} ▸")
         await self._travel_to("st-read", plate)
         read_log.update(Text("pulling the listing…", style=laws.STEEL_DIM))
         try:
@@ -696,7 +696,7 @@ class ResearchScreen(TipsMixin, Screen):
         unknowns = self.query_one("#desk-map", UnknownsMap)
         self._pass_active = True
         self._reset_line(plate)
-        self._line_state("desk: demo ▸")
+        self._line_state("demo ▸")
         unknowns.mark_working(knife.id)
 
         await asyncio.sleep(0.4)
@@ -723,8 +723,8 @@ class ResearchScreen(TipsMixin, Screen):
             await asyncio.sleep(0.45)
         verdict = Text()
         verdict.append("2 fields stamped\n", style=laws.PASS)
-        verdict.append("demo transit — nothing was written\n\n", style=laws.STEEL_DIM)
-        verdict.append("s researches the docket for real", style=laws.STEEL_DIM)
+        verdict.append("demo — nothing was saved\n\n", style=laws.STEEL_DIM)
+        verdict.append("press s to research for real", style=laws.STEEL_DIM)
         stamped.update(verdict)
         unknowns.mark_working(None)
         self._pass_active = False
