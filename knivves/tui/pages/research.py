@@ -41,7 +41,7 @@ from ... import research, scrape
 from ...models import KnifeView, knife_views
 from ...store import backup_database, save_database
 from .. import laws
-from ..gauges import EIGHTHS, _lerp
+from ..gauges import EIGHTHS, MeterBar, _lerp
 from ..masthead import Masthead
 from ..plate import Plate
 from ..surfaces import Engraving, Teletype
@@ -396,6 +396,8 @@ class ResearchScreen(TipsMixin, Screen):
                 yield Teletype(id="read-log", classes="station-body")
             with Vertical(classes="station", id="st-stamp"):
                 yield Engraving("stamp")
+                yield MeterBar("complete", id="meter-complete")
+                yield MeterBar("docket", id="meter-docket")
                 yield Static("", id="stamped", classes="station-body")
             yield TipRail()
         yield Plate(id="desk-plate")
@@ -501,6 +503,13 @@ class ResearchScreen(TipsMixin, Screen):
                 columns.append((knife.id, {g.field for g in audit.gaps_by_id.get(knife.id, [])}))
         self.query_one("#desk-map", UnknownsMap).set_state(columns)
         self._refresh_docket(plan, active)
+        records = max(audit.records, 1)
+        self.query_one("#meter-complete", MeterBar).set_meter(
+            audit.complete / records, f"{audit.complete}/{audit.records}", laws.PASS
+        )
+        self.query_one("#meter-docket", MeterBar).set_meter(
+            len(plan.planned) / records, f"{len(plan.planned)} open", laws.ACCENT
+        )
         self._line_state(f"desk: {len(plan.planned)} on the docket · {audit.complete}/{audit.records} complete")
 
     def _refresh_docket(self, plan: research.PassSummary, active: str | None = None) -> None:

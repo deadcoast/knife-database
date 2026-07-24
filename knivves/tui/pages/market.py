@@ -26,7 +26,7 @@ from ... import ledger, scrape
 from ...models import KnifeView, knife_views
 from ...store import save_database
 from .. import laws
-from ..gauges import GradientBars, PriceScale
+from ..gauges import GradientBars, MeterBar, PriceScale
 from ..masthead import Masthead
 from ..surfaces import Engraving
 from ..tips import ROOM_KEY, Tip, TipCapsule, TipRail, TipsMixin
@@ -84,6 +84,8 @@ class MarketScreen(TipsMixin, Screen):
                 yield Static("", id="line-read", classes="station-body")
             with Vertical(classes="station", id="ledger-movers"):
                 yield Engraving("market survey")
+                yield MeterBar("history", id="meter-history")
+                yield MeterBar("priced", id="meter-priced")
                 yield Static("", id="movers-read", classes="station-body")
             yield TipRail()
         yield TipCapsule()
@@ -151,26 +153,48 @@ class MarketScreen(TipsMixin, Screen):
         self.query_one(GradientBars).update_bars(ledger.price_buckets(knives))
 
     def _read_line(self) -> None:
+        """The $150 line drawn as a two-sided ladder: blades over the line
+        descending onto it, the amber rule cut across the panel, blades
+        under it hanging below — the rule as geography, not a list."""
+        threshold = ledger.AFFORDABLE_THRESHOLD_CAD
         near = ledger.near_the_line(self.knivves.knives)
+        above = sorted((k for k in near if (k.price or 0) >= threshold), key=lambda k: k.price or 0, reverse=True)
+        below = sorted((k for k in near if (k.price or 0) < threshold), key=lambda k: k.price or 0, reverse=True)
+
+        def rung(text: Text, knife, over: bool) -> None:
+            price = knife.price or 0
+            distance = abs(price - threshold)
+            name = knife.display_name
+            name = name[:15] + "…" if len(name) > 16 else name
+            text.append(" ▴ " if over else " ▾ ", style=laws.STEEL_MID if over else laws.PASS)
+            text.append(f"{name:<17}", style=laws.STEEL_BRIGHT)
+            text.append(f"{price:>5,.0f}", style=laws.ACCENT)
+            text.append(f"  Δ${distance:,.0f}\n", style=laws.STEEL_DIM)
+
         text = Text()
+        text.append(f"the rule re-tags at ${threshold:,.0f}\n\n", style=laws.STEEL_DIM)
+        if not above:
+            text.append("   nothing riding above the line\n", style=laws.STEEL_DIM)
+        for knife in above[:4]:
+            rung(text, knife, over=True)
+        text.append("━━━━━━━ ", style=laws.ACCENT)
+        text.append(f"${threshold:,.0f}", style=f"bold {laws.ACCENT}")
+        text.append(" ━━━━━━━━━━━━\n", style=laws.ACCENT)
+        for knife in below[:4]:
+            rung(text, knife, over=False)
+        if not below:
+            text.append("   nothing hanging under the line\n", style=laws.STEEL_DIM)
         text.append(
-            f"the rule re-tags at ${ledger.AFFORDABLE_THRESHOLD_CAD:,.0f} —\n"
-            f"within ${ledger.NEAR_LINE_BAND_CAD:,.0f} of the line:\n\n",
+            f"\n{len(near)} blade(s) ride the ±${ledger.NEAR_LINE_BAND_CAD:,.0f} band",
             style=laws.STEEL_DIM,
         )
-        if not near:
-            text.append("nothing near the line", style=laws.STEEL_DIM)
-        for knife in near[:8]:
-            price = knife.price or 0
-            below = price < ledger.AFFORDABLE_THRESHOLD_CAD
-            distance = abs(price - ledger.AFFORDABLE_THRESHOLD_CAD)
-            name = knife.display_name
-            name = name[:13] + "…" if len(name) > 14 else name
-            text.append("▾ " if below else "▴ ", style=laws.PASS if below else laws.STEEL_MID)
-            text.append(f"{name:<15}", style=laws.STEEL_BRIGHT)
-            text.append(f"{price:>7,.0f}", style=laws.ACCENT)
-            text.append(f" Δ${distance:,.0f}\n", style=laws.STEEL_DIM)
         self.query_one("#line-read", Static).update(text)
+        knives = self.knivves.knives
+        blades = max(len(knives), 1)
+        deep = sum(1 for k in knives if len(k.raw.get("price_history") or []) > 1)
+        priced = sum(1 for k in knives if k.price is not None)
+        self.query_one("#meter-history", MeterBar).set_meter(deep / blades, f"{deep}/{len(knives)}")
+        self.query_one("#meter-priced", MeterBar).set_meter(priced / blades, f"{priced}/{len(knives)}")
 
     def _idle_movers(self) -> None:
         surveyed = any(len(k.raw.get("price_history") or []) > 1 for k in self.knivves.knives)

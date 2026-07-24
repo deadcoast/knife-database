@@ -1,5 +1,35 @@
 # CHANGELOG
 
+## 010 — v0.14.0 (2026-07-24) — STATION INSTRUMENTS
+
+The lower halves stop being panels and become working hardware — every
+station now carries an instrument fed by real data, finishing the
+room-presence correction (009) across imports, market, and research.
+
+- **The parse register** (`imports.py::ParseRegister`) — the extractor's
+  lower bank: one slot per fact the parser can pull. A slot lights
+  amber when its value came off the tape itself, steel when learned
+  elsewhere on the page, and stays a dark socket with a channel dash
+  when the listing never gave it up — the parse, honest, in one glance.
+  Both transits and the demo stamp it; the line reset clears it.
+- **The check log under the lock** — the legal station's lower half is
+  a teletype: on entry it prints the rulebook itself (one bolt per
+  rule, paced); during a transit it logs the check rule by rule —
+  ● no match in steel, ✗ matched in FAIL — while the bolts animate
+  above. The pseudo-terminal surface now works two rooms.
+- **The vault tally** — the filing station counts its session: the
+  ★new window as a mint meter over IN VAULT / FILED / REFUSED /
+  REJECTED counters, incremented by live, file, and duplicate paths.
+- **The $150 line as geography** — market's middle station draws the
+  rule instead of listing near it: blades over the line descend onto
+  the amber ━━ $150 ━━ cut, blades under it hang below in pass-green,
+  with the band population counted. The survey station gains HISTORY
+  and PRICED meters over the whole collection.
+- **The stamp meters** — research's STAMP station carries COMPLETE
+  (pass-green) and DOCKET-open (amber) meters, live through passes and
+  refreshes. Suite still eighteen proofs green; exhibits regenerated
+  and eyes-on; version stamps 0.14.0.
+
 ## 009 — v0.13.0 (2026-07-23) — ROOM PRESENCE
 
 The rooms stop floating boxes on a void. Owner's verdict on the 008

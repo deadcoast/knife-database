@@ -1684,8 +1684,6 @@ This is a well designed feature on an application. Not a well designed applicati
 
 ---
 
-You're right about the result, and I'll own it specifically rather than defend it. Looking at those six screenshots the way you look at them:
-
 - The hall — the front door of the app — is three thin boxes of plain text floating in ~65% empty black. No drawn steel, no engraving, no machined material at all in the one room that's supposed to sell the building. A third of it is an empty box apologizing that the reserve is empty.
 - Compare is two plates and a tiny 34-column box in an ocean of nothing. The room is named after the calipers and the calipers get 8 rows.
 - Imports and Research have the same disease below the fold: content in the top fifth of each station, void underneath.

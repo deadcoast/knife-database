@@ -34,8 +34,9 @@ from ...models import knife_views
 from ...research import RULE_KEYWORDS
 from ...store import backup_database, make_knife_id, save_database
 from .. import laws
+from ..gauges import MeterBar
 from ..masthead import Masthead
-from ..surfaces import Engraving
+from ..surfaces import Engraving, Teletype
 from ..plate import Plate
 from ..tips import ROOM_KEY, Tip, TipCapsule, TipRail, TipsMixin
 
@@ -270,6 +271,56 @@ class TapeReader(Widget):
         return Strip([])
 
 
+class ParseRegister(Widget):
+    """The extractor's register: one slot per fact the parser can pull.
+    A slot lights amber when its value came off the tape itself, steel
+    when it was learned elsewhere on the page, and stays a dark socket
+    when the listing never gave it up — the parse, honest, in one bank."""
+
+    SLOTS = ["source", "brand", "model", "steel", "lock", "open", "length", "price", "stock"]
+    ALIASES = {"opening": "open", "availability": "stock", "len": "length", "retailer": "source"}
+
+    DEFAULT_CSS = """
+    ParseRegister {
+        height: auto;
+        margin-top: 1;
+    }
+    """
+
+    def __init__(self, **kwargs) -> None:
+        super().__init__(**kwargs)
+        self._values: dict[str, tuple[str, bool]] = {}
+
+    def reset(self) -> None:
+        self._values = {}
+        self.refresh()
+
+    def stamp(self, label: str, value: str, from_tape: bool) -> None:
+        key = self.ALIASES.get(label.lower(), label.lower())
+        self._values[key] = (value, from_tape)
+        self.refresh()
+
+    def get_content_height(self, container, viewport, width: int) -> int:
+        return len(self.SLOTS)
+
+    def render_line(self, y: int) -> Strip:
+        width = self.size.width
+        if width <= 0 or y >= len(self.SLOTS):
+            return Strip([]).adjust_cell_length(max(width, 0), Style())
+        slot = self.SLOTS[y]
+        held = self._values.get(slot)
+        segments = [Segment(f"{slot.upper():>7} ", Style(color=laws.STEEL_DIM))]
+        if held is None:
+            segments.append(Segment("·", Style(color=laws.EDGE_BRIGHT)))
+            segments.append(Segment(" ╌╌╌╌╌╌╌╌╌╌╌╌", Style(color=laws.EDGE)))
+        else:
+            value, from_tape = held
+            glyph_tone = laws.ACCENT if from_tape else laws.STEEL_MID
+            segments.append(Segment("▪", Style(color=glyph_tone, bold=from_tape)))
+            segments.append(Segment(f" {value[: max(width - 10, 4)]}", Style(color=laws.STEEL_BRIGHT)))
+        return Strip(segments).adjust_cell_length(width, Style())
+
+
 def _find_span(tape: str, value: str) -> tuple[int, int] | None:
     """Where a parsed value actually came from on the tape, if it did.
     Only real matches light — a field learned off-tape stays unlit."""
@@ -337,13 +388,17 @@ class ImportsScreen(TipsMixin, Screen):
                 yield Engraving("extract")
                 yield TapeReader(id="tape")
                 yield Static("", id="extract-log", classes="station-body")
+                yield ParseRegister(id="parse-register")
             with Vertical(classes="station", id="st-legal"):
                 yield Engraving("legal screen")
                 yield GateBank(id="gatebank")
                 yield Static("", id="gates", classes="station-body")
+                yield Teletype(id="legal-log", classes="station-body")
             with Vertical(classes="station", id="st-vault"):
                 yield Engraving("vault")
                 yield Static("", id="filed", classes="station-body")
+                yield MeterBar("★new", id="meter-window")
+                yield Static("", id="vault-tally", classes="station-body")
             yield TipRail()
         yield Plate(id="forge-plate")
         yield TipCapsule()
@@ -355,10 +410,54 @@ class ImportsScreen(TipsMixin, Screen):
 
     def on_mount(self) -> None:
         self._reveal = laws.Reveal(self)
+        self._session_filed = 0
+        self._session_refused = 0
+        self._session_rejected = 0
         self.query_one(Masthead).update_stats(self.knivves.knives)
         self.query_one(GateBank).set_rules(self._rules())
+        self._vault_readout()
+        # the rulebook prints itself below the lock — the law, on paper
+        rules = self._rules()
+        self.run_worker(
+            self.query_one("#legal-log", Teletype).type_lines(
+                [
+                    Text(f"{i} ", style=laws.ACCENT).append_text(
+                        Text(BOLT_LABELS.get(rule, rule.upper()), style=laws.STEEL_MID)
+                    )
+                    for i, rule in enumerate(rules, start=1)
+                ],
+                lead=Text("the rulebook — one bolt per rule:\n\n", style=laws.STEEL_DIM),
+                cadence=0.2,
+            ),
+            group="legal-log",
+            exclusive=True,
+        )
         self.show_room_tip()
         self.run_worker(self.demo_transit(), exclusive=True)
+
+    def _vault_readout(self) -> None:
+        """The vault station's tally — this session's traffic, counted."""
+        knives = self.knivves.knives
+        blades = max(len(knives), 1)
+        fresh = sum(1 for k in knives if k.is_new)
+        self.query_one("#meter-window", MeterBar).set_meter(
+            fresh / blades, f"{fresh}/{len(knives)}", laws.FRESH if fresh else None
+        )
+        tally = Text()
+        tally.append_text(laws.field("in vault", str(len(knives))))
+        tally.append("\n")
+        tally.append_text(laws.field(
+            "filed", f"{self._session_filed} this session",
+            laws.PASS if self._session_filed else laws.STEEL_DIM,
+        ))
+        tally.append("\n")
+        tally.append_text(laws.field("refused", f"{self._session_refused} duplicate(s)", laws.STEEL_DIM))
+        tally.append("\n")
+        tally.append_text(laws.field(
+            "rejected", f"{self._session_rejected} by the lock",
+            laws.FAIL if self._session_rejected else laws.STEEL_DIM,
+        ))
+        self.query_one("#vault-tally", Static).update(tally)
 
     def on_screen_resume(self, event) -> None:
         self._power_on()
@@ -421,6 +520,7 @@ class ImportsScreen(TipsMixin, Screen):
             self.query_one(selector, Static).update("")
         self.query_one(GateBank).reset()
         self.query_one(TapeReader).clear()
+        self.query_one(ParseRegister).reset()
         self._plate_x = 4
         self.call_after_refresh(self._settle)
 
@@ -442,20 +542,30 @@ class ImportsScreen(TipsMixin, Screen):
         that threw the lock, or None when it opened."""
         bank = self.query_one(GateBank)
         gates = self.query_one("#gates", Static)
+        log = self.query_one("#legal-log", Teletype)
         rules = self._rules()
         bank.set_rules(rules)
         low = title_text.lower()
+        checked = Text("the check, rule by rule:\n\n", style=laws.STEEL_DIM)
+        log.update(checked)
         for index, rule in enumerate(rules):
             bank.probe(index)
             await asyncio.sleep(0.22)
             hits = [kw for kw in RULE_KEYWORDS.get(rule, (rule.lower(),)) if kw in low]
+            label = BOLT_LABELS.get(rule, rule.upper())
             if hits:
                 bank.slam(index, hits)
+                checked.append(f"✗ {label} — matched: {', '.join(hits)}\n", style=laws.FAIL)
+                log.update(checked)
                 gates.update(Text(
                     f"✗ {RULE_DISPLAY.get(rule, rule)} — listing matched: {', '.join(hits)}",
                     style=laws.FAIL,
                 ))
                 return rule, hits
+            checked.append("● ", style=laws.PASS)
+            checked.append(f"{label:<17}", style=laws.STEEL_MID)
+            checked.append("no match\n", style=laws.STEEL_DIM)
+            log.update(checked)
             await bank.retract(index)
         gates.update(Text("the lock is open — CLEAR TO PROCEED", style=laws.PASS))
         return None
@@ -525,6 +635,8 @@ class ImportsScreen(TipsMixin, Screen):
         if duplicate:
             extract_log.update(Text(f"already in the vault: {duplicate}", style=laws.ACCENT))
             plate.begin("DUPLICATE", duplicate)
+            self._session_refused += 1
+            self._vault_readout()
             self._line_state("line: duplicate — nothing to do")
             return
 
@@ -539,12 +651,14 @@ class ImportsScreen(TipsMixin, Screen):
 
         plate.begin(listing.listing_title[:42] or "UNTITLED LISTING", listing.url.split("//")[-1][:42])
         tape = self.query_one(TapeReader)
+        register = self.query_one(ParseRegister)
         tape.set_tape(listing.listing_title)
         stamps = listing.stamped_fields()
         for label, value in stamps:
             span = _find_span(listing.listing_title, value)
             if span:
                 tape.light(*span)
+            register.stamp(label, value, span is not None)
             plate.stamp(label, value)
             self.call_after_refresh(self._settle)
             await asyncio.sleep(0.35)
@@ -560,6 +674,8 @@ class ImportsScreen(TipsMixin, Screen):
             plate.stamp("verdict", f"REJECTED — {RULE_DISPLAY.get(rule, rule)}")
             self.call_after_refresh(self._settle)
             filed.update(Text("not filed — prohibited mechanism identified", style=laws.FAIL))
+            self._session_rejected += 1
+            self._vault_readout()
             self._line_state("line: rejected ✗")
             return
         await asyncio.sleep(0.5)
@@ -572,6 +688,8 @@ class ImportsScreen(TipsMixin, Screen):
         landed.append(f"filed · {view.id}\n", style=laws.STEEL_DIM)
         landed.append("now in the rack · awaiting review", style=laws.STEEL_DIM)
         filed.update(landed)
+        self._session_filed += 1
+        self._vault_readout()
         self._line_state("line: filed ✓")
         self.query_one(Masthead).update_stats(self.knivves.knives)
 
@@ -665,6 +783,8 @@ class ImportsScreen(TipsMixin, Screen):
             landed.append(f"{len(report.repairs)} damaged lines repaired\n", style=laws.STEEL_DIM)
         landed.append("\nnow in the library · knivves update seals the batch", style=laws.STEEL_DIM)
         filed.update(landed)
+        self._session_filed += report.added
+        self._vault_readout()
         self._line_state(f"line: filed {report.added} ✓")
         self.query_one(Masthead).update_stats(self.knivves.knives)
 
@@ -687,6 +807,7 @@ class ImportsScreen(TipsMixin, Screen):
         plate.begin(knife.display_name, knife.id)
         demo_tape = str(knife.raw.get("listing_title") or knife.display_name)
         tape = self.query_one(TapeReader)
+        register = self.query_one(ParseRegister)
         tape.set_tape(demo_tape)
         best = knife.best_retailer or {}
         stamps = [
@@ -700,6 +821,7 @@ class ImportsScreen(TipsMixin, Screen):
             span = _find_span(demo_tape, value)
             if span:
                 tape.light(*span)
+            register.stamp(label, value, span is not None)
             plate.stamp(label, value)
             self.call_after_refresh(self._settle)
             await asyncio.sleep(0.45)
