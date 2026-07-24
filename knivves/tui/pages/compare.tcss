@@ -16,30 +16,28 @@ CompareScreen {
     margin: 0 1;
 }
 
-/* the center panel — a raised machined plaque between the plates */
+/* the summary pane — a titled pane between the two knives */
 #calipers {
     width: 40;
     height: auto;
     min-height: 14;
     margin: 0 1;
     background: $surface;
-    border-top: solid $edge-bright;
-    border-left: solid $edge-bright;
-    border-bottom: solid $background;
-    border-right: solid $background;
+    border: round $edge-bright;
+    border-title-color: $accent;
+    border-title-style: bold;
     padding: 1 2;
 }
 
-/* the caliper bed — the instrument's full-width mounting plate; it
-   takes the rest of the room, beams seated at its center */
+/* the measurement pane — full width, beams seated at its center */
 #calipers-bed {
     height: 1fr;
     margin: 0 3 1 3;
     background: $surface;
-    border-top: solid $edge-bright;
-    border-left: solid $edge-bright;
-    border-bottom: solid $background;
-    border-right: solid $background;
+    border: round $edge-bright;
+    border-title-color: $accent;
+    border-title-style: bold;
+    border-subtitle-color: $steel-dim;
     padding: 1 3;
     align: center middle;
 }

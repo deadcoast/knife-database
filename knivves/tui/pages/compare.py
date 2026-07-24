@@ -37,7 +37,6 @@ if TYPE_CHECKING:
     from .app import KnivvesApp
 from .. import laws
 from ..masthead import Masthead
-from ..surfaces import Engraving
 from ..plate import Plate
 from ..tips import ROOM_KEY, Tip, TipCapsule, TipRail, TipsMixin
 
@@ -355,13 +354,14 @@ class CompareScreen(TipsMixin, Screen):
         yield Masthead("COMPARE MODELS")
         with Horizontal(id="bench"):
             yield Plate(id="bench-left", classes="bench-plate")
-            with Vertical(id="calipers"):
-                yield Engraving("comparison")
+            with Vertical(id="calipers") as summary_pane:
+                summary_pane.border_title = "COMPARISON"
                 yield Static("", id="calipers-read", classes="station-body")
             yield Plate(id="bench-right", classes="bench-plate")
             yield TipRail()
         # the room's namesake spans the room — the beams get the full rail
-        with Vertical(id="calipers-bed"):
+        with Vertical(id="calipers-bed") as bed_pane:
+            bed_pane.border_title = "MEASUREMENT"
             yield Calipers(id="calipers-instrument")
         yield TipCapsule()
         yield Footer()

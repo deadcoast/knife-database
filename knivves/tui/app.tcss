@@ -16,29 +16,21 @@ Footer {
     color: $steel-dim;
 }
 
-/* machined station panels — shared by the intake line and the desk.
-   A station is a raised plate, not an outline on void: surface metal
-   for the body, the top/left edges catching the light, the bottom/right
-   falling into shadow. */
+/* station panes — titled borders, the native Textual pane language:
+   the title rides IN the border line, no bar behind it, and the border
+   itself carries the structure. Counts ride the subtitle edge. */
 
 .station {
     width: 1fr;
     height: 100%;
     margin: 0 1;
     background: $surface;
-    border-top: solid $edge-bright;
-    border-left: solid $edge-bright;
-    border-bottom: solid $background;
-    border-right: solid $background;
+    border: round $edge-bright;
+    border-title-color: $accent;
+    border-title-style: bold;
+    border-subtitle-color: $steel-dim;
     padding: 1 2;
     overflow: hidden hidden;
-}
-
-.station-name {
-    color: $steel-mid;
-    text-style: bold;
-    border-bottom: solid $edge;
-    padding-bottom: 1;
 }
 
 .station-body {

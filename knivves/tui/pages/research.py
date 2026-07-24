@@ -44,7 +44,7 @@ from .. import laws
 from ..gauges import EIGHTHS, MeterBar, _lerp
 from ..masthead import Masthead
 from ..plate import Plate
-from ..surfaces import Engraving, Teletype
+from ..surfaces import Teletype
 from ..tips import ROOM_KEY, Tip, TipCapsule, TipRail, TipsMixin
 
 if TYPE_CHECKING:
@@ -271,6 +271,7 @@ class UnknownsMap(Widget):
                 segments.append(Segment(" ", Style()))
                 continue
             spotlit = knife_id == self._spotlight
+            at_wavefront = self._reveal is not None and col >= energized - 3
             if (knife_id, row) in self._wake:
                 segments.append(Segment("▪", Style(color=laws.ACCENT, bold=True)))
             elif keys & missing:
@@ -278,6 +279,9 @@ class UnknownsMap(Widget):
                     tone = laws.ACCENT
                 elif spotlit:
                     tone = laws.STEEL_BRIGHT
+                elif at_wavefront:
+                    # the power-on's leading edge lights even the sockets
+                    tone = laws.STEEL_MID
                 else:
                     tone = laws.EDGE_BRIGHT
                 segments.append(Segment("·", Style(color=tone, bold=spotlit)))
@@ -286,12 +290,15 @@ class UnknownsMap(Widget):
                     tone = laws.ACCENT
                 elif spotlit:
                     tone = laws.STEEL_BRIGHT
+                elif at_wavefront:
+                    # a bright bar rides the sweep — the power-on is SEEN
+                    tone = laws.STEEL_BRIGHT
                 elif scan_col is not None and abs(col - scan_col) <= 1:
                     # the shimmer catches only what exists — lit dots gleam
                     tone = laws.STEEL_BRIGHT
                 else:
                     tone = _lerp(col / max(shown - 1, 1))
-                segments.append(Segment("▪", Style(color=tone, bold=spotlit)))
+                segments.append(Segment("▪", Style(color=tone, bold=spotlit or at_wavefront)))
         return Strip(segments)
 
     def _rail_line(self, width: int) -> Strip:
@@ -386,16 +393,18 @@ class ResearchScreen(TipsMixin, Screen):
 
     def compose(self) -> ComposeResult:
         yield Masthead("RESEARCH")
-        yield UnknownsMap(id="desk-map")
+        desk_map = UnknownsMap(id="desk-map")
+        desk_map.border_title = "MISSING DATA"
+        yield desk_map
         with Horizontal(id="desk-line"):
-            with Vertical(classes="station", id="st-docket"):
-                yield Engraving("queue")
+            with Vertical(classes="station", id="st-docket") as queue_pane:
+                queue_pane.border_title = "QUEUE"
                 yield Vertical(id="docket", classes="station-body")
-            with Vertical(classes="station", id="st-read"):
-                yield Engraving("read")
+            with Vertical(classes="station", id="st-read") as read_pane:
+                read_pane.border_title = "READ"
                 yield Teletype(id="read-log", classes="station-body")
-            with Vertical(classes="station", id="st-stamp"):
-                yield Engraving("save")
+            with Vertical(classes="station", id="st-stamp") as save_pane:
+                save_pane.border_title = "SAVE"
                 yield MeterBar("complete", id="meter-complete")
                 yield MeterBar("queue", id="meter-docket")
                 yield Static("", id="stamped", classes="station-body")
@@ -509,6 +518,10 @@ class ResearchScreen(TipsMixin, Screen):
         )
         self.query_one("#meter-docket", MeterBar).set_meter(
             len(plan.planned) / records, f"{len(plan.planned)} open", laws.ACCENT
+        )
+        self.query_one("#st-docket").border_subtitle = f"{len(plan.planned)} waiting"
+        self.query_one("#desk-map", UnknownsMap).border_subtitle = (
+            f"{audit.complete}/{audit.records} complete"
         )
         self._line_state(f"{len(plan.planned)} in queue · {audit.complete}/{audit.records} complete")
 

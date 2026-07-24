@@ -1,5 +1,24 @@
 # CHANGELOG
 
+## 012 — v0.16.0 (2026-07-24) — TITLED PANES, THE GALLERY LANGUAGE
+
+Rebuilt against the owner's reference apps from Textual's gallery
+(Harlequin, Toad): panel titles now ride IN the border line — the
+native pane language — instead of sitting on dark header bars.
+
+- Every pane on every page converted: COLLECTION / PAGES / BUY LIST /
+  MISSING DATA on home; PARSE / LEGAL CHECK / SAVE on imports; QUEUE /
+  READ / SAVE and the MISSING DATA map on research; VALUATION /
+  THE $150 LINE / MARKET SURVEY on market; COMPARISON / MEASUREMENT on
+  compare. Titles in amber on the border line, live counts riding the
+  subtitle edge ("150 waiting", "7 rules", "166 in database",
+  "13/166 complete · page 5 fills the rest", the last-survey date).
+  The header-bar widget is gone from every page.
+- The research/home map power-on gained its visible wavefront: a
+  bright bar rides the sweep's leading edge (lit dots go bright, even
+  sockets lift a step) so the opening animation is SEEN, not implied.
+- Eighteen shell proofs green; exhibits regenerated and reviewed.
+
 ## 011 — v0.15.0 (2026-07-24) — PLAIN LANGUAGE, EVERYWHERE
 
 The owner's standing correction, applied for good this time: no

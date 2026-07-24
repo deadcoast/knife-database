@@ -28,7 +28,6 @@ from ...store import save_database
 from .. import laws
 from ..gauges import GradientBars, MeterBar, PriceScale
 from ..masthead import Masthead
-from ..surfaces import Engraving
 from ..tips import ROOM_KEY, Tip, TipCapsule, TipRail, TipsMixin
 
 if TYPE_CHECKING:
@@ -74,16 +73,16 @@ class MarketScreen(TipsMixin, Screen):
     def compose(self) -> ComposeResult:
         yield Masthead("MARKET PRICES")
         with Horizontal(id="ledger"):
-            with Vertical(classes="station", id="ledger-valuation"):
-                yield Engraving("valuation")
+            with Vertical(classes="station", id="ledger-valuation") as valuation_pane:
+                valuation_pane.border_title = "VALUATION"
                 yield Static("", id="valuation-read", classes="station-body")
                 yield PriceScale(id="price-scale")
                 yield GradientBars(id="price-bars")
-            with Vertical(classes="station", id="ledger-line"):
-                yield Engraving("the $150 line")
+            with Vertical(classes="station", id="ledger-line") as line_pane:
+                line_pane.border_title = "THE $150 LINE"
                 yield Static("", id="line-read", classes="station-body")
-            with Vertical(classes="station", id="ledger-movers"):
-                yield Engraving("market survey")
+            with Vertical(classes="station", id="ledger-movers") as survey_pane:
+                survey_pane.border_title = "MARKET SURVEY"
                 yield MeterBar("history", id="meter-history")
                 yield MeterBar("priced", id="meter-priced")
                 yield Static("", id="movers-read", classes="station-body")
@@ -106,6 +105,7 @@ class MarketScreen(TipsMixin, Screen):
         if not self._surveying:
             self._idle_movers()
             self.query_one(Masthead).set_context(self._survey_status())
+            self.query_one("#ledger-movers").border_subtitle = self._survey_status()
         self._power_on()
 
     def on_screen_suspend(self, event) -> None:

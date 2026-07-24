@@ -36,7 +36,7 @@ from ...store import backup_database, make_knife_id, save_database
 from .. import laws
 from ..gauges import MeterBar
 from ..masthead import Masthead
-from ..surfaces import Engraving, Teletype
+from ..surfaces import Teletype
 from ..plate import Plate
 from ..tips import ROOM_KEY, Tip, TipCapsule, TipRail, TipsMixin
 
@@ -384,18 +384,19 @@ class ImportsScreen(TipsMixin, Screen):
             id="forge-intake",
         )
         with Horizontal(id="forge-line"):
-            with Vertical(classes="station", id="st-extract"):
-                yield Engraving("parse")
+            with Vertical(classes="station", id="st-extract") as parse_pane:
+                parse_pane.border_title = "PARSE"
                 yield TapeReader(id="tape")
                 yield Static("", id="extract-log", classes="station-body")
                 yield ParseRegister(id="parse-register")
-            with Vertical(classes="station", id="st-legal"):
-                yield Engraving("legal check")
+            with Vertical(classes="station", id="st-legal") as legal_pane:
+                legal_pane.border_title = "LEGAL CHECK"
+                legal_pane.border_subtitle = "7 rules"
                 yield GateBank(id="gatebank")
                 yield Static("", id="gates", classes="station-body")
                 yield Teletype(id="legal-log", classes="station-body")
-            with Vertical(classes="station", id="st-vault"):
-                yield Engraving("save")
+            with Vertical(classes="station", id="st-vault") as save_pane:
+                save_pane.border_title = "SAVE"
                 yield Static("", id="filed", classes="station-body")
                 yield MeterBar("★new", id="meter-window")
                 yield Static("", id="vault-tally", classes="station-body")
@@ -458,6 +459,7 @@ class ImportsScreen(TipsMixin, Screen):
             laws.FAIL if self._session_rejected else laws.STEEL_DIM,
         ))
         self.query_one("#vault-tally", Static).update(tally)
+        self.query_one("#st-vault").border_subtitle = f"{len(knives)} in database"
 
     def on_screen_resume(self, event) -> None:
         self._power_on()

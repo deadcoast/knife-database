@@ -16,30 +16,26 @@ HomeScreen {
     padding: 0 2;
 }
 
-/* raised machined plaques — light on the top edges, shadow beneath */
+/* titled panes — the title rides the border, no bar behind it */
 .hall-fixture {
     width: 1fr;
     height: 100%;
     margin: 0 1;
     background: $surface;
-    border-top: solid $edge-bright;
-    border-left: solid $edge-bright;
-    border-bottom: solid $background;
-    border-right: solid $background;
+    border: round $edge-bright;
+    border-title-color: $accent;
+    border-title-style: bold;
+    border-subtitle-color: $steel-dim;
     padding: 1 2;
     overflow: hidden hidden;
     transition: background $cue-duration $cue-easing, opacity 350ms $cue-easing;
 }
 
-/* CUE — the plaque under the hand lifts, its edge catches the light;
-   the children lift with it so the plaque reads as one surface */
+/* CUE — the pane under the hand lifts; children lift with it */
 .hall-fixture:hover {
     background: $surface-high;
-    border-top: solid $edge-bright;
-    border-left: solid $edge-bright;
 }
 
-.hall-fixture:hover > .hall-fixture-name,
 .hall-fixture:hover > .hall-fixture-body {
     background: $surface-high;
 }
@@ -48,15 +44,18 @@ HomeScreen {
     width: 2fr;
 }
 
-.hall-fixture-name {
-    color: $steel-mid;
-    text-style: bold;
-    border-bottom: solid $edge;
-    padding-bottom: 1;
-}
-
 .hall-fixture-body {
     margin-top: 1;
+}
+
+/* the whole collection, drawn across the floor as a titled pane */
+#hall-map {
+    height: 12;
+    margin: 0 2;
+    border: round $edge-bright;
+    border-title-color: $accent;
+    border-title-style: bold;
+    border-subtitle-color: $steel-dim;
 }
 
 /* REVEAL — the plaques surface one by one behind the parting door */
@@ -82,7 +81,3 @@ HomeScreen {
     background: $surface-raised;
 }
 
-/* the collection drawn across the hall's floor */
-#hall-map {
-    margin: 0 2;
-}

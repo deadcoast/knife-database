@@ -34,7 +34,7 @@ if TYPE_CHECKING:
 from .. import laws
 from ..gauges import MeterBar
 from ..masthead import Masthead
-from ..surfaces import Engraving, grain_tone
+from ..surfaces import grain_tone
 from ..tips import ROOM_KEY, Tip, TipCapsule, TipRail, TipsMixin
 from .research import UnknownsMap
 
@@ -152,25 +152,28 @@ class HomeScreen(TipsMixin, Screen):
         yield Masthead("HOME")
         yield BrandPlate(id="hall-brand")
         with Horizontal(id="hall"):
-            with Vertical(id="hall-state", classes="hall-fixture"):
-                yield Engraving("collection")
+            with Vertical(id="hall-state", classes="hall-fixture") as collection_pane:
+                collection_pane.border_title = "COLLECTION"
                 yield MeterBar("approved", id="meter-approved")
                 yield MeterBar("researched", id="meter-researched")
                 yield MeterBar("priced", id="meter-priced")
                 yield MeterBar("under $150", id="meter-affordable")
                 yield Static("", classes="hall-fixture-body", id="hall-state-body")
-            with Vertical(id="hall-doors", classes="hall-fixture"):
-                yield Engraving("pages")
+            with Vertical(id="hall-doors", classes="hall-fixture") as pages_pane:
+                pages_pane.border_title = "PAGES"
+                pages_pane.border_subtitle = "keys or clicks"
                 with Vertical(id="hall-doors-body", classes="hall-fixture-body"):
                     for key, page, name, describes in DOORS:
                         row = DoorRow(page, id=f"door-{page}", classes="door-row")
                         row.update(self._door_text(key, name, describes))
                         yield row
-            with Vertical(id="hall-reserve", classes="hall-fixture"):
-                yield Engraving("buy list")
+            with Vertical(id="hall-reserve", classes="hall-fixture") as buylist_pane:
+                buylist_pane.border_title = "BUY LIST"
                 yield Static("", classes="hall-fixture-body", id="hall-reserve-body")
             yield TipRail()
-        yield UnknownsMap(id="hall-map")
+        hall_map = UnknownsMap(id="hall-map")
+        hall_map.border_title = "MISSING DATA"
+        yield hall_map
         yield TipCapsule()
         yield Footer()
 
@@ -241,7 +244,9 @@ class HomeScreen(TipsMixin, Screen):
         columns = [
             (k.id, {g.field for g in audit.gaps_by_id.get(k.id, [])}) for k in self.knives
         ]
-        self.query_one("#hall-map", UnknownsMap).set_state(columns)
+        hall_map = self.query_one("#hall-map", UnknownsMap)
+        hall_map.set_state(columns)
+        hall_map.border_subtitle = f"{audit.complete}/{audit.records} complete · page 5 fills the rest"
 
     def _state_text(self, state: VaultState) -> Text:
         # every number is spoken, not derived — the provider is the
